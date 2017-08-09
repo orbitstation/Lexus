@@ -1,0 +1,17 @@
+﻿@{ ViewBag.Title = "Account Page"; }
+
+@section Header
+{
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0HlOnhp_0PYqZylJT-GMYCfUDjCZyfg0&libraries=places"></script>
+<!-- build:js -->
+<script src="~/UI/account/account-meta.js"></script>
+<script src="~/UI/account/account-config.js"></script>
+<script src="~/UI/account/account-app.js"></script>
+<script src="~/UI/account/page1/account-page1-ctrl.js"></script>
+<script src="~/UI/account/changePassword/changePasswordCtrl.js"></script>
+<script src="~/UI/account/accountLite/account-lite-ctrl.js"></script>
+<script src="~/UI/account/account-create-ctrl.js"></script>
+<!-- endbuild -->
+}
+
+<div ng-view></div>

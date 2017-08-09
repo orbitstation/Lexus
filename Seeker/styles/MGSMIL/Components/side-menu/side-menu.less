@@ -1,0 +1,345 @@
+﻿ //MIXINS AND VARIABLES
+ .keyframes(@name, @rules){
+    @-webkit-keyframes @name {@rules();}
+    @-moz-keyframes @name {@rules();}
+    @-ms-keyframes @name {@rules();}
+    @-o-keyframes @name {@rules();}
+    @keyframes @name {@rules();}
+}
+@default-menu-animation: 0.4s; 
+@default-menu-width: 80%;
+@default-menu-background: #ebeced;
+@default-menu-active-background: #a1d6ea;
+@default-menu-focus-background: #f5f6f6;
+@default-menu-icon-color: #75a1c7;
+@default-menu-border-color: #dae0e5;
+
+ //ng-animated - the css relies on animated classes provided by angular ng-animate module.
+ //^-add
+ //^-add-active
+ //^-remove
+ //^-remove-active
+
+.content-blocker{
+    background: transparent;
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 999999;
+    .translate3d(@default-menu-width, 0, 0);
+ }
+
+.side-menu{
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: auto;
+    max-width: 100%;
+    height: 100vh;
+    overflow-x: hidden;
+    opacity: 0;
+    -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
+    animation-fill-mode: forwards;
+    .animation(hidePanel  0.8s);
+    pointer-events: none;
+}
+.side-menu-on{
+    overflow: hidden;
+    //position: relative;
+    .side-menu{
+        .animation(showPanel @default-menu-animation);
+        -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
+        animation-fill-mode: forwards;
+        pointer-events: all;
+    }
+}
+
+.menu-level,
+.menu-wrap {
+    position: absolute;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.menu-wrap{
+    height: 100%;
+    width: 100%;
+    display: none;
+    background: @default-menu-background;
+    @media (max-width: @screen-xs-max) {
+        display: block;
+    }
+}
+
+.menu-level{
+    
+    visibility: hidden;
+    overflow-y: auto;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+.menu-level-current{
+    visibility: visible;
+}
+
+.menu-item{
+    display: block;
+    position: relative;
+    font-size: 17px;
+    font-weight: 300;
+    cursor: pointer;
+    &.menu-bold{
+        font-weight: 400;
+    }
+    &:after{
+        content: '';
+        display: block;
+        position: absolute;
+        left: 20px;
+        right: 0;
+        bottom: 0;
+        border-bottom: 1px solid @default-menu-border-color;
+    }
+    &:first-child{
+        height: 51px;
+        &:after{
+            left: 0;
+        }
+    }
+    &.menu-name{
+        position: relative;
+        text-align: center;
+        a{
+            display: inline-block;
+            line-height: 20px;
+            padding: 15px 0;
+            font-size: 15px;
+        }
+        .go-back{
+            left: 0;
+            top: 0;
+            line-height: 50px;
+            vertical-align: middle;
+            width: 50px;
+        }
+    }
+
+    .go-next{
+        right: 0;
+        border-left-style: solid;
+        padding: 12px 9px 12px 13px;
+        background: @default-menu-background;
+        &+a{
+            padding-right: 60px;
+        }
+    }
+    a{
+        display: block;
+        padding: 12px 10px 15px 20px;
+        color: #3f3f3f;
+        text-decoration: none;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        -webkit-tap-highlight-color: @default-menu-active-background;
+        &:active{
+            background: @default-menu-active-background;
+        }
+        &:focus{
+            background: @default-menu-focus-background;
+        }
+    }
+    
+    .go-back,
+    .go-next{
+        cursor: pointer;
+        position: absolute;
+        color: @default-menu-icon-color;
+        font-size: 27.5px;
+        border-width: 1px;
+        border-color: @default-menu-border-color;
+        -webkit-tap-highlight-color: @default-menu-active-background;
+        &:active{
+            background: @default-menu-active-background;
+        }
+        &:focus{
+            background: @default-menu-focus-background;
+        }
+    }
+}
+
+/**
+    Go Next
+*/
+.menu-level-current-add{
+    opacity: 0;
+} 
+.menu-level-current-add-active{
+    //visibility: visible;
+    opacity: 1;
+    .animation(inFromRight @default-menu-animation);
+} 
+.menu-level-current-remove{
+    
+} 
+.menu-level-current-remove-active{
+    .animation(outFromRight @default-menu-animation);
+    visibility: visible;
+}
+
+
+/**
+    Go Home
+*/
+.home.menu-level-current-add-active{
+    .animation(inFromLeft @default-menu-animation);
+} 
+.sub.menu-level-current-remove-active{
+    .animation(outFromLeft @default-menu-animation);
+}
+
+
+
+
+.keyframes(inFromRight, {
+	from {
+        opacity: 0;
+        .translate3d(100%, 0, 0);
+	}
+	to {
+        opacity: 1;
+        .translate3d(0, 0, 0);
+	}
+});
+
+.keyframes(inFromLeft, {
+	from {
+        opacity: 0;
+        .translate3d(-100%, 0, 0);
+	}
+	to {
+        opacity: 1;
+        .translate3d(0, 0, 0);
+	}
+});
+
+.keyframes(outFromRight, {
+	from {
+        opacity: 1;
+        .translate3d(0, 0, 0);
+	}
+	to {
+        opacity: 0;
+        .translate3d(-100%, 0, 0);
+	}
+});
+
+.keyframes(outFromLeft, {
+	from {
+        opacity: 1;
+        .translate3d(0, 0, 0);
+	}
+	to {
+        opacity: 0;
+        .translate3d(100%, 0, 0);
+	}
+});
+
+
+.shift-body-wrapper{
+     overflow: hidden;
+    .translate3d(@default-menu-width, 0, 0);
+    box-shadow: 0 0 4px rgba(0,0,0,0.3);
+}
+
+.shift-body-wrapper-add-active{
+    .animation(shiftWrapperIn @default-menu-animation);
+}
+.shift-body-wrapper-remove{
+    overflow: hidden;
+}
+
+.shift-body-wrapper-remove-active{
+    overflow: hidden;
+    .animation(shiftWrapperOut @default-menu-animation);
+}
+
+.shift-header-right{
+    overflow: hidden;
+    .translate3d(@default-menu-width, 0, 0)!important;
+}
+.shift-header-right-add-active{
+    .animation(shiftWrapperIn @default-menu-animation);
+}
+.shift-header-right-remove-active{
+    .animation(shiftWrapperOut @default-menu-animation);
+}
+
+
+.keyframes(shiftWrapperIn, {
+	from {
+        .translate3d(0, 0, 0);
+	}
+	to {
+        .translate3d(@default-menu-width, 0, 0);
+	}
+});
+
+.keyframes(shiftWrapperOut, {
+	from {
+        .translate3d(@default-menu-width, 0, 0);
+	}
+	to {
+        .translate3d(0, 0, 0);
+	}
+});
+
+ .keyframes(hidePanel, {
+	0% {
+        opacity: 1;
+	}
+	99.99% {
+        opacity: 1;
+	}
+    100% {
+        opacity: 0;
+    }
+});
+
+ .keyframes(showPanel, {
+	0% {
+        opacity: 0;
+	}
+	0.01% {
+        opacity: 1;
+	}
+    100% {
+        opacity: 1;
+    }
+});
+
+.keyframes(shiftWrapperLeft, {
+	from {
+        .translate3d(0, 0, 0);
+	}
+	to {
+        .translate3d(-100%, 0, 0);
+	}
+});
+
+.keyframes(shiftWrapperNormal, {
+	from {
+        .translate3d(-100%, 0, 0);
+	}
+	to {
+        .translate3d(0, 0, 0);
+	}
+});

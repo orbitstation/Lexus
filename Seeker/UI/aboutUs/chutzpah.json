@@ -1,0 +1,12 @@
+﻿{
+  "Framework": "jasmine",
+  "EnableTestFileBatching": true,
+  "InheritFromParent": true,
+  "References": [
+    {
+      "Path": "",
+      "Include": "*.js"
+    }
+  ],
+  "Tests": [ { "Path": "","Include": "*.spec.js"  } ]
+}

@@ -1,0 +1,75 @@
+﻿<div ng-if="isLoaded">
+    <div class="row">
+        <div class="col-xs-12">
+            <ocs-intro-section meta="meta.savedSchoolHeader"></ocs-intro-section>
+        </div>
+    </div>
+
+    <ocs-401 meta="meta" msgheader="379091" msgbody="379092"></ocs-401>
+
+    <div class="panel panel-default" ng-show="$root.isAuthenticated">
+        <div class="panel-body">
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2>{{school.schoolName}}</h2>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h3 class="page-header">{{msg(289051)}}</h3>
+                    <p>
+                        <strong>{{msg(256512)}}</strong><br>
+                        <a target="_blank" href="http://{{school.webSiteAddress}}">{{msg(347221)}}</a> |
+                        <a target="_blank" href="http://{{school.adminUrl}}">{{msg(288221)}}</a> |
+                        <a target="_blank" href="http://{{school.applyUrl}}">{{msg(280958)}}</a>
+                    </p>
+                    <address>
+                        <strong>{{msg(103539)}}</strong><br>
+                        {{school.address}}<br>
+                        {{school.city}}, {{school.state}} {{school.zipCode}}<br>
+                        <abbr title="Phone">P:</abbr> {{school.generalTelephone | tel}}
+                    </address>
+                    <p><strong>{{msg(347220)}}</strong><br>{{school.degreeType}}</p>
+                    <p><strong>{{msg(347218)}}</strong><br>{{school.schoolSize}}</p>
+                    <p><strong>{{msg(347219)}}</strong><br>{{school.degrees}}</p>
+
+                </div>
+
+
+                <div class="col-md-6">
+                    <h3 class="page-header">{{msg(364326)}}</h3>
+
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="panel" ng-repeat="program in school.programs">
+                                <div class="row">
+                                    <div class="col-xs-12"><h4>{{program.programName}}</h4></div>
+                                </div>
+                                <div class="row" ng-repeat="degree in program.degreeInfo">
+                                    <div class="col-xs-3"><strong>{{msg(347224)}}</strong></div>
+                                    <div class="col-xs-9">{{degree.key}}</div>
+                                    <br />
+                                    <div class="col-xs-3"><strong>{{msg(347223)}}</strong></div>
+                                    <div class="col-xs-9">{{degree.value}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="btn-group pull-right" role="group" aria-label="...">
+                <button type="button" class="btn btn-default" ng-click="close()">{{$root.msg(339822)}}</button>
+            </div>
+        </div>
+    </div>
+
+
+</div>

@@ -1,0 +1,36 @@
+﻿<div ng-if="isLoaded">
+    <ocs-intro-section meta="meta.pageHeaderResults"></ocs-intro-section>
+    <div ocs-spinner is-loaded="allLoaded">
+        <div ng-show="allLoaded">
+
+            <ocs-Bar-Chart settings="chartSettings"></ocs-Bar-Chart>
+
+            <div class="row">
+                <div class="col-md-12 text-right mt15"><a href="/careerPersonality/questions/edit" class="btn btn-link">{{:preResolved:msg(368239)}}</a></div>
+            </div>
+
+            <uib-accordion close-others="true" class="as-chart-bar">
+                <uib-accordion-group heading="{{item.name}}" ng-repeat="item in chartSettings" is-open="a.isOpen">
+                    {{item.description}}
+                    <br /><br />
+                    <button class="pull-right btn btn-primary" ng-click="goToOccupations(item.type)">
+                        {{:preResolved:msg(368367)}} {{item.name}} {{:preResolved:msg(368368)}}
+                    </button>
+
+                    <uib-accordion-heading>
+                        <span>{{item.name}}: {{item.value}}%</span>
+                        <div class="collapse-button">
+                            <i class="glyphicon"
+                               ng-class="{'glyphicon-plus' : !a.isOpen && !a.isDisabled, 'glyphicon-minus': a.isOpen}">
+                            </i>
+                        </div>
+                    </uib-accordion-heading>
+                </uib-accordion-group>
+            </uib-accordion>
+            <br />
+            <div class="row" ng-if="$root.registry.sessionStore.delayedSave.careerPersonality">
+                <div class="col-md-12 text-right"><a class="btn btn-primary" ng-click="delayedSave()">{{:preResolved:msg(368240)}}</a></div>
+            </div>
+        </div>
+    </div>
+</div>

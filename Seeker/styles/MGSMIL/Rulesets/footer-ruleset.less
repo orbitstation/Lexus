@@ -1,0 +1,149 @@
+﻿@footer-bg: @body-bg;
+@footer-ruleset: {
+    background: @footer-bg;
+    z-index: 1;
+    position: relative;
+    .main-footer{
+        .container;
+        padding: 25px 0;
+        @media (max-width: @screen-xs-max){
+            padding-left: @grid-gutter-width/2;
+            padding-right: @grid-gutter-width/2;
+        }
+
+        .disclaimer{
+            font-size: 9px;
+            line-height: 20px;
+            padding: 10px 0;
+            text-align: center;
+            font-weight: 400;
+            border-bottom: 1px solid #dfdfde;
+        }
+        .footer-links{
+            padding: 5px 0;
+            .footer-groups{
+                display: block;
+                text-align: center;
+                line-height: 25px;
+                font-size: 11px;
+                @media (max-width: @screen-xs-max){
+                    strong{
+                        display: block;
+                    }
+                }
+                span{
+                    display: inline-block;
+                    padding: 0 0 0 7px;
+                    margin-left: 2px;
+                    font-weight: 400;
+                    color: #666;
+                    position: relative;
+                    &:after{
+                        content: '';
+                        position: absolute;
+                        top: 7px;
+                        bottom: 7px;
+                        left: 0;
+                        width: 1px;
+                        background: #666;
+                    }
+                }
+                span:nth-child(2){
+                    margin-left: -2px;
+                    &:after{
+                        content: none;
+                    }
+                }
+            }
+        }
+
+        .footer-social,
+        .footer-copyright,
+        .footer-adchoises{
+            text-align: center;
+        }
+
+
+        .footer-social{
+            margin: 10px 0 2px;
+            a{
+                text-decoration: none;
+                display: inline-block;
+                span{
+                    height: 28px;
+                    display: inline-block;
+                    margin-right: 5px;
+                    padding: 0 13px 13px 10px;
+                    background: url("https://images.military.com/media/shared/css-global/footer-social-sprite.png") no-repeat scroll right transparent;
+                    
+                    &.facebook{
+                        background-position: -6px -5px;
+                    }
+                    &.twitter{
+                        background-position: -38px -5px;
+                    }
+                    &.googleplus{
+                        background-position: -68px -5px;
+                    }
+                    &.instagram{
+                        background-position: -132px -5px;
+                    }
+                    &.pininterest{
+                        background-position: -98px -5px;
+                    }
+                    &.youtube{
+                        background-position: -160px -5px;
+                    }
+
+                    &:hover{
+                        background-position-y: -37px;
+                    }
+                }
+                &:last-child{
+                    span{
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+
+        .footer-copyright{
+            font-size: 11px;
+            line-height: 19px;
+            margin-bottom: 5px;
+            color: #999;
+            .parent-company{
+                display: inline;
+                background: transparent url('https://images.military.com/media/shared/css-global/monster-logo-footer.png') 7px center no-repeat;
+                padding-left: 128px;
+                margin-left: 5px;
+                position: relative;
+                &:before{
+                    content: '';
+                    position: absolute;
+                    background: gray;
+                    left: 0;
+                    top: 1px;
+                    bottom: 0;
+                    width: 1px;
+                }
+            }
+        }
+
+        .footer-adchoises{
+            .adchoices-icon {
+                background: transparent url("https://images.military.com/media/shared/css-global/adchoices-icon.png") no-repeat scroll right center;
+                font-size: 12px;
+                font-weight: 400;
+                padding-right: 15px;
+                color: #00529b;
+                cursor: pointer;
+                text-decoration: none;
+            }
+
+            span {
+
+            }
+        }
+    }
+};

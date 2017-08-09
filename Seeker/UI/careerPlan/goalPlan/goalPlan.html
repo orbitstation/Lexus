@@ -1,0 +1,68 @@
+﻿<div ocs-spinner trigger="loading" meta="">
+    <link href="../../../styles/core/Components/plugins/grd.css" rel="stylesheet" />
+    <ocs-bread-crumbs meta="meta.menu"></ocs-bread-crumbs>
+
+    <ocs-401 meta="meta"></ocs-401>
+    <h1>Career Plan & Goals</h1>
+    <p class="lead" ng-bind-html="::msg(360066) | unsafe"></p>
+
+
+    <div ng-if="$root.isAuthenticated">
+        <h3 class="page-header">{{$root.msg(365523)}} <small>{{$root.msg(365522)}}</small></h3>
+
+        <!--<pre>{{data | json}}</pre>-->
+        <hr class="hr-short" />
+
+        <div class="list">
+            <div class="list-item" ng-repeat="goal in data.items track by id" ng-class="{'list-last':$last}">
+                <div class="list-number">
+                    {{$index + 1}}.
+                </div>
+                <div class="list-body">
+
+                    <div class="header-actions Grid -top -between">
+                       
+                        <div class="Cell">
+                            <h3 class="list-item-heading">
+                                <a href="/jobView#/{{goal.id}}">{{goal.name | capitalize}}</a>
+                            </h3>
+                        </div>
+                        <div class="Cell small">
+                            <a role="button" ng-click="deleteDocument(doc.id)">{{$root.msg(157940)}}</a> / 
+                            <a role="button" ng-click="deleteDocument(doc.id)">{{$root.msg(157853)}}</a>
+                        </div>
+                    </div>
+                    
+
+                    <div class="clearfix"></div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span>
+                                <strong>{{$root.msg(329846)}}:</strong> {{::goal.shortDescription}}
+                            </span><br />
+
+                            <span class="text-muted small">
+                                <strong>{{$root.msg(334509)}}:</strong> {{::goal.summary}}
+                            </span>
+                        </div>
+                        <div class="col-md-6">
+                            <p>
+                                <!-- Status -->
+                                <span class="text-muted small">
+                                    <strong>{{:preResolved:$root.msg(121355)}}</strong> {{:preResolved:$root.msg(goalStatusList[goal.statusId])}}
+                                </span><br />
+                                <span class="text-muted small">
+                                    <strong>{{:preResolved:$root.msg(360183)}}</strong> {{::goal.targetDueDate | date}}
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!--<hr class="hr-short" ng-if="!$last" />-->
+            </div>
+        </div>
+
+    </div>
+</div>
+

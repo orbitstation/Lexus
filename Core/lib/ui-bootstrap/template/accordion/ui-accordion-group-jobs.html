@@ -1,0 +1,13 @@
+﻿<div class="panel">
+    <div class="accordion-toggle">
+        <h5 ng-class="{'mt0': $parent.$first}" ng-click="toggleOpen()" tabindex="0" uib-accordion-transclude="heading">
+            <strong>{{heading}}</strong>
+            <i class="pull-right ng-scope fa" ng-class="{'fa-plus-square-o': !isOpen, 'fa-minus-square-o': isOpen }"></i>
+            <span class="sr-only" ng-show="!isOpen">, Collapsed</span>
+            <span class="sr-only" ng-show="isOpen">, Opened</span>
+        </h5>
+    </div>
+    <div class="panel-collapse collapse" uib-collapse="!isOpen" aria-hidden="false" style="height: 0">
+        <div ng-transclude></div>
+    </div>
+</div>

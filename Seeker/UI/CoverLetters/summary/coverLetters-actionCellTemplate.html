@@ -1,0 +1,14 @@
+﻿<!-- TODO - move styling to another place -->
+<style>
+    .actionCell a {        
+        padding: 0 0 0 10px;        
+    }
+</style>
+
+
+<div class="actionCell">    
+    <a ng-click="grid.appScope.cloneLetter(row.entity.id)" ocs-msg="157852"></a>
+    <a ng-href="#/edit/{{COL_FIELD}}" ocs-msg="157851"></a>
+    <a ng-href="#/send/{{COL_FIELD}}" ocs-msg="157854"></a>
+    <a ng-click="grid.appScope.deleteLetter(row.entity.id)" ocs-msg="157853"></a>
+</div>

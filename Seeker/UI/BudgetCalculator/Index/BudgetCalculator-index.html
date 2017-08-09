@@ -1,0 +1,225 @@
+﻿<div>
+    <ocs-intro-section meta="meta.pageHeaderCalculator"></ocs-intro-section>
+        
+    <ocs-error error-list="errors"></ocs-error>
+
+    <hr />
+    <ng-form name="globalForm" novalidate>
+        <div class="sticky-closure">
+            <div class="row">
+                <div class="col-sm-6 col-md-8">
+                    <h2 class="mt0">{{:preResolved:$root.msg(367269)}}</h2>
+                    <p>{{:preResolved:$root.msg(345797)}}</p>
+                    <div class="row">
+                        <div class="col-md-6" ng-repeat="u in expense.utilities track by $index" ng-if="!u.isCustom">
+                            <label>{{u.name}}</label>
+                            <div class="input-group mb15">
+                                <span class="input-group-addon">{{:preResolved:$root.msg(367255)}}</span>
+                                <input type="text"
+                                       maxlength="{{ $root.meta.maxLength }}"
+                                       ocs-only-numbers="true"
+                                       class="form-control"
+                                       aria-label="{{u.name}}"
+                                       placeholder="{{$root.msg(367268)}}"
+                                       ng-model="u.amount" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="mb10">{{:preResolved:$root.msg(367270)}}</h3>
+                    <div class="row">
+                        <div class="col-md-6" ng-repeat="u in expense.utilities track by $index" ng-if="u.isCustom === true">
+                            <label>{{u.name}}</label>
+                            <div class="input-group mb15">
+                                <span class="input-group-addon">{{:preResolved:$root.msg(367255)}}</span>
+                                <input type="text"
+                                       maxlength="{{ $root.meta.maxLength }}"
+                                       ocs-only-numbers="true"
+                                       class="form-control"
+                                       aria-label="{{u.name}}"
+                                       placeholder="{{$root.msg(367268)}}"
+                                       ng-model="u.amount" />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button" aria-label="{{$root.msg(344391)}} {{u.name}}"
+                                            ng-click="deleteCustomUtility(u)">
+                                        <span class="fa fa-trash"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 col-md-7">
+                            <ocs-input meta="meta.customUility" model="tempUtility.name"></ocs-input>
+                        </div>
+                        <div class="col-sm-12 col-md-5">
+                            <form ng-submit="addCustomUtility(tempUtility)" novalidate>
+                                <label class="hidden-sm hidden-xs">&nbsp;</label>
+                                <div class="input-group mb15">
+                                    <span class="input-group-addon">{{:preResolved:$root.msg(367255)}}</span>
+                                    <input type="text"
+                                           maxlength="{{ $root.meta.maxLength }}"
+                                           ocs-only-numbers="true"
+                                           class="form-control"
+                                           aria-label="{{$root.msg(367267)}}"
+                                           placeholder="{{$root.msg(367268)}}"
+                                           ng-model="tempUtility.amount">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <button class="btn btn-add" type="button" ng-click="addCustomUtility(tempUtility)">
+                        {{:preResolved:$root.msg(367272)}}
+                    </button>
+                    <div class="clearfix"></div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-sm-12 col-md-8 col-lg-6">
+                            <ocs-input meta="meta.totalUtilities" model="totalUtilities" add-on="{text: msg(367255)}"></ocs-input>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <h2>{{:preResolved:$root.msg(367256)}}</h2>
+                    <p>{{:preResolved:$root.msg(359208)}}</p>
+
+                    <div class="row">
+                        <div class="col-md-6" ng-repeat="u in expense.misc track by $index" ng-if="!u.isCustom">
+                            <label>{{u.name}}</label>
+                            <div class="input-group mb15">
+                                <span class="input-group-addon">{{:preResolved:$root.msg(367255)}}</span>
+                                <input type="text"
+                                       maxlength="{{ $root.meta.maxLength }}"
+                                       ocs-only-numbers="true"
+                                       class="form-control"
+                                       aria-label="{{u.name}}"
+                                       placeholder="{{$root.msg(367268)}}"
+                                       ng-model="u.amount" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="mb10">{{:preResolved:$root.msg(367266)}}</h3>
+                    <div class="row">
+                        <div class="col-md-6" ng-repeat="m in expense.misc" ng-if="m.isCustom">
+                            <label>{{m.name}}</label>
+                            <div class="input-group mb15">
+                                <span class="input-group-addon">{{:preResolved:$root.msg(367255)}}</span>
+                                <input type="text"
+                                       maxlength="{{ $root.meta.maxLength }}"
+                                       ocs-only-numbers="true"
+                                       class="form-control"
+                                       aria-label="{{m.name}}"
+                                       placeholder="{{$root.msg(367268)}}"
+                                       ng-model="m.amount" />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button"
+                                            aria-label="{{$root.msg(344391)}} {{m.name}}"
+                                            ng-click="deleteCustomMisc(m)">
+                                        <span class="fa fa-trash"></span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 col-md-7">
+                            <ocs-input meta="meta.customMisc" model="tempMisc.name"></ocs-input>
+                        </div>
+                        <div class="col-sm-12 col-md-5">
+                            <form ng-submit="addCustomMisc(tempMisc)" novalidate>
+                                <label class="hidden-sm hidden-xs">&nbsp;</label>
+                                <div class="input-group mb15">
+                                    <span class="input-group-addon">{{:preResolved:$root.msg(367255)}}</span>
+                                    <input type="text"
+                                           maxlength="{{ $root.meta.maxLength }}"
+                                           ocs-only-numbers="true"
+                                           class="form-control"
+                                           aria-label="{{$root.msg(367267)}}"
+                                           placeholder="{{$root.msg(367268)}}"
+                                           ng-model="tempMisc.amount">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <button class="btn btn-add" type="button" ng-click="addCustomMisc(tempMisc)">
+                        {{:preResolved:$root.msg(367271)}}
+                    </button>
+                    <div class="clearfix"></div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-sm-12 col-md-8 col-lg-6">
+                            <ocs-input meta="meta.totalMisc" model="totalMisc" add-on="{text: msg(367255)}"></ocs-input>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-4">
+                    <!-- FIXED -->
+                    <aside class="budget-calculation" ocs-sticky update="updateHeight" slide-inside=".sticky-closure">
+                        <div class="panel panel-muted panel-sm">
+                            <div class="panel-body">
+                                <h3 class="mt0">{{msg(345788)}}</h3>
+                                <hr class="hr-short" />
+
+                                <div class="mb15" style="background: #f2f2f2; padding: 10px;" tabindex="0">
+                                    <strong>{{$root.msg(345834)}}</strong>
+                                    <div class="numbers text-center" style="padding: 10px 0 0; font-size: 150%">
+                                        {{:preResolved:$root.msg(367255)}}{{grossSargetSalary}}
+                                    </div>
+                                </div>
+                                <div class="mb15" style="background: #f2f2f2; padding: 10px;" tabindex="0">
+                                    <strong>{{$root.msg(345835)}}</strong>
+                                    <div class="numbers text-center" style="padding: 10px 0 0; font-size: 150%">
+                                        {{:preResolved:$root.msg(367255)}}{{netTargetSalary}}
+                                    </div>
+                                </div>
+                                <div class="mb15" style="background: #f2f2f2; padding: 10px;" tabindex="0">
+                                    <strong>{{$root.msg(345836)}}</strong>
+                                    <div class="numbers text-center" style="padding: 10px 0 0; font-size: 150%">
+                                        {{:preResolved:$root.msg(367255)}}{{targetHourlyRate}}
+                                    </div>
+                                </div>
+
+                                <div style="background: #d9e7f7; padding: 10px;" tabindex="0">
+                                    <strong>{{$root.msg(345827)}}</strong>
+                                    <div class="numbers text-center" style="padding: 15px 0; font-size: 190%">
+                                        {{:preResolved:$root.msg(367255)}}{{totalMonthlyExpense}}
+                                    </div>
+                                    <div style="padding: 10px 15px; background: #fff; font-size: 100%; border:1px solid #D4DFF2">
+                                        <div style="display:flex; flex-flow:row nowrap; align-items:flex-end; justify-content:flex-end;">
+                                            <div>{{:preResolved:$root.msg(319504)}}</div>
+                                            <div style="flex:1; text-align:right; font-weight:600;">{{:preResolved:$root.msg(367255)}}{{totalAnnualExpense}}</div>
+                                        </div>
+                                        <div style="display:flex; flex-flow:row nowrap; align-items:flex-end; justify-content:flex-end;">
+                                            <div>{{:preResolved:$root.msg(376198)}}</div>
+                                            <div style="flex:1; text-align:right; font-weight:600;">{{:preResolved:$root.msg(367255)}}{{totalAnnualTax}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="btn-group pull-right mt15" role="group" aria-label="Actions">
+                                    <button type="button" class="btn btn-link"
+                                            ng-click="resetResults([expense.utilities, expense.misc, [tempUtility, tempMisc]])">
+                                        {{:preResolved:$root.msg(367273)}}
+                                    </button>
+                                    <button class="btn btn-success"
+                                            ng-click="saveExpenses()">
+                                        {{:preResolved:$root.msg(365646)}}
+                                    </button>
+                                </div>
+                                <div class="clearfix"></div>
+
+                                <ocs-error error-list="saveNotify"></ocs-error>
+                            </div>
+
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </ng-form>
+</div>

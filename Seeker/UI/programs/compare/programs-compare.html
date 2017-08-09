@@ -1,0 +1,53 @@
+﻿<div ng-if="isLoaded">
+    <ocs-401 meta="meta"></ocs-401>
+    <div ng-if="$root.isAuthenticated">
+        <ocs-intro-section meta="meta.pageHeaderCompare">
+            <ocs-well>
+                <div class="text-center">
+                    <a href="{{backButton.url}}" class="btn btn-primary multiline btn-block">{{backButton.text}}</a>
+                </div>
+            </ocs-well>
+        </ocs-intro-section>
+        <div ocs-spinner is-loaded="tableDataLoaded">
+            <div class="compare-table wrapper" ng-show="tableDataLoaded">
+                <div class="compare-table fix">
+                    <table>
+                        <tbody>
+                            <tr class="section-headers">
+                                <th class="empty"></th>
+                            </tr>
+                            <tr class="column-headers">
+                                <th class="empty"></th>
+                            </tr>
+                            <tr ng-repeat="program in programs" class="row-content fix" height="{{heights[$index]}}">
+                                <td>{{program.programName}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="compare-table scroll">
+                    <table>
+                        <tbody>
+                            <tr class="section-headers">
+                                <th ng-repeat="header in meta.compareTable.sectionHeaders" colspan="{{header.colspan}}">{{:preResolved:header.lookUpMsg.value}}</th>
+                            </tr>
+                            <tr class="column-headers">
+                                <th ng-repeat="header in meta.compareTable.columnHeaders">{{:preResolved:header.lookUpMsg.value}}</th>
+                            </tr>
+                            <tr ng-repeat="program in programs" class="row-content scroll" id="program-row-{{::$index}}">
+                                <td ng-repeat="providerInfo in program.providerInfo">
+                                    <div ng-if="providerInfo.isArray" ng-repeat="item in providerInfo.items track by $index">{{item}}</div>
+                                    <div ng-if="!providerInfo.isArray">{{providerInfo}}</div>
+                                </td>
+                                <td ng-repeat="courseInfo in program.generalCourseInfo">
+                                    <div ng-if="courseInfo.isArray" ng-repeat="item in courseInfo.items track by $index">{{item}}</div>
+                                    <div ng-if="!courseInfo.isArray">{{courseInfo}}</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,246 @@
+﻿<div ng-if="isLoaded">
+
+    <div class="page-heading">
+
+        <h1>{{:preResolved:$root.msg(360065)}}</h1>
+        <p class="lead" ng-bind-html=":preResolved:msg(360066) | unsafe"></p>
+    </div>
+
+    <ocs-401 meta="meta" msgheader="379087" msgbody="379088"></ocs-401>
+
+    <hr class="hr-short" />
+
+    <div ng-if="$root.isAuthenticated">
+        <div class="row">
+            <div class="col-sm-6">
+                <ng-form name="globalForm" novalidate>
+                    <h3>{{:preResolved:$root.msg(365647)}}</h3>
+
+                    <ocs-input meta="meta.goalName" model="d.name"></ocs-input>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <ocs-date meta="meta.targetDate" model="d.targetDueDate"></ocs-date>
+                        </div>
+                        <div class="col-lg-6">
+                            <ocs-select meta="meta.goalStatus" model="d.statusId"></ocs-select>
+                        </div>
+                    </div>
+
+                    <ocs-select meta="meta.goalType" model="d.typeId"></ocs-select>
+                    <ocs-textarea meta="meta.goalDescription" model="d.shortDescription"></ocs-textarea>
+                    <ocs-textarea meta="meta.goalSummary" model="d.summary"></ocs-textarea>
+                    <ocs-textarea meta="meta.goalStrategies" model="d.strategies"></ocs-textarea>
+                    <ocs-error error-list="save.success"></ocs-error>
+
+                    <div ng-if="goalId">
+                        <ocs-select meta="meta.goalVerification" model="d.verificationTypeId" change-fn="verificationType(d.verificationTypeId)"></ocs-select>
+                    </div>
+
+                    <div ng-if="d.verificationTypeId !== 5 && d.verificationTypeId !== undentified && d.verificationTypeId !== null && d.verificationTypeId !== 0">
+                        <ocs-upload meta="config.documentUpload"
+                                    documents="documents"
+                                    extra-upload-params="uploadFormParams"
+                                    on-error="onDocUploadError"
+                                    on-success="onDocUploadSuccess"></ocs-upload>
+                        <div>
+                            <h3 class="mb0 text-right">
+                                <!--{{:preResolved:$root.msg(365522)}} <small>{{:preResolved:$root.msg(365523)}}</small>-->
+                                <span class="display-block">
+                                    <small>{{:preResolved:$root.msg(360766)}} <strong>{{documents.length}}</strong> {{:preResolved:$root.msg(104616)}} <strong>{{maxItems}}</strong> {{:preResolved:$root.msg(365794)}}</small>
+                                </span>
+                            </h3>
+                            <div class="clearfix"></div>
+
+                            <div ocs-spinner is-loaded="$root.dcumentsLoaded" ng-if="documents.length">
+                                <hr class="hr-short" />
+
+                                <!-- (DOCUMENTS)  this is one row template -->
+                                <div class="list">
+                                    <div class="list-item" ng-repeat="doc in documents | orderBy:'-createDate' track by $index" ng-class="{'list-last':$last}">
+                                        <div class="list-body">
+                                            <!-- action buttons -->
+                                            <button class="btn btn-link btn-sm pull-right" ng-click="deleteDocument(doc.id)">{{:preResolved:$root.msg(157853)}}</button>
+
+                                            <!-- row heading link -->
+                                            <h3 class="list-item-heading pointer"><a ng-click="downloadFile(doc.id)">{{doc.name}}</a></h3>
+                                            <div class="clearfix"></div>
+
+                                            <!-- row data columns -->
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <span class="text-muted small">
+                                                        <strong>{{:preResolved:$root.msg(253912)}} </strong>
+                                                        {{doc.createDate |date}}
+                                                    </span>
+                                                    <br />
+                                                    <span class="text-muted small"><strong>{{$root.msg(354555)}}:</strong>&nbsp;<a ng-click="gotoStatus(resume.resumeId, resume.resumeStatus)">{{doc.fileType}}</a></span>
+                                                    <br />
+                                                    <span class="text-muted small"><strong>{{$root.msg(361288)}}:</strong>&nbsp;<a ng-click="gotoStatus(resume.resumeId, resume.resumeStatus)">{{doc.fileSize}}</a></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="hr-short" />
+                        </div>
+                    </div>
+
+                    <ocs-error error-list="save.error"></ocs-error>
+                    <div class="text-right">
+                        <a href="/careerPlan/" class="btn btn-link">{{:preResolved:$root.msg(365657)}}</a>
+                        
+                        <ocs-button meta="meta.saveGoal"
+                                    options="{classes:'btn-primary'}"
+                                    is-busy="button.isBusy"
+                                    validation="globalForm.$invalid"
+                                    ng-click="saveGoal()"></ocs-button>
+                    </div>
+                    
+                </ng-form>
+            </div>
+            <div class="col-sm-6">
+                <div ng-if="goalId" ocs-spinner is-loaded="$root.activitiesLoaded.spinner">
+                    <h3>{{:preResolved:$root.msg(360258)}}</h3>
+                    <label class="display-block">
+                        {{:preResolved:$root.msg(365649)}}
+                    </label>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-success btn-block mb10"
+                                    ng-disabled="activityNumbers.current >= activityNumbers.max"
+                                    ng-click="selectRecommendedActivites()">
+                                {{:preResolved:$root.msg(365650)}}
+                            </button>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-info btn-block mb10"
+                                    ng-disabled="(activityNumbers.custom >= (activityNumbers.max/2) || (activityNumbers.current >= activityNumbers.max))"
+                                    ng-click="createCustomActivity()">
+                                {{:preResolved:$root.msg(365651)}}
+                            </button>
+
+                        </div>
+                    </div>
+                    <p class="text-muted small">
+                        <strong>{{activityNumbers.current}}</strong>
+                        {{:preResolved:$root.msg(365524)}}
+                        <strong>{{activityNumbers.max}}</strong>
+                        {{:preResolved:$root.msg(365526)}}
+                        {{:preResolved:$root.msg(365521)|lowercase}}
+                    </p>
+
+                    <uib-accordion close-others="true">
+                        <ng-form name='activityForm' novalidate ng-repeat="(key,item) in d.activities track by item.id" class="ng-cloak">
+                            <uib-accordion-group template-url="/lib/ui-bootstrap/template/accordion/ui-accordion-group-activities.html"
+                                                 is-open="act.isOpen">
+
+                                <uib-accordion-heading>
+                                    {{item.name}}&nbsp;
+                                </uib-accordion-heading>
+
+                                <ocs-input meta="meta.activityName" model="item.name" form-size="sm" ng-if="item.isCustom"></ocs-input>
+
+                                <ocs-textarea ng-if="item.isCustom === true" meta="meta.activitiyDescription" model="item.description" form-size="sm"></ocs-textarea>
+
+                                <div ng-if="item.isCustom !== true" class="form-group form-group-sm">
+                                    <label>{{:preResolved:meta.activitiyDescription.label.lookUpMsg.value}}</label>
+                                    <small class="display-block mb15">{{::item.description}}</small>
+                                </div>
+
+                                <ocs-textarea meta="meta.activityNotes" model="item.notes" form-size="sm"></ocs-textarea>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <ocs-date meta="meta.activityDueDate" model="item.targetDueDate" form-size="sm"></ocs-date>
+                                    </div>
+                                    <div class="col-xs-6 text-right">
+                                        <lable class="display-block" style="margin-bottom:5px;">&nbsp;</lable>
+                                        <button type="button" class="btn btn-link btn-sm" ng-click="deleteActivity(item.id, item.isCustom); act.isOpen = false;">{{$root.msg(365645, 'remove')}}</button>
+                                        <button type="button" class="btn btn-primary btn-sm" ng-disabled="activityForm.$invalid" ng-click="updateActivity(item.id); act.isOpen = false;">{{$root.msg(365646, 'save')}}</button>
+                                    </div>
+                                </div>
+                            </uib-accordion-group>
+                        </ng-form>
+                    </uib-accordion>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="recommendedActivities.html" ng-if="goalId">
+    <div class="modal-header">
+        <h4 class="modal-title"><strong>{{:preResolved:$root.msg(365650)}}</strong></h4>
+    </div>
+    <div class="modal-body">
+        <h5>
+            <strong>{{$root.msg(365699)}}</strong>
+        </h5>
+        <ocs-check-box meta="metaRecommendedActivities" model="items"></ocs-check-box>
+        <ocs-error error-list="save.error"></ocs-error>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-link" type="button" ng-click="cancel()">{{:preResolved:$root.msg(360156)}}</button>
+        <button class="btn btn-success" type="button" ng-click="add()">{{:preResolved:$root.msg(365652)}}</button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="customActivities.html" ng-if="goalId">
+    <ng-form name="activityForm" novalidate>
+        <div class="modal-header">
+            <h4 class="modal-title"><strong>{{:preResolved:$root.msg(365651)}}</strong></h4>
+        </div>
+        <div class="modal-body">
+            <ocs-input meta="$root.meta.activityName" model="activity.name"></ocs-input>
+            <ocs-textarea meta="$root.meta.activitiyDescription" model="activity.description"></ocs-textarea>
+            <ocs-textarea meta="$root.meta.activityNotes" model="activity.notes"></ocs-textarea>
+            <ocs-date meta="$root.meta.activityDueDate" model="activity.targetDueDate"></ocs-date>
+
+            <ocs-error error-list="save.error"></ocs-error>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-link" type="button" ng-click="cancel()">{{$root.msg(360156)}}</button>
+            <button class="btn btn-success" type="submit" ng-disabled="activityForm.$invalid" ng-click="add(activity)">{{:preResolved:$root.msg(365652)}}</button>
+        </div>
+    </ng-form>
+</script>
+
+<script type="text/ng-template" id="deleteActivity.html" ng-if="goalId">
+    <div class="modal-header">
+        {{:preResolved:$root.msg(365653)}}
+    </div>
+    <div class="modal-body">
+        {{:preResolved:$root.msg(125210)}} <strong>{{activity.name}}</strong> {{:preResolved:$root.msg(365655)}}?
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-link btn-sm" type="button" ng-click="cancel()">{{:preResolved:$root.msg(360156)}}</button>
+        <button class="btn btn-danger btn-sm" type="button" ng-click="delete()">{{:preResolved:$root.msg(344391)}}</button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="deleteDocument.html" ng-if="goalId">
+    <div class="modal-header">
+        {{msg(246651)}}
+    </div>
+    <div class="modal-body">
+        <h4>{{msg(378622)}}</h4>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-link btn-sm" type="button" ng-click="cancel()">{{:preResolved:$root.msg(360156)}}</button>
+        <button class="btn btn-danger btn-sm" type="button" ng-click="ok()">{{:preResolved:$root.msg(344391)}}</button>
+    </div>
+</script>
+
+<script type="text/ng-template" id="deleteDocuments.html" ng-if="goalId">
+    <div class="modal-header">
+        {{msg(246651)}}
+    </div>
+    <div class="modal-body">
+        {{msg(378627)}}
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-link btn-sm" type="button" ng-click="cancel()">{{:preResolved:$root.msg(360156)}}</button>
+        <button class="btn btn-danger btn-sm" type="button" ng-click="ok()">{{:preResolved:$root.msg(344391)}}</button>
+    </div>
+</script>

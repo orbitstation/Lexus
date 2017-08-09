@@ -1,0 +1,172 @@
+﻿<div ng-if="isLoaded">
+    <ocs-error error-list='serviceErrorList'></ocs-error>
+
+    <div class="row"  ng-show="job.source == 'Cloud' && useCoreJobView === 'false'">
+        <div class="col-sm-12">
+            <h2>{{job.title}}</h2>
+            <p class="lead">
+                {{job.company}} - <span class="small">{{job.city}}, {{job.state}}</span><br />
+                <span class="small">{{msg(364088)}} {{ moment(job.active_from).format(jobPostingDateFormat) }}</span>
+            </p>
+        </div>
+    </div>
+
+    <div class="row" >
+        <div class="col-sm-12 text-center">
+            <span class="small" ng-if="job.flags.vets_job">
+                <i class="material-icons align-icon veteran-star-red">stars</i> {{:preResolved:msg(370217)}}
+            </span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12" ng-show="job.source == 'Cloud' && useCoreJobView === 'false'">
+            <div class="panel panel-default">
+                <div class="panel-body" ng-show="job.source == 'Cloud'">
+                    <div class="row">
+                        <div class="col-md-9" ng-bind-html="job.html"></div>
+                        <div class="col-md-3">
+                            <h4>{{msg(364973)}}</h4>
+                            <h5>{{msg(364974)}}</h5>
+                            <div>
+                                {{job.company}}
+                            </div>
+                            <h5>{{msg(364975)}}</h5>
+                            <div>
+                                {{job.city}}, {{job.state}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+        <div class="col-sm-12" ng-if="job.source == 'Cloud' && useCoreJobView === 'true'">
+            <ocs-html-frame src="{{coreJobViewUrl}}" type="job.source"></ocs-html-frame>
+        </div>
+        <div class="col-sm-12" ng-if="useCoreJobView === 'true' && job.source == 'Core' && !job.flags.uses_EJB">
+            <ocs-html-frame src="{{coreJobViewUrl}}" type="job.source"></ocs-html-frame>
+        </div>
+        <div class="col-sm-12" ng-if="useCoreJobView === 'true' && job.source == 'Core' && job.flags.uses_EJB">
+        <div class="alert alert-warning" ng-show="job.show_expired == true">{{msg(359482)}}</div>
+            <ocs-html-frame src="{{coreJobUrl}}"></ocs-html-frame>
+        </div>
+        <div class="col-sm-12" ng-if="useCoreJobView === 'false'">
+        <div class="alert alert-warning" ng-show="job.show_expired == true">{{msg(359482)}}</div>
+            <ocs-html-frame src="{{coreJobUrl}}" type="job.source" ng-show="job.source == 'Core'"></ocs-html-frame>
+        </div>
+    </div>
+
+    <!--  modal for send email -->
+    <modal shown="sendToFriend.open" name="emailModal.html"></modal>
+    <script type="text/ng-template" id="emailModal.html">
+        <ng-form name="sendEmail" novalidate>
+            <div class="modal-header">
+                <h4 class="modal-title"><strong>{{msg(364556)}}</strong></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class='col-md-12'>
+                        <ocs-error error-list='meta.errorList'></ocs-error>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class='col-md-12'>
+                        <ocs-input meta="meta.sendTo" model="sendTo"></ocs-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class='col-md-12'>
+                        <ocs-input meta="meta.sendFrom" model="sendFrom"></ocs-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class='col-md-12'>
+                        <label for="g-recaptcha-response" class="ng-hide"><span>{{msg(306385)}}</span></label>
+                        <div vc-recaptcha ng-show="configMeta.captcha.provider.lookUpConfig.value === 'Google'"
+                             key="$root.configMeta.captcha.googleKey.lookUpConfig.value"
+                             on-create="0"
+                             on-success="$root.sendToFriendCaptchaResponse = response;"
+                             on-expire="vcRecaptchaService.reload(0);">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-info" type="button" ng-click="sendMail(sendFrom, sendTo, cancel)" ng-disabled="!sendEmail.$valid">{{msg(364561)}}</button>
+                <button class="btn btn-warning" type="button" ng-click="cancel()">{{msg(354142)}}</button> <!--Close-->
+            </div>
+        </ng-form>
+    </script>
+
+    <span ng-if="triggerSSO == true">
+        <ocs-401 meta="meta" msgheader="379208" msgbody="379209"></ocs-401>
+    </span>
+    
+    <div class="apply-panel">
+        <div class="container">
+            <div class="text-center apply-section">
+                <div class="pull-left go-back-btn" ng-if="jobSearchSession">
+                    <button type="button" class="btn btn-default" ng-click="backToSearchResults()" aria-label="{{msg(339822)}}">{{msg(339822)}}</button>
+                </div>
+                <button type="button"
+                        class="btn btn-primary btn-apply"
+                        ocs-busy="busyLinks.apply" ignore-disabled="ignoreBusy()"
+                        ng-disabled="busyLinks.apply"
+                        ng-click="applyForJob()">
+                    <span ng-if="job.flags.vets_job"><i class="glyphicon glyphicon-star align-icon less"></i> {{msg(375301)}}</span>
+                    <span ng-if="!job.flags.vets_job">{{msg(365635)}}</span>
+                </button>
+
+                <div class="options-btns">
+                    <div class="pull-right text-right social-btn">
+                        <div class="btn-group visible-xs-block" uib-dropdown is-open="status.isopen">
+                            <button id="single-button" type="button" class="btn btn-link" uib-dropdown-toggle ng-disabled="disabled">
+                                <i class="glyphicon glyphicon-option-vertical"></i>
+                            </button>
+                            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                                <li role="menuitem">
+                                    <button type="button" class="btn"
+                                            ng-class="{'btn-link': !jobIsSaved,'btn-outline-success': jobIsSaved}"
+                                            ng-click="saveJob()"
+                                            ng-disabled="jobIsSaved">
+                                        <span ng-if="!jobIsSaved"><i class="glyphicon glyphicon-star-empty"></i> {{msg(364090)}}</span>
+                                        <span ng-if="jobIsSaved"><i class="fa fa-check"></i> {{msg(365636)}}</span>
+                                    </button>
+                                </li>
+                                <li class="divider"></li>
+                                <li role="menuitem">
+                                    <button type="button"
+                                            class="btn btn-link"
+                                            ng-click="openEmailModal()">
+                                        <i class="glyphicon glyphicon-envelope"></i> {{msg(364091)}}
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="hidden-xs">
+                            <button type="button" class="btn"
+                                    ng-class="{'btn-link': !jobIsSaved,'btn-outline-success': jobIsSaved}"
+                                    ng-click="saveJob()"
+                                    ng-disabled="jobIsSaved">
+                                <span ng-if="!jobIsSaved"><i class="glyphicon glyphicon-star-empty"></i> {{msg(364090)}}</span>
+                                <span ng-if="jobIsSaved"><i class="fa fa-check"></i> {{msg(365636)}}</span>
+                            </button>
+                            <button type="button"
+                                    class="btn btn-link"
+                                    ng-click="openEmailModal()">
+                                <i class="glyphicon glyphicon-envelope"></i> {{msg(364091)}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        .body-wrapper {
+            margin-bottom: 75px;
+        }
+    </style>
+</div>

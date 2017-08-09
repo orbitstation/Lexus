@@ -1,0 +1,24 @@
+﻿<div ng-controller="ResumeBasics as vm">
+    <ocs-input meta="meta.resumeTitle" model="vm.data.resumeBasics.resumeTitle" form-size="lg"></ocs-input>
+    <div class="resume-types" ng-if="!vm.isExistingResume">
+        <hr class="hr-short">
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <button class="btn btn-primary mb-xs-half-gutter"
+                        ng-disabled="!vm.data.resumeBasics.resumeTitle"
+                        ng-bind="$root.msg(367648)"
+                        ng-click="vm.startResume('ResumeBuilder')"></button>
+            </div>
+            <div class="col-md-6 text-center">
+                <button class="btn btn-primary"
+                        ng-disabled="!vm.data.resumeBasics.resumeTitle"
+                        ng-bind="$root.msg(367649)"
+                        ng-click="vm.startResume('UploadResume')"></button>
+            </div>
+        </div>
+        <hr class="hr-short">
+    </div>
+</div>
+
+
+

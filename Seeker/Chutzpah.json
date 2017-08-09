@@ -1,0 +1,24 @@
+﻿{
+  "Framework": "jasmine",
+  "EnableTestFileBatching": true,
+  "References": [
+    { "Path": "../Core/cdn-release/unstable/lib/lib.min.js" },
+    { "Path": "../Core/cdn-release/unstable/lib/core.min.js" },
+    {
+      "Path": "../Core/lib/",
+      "Include": "*.js"
+    },
+    {
+      "Path": "../Core/uiCore/",
+      "Include": "*.js"
+    },
+    {
+      "Path": "scripts/",
+      "Include": "*.js"
+    },
+    { "Path": "../Core/Scripts/jasmine.js" },
+    { "Path": "../Core/Scripts/jasmine-html.js" },
+    { "Path": "../Core/Scripts/angular-mocks.js" }
+  ],
+  "Tests": [ { "Path": "","Include": "*.spec.js"  } ]
+}

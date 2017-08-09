@@ -1,0 +1,10 @@
+﻿<ol class="breadcrumb" ng-show="$root.configLayout.MGS_Breadcrumbs_On.lookUpConfig.value=='true'">  
+    <li ng-repeat="item in $root.meta.breadCrumbs track by $index">
+        <a ng-show="item.url" ng-href="{{item.url}}">{{:preResolved:item.display.value}}</a>
+        <span ng-hide="item.url">{{:preResolved:item.display.value}}</span>
+    </li>
+    <li ng-repeat="item in $root.extraBreadCrumbs track by $index">
+        <a ng-show="item.url" ng-href="{{item.url}}">{{:preResolved:item.display.value}}</a>
+        <span ng-hide="item.url">{{:preResolved:item.display.value}}</span>
+    </li>
+</ol>

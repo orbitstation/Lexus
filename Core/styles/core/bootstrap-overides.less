@@ -1,0 +1,111 @@
+﻿.breadcrumb {
+    background: none;
+    padding: 0;
+}
+
+uib-accordion{
+    .panel-group{
+        margin-bottom: 0;
+    }
+    ng-form{
+        .panel{
+            margin-bottom: @grid-gutter-width/2!important; //15px
+        }
+        &:last-child{
+            .panel{
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+.panel {
+    &.panel-login{ //used on the login directive
+        h3{  margin-top: 0; }
+    }
+}
+
+.form-control {
+    .box-shadow(none);
+}
+
+.form-group{
+    p{
+        margin: 0;
+    }
+}
+
+
+//Labels
+.label,
+label{
+    font-weight: @label-font-weight;
+}
+
+//Strong elems
+b, strong {
+    font-weight: @label-font-weight;
+}
+
+
+& when (@btn-animate='true'){
+    a,
+    .btn, 
+    .main-menu li// this line needs to go once we have new main menu implemented!
+    { 
+        .transition(all 100ms ease-in);
+
+    }
+}
+
+
+
+.radio-inline{
+    label{
+        font-weight: normal;
+    }
+}
+
+fieldset{
+    .legend{
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+    }
+    div.checkbox{ //2nd item after legend behaves as the first item for the checboxes
+        &:nth-child(2){
+            margin-top: 0;
+        }
+        &:first-child:last-child{
+            margin-bottom: 0!important;
+        }
+    }
+}
+
+.k-widget{
+    margin-bottom: @grid-gutter-width/2;
+}
+
+hr{
+    &.hr-green{
+        border-top: @hr-green;
+    }
+    &.hr-option{
+        border-top: @hr-option;
+    }
+              
+    &.hr-option-gray{
+        border-top: @hr-option-gray;
+    }  
+       
+    &.hr-secondary{
+        border-top: @hr-secondary;
+    }       
+    &.hr-primary{
+        border-top: @hr-primary;
+    }      
+    &.hr-table-gray{
+        border-top: @hr-table-gray;
+    }     
+  
+}

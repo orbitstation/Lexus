@@ -1,0 +1,15 @@
+﻿<div ocs-spinner is-loaded="doneLoading">
+    <div class="panel panel-default ng-hide" ng-show="jobs !== null && jobs.length > 0">
+        <div class="panel-body">
+            <h5><strong>{{$root.meta.recommendedJobs.title.lookUpMsg.value}}</strong></h5>
+            <div ng-repeat="item in jobs">
+                <hr ng-hide="$index === 0" />
+                <a ng-href="{{item.url}}">{{item.title}}</a>
+                <div class="small">{{item.html}}</div>
+                <small>
+                    <span class="label label-info">{{item.city}}, {{item.state}}</span>
+                </small>
+            </div>
+        </div>
+    </div>
+</div>

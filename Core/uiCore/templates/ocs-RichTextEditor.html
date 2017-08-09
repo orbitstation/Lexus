@@ -1,0 +1,43 @@
+﻿<ng-form name='singleItemForm' novalidate>
+    <div class='form-group' ng-class="{'has-error': !(singleItemForm.$pristine || singleItemForm.$valid)}">
+        <label for='{{elementId}}'>
+            <span ng-show='{{meta.required}}'>
+                <small class="fa fa-asterisk required-asterisk"></small>
+                <span class="sr-only">{{$root.msg(555)}}</span>
+            </span>
+            {{meta.label.lookUpMsg.value}}
+        </label>
+
+        <ocs-Help meta="meta.help" ng-show="{{meta.help}}" class="ng-hide"></ocs-Help>
+
+        <!--
+        ui-mask='{{mask}}'
+        ui-mask-placeholder
+    -->
+        <textarea ui-tinymce='{{getOptions()}}'
+                    id="{{elementId}}"
+                    aria-label="{{meta.label.lookUpMsg.text}} {{meta.required ? $root.msg(555) : ''}}"
+                    aria-required='{{meta.required}}'
+                    class='form-control'
+                    ng-model='model'
+                    rows="{{meta.rows}}"
+                    placeholder='{{meta.placeholder.lookUpMsg.value}}'
+                    max-length="{{meta.max}}"
+                    ng-required='{{meta.required}}'
+                    ng-model-options="{ updateOn: 'default', debounce: { 'default': 200, 'change': 0 }}"
+                    ng-disabled="meta.disabled" />
+        <span>{{model.length > 0 ? model.length : 0}}&nbsp;{{meta.of.lookUpMsg.value}}&nbsp;{{meta.max}}</span>
+        <span class="sr-only" aria-live="assertive"><span ng-if="(model.length % 100) < 50">{{model.length > 0 ? model.length : 0}}&nbsp;{{meta.of.lookUpMsg.value}}&nbsp;{{meta.max}}</span></span>
+
+        <span class="ng-hide error-message" ng-show="!singleItemForm.$pristine" aria-live="assertive">
+            <!-- [ {{singleItemForm.$valid}} ]&nbsp; -->
+            <!-- field level validation -->
+            <span ng-show='singleItemForm.$dirty && singleItemForm.$invalid'>
+                <span ng-show='singleItemForm.$error.required'>{{meta.error.required.lookUpMsg.value}}</span>
+                <span ng-show='singleItemForm.$error.maxLength'>{{meta.error.maxLength.lookUpMsg.value}} <span class="sr-only">{{model.length > 0 ? model.length : 0}}&nbsp;{{meta.of.lookUpMsg.value}}&nbsp;{{meta.max}}</span></span>
+            </span>
+        </span>
+
+        <span class="error-message" aria-live="assertive" ng-show="singleItemForm.$pristine || singleItemForm.$valid">&nbsp;</span>
+    </div>
+</ng-form>

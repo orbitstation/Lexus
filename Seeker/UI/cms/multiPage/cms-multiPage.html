@@ -1,0 +1,250 @@
+﻿<style>
+    .cmsError .cmsHighlight, .cmsError .cmsHighlight:hover {
+        background-color: red;
+        border: 6px solid pink;
+    }
+    .cmsError .currentLiveEdit, .cmsError .currentLiveEdit:hover {
+        border: 6px solid pink;
+    }
+
+    .cmsError .slideButtonBox {
+        background-color: deeppink;
+    }
+
+
+
+
+    .cmsErrorSubSection .cmsHighlight, .cmsErrorSubSection .cmsHighlight:hover {
+        background-color: red;
+        border: 6px solid pink;
+    }
+    .cmsErrorSubSection .currentLiveEdit, .cmsErrorSubSection .currentLiveEdit:hover {
+        background-color: pink;
+    }
+
+    .cmsErrorSubSection .slideButtonBox {
+        background-color: deeppink;
+    }
+
+
+
+
+    .scroll-spy .pagemenu li.active {
+        color: black;
+        background: #f1f1f5;
+    }
+
+    .multiPage p {
+        text-align: justify;
+    }
+
+    .multiPage .sticky-closure ul li {
+        list-style-type: none;
+    }
+
+    .multiPage .topBanner {
+    }
+
+        .multiPage .topBanner h1 {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .multiPage .topBanner img {
+            background: #eee;
+            width: 100%;
+        }
+
+    .multiPage .rightBox {
+        float: right;
+        padding: 20px;
+        width: 40%;
+        margin-left: 20px;
+        border-radius: 15px;
+        background: #f1f1f5;
+        border: 1px solid #ababab;
+    }
+
+        .multiPage .rightBox h3 {
+            padding: 0px;
+            margin: 0px;
+        }
+
+
+
+
+    .cmsBottomBar {
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        width: 100%;
+        z-index: 75;
+    }
+
+        .cmsBottomBar .row {
+            padding: 20px;
+            background-color: darkorange;
+            height: 75px;
+        }
+
+
+    .editZone {
+        display: block;
+        padding: 20px;
+    }
+
+    .slideButtonBox {
+        background-color: orange;
+        vertical-align: middle;
+        height: 100%;
+        padding: 0px;
+        margin: 0px;
+        min-height: 200px;
+        width: 45px;
+        float: right;
+    }
+
+    .slideButton {
+        color: white;
+        vertical-align: middle;
+    }
+
+
+    .currentLiveEdit {
+        background-color: #fec45a;
+    }
+
+    .cmsHighlight {
+        border: 6px solid white;
+        padding: 0px;
+        margin: 0px;
+    }
+
+        .cmsHighlight:hover {
+            border: 6px solid orange;
+        }
+
+
+    .fadeIn {
+        opacity: 100;
+        float: right;
+        width: 100%;
+        transition: width .3s ease-in, opacity 1s;
+    }
+
+    .fadeOut {
+        visibility: hidden;
+        opacity: 0;
+        width: 80%;
+        transition: width .3s ease-in, opacity 1s;
+    }
+
+    .hugeFont {
+        font-size: 40px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        color: white;
+        text-align: center;
+        width: 100%;
+    }
+
+    .row.match-my-cols {
+        overflow: hidden;
+    }
+
+        .row.match-my-cols [class*="col-"] {
+            margin-bottom: -99999px;
+            padding-bottom: 99999px;
+        }
+
+    .heavyLink {
+        color: white;
+        font-weight: bold;
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div ng-if="isLoaded">
+    <div ng-form="multiWidgetForm">
+        <fieldset ng-disabled="meta.cmsMultiPage[0].pageInfo.Status == 'Archived'">
+            <div class="row multiPage">
+
+                <!-- page meta widget-->
+                <ng-form name='metaBannerForm' novalidate>
+                    <div style="margin: 15px;" ng-class="metaBannerForm.$invalid ? 'cmsError': ''">
+                        <ng-include src="'/UI/cms/multiPage/pageMetaWidget/pageMetaWidget-EditWrapper.html'" ng-cloak ng-if="registry.localStore.global.cmsEditMode"></ng-include>
+                    </div>
+                </ng-form>
+
+                <div ng-repeat="modules in meta.cmsMultiPage">
+                    <div class="col-xs-{{modules.colxs}} col-sm-{{modules.colsm}} col-md-{{modules.colmd}} col-lg-{{modules.collg}}">
+
+                        <!-- top Banner widget-->
+                        <ng-form name='topBannerForm' novalidate>
+                            <div style="margin: 15px;" ng-class="topBannerForm.$invalid ? 'cmsError': ''">
+                                <ng-include src="'/UI/cms/multiPage/cmsTopBanner/cmsTopBanner.html'" ng-cloak ng-if="modules.name == 'cms-topBanner' && !registry.localStore.global.cmsEditMode"></ng-include>
+                                <ng-include src="'/UI/cms/multiPage/cmsTopBanner/cmsTopBanner-EditWrapper.html'" ng-cloak ng-if="modules.name == 'cms-topBanner' && registry.localStore.global.cmsEditMode"></ng-include>
+                            </div>
+                        </ng-form>
+
+
+                        <!-- scrollSpy widget-->
+                        <ng-include src="'/UI/cms/multiPage/cmsScrollSpy/cmsScrollSpy.html'" ng-cloak ng-if="modules.name == 'cms-ScrollSpy' && !registry.localStore.global.cmsEditMode"></ng-include>
+                        <ng-include src="'/UI/cms/multiPage/cmsScrollSpy/cmsScrollSpy-editWrapper.html'" ng-cloak ng-if="modules.name == 'cms-ScrollSpy' && registry.localStore.global.cmsEditMode"></ng-include>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="cmsBottomBar" ng-if="registry.localStore.global.cmsEditMode == true">
+                <div class="container">
+                    <div class="row">
+                        <a class="btn btn-primary pull-right">Publish Page</a>
+                        <a class="btn btn-link pull-right"><span class="heavyLink">| &nbsp;&nbsp;&nbsp;Save as a copy</span></a>
+                        <a class="btn btn-link pull-right"><span class="heavyLink">Save</span></a>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

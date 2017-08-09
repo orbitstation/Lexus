@@ -1,0 +1,77 @@
+﻿<!--<pre>{{::model.phoneNumber|json}}</pre>-->
+<!-- Phone 1 -->
+<div class="row">
+    <div class='col-md-3' ng-if="$root.cfg('contactInfo.primaryPhone') == 'true'">
+        <ocs-input meta="meta.primaryPhone" model="model.phoneNumber.primaryPhone"></ocs-input>
+    </div>
+    <div class='col-md-3' ng-if="$root.cfg('contactInfo.primaryPhoneType') == 'true'">
+        <ocs-select meta="meta.primaryPhoneType" model="model.phoneNumber.primaryPhoneType"></ocs-select>
+    </div>
+    <div class="col-md-4" ng-if="model.phoneNumber.primaryPhoneType === 3 && $root.cfg('contactInfo.isMobile') == 'true'">
+        <!--<ocs-check-box model="model.phoneNumber.isMobile" meta="meta.telephoneNumberForTexting"></ocs-check-box>-->
+        <div class="form-group">
+            <div class="hidden-sm mb8">&nbsp;</div>
+            <div class="checkbox" style="height: 36px;">
+                <label for="isMobile1">
+                    <input type="checkbox" ng-model="model.phoneNumber.isMobile" name="isMobile" id="isMobile1" class="ml0">
+                    <span class="checkbox-custom checkbox-toggle" style="height: calc(1em + 1px); width: calc(1em + 5px);"></span>
+                    <span>{{$root.msg(364325)}}</span>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Phone 2 -->
+<div class="row">
+    <div class='col-md-3' ng-if="$root.cfg('contactInfo.telephoneNumber2') == 'true'">
+        <ocs-input meta="meta.telephoneNumber2" model="model.phoneNumber.alternatePhone1"></ocs-input>
+    </div>
+    <div class='col-md-3' ng-if="$root.cfg('contactInfo.telephoneNumber2') == 'true'">
+        <ocs-select meta="meta.telephoneNumber2Type" model="model.phoneNumber.alternatePhone1Type"></ocs-select>
+    </div>
+    <div class="col-md-4" ng-if="model.phoneNumber.alternatePhone1Type === 3 && $root.cfg('contactInfo.isMobile') == 'true'">
+        <!--<ocs-check-box model="model.phoneNumber.isMobile" meta="meta.telephoneNumberForTexting"></ocs-check-box>-->
+        <div class="form-group">
+            <div class="hidden-sm mb8">&nbsp;</div>
+            <div class="checkbox" style="height: 36px;">
+                <label for="isMobile2">
+                    <input type="checkbox" ng-model="model.phoneNumber.isMobile" name="isMobile" id="isMobile2" class="ml0">
+                    <span class="checkbox-custom checkbox-toggle" style="height: calc(1em + 1px); width: calc(1em + 5px);"></span>
+                    <span>{{$root.msg(364325)}}</span>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Phone 3 -->
+<div class="row">
+    <div class='col-md-3' ng-if="$root.cfg('contactInfo.telephoneNumber3') == 'true'">
+        <ocs-input meta="meta.telephoneNumber3" model="model.phoneNumber.alternatePhone2"></ocs-input>
+    </div>
+    <div class='col-sm-3' ng-if="$root.cfg('contactInfo.telephoneNumber3Type') == 'true'">
+        <ocs-select meta="meta.telephoneNumber3Type" model="model.phoneNumber.alternatePhone2Type"></ocs-select>
+    </div>
+    <div class="col-md-4" ng-if="model.phoneNumber.alternatePhone2Type === 3 && $root.cfg('contactInfo.isMobile') == 'true'">
+        <!--<ocs-check-box model="model.phoneNumber.isMobile" meta="meta.telephoneNumberForTexting"></ocs-check-box>-->
+        <div class="form-group">
+            <div class="hidden-sm mb8">&nbsp;</div>
+            <div class="checkbox" style="height: 36px;">
+                <label for="isMobile3">
+                    <input type="checkbox" ng-model="model.phoneNumber.isMobile" name="isMobile" id="isMobile3" class="ml0">
+                    <span class="checkbox-custom checkbox-toggle" style="height: calc(1em + 1px); width: calc(1em + 5px);"></span>
+                    <span>{{$root.msg(364325)}}</span>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Preferred Contact Method -->
+<div class="row">
+    <div class='col-md-6' ng-if="$root.cfg('contactInfo.preferredContactMethod') == 'true'">
+        <ocs-select meta="meta.preferredContactMethod" model="model.phoneNumber.preferredContactMethod"></ocs-select>
+    </div>
+</div>
+

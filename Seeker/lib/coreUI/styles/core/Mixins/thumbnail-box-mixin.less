@@ -1,0 +1,42 @@
+﻿.thumbnail-box(@default-color: @brand-option-b, @done-color: @brand-success) {
+    @font-size: 30px;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    background: @brand-option-b;
+
+    &.done {
+        .thumbnail-status {
+            .circle {
+                background: @done-color;
+            }
+        }
+    }
+
+    @media (max-width: @screen-xs-max) {
+        width: 80%;
+        margin-bottom: 5px;
+    }
+
+    .thumbnail-status {
+        padding:15px 0;
+
+        .circle {
+            background: #fff;
+            font-size: @font-size;
+            margin: auto;
+            width: (@grid-gutter-width + (@grid-gutter-width/2));
+            height: (@grid-gutter-width + (@grid-gutter-width/2));
+            color: @brand-option-b;
+            border-radius: @grid-gutter-width;
+            font-weight: bolder;
+        }
+
+        .status-text-box {
+            padding:5px 10px 0 10px;
+            color:#fff;
+        }
+    }
+
+    
+}

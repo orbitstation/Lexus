@@ -1,0 +1,21 @@
+﻿@{ ViewBag.Title = "Career Plan"; }
+
+@section Header
+{
+<!-- google drive api     -->
+<script src="https://apis.google.com/js/client.js"></script>
+<script src="https://apis.google.com/js/api.js"></script>
+<!-- dropbox api -->
+<script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="40czhmremdxh40c"></script>
+
+<!-- build:js -->
+<script src="~/UI/careerPlan/careerPlan-meta.js"></script>
+<script src="~/UI/careerPlan/careerPlan-config.js"></script>
+<script src="~/UI/careerPlan/careerPlan-app.js"></script>
+<script src="~/UI/careerPlan/index/careerPlan-index-ctrl.js"></script>
+<script src="~/UI/careerPlan/careerGoal/careerGoal-ctrl.js"></script>
+<!-- endbuild -->
+}
+
+<div ng-view></div>
+

@@ -1,0 +1,24 @@
+﻿<div class="list display-table">
+    <div class="list-item display-table-row list-last hover-none">
+        <div class="list-col-main display-table-cell vertical-align-middle">
+            <div class="list-body">
+                <div ng-show="selected.length === 0">
+                    <div style="padding-left: 15px;">{{:preResolved:$root.msg(372175)}}</div>
+                </div>
+                <div ng-repeat="item in selected track by $index" style="display:inline;">
+                    <a href="" ng-click="remove(item.code)" class="btn btn-link" title="Remove {{item.title}}"><i class="fa fa-close"></i> {{shorten(item.title,45)}}</a>
+                </div>
+            </div>
+        </div>
+        <div class="list-col-actions display-table-cell vertical-align-middle">
+            <div class="list-body">
+                <div class="list-item-actions text-right">
+                    <div class="btn-group" role="group" aria-label="">
+                        <button ng-click="compare()" ng-disabled="selected.length < 2" class="btn minw120" 
+                                ng-class="{'btn-default' : selected.length < 2, 'btn-success' : selected.length === 2}">{{:preResolved:$root.msg(364212)}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

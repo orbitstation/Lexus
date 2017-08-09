@@ -1,0 +1,20 @@
+﻿<div class="row">
+    <div class="col-sm-12">
+        <div>
+            <h1 ng-bind="meta.questions.title"></h1>
+            <h3 ng-bind="meta.questions.headerText"></h3>
+        </div>
+        <div ng-repeat="question in meta.questions.questionCollection">
+
+            <div ng-if="question.displayType == 'Text'">
+                <ocs-input meta="question" model="question.answerText">
+            </div>
+            <div ng-if="question.displayType == 'Radio'">
+                <ocs-radio meta="question" model="question.answers">
+            </div>
+            <div ng-if="question.displayType == 'Checkbox'">
+                <ocs-check-box meta="question" model="question.answers">
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+﻿<style>
+    .cmsTopBar {
+    }
+
+        .cmsTopBar .form-group {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .cmsTopBar label {
+            display: none;
+        }
+
+
+        .cmsTopBar .row {
+            padding: 10px;
+        }
+
+        .cmsTopBar .cmsEditBar {
+            background-color: orange;
+        }
+
+        .cmsTopBar .cmsEditSubBar {
+            background-color: darkorange;
+        }
+</style>
+
+
+<div class="cmsTopBar">
+    <div class="row cmsEditBar">
+        <div class="col-sm-8">You are currently in Edit Mode: Last modified 1/20/17 by Somebody D.</div>
+        <div class="col-sm-4">
+            <button class="btn btn-primary pull-right" ng-click="registry.localStore.global.cmsEditMode != true ? registry.localStore.global.cmsEditMode = true : registry.localStore.global.cmsEditMode = false">CMS Log In / Out</button>
+        </div>
+    </div>
+    <div class="row cmsEditSubBar">
+        <div class="col-sm-3">
+            <a href="cms/index" class="btn btn-primary btn-block">Search all CMS pages</a>
+        </div>
+
+
+        <div ng-if="meta.cmsPage == 'editPage'">
+            <div class="col-sm-2">
+                <button class="btn btn-default">Copy Page</button>
+            </div>
+            <div class="col-sm-2" ng-if="meta.pageAuditTrail">
+                <ocs-select meta="meta.pageAuditTrail" model=""></ocs-select>
+            </div>
+
+            <div class="col-sm-2" ng-if="meta.pageAuditTrail">
+                <ocs-select meta="meta.pageArchiveTrail" model=""></ocs-select>
+            </div>
+
+            <div class="col-sm-2" ng-if="meta.pageAuditTrail">
+                <ocs-select meta="meta.templateList" model=""></ocs-select>
+            </div>
+        </div>
+
+        <div ng-if="meta.cmsPage == 'indexPage'">
+            <div class="col-sm-3">
+                <button class="btn btn-default btn-block">Create a new Page</button>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+

@@ -1,0 +1,44 @@
+﻿<ng-form name='singleItemForm' novalidate>
+    <div class='form-group' ng-class="{'has-error': !(singleItemForm.$pristine || singleItemForm.$valid)}">
+        <label for='{{:preResolved:elimentId}}'>
+            <span ng-show='{{:preResolved:meta.required}}'><small class="fa fa-asterisk required-asterisk"></small></span> {{:preResolved:meta.label.lookUpMsg.value}}
+            <ocs-Help meta="meta.help" ng-show="{{meta.help}}" class="ng-hide"></ocs-Help>
+        </label>
+
+        
+
+        <input class='form-control'
+               aria-required='{{meta.required}}'
+               ng-model='model'
+               id='{{:preResolved:elimentId}}'
+               placeholder='{{:preResolved:meta.placeholder.lookUpMsg.value}}'
+               MaxLength='5'
+               type='text'
+               ng-required='{{:preResolved:meta.required}}'
+               ng-model-options="{ updateOn: 'default', debounce: { 'default': 200, 'blur': 0 } }"
+               ng-disabled=":preResolved:meta.disabled"
+               ng-readonly="meta.readonly" />
+
+
+        <span class="error-message ng-hide" ng-show="!singleItemForm.$pristine">
+            <span ng-show='singleItemForm.$dirty && singleItemForm.$invalid'>
+                <span ng-show='singleItemForm.$error.required'>{{meta.error.required.lookUpMsg.value}}</span>
+            </span>
+
+            <!-- workinf matching validation -->
+            <span ng-show="singleItemForm.$error.wrong">
+                <span>{{:preResolved:meta.error.wrong.lookUpMsg.value}}</span>
+            </span>
+
+            <span ng-show="singleItemForm.$error.nomatch">
+                <span>{{:preResolved:meta.error.nomatch.lookUpMsg.value}}</span>
+            </span>
+
+            <span ng-show="singleItemForm.$error.minlength">
+                <span>{{:preResolved:meta.error.minlength.lookUpMsg.value}}</span>
+            </span>
+        </span>
+
+        <span class="error-message" aria-live="assertive" ng-show="singleItemForm.$pristine || singleItemForm.$valid">&nbsp;</span>
+    </div>
+</ng-form>

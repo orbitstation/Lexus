@@ -1,0 +1,47 @@
+﻿<div ng-if="isLoaded">
+    <ocs-intro-section meta="meta.pageHeaderSend"></ocs-intro-section>
+    <ocs-401 meta="meta" msgheader="363999" msgbody="364000"></ocs-401>
+
+    <div class="row" ng-show="$root.isAuthenticated">
+        <div class="col-sm-12">
+            <ng-form name="mainform" class="form" role="form" novalidate>
+
+                <div class="panel panel-muted">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h3>{{letter.title}}</h3>
+                                <hr>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <ocs-input meta="meta.emailSubject" model="emailCoverLetterInfo.subject"></ocs-input>
+                            </div>
+                            <div class="col-sm-6">
+                                <ocs-input meta="meta.emailAddress" model="emailCoverLetterInfo.toEmailAddress"></ocs-input>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="btn-group pull-right" role="group" aria-label="">
+                                    <button type="submit" class="btn btn-default btn-primary" ng-click="sendLetter()" ng-disabled="mainform.$invalid">{{:preResolved:$root.msg(354321)}}</button> <!--Send Email-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="btn-group pull-right" role="group" aria-label="">
+                            <button type="button" class="btn btn-default" ng-click="close()">{{:preResolved:$root.msg(361345)}}</button> <!--Back-->
+                        </div>
+                    </div>
+                </div>
+
+
+            </ng-form>
+
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,52 @@
+﻿<div class="upload-document" ocs-spinner is-loaded="isLoaded">
+    <div class="row">
+        <div class="col-md-12" ng-show="showTitle">
+            <h3 class="mt0">{{:preResolved:$root.msg(365792)}}</h3>
+        </div>
+        <div class="col-sm-4">
+            <button type="button"
+                    class="btn btn-primary btn-sm btn-file btn-block"
+                    ng-click="browse()"
+                    ng-disabled="status.reachedMaxItems">
+                <span class="fa fa-folder-open-o"></span> {{:preResolved:$root.msg(181227)}}
+            </button>
+        </div>
+        <div class="col-sm-4">
+            <button type="button"
+                    class="btn btn-primary btn-sm btn-block"
+                    lk-google-picker
+                    on-picked="onGDrivePicked(fileInfo)"
+                    ng-disabled="status.reachedMaxItems">
+                <span class="fa fa-google"></span> {{:preResolved:$root.msg(319437)}}
+            </button>
+        </div>
+        <div class="col-sm-4">
+            <button type="button"
+                    class="btn btn-primary btn-sm btn-block"
+                    drop-box-picker
+                    on-picked="onDropBoxPicked(filesInfo)"
+                    ng-disabled="status.reachedMaxItems">
+                <span class="fa fa-dropbox"></span> {{:preResolved:$root.msg(320202)}}
+            </button>
+            <input type="file" id="fileUpload" nv-file-select uploader="uploader" ng-show="false" aria-label="{{:preResolved:$root.msg(181227)}}" ng-disabled="status.reachedMaxItems" />
+            <label for="fileUpload" class="sr-only">{{:preResolved:$root.msg(181227)}}</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 hidden-xs">
+            <div class="text-center my-drop-zone"
+                 ng-click="browse()" 
+                 nv-file-drop 
+                 nv-file-over 
+                 uploader="uploader"
+                 ng-class="{'my-drop-zone-disabled': status.reachedMaxItems}">
+                <div class="upload-icons">
+                    <i class="fa fa-share"></i>
+                    <i class="fa fa-file-o"></i>
+                </div>
+                <br />
+                <strong>{{:preResolved:$root.msg(365793)}}</strong>
+            </div>
+        </div>
+    </div>
+</div>

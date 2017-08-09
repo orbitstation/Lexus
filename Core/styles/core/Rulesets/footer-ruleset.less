@@ -1,0 +1,37 @@
+﻿@footer-bg: #3d516c;
+@footer-color: #9ca0ac;
+@footer-h-color: #fff;
+@footer-ruleset: {
+    background: @footer-bg;
+    z-index: 1;
+    position: relative;
+    .row();
+    .main-footer{
+        padding: 20px @grid-gutter-width;
+        h4{
+            color: @footer-h-color;
+        }
+        a, p, small{
+            color: @footer-color;
+        }
+        a{
+            &:hover{
+                color: #fff;
+            }
+        }
+        .monster-logo{
+            img{
+                width: 100%;
+            }
+        }
+        hr{
+            border-color: lighten(@footer-bg, 10%);
+        } 
+        .basic-info{
+            text-align: right;
+            @media (max-width: @screen-xs-max){
+                text-align: center;
+            }
+        }
+    }
+};

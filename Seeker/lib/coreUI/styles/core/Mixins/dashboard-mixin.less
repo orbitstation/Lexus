@@ -1,0 +1,268 @@
+﻿.flex-column(){
+    display: flex;
+    flex-flow: column;
+}
+
+.flex-row(){
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.padding(){
+    padding: 0 30px 30px;
+
+    @media (max-width: @screen-xs-max) {
+        padding: 0 15px 15px;
+    }
+}
+
+.dashboard(){
+    @dynamic-content-padding: 15px 15px 45px;
+    @full: 100%;
+    @half: @full / 2;
+    @third: @full / 3;
+    @two-thirds: @full / 3 * 2;
+    @full-flex: 0 0 @full;
+    @half-flex: 0 0 @half;
+    @two-thirds-flex: 0 0 @two-thirds;
+    @third-flex:0 0 @third;
+
+    .dashboard-wrapper {
+        margin: -30px;
+
+        @media (max-width: @screen-xs-max) {
+            margin: -15px;
+        }
+
+        & a:not(.btn):not(.thumbnail-box) {
+            color: @brand-primary-l-2;
+            text-decoration:none;
+
+
+            &:visited {
+                 color: @brand-primary;
+            }
+
+            &:hover,
+            &:focus,
+            &:active {
+                color: @brand-primary-l-3;
+             //   text-decoration: @link-hover-decoration;
+            }
+        }
+    }
+
+    .dashboard-panel {
+        .flex-row();
+        align-items: stretch;
+
+        & > div:first-child {
+            align-items: stretch;
+            background-color:@brand-accent;
+            flex: @third-flex;
+            .flex-column();
+            max-width: @third;
+            .padding();
+
+            & h2 {
+                color:#fff;
+            }
+
+            @media (max-width: @screen-sm-max) {
+                flex: @full-flex;
+                max-width: @full;
+            }
+        }
+
+        & > div:last-child {
+            flex: @two-thirds-flex;
+            .flex-row();
+            max-width: @two-thirds;
+
+            & h2 {
+                color:#fff;
+            }
+
+            & > div:nth-child(1) {
+                background-color: @brand-accent-l-2;
+                flex: @full-flex;
+                max-width: @full;
+                .padding();
+            }
+
+            & > div:nth-child(2) {
+                background-color:  @brand-accent-l-3;
+                flex: @half-flex;
+                max-width: @half;
+                .flex-column();
+                .padding();
+
+                & h2 {
+                    color:#000;
+                }
+
+                @media (max-width: @screen-xs-max) {
+                    flex: @full-flex;
+                    max-width: @full;
+                }
+            }
+
+            & > div:nth-child(3) {
+                background-color: @brand-accent-d-1;
+                flex: @half-flex;
+                max-width: @half;
+                .flex-column();
+                .padding();
+
+                & h2 {
+                    color: #fff;
+                }
+
+                @media (max-width: @screen-xs-max) {
+                    flex: @full-flex;
+                    max-width: @full;
+                }
+            }
+
+            @media (max-width: @screen-sm-max) {
+                flex: @full-flex;
+                max-width: @full;
+            }
+        }
+
+        & .dynamic-content-box {
+            background-color:#fff;
+            flex: 1 0 auto;
+            padding: @dynamic-content-padding;
+            position:relative;
+
+            & > div:last-child {
+                bottom: 15px;
+                position:absolute;
+                right: 15px;
+            }
+
+            &.no-bottom-link {
+                padding-bottom: 15px;
+            }
+
+            & > h3 {
+                .h4();
+                color: #000;
+                font-weight: 500;
+            }
+        }
+
+        & .thumbnails {
+            align-items: stretch;
+            .flex-row();
+            justify-content: space-between;
+
+            & > .fa {
+                align-self: center;
+                color: @brand-primary-l-5;
+                cursor: pointer;
+                font-size: 28px;
+
+                &.disabled {
+                    cursor: not-allowed;
+                    color: darken(@brand-primary-l-5, 10%);
+                }
+            }
+
+            & .thumbnail-item {
+                flex:0 0 22%;
+                .flex-row();
+
+                @media (max-width: @screen-xs-max) {
+                    flex: 0 0 49%;
+                }
+            }
+
+            & .thumbnail-box{
+                flex:1;
+                .thumbnail-box();
+            }
+        }
+
+        
+    }
+
+    .dashboard-accordions {
+        & .panel-group {
+            & .panel {
+                &+.panel {
+                    margin-top: 0;
+                }
+            }
+        }
+
+        & .panel {
+            border:none;
+            border-radius: 0;
+
+            &.panel-dashboard-yellow {
+                background-color:@brand-option-a;
+            }
+
+            &.panel-dashboard-blue {
+                background-color:@brand-option-gray;
+            }
+
+            &.panel-dashboard-green {
+                background-color:@brand-accent-l-1;
+            }
+
+            & .panel-title-dashboard {
+                font-family: @font-family-serif;
+                font-size: @font-size-h3;
+                font-weight: @heading-weight-h3;
+                margin-top:0;
+                margin-bottom:0;
+                position: relative;
+
+                & .collapse-button {
+                    position:absolute;
+                    top:2px;
+                    right:0;
+                }
+            }
+
+            & .panel-heading-dashboard {
+                outline: none !important;
+                padding:16px 30px;
+
+                @media(max-width: @screen-sm-max){
+                    padding:16px 15px;
+                }
+            }
+
+            & .panel-body-dashboard {
+                padding: 0 30px 15px;
+
+                @media(max-width: @screen-xs-max){
+                    padding: 0 15px 15px;
+                }
+
+                & h3 {
+                    color:#000;
+                    font-weight: normal;
+                    line-height: 1.1;
+                    margin-bottom: 10px;
+                    margin-top:0;
+                }
+
+                & .panel-content {
+                    background-color:#fff;
+                    padding:15px;
+                    margin-bottom:15px;
+
+                    & .content-label {
+                        color: @list-label-color;
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+    }
+}

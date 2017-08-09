@@ -1,0 +1,105 @@
+.recent-searches-variant(@font-size-variant, @tooltip-variant){
+    .primary-variant(){
+        background-color: @label-recent-searches-background-primary-color;
+        border: 1px solid @label-recent-searches-border-primary-color;
+        color: @label-recent-searches-primary-color;
+
+        &:hover, &:focus   {
+            background-color: @label-recent-searches-hover-primary-color;
+        }
+    }
+
+    .secondary-variant(){
+        background-color: @label-recent-searches-background-secondary-color;
+        border: 1px solid @label-recent-searches-border-secondary-color;
+        color: @label-recent-searches-secondary-color;
+
+        &:hover, &:focus {
+            background-color: @label-recent-searches-hover-secondary-color;
+        }
+    }
+
+    .text-color (@search-bg, @color) when (lightness(@search-bg) < 50%) {
+        color:white;
+    }
+
+    .text-color (@search-bg, @color) when (lightness(@search-bg) >= 50%) {
+        color: @color;
+    }
+
+     .recent-searches-wrapper {
+         .mobile {
+             &-text{
+                 .text-color(@search-bg; black);
+             }
+
+             &-link {
+                 .text-color(@search-bg; inherit);
+             }
+         }
+
+        > div > a {
+            text-decoration:none;
+        }
+
+        @media(max-width: @screen-xs-max) {
+            &.mobile-hidden {
+                display: none;
+            }
+        }
+        
+        .recent-searches-item {
+            .secondary-variant();
+            display: inline-block;
+            font-size: 80%;
+            font-weight: 400;
+            line-height: normal;
+            margin-bottom: 4px;
+            padding: 8px 7px;
+            text-align: left;
+            vertical-align: top;
+
+            &:not(.recent-searches-mobile){
+                .primary-variant();
+                font-size: @font-size-variant;
+                line-height: @font-size-variant + 2;
+                padding: 5px;
+            }
+
+            .recent-searches-keyword {
+                display: inline-block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                vertical-align: middle;
+            }
+
+            .recent-searches-location {
+                display: block;
+                font-size: ceil(90%);
+                line-height: inherit;
+                max-height: 0;
+                overflow: hidden;
+                text-align: left;
+                transition: .2s;
+            }
+
+            &:hover {
+                .recent-searches-location {
+                    max-height: 40px;
+                    transition: .2s;
+                }
+            }
+        }
+    }
+
+    .tooltip {
+        &.recent-searches-tooltip {
+            .tooltip-inner {
+                font-size: round((@font-size-small * @tooltip-variant));
+                padding:6px 10px;
+                border-radius:3px;
+                line-height:normal;
+            }
+        }
+    }
+}

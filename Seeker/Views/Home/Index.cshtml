@@ -1,0 +1,22 @@
+﻿@{ ViewBag.Title = "Home"; }
+
+@section Header
+{
+    <script src="~/scripts/directives/slick/slick.min.js"></script>
+    <script src="~/scripts/directives/angular-slick-carousel/dist/angular-slick.min.js"></script>
+
+    <!-- build:js -->
+    <script src="~/UI/home/home-meta.js"></script>
+    <script src="~/UI/home/home-config.js"></script>
+
+    <script src="~/UI/home/home-app.js"></script>
+    <script src="~/UI/home/index/home-index-ctrl.js"></script>
+    <!-- endbuild -->
+
+}
+
+
+
+<div ng-view></div>
+
+

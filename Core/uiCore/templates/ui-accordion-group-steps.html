@@ -1,0 +1,14 @@
+﻿<div class="panel" ng-class="panelClass || 'panel-default'">
+    <div class="panel-heading" ng-keypress="toggleOpen($event)" ng-click="toggleOpen()">
+        <h2 class="panel-title">
+            <!-- note: add |tabindex="0"| below for 508 on IE 9+ -->
+            <span class="accordion-toggle" uib-accordion-transclude="heading">
+                <span ng-class="{'text-muted': isDisabled}">{{heading}}</span>
+                <i class="check-mark fa fa-check pull-right"></i>
+            </span>
+        </h2>
+    </div>
+    <div class="panel-collapse collapse" uib-collapse="!isOpen">
+        <div class="panel-body" ng-transclude></div>
+    </div>
+</div>

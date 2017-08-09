@@ -1,0 +1,40 @@
+﻿.thumbnail-box(@default-color: @brand-info, @done-color: @brand-success) {
+    @font-size: 30px;
+    margin: 0 auto @grid-gutter-width/2;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+
+    &.done {
+        .thumbnail-status {
+            border-color: @done-color;
+            background: lighten(@done-color, 45%);
+
+            .circle {
+                background: @done-color;
+            }
+        }
+    }
+
+    @media (max-width: @screen-xs-max) {
+        width: 80%;
+    }
+
+    .thumbnail-status {
+        font-size: @font-size;
+        background: lighten(@default-color, 40%);
+        border: 2px solid @default-color;
+        .box-shadow(0 2px 6px rgba(0,0,0,.15));
+        margin-bottom: 5px;
+
+        .circle {
+            background: @default-color;
+            margin: (@grid-gutter-width/1.5) auto;
+            width: (@grid-gutter-width + (@grid-gutter-width/2));
+            height: (@grid-gutter-width + (@grid-gutter-width/2));
+            color: #fff;
+            border-radius: @grid-gutter-width;
+            font-weight: bolder;
+        }
+    }
+}

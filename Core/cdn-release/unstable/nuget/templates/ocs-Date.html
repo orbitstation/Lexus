@@ -1,0 +1,70 @@
+﻿<ng-form name='singleItemForm' novalidate>
+    <div class='form-group' ng-class="{'form-group-sm': formSize === 'sm'}">
+        <label for='{{::elementID}}'>
+            <span ng-show='{{meta.required}}'>
+                <small class="fa fa-asterisk required-asterisk"></small>
+                <span class="sr-only">Required</span>
+            </span>{{:preResolved:meta.label.lookUpMsg.value}}
+        </label>
+        <p class="input-group" ng-class="{'open':status.opened}">
+            <!--
+                    ui-mask-placeholder
+                    ui-mask='{{mask}}'
+                    ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 200, 'blur': 0 } }"
+            -->
+            
+            <input class='form-control' 
+                   ng-change='dt' 
+                   datepicker-popup 
+                   is-open='status.opened' 
+                   datepicker-options="dateOptions" 
+                   uib-datepicker-popup='{{format}}' 
+                   show-button-bar="false"
+                   placeholder='{{:preResolved:meta.placeholder.lookUpMsg.value}}' 
+                   id='{{::elementID}}' 
+                   name='{{::elementID}}' 
+                   MaxLength='{{meta.displaymeta.max}}' 
+                   ng-model='model' 
+                   type='{{::meta.displaymeta.type}}' 
+                   ng-required='{{::meta.displaymeta.required}}' />
+
+            <span class="input-group-btn">
+                <button type="button"
+                        class="btn btn-default" 
+                        ng-class="{'btn-sm': formSize === 'sm'}"
+                        ng-click="status.opened = 'true'">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                    <span class="sr-only">Date picker</span>
+                </button>
+            </span>
+        </p>
+
+        <span class='error-message ng-hide' ng-show="!singleItemForm.$pristine">
+              <!-- [ {{singleItemForm.$valid}} ]&nbsp;-->
+            <!-- field level validation -->
+            <span ng-show='singleItemForm.$dirty && singleItemForm.$invalid'>
+                <span ng-show='singleItemForm.$error.required'>{{:preResolved:meta.error.lookUpMsg.required.value}}</span>
+            </span>
+
+            <!-- mask level validation -->
+            <span ng-show='singleItemForm.$error.mask[0].$invalid'>
+                <span>{{:preResolved:meta.error.lookUpMsg.mask.value}}</span>
+            </span>
+
+            <!-- match Validation -->
+            <span ng-show="singleItemForm.$error.mask[0].$invalid || singleItemForm.$invalid">
+                <span>{{:preResolved:meta.error.lookUpMsg.match.value}}</span>
+            </span>
+
+            <!-- datePicker level validation -->
+            <span ng-show="singleItemForm.$valid == false">
+                Invalid Date Format
+            </span>
+        </span>
+
+        <span  ng-hide="meta.hideErrorHolder">
+            <span class="error-message" ng-if="singleItemForm.$pristine || singleItemForm.$valid">&nbsp;</span>
+        </span>
+    </div>
+</ng-form>
+

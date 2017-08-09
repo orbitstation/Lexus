@@ -1,0 +1,58 @@
+﻿<div  ng-controller="certificationCtrl as vm">
+    <ng-form name="meta.certificationForm">
+        <!--<h3 class="mt0">{{:preResolved:$root.msg(70367)}}</h3>-->
+        <p>{{:preResolved:$root.msg(369907)}}</p>
+
+        <!--<pre>{{vm.data.certifications | json}}</pre>-->
+
+        <div ng-repeat="(key,cert) in vm.data.certifications.items track by $index">
+            <hr class="hr-short" />
+            <div class="mb15">
+                <span class="label label-default">{{key + 1}} - {{$root.msg(70367)}}</span>
+                <button type="button" ng-click="vm.removeCertification($index)" class="btn btn-remove pull-right"> {{:preResolved:$root.msg(369906)}}</button>
+            </div>
+            
+            <div class="clearfix"></div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <ocs-autocomplete meta="meta.certName"
+                                      aria-label="{{:preResolved:$root.msg(70367)}}"
+                                      model="cert.certifcationName"
+                                      search-string="cert.certifcationName"
+                                      remote-api-handler="vm.certificationsHandler"
+                                      remote-response-formatter="vm.certificationsFormatter"
+                                      input-class="form-control">
+                    </ocs-autocomplete>
+                </div>
+                <div class="col-sm-6">
+                    <ocs-autocomplete meta="meta.certInstitutionName"
+                                      aria-label="{{:preResolved:$root.msg(70367)}}"
+                                      model="cert.institutionName"
+                                      search-string="cert.institutionName"
+                                      remote-api-handler="vm.certInstitutionNamesHandler"
+                                      remote-response-formatter="vm.certInstitutionNamesFormatter"
+                                      input-class="form-control">
+                    </ocs-autocomplete>                    
+                </div>
+                <div class="col-sm-6">
+                    <ocs-date meta="meta.certDate" model="cert.date"></ocs-date>
+                </div>
+                <div class="col-sm-6">
+                    <ocs-textarea meta="meta.certSummary" model="cert.summary"></ocs-textarea>
+                </div>
+            </div>
+        </div>
+
+
+        <hr class="hr-short" />
+        <button ng-disabled="vm.data.certifications.items.length == vm.data.certifications.maxItemsCount"
+                ng-click="vm.addCertification()"
+                type="button" class="btn btn-add">
+            {{:preResolved:$root.msg(204522)}}
+        </button>
+        <hr class="hr-short" />
+
+
+    </ng-form>
+</div>

@@ -1,0 +1,76 @@
+﻿<div ng-if="isLoaded" class="sr-fixes">
+    <ocs-intro-section meta="meta.pageHeader"></ocs-intro-section>
+    <ocs-401 meta="meta" msgheader="363999" msgbody="364000"></ocs-401>
+
+    <div class="row" ng-show="$root.isAuthenticated">
+        <div class="col-sm-12">
+            <div class="panel panel-muted">
+                <div class="panel-body">
+                    <form name="mainform" class="form" role="form" ng-submit="addLetter()" novalidate>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="row">
+                                    <div class="col-sm-5">
+                                        <ng-form name="singleItemForm">
+                                            <div class="form-group">
+                                                <label for="selTemplates">{{:preResolved:$root.msg(377395)}}</label> <!--Templates-->
+                                                <select class="form-control"
+                                                        id="selTemplates"
+                                                        ng-model="templates.selectedItem"
+                                                        name="selTemplates"
+                                                        ng-change="onTemplateChange()"
+                                                        ng-options="t.title for t in templates.items">
+                                                    <option value="" ocs-msg="160107"></option>
+                                                </select>
+                                            </div>
+                                        </ng-form>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class='col-sm-12'>
+                                        <ocs-input meta="meta.title" model="letter.title"></ocs-input>
+                                        <!--{{msg(157862)}}&nbsp;{{msg(160042)}}-->
+                                    </div>
+                                    <div class="col-sm-12" ng-if="meta.richTextBody.richTextBoxOn !== 'true'">
+                                        <ocs-Textarea meta="meta.body" model="letter.body"></ocs-Textarea>
+                                    </div>
+                                    <div class="col-sm-12" ng-if="meta.richTextBody.richTextBoxOn === 'true'">
+                                        <ocs-richtexteditor meta="meta.richTextBody" model="letter.body"></ocs-richtexteditor>
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="btn-group pull-right" role="group" aria-label="">
+                                            <button type="submit" class="btn btn-md btn-primary"
+                                                    ng-disabled="mainform.$invalid || busyLinks.create"
+                                                    ocs-busy="busyLinks.create">
+                                                {{:preResolved:$root.msg(157866)}}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="btn-group pull-right" role="group" aria-label="">
+                <button type="button" class="btn btn-default" ng-click="close()">{{:preResolved:$root.msg(361345)}}</button> <!--Back-->
+            </div>
+        </div>
+    </div>
+</div>
+

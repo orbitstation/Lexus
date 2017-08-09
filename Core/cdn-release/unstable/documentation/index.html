@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en" ng-app="miniSPA" ng-strict-di>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <title>Lexus UI Core - Framework</title>
+
+    <!--                                                                  ________________      -->
+    <!-- ________________________________________________________________/    UI Core     \_____-->
+
+
+    <script src="../lib/lib.min.js"></script>
+    <script src="../lib/core.min.js"></script>
+
+    <script>
+        (function (angular) {
+            // override the context service
+            "use strict";
+            angular.module('globalApp').service('contextService', ['registry', function(registry) {
+                return {
+                    init: function() {
+                        registry.set('global','context', {"ChannelID":10338,"CountryID":164,"ApplicationID":"Lexus","ChannelAlias":"LEXUSDEMO","ChannelAliases":["CORE","CORE-EN","US-EN","CS-USEN","LEXUSCORE","LEXUSDEMO"],"EnvironmentType":"Development","Version":"1.0.0.0","UIConfiguration":"Debug","cdnUrl":"https://core.ui.lexus.monster.com/cdn-release/unstable","templateUrl":"https://core.ui.lexus.monster.com/uiCore/templates/"}, 'localStorage');
+                    }
+                };
+            }]);
+        })(angular);
+    </script>
+
+
+
+    <link href="../styles/core.min.css" rel="stylesheet" />
+
+    <!--                                                                  ________________      -->
+    <!-- ________________________________________________________________/     Styles     \_____-->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="" />
+
+    <!--                                                                  ________________      -->
+    <!-- ________________________________________________________________/   HTML Body    \_____-->
+
+</head>
+
+<body>
+    <div class="body-wrapper">
+        <div class="container">
+
+            <!-- Content -->
+            <section class="row">
+                <div class="col-lg-12 content-wrapper" id="main-content">
+                    <div ocs-spinner is-loaded="$root.isLoaded">
+
+                        <h1>UI Core</h1>
+
+                        <div ng-view></div>
+
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

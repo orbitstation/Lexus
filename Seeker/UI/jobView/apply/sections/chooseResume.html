@@ -1,0 +1,139 @@
+﻿<div ng-if="$root.isLoaded">
+    <div class="row">
+        <style>
+            .radioSubBox {
+                margin: 10px 10px 10px 15px;
+                background-color: #edf4fe;
+                border-radius: 10px;
+                padding: 5px 20px 10px 20px;
+            }
+
+            .hideUp {
+                overflow: hidden;
+                min-height: 0px;
+                max-height: 0;
+                padding-top: 0;
+                padding-bottom: 0;
+                margin-top: 0;
+                margin-bottom: 0;
+                -moz-transition-duration: 1.1s;
+                -webkit-transition-duration: 1.1s;
+                -o-transition-duration: 1.1s;
+                transition-duration: 1.1s;
+                -moz-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+                -webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+                -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+                transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+            }
+            .showDown {
+                padding-top: 0;
+                padding-bottom: 0;
+                margin-top: 0;
+                margin-bottom: 0;
+                -moz-transition-duration: .8s;
+                -webkit-transition-duration: .8s;
+                -o-transition-duration: .8s;
+                transition-duration: .8s;
+                -moz-transition-timing-function: ease-in;
+                -webkit-transition-timing-function: ease-in;
+                -o-transition-timing-function: ease-in;
+                transition-timing-function: ease-in;
+                max-height: 1000px;
+                overflow: hidden;
+            }
+        </style>
+
+        <div class="col-sm-12" ng-if="meta.resume.items.length > 1">
+            <label class="radio-inline">
+                <input class="" style="opacity:1" type="radio" name="resumeSource" value="existing" ng-model="meta.resumeSource" ng-click="meta.refreshResumeList()" />{{$root.msg(376443)}}
+            </label>
+            <div ocs-spinner options="{minHeight: '0px'}" is-loaded="meta.resumesLoaded" ng-class="meta.resumeSource=='existing' ? 'showDown' : 'hideUp'">
+                <fieldset class="radioSubBox" ng-disabled="meta.resumeSource !== 'existing'">
+                    <ocs-select meta="meta.resume" model="model.resume"></ocs-select>
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="col-sm-12" ng-show="!meta.resumesAreFull">
+            <label class="radio-inline">
+                <input class="" style="opacity:1" type="radio" name="resumeSource" value="upload" ng-model="meta.resumeSource"  />{{$root.msg(376444)}}
+            </label>
+            <div ng-class="meta.resumeSource=='upload' ? 'showDown' : 'hideUp'">
+                <fieldset class="radioSubBox" ng-show="meta.showNamePanel">
+                    <div class="row">
+                        <div class='col-sm-6'>
+                            <ocs-input meta="$root.meta.firstName" model='meta.firstName'></ocs-input>
+                        </div>
+                        <div class='col-sm-6'>
+                            <ocs-input meta="$root.meta.lastName" model="meta.lastName"></ocs-input>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="radioSubBox" ng-disabled="meta.resumeSource !== 'upload'" style="margin-top:20px;" ng-show="meta.documents.length == 0">
+                    <ocs-error error-list="meta.errorList"></ocs-error>
+                    <ocs-upload meta="$root.meta.documentUpload"
+                                documents="meta.documents"
+                                extra-upload-params="$root.meta.extraUploadParams"
+                                on-error="meta.onUploadError"
+                                on-success="meta.onUploadSuccess">
+                    </ocs-upload>
+                </fieldset>
+
+                <div class="radioSubBox list display-table"  ng-show="meta.documents.length > 0">
+                    <div class="list-item display-table-row" ng-repeat="doc in meta.documents | orderBy:'-createDate' track by $index" ng-class="{'list-last':$last}">
+                        <div class="list-col-main display-table-cell vertical-align-middle pt16 pb16">
+                            <div class="list-body">
+                                <div class="header-actions">
+                                    <!-- row heading link -->
+                                    <h3 class="list-item-heading"><a ng-click="meta.downloadFile(doc.id)">{{doc.name}}</a></h3>
+                                    <!-- row data columns -->
+                                    <div>
+                                        <div>
+                                            <span>
+                                                <span class="list-label">{{:preResolved:$root.msg(253912)}}</span>
+                                                <span class="list-value">{{doc.createDate |date}}</span>
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <span>
+                                                <span class="list-label">{{:preResolved:$root.msg(354555)}}:</span>
+                                                <span class="list-value">{{doc.fileType}}</span>
+                                            </span>
+                                            <span class="vertical-separator">|</span>
+                                            <span>
+                                                <span class="list-label">{{:preResolved:$root.msg(361288)}}:</span>
+                                                <span class="list-value">{{doc.fileSize}}</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-col-actions display-table-cell vertical-align-middle pt16 pb16">
+                            <div class="list-body">
+                                <div class="list-item-actions text-right">
+                                    <!-- action buttons -->
+                                    <button class="btn btn-link" ng-click="meta.deleteDocument(doc.id)">{{:preResolved:$root.msg(157853)}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12">
+            <label class="radio-inline">
+                <input class="" style="opacity:1" type="radio" name="resumeSource" value="manage" ng-model="meta.resumeSource" />{{:preResolved:$root.msg(376844)}}
+            </label>
+            <div ng-class="meta.resumeSource=='manage' ? 'showDown' : 'hideUp'">
+                <p class="radioSubBox" ng-show="meta.resumeSource=='manage'">
+                    <strong style="margin-left: 15px;">{{:preResolved:$root.msg(376860)}}</strong>{{:preResolved:$root.msg(376861)}}
+                    <br>
+                    <a class="btn btn-link h4" href="/resumes/">{{:preResolved:$root.msg(376844)}}</a>
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>

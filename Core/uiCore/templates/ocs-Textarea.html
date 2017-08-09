@@ -1,0 +1,47 @@
+﻿<ng-form name='singleItemForm' novalidate>
+    <div class='form-group' ng-class="{'has-error': !(singleItemForm.$pristine || singleItemForm.$valid), 'form-group-sm': formSize === 'sm'}">
+        <label for='{{::elementId}}' class="display-block" ng-class="{'sr-only': meta.isForCheckbox}">
+            <span ng-show="meta.required">
+                <small class="fa fa-asterisk required-asterisk"></small>
+            </span>
+            {{:preResolved:meta.label.lookUpMsg.value}}
+            
+            <ocs-Help meta="meta.help" ng-show="{{meta.help}}" class="ng-hide"></ocs-Help>
+            <span class="small pull-right" ng-if="::meta.counter">
+                {{model.length > 0 ? model.length : 0}}&nbsp;{{:preResolved:meta.of.lookUpMsg.value}}&nbsp;{{meta.max}}
+            </span>
+        </label>
+
+       
+
+        <!--
+            ui-mask='{{mask}}'
+            ui-mask-placeholder
+        -->
+        <textarea class='form-control'
+                  aria-required='{{meta.required}}'
+                  data-ng-model='model' 
+                  id='{{::elementId}}'
+                  rows="{{::meta.rows}}"
+                  placeholder='{{:preResolved:meta.placeholder.lookUpMsg.value}}'
+                  MaxLength='{{::meta.max}}'
+                  type='{{::meta.type}}'
+                  ng-required='meta.required'
+                  ng-model-options="{ updateOn: 'default', debounce: { 'default': 200, 'blur': 0 } }"
+                  ng-disabled="::meta.disabled" 
+                  ng-readonly="meta.readonly" />
+                
+
+        <span class="ng-hide error-message" ng-show="!singleItemForm.$pristine">
+            <!-- field level validation -->
+            <span ng-show='singleItemForm.$dirty && singleItemForm.$invalid'>
+                <span ng-show='singleItemForm.$error.required'>{{:preResolved:meta.error.required.lookUpMsg.value}}</span>
+            </span>
+            <!-- mask level validation -->
+            <span ng-show='singleItemForm.$error.mask[0].$invalid'>
+                <span>{{:preResolved:meta.error.mask.lookUpMsg.value}}</span>
+            </span>
+        </span>
+        <span class="error-message" aria-live="assertive" ng-hide="meta.hideErrorHolder" ng-if="singleItemForm.$pristine || singleItemForm.$valid">&nbsp;</span>
+    </div>
+</ng-form>

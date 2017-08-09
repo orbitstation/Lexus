@@ -1,0 +1,46 @@
+﻿<div ng-controller="languages as vm">
+    <p>{{:preResolved:$root.msg(368676)}}</p>
+    <hr class="hr-short" />
+    
+    <ng-form name="languageForm" novalidate>
+        <div ng-repeat="(key,language) in vm.data.languages.items track by $index">
+            <div class="mb15">
+                <span class="label label-default">
+                    {{key + 1}} - {{:preResolved:$root.msg(111534)}}
+                </span>
+                <button class="btn btn-remove pull-right"
+                        type="button"
+                        ng-click="vm.removeLanguage(language)">
+                   {{:preResolved:$root.msg(378859)}}
+                </button>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <ocs-select meta="vm.dynamicMeta[key]" model="language.languageId" focus="{{vm.data.languages.items.length - $index + 1 - vm.data.languages.newItem}}"></ocs-select>
+                </div>
+                <div class="col-sm-6">
+                    <ocs-select meta="meta.languageProficiency" model="language.proficiencyId"></ocs-select>
+                </div>
+            </div>
+            <hr class="hr-short" />
+        </div>
+
+        <div ng-show='meta.languagesNotUnique' class="ng-hide mb15">
+            <div class="error-message">
+                {{:preResolved:$root.msg(368207)}}
+            </div>
+        </div>
+
+        <button class="btn btn-add"
+                type="button"
+                ng-click="vm.addLanguage()"
+                ng-disabled="vm.data.languages.items.length >= vm.data.languages.maxItemsCount || vm.thisForm.$invalid">
+            {{:preResolved:$root.msg(367719)}}
+        </button>
+        <hr class="hr-short" />
+    </ng-form>
+
+</div>

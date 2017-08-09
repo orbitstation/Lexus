@@ -1,0 +1,107 @@
+﻿<div ng-controller="TargetEmployerInfoController as vm">
+<div class="row">
+    <div class="col-sm-12">
+        <h3 class="mt0">{{:preResolved:$root.msg(367847)}}</h3>
+        <p>{{:preResolved:$root.msg(367848)}}</p>
+    </div>
+
+    <!-- Target job type (check all that apply) -->
+    <div class="col-sm-6">
+        <fieldset class="form-group">
+            <legend class="label-type">{{:preResolved:$root.msg(367849)}}</legend>
+            <div class="checkbox">
+                <label for="jobtypeemployee">
+                    <input type="checkbox"
+                           id="jobtypeemployee"
+                           ng-model='vm.data.targetJob.wantsPermanent'
+                           name='jobtypeemployee' />
+                    <span class="checkbox-custom"></span>
+                    <span class="checkbox-label">{{:preResolved:$root.msg(73244)}}</span>
+                </label>
+            </div>
+            <div class="checkbox">
+                <label for="jobtypeintern">
+                    <input type="checkbox"
+                           id="jobtypeintern"
+                           ng-model='vm.data.targetJob.wantsIntern'
+                           name='jobtypeintern' />
+                    <span class="checkbox-custom"></span>
+                    <span class="checkbox-label">{{:preResolved:$root.msg(70335)}}</span>
+                </label>
+            </div>
+            <div class="checkbox">
+                <label for="jobtypetemp">
+                    <input type="checkbox"
+                           id="jobtypetemp"
+                           ng-model='vm.data.targetJob.wantsTemp'
+                           name='jobtypetemp' />
+                    <span class="checkbox-custom"></span>
+                    <span class="checkbox-label">{{:preResolved:$root.msg(185871)}}</span>
+                </label>
+            </div>
+            <div class="checkbox">
+                <label for="jobtypeseasonal">
+                    <input type="checkbox"
+                           id="jobtypeseasonal"
+                           ng-model='vm.data.targetJob.wantsSeasonal'
+                           name='jobtypeseasonal' />
+                    <span class="checkbox-custom"></span>
+                    <span class="checkbox-label">{{:preResolved:$root.msg(134371)}}</span>
+                </label>
+            </div>
+        </fieldset>
+    </div>
+    <div class="col-sm-6">
+        <fieldset class="form-group">
+            <legend class="label-type">{{:preResolved:$root.msg(367850)}}</legend>
+            <!-- Target job schedule (check all that apply) -->
+            <div class="checkbox">
+                <label for="jobtypefulltime">
+                    <input type="checkbox"
+                           id="jobtypefulltime"
+                           ng-model='vm.data.targetJob.wantsFullTime'
+                           name='jobtypefulltime' />
+                    <span class="checkbox-custom"></span>
+                    <span class="checkbox-label">{{:preResolved:$root.msg(106109)}}</span>
+                </label>
+            </div>
+            <div class="checkbox">
+                <label for="jobtypeparttime">
+                    <input type="checkbox"
+                           id="jobtypeparttime"
+                           ng-model='vm.data.targetJob.wantsPartTime'
+                           name='jobtypeparttime' />
+                    <span class="checkbox-custom"></span>
+                    <span class="checkbox-label">{{:preResolved:$root.msg(106110)}}</span>
+                </label>
+            </div>
+            <div class="checkbox">
+                <label for="jobtypeperdiem">
+                    <input type="checkbox"
+                           id="jobtypeperdiem"
+                           ng-model='vm.data.targetJob.wantsPerDiem'
+                           name='jobtypeperdiem' />
+                    <span class="checkbox-custom"></span>
+                    <span class="checkbox-label">{{:preResolved:$root.msg(253319)}}</span>
+                </label>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-3">
+        <ocs-input meta="meta.salary" model="vm.data.salary.amount" add-on="{text: $root.msg(367255)}"></ocs-input>
+    </div>
+    <div class="col-sm-3">
+        <ocs-select meta="meta.resumesalaryTypes" model="vm.data.salary.resumeFrequencyId"></ocs-select>
+    </div>
+    <div class="col-sm-6">
+        <ocs-check-box meta="meta.availability" model="vm.data.availability"></ocs-check-box>
+    </div>
+</div>
+
+<hr class="hr-short" />
+
+</div>
+

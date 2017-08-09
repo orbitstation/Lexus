@@ -1,0 +1,104 @@
+﻿//Extending existing Buttons
+//Cotains both new regular and outline buttons.
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+//Regular buttons
+.btn-add,
+.btn-secondary {
+  .button-variant(@btn-secondary-color; @btn-secondary-bg; @btn-secondary-border);
+}
+.btn-marketing {
+  .button-variant(@btn-marketing-color; @btn-marketing-bg; @btn-marketing-border);
+}
+.btn-tertiary {
+  .button-variant(@btn-tertiary-color; @btn-tertiary-bg; @btn-tertiary-border);
+}
+
+//Outline buttons
+.btn-outline-default {
+  .button-outline-variant(@btn-default-color; @btn-default-bg; @btn-default-border);
+}
+.btn-remove,
+.btn-outline-primary {
+  .button-outline-variant(@btn-primary-bg; @btn-primary-bg; @btn-primary-border; @btn-primary-outline-bg);
+}
+// Success appears as green
+.btn-done,
+.btn-outline-success {
+  .button-outline-variant(@btn-success-bg; @btn-success-bg; @btn-success-border);
+}
+// Info appears as blue-green
+.btn-outline-info {
+  .button-outline-variant(@btn-info-bg; @btn-info-bg; @btn-info-border);
+}
+// Warning appears as orange
+.btn-outline-warning {
+  .button-outline-variant(@btn-warning-bg; @btn-warning-bg; @btn-warning-border);
+}
+// Danger and error appear as red
+.btn-outline-danger {
+  .button-outline-variant(@btn-danger-bg; @btn-danger-bg; @btn-danger-border);
+}
+
+.btn-outline-secondary {
+  .button-outline-variant(@btn-secondary-bg; @btn-secondary-bg; @btn-secondary-border);
+}
+
+.btn-outline-marketing {
+  .button-outline-variant(@btn-secondary-bg; @btn-marketing-bg; @btn-marketing-border);
+}
+
+.btn-outline-tertiary {
+  .button-outline-variant(@btn-tertiary-bg; @btn-tertiary-bg; @btn-tertiary-border);
+}
+
+
+//specific buttons
+.btn-add,
+.btn-remove,
+.btn-done{
+    .btn-xs();
+    &:before{
+        .fa();
+    }
+}
+
+.btn-add{
+    .fa-plus();
+}
+.btn-remove{
+    .fa-minus-circle();
+}
+.btn-done{
+    .fa-check();
+}
+
+
+.btn.multiline {
+    white-space: normal;
+}
+
+.btn.disabled.full-colors {
+    opacity: 1;
+}
+

@@ -1,0 +1,36 @@
+﻿<div class="row">
+    <div class='col-sm-4'>
+        <ocs-select meta="meta.highestEducationLevel" model="model.education.highestEducationLevel"></ocs-select>
+    </div>
+    <div class='col-sm-12'>
+        <div class="child-section" ng-if="model.education.highestEducationLevel == 12 && $root.cfg('education.isHighSchoolDropout') == 'true'">
+            <ocs-radio meta="meta.isHighSchoolDropout" model="model.education.isHighSchoolDropout"></ocs-radio>
+        </div>
+    </div>
+</div>
+
+<div class="row" ng-if="$root.cfg('education.isEnrolledInSchool') == 'true'">
+    <div class='col-sm-12'>
+        <ocs-radio meta="meta.isEnrolledInSchool" model="model.education.isEnrolledInSchool"></ocs-radio>
+    </div>
+    <div class='col-sm-12'>
+        <div class="child-section" ng-if="model.education.isEnrolledInSchool == '2008' && $root.cfg('education.schoolType') == 'true'">
+            <ocs-select meta="meta.schoolType" model="model.education.schoolType"></ocs-select> {{model.education.schoolType}}
+        </div>
+    </div>
+</div>
+
+
+<div class="row" ng-if="$root.cfg('education.employmentStatus') == 'true'">
+    <div class='col-sm-12'>
+        <ocs-radio meta="meta.employmentStatus" model="model.education.employmentStatus"></ocs-radio>
+
+    </div>
+    <div class='col-sm-12'>
+        <div class='child-section' ng-if="$root.cfg('education.unemployed4Months') == 'true' && model.education.employmentStatus == 86565">
+            <ocs-radio meta="meta.unemployed4Months" model="model.education.unemployed4Months"></ocs-radio>
+
+        </div>
+    </div>
+</div>
+

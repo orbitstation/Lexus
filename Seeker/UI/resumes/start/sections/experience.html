@@ -1,0 +1,238 @@
+﻿<div ng-controller="experienceCtrl as vm">
+    <!--<pre>{{vm.data.resumeValue | json }}</pre>
+    <pre>{{vm.data.experience | json }}</pre>-->
+
+
+    <ng-form name="experienceForm">
+        <div ng-repeat="(key,exp) in vm.view.experiences.items track by $index">
+            <div class="mb15">
+                <span class="label label-default">
+                    {{key + 1}} - 
+                    <span ng-if="exp.exptype=='military'">{{$root.msg(103695)}}</span>
+                    <span ng-if="exp.exptype!='military'">{{$root.msg(251352)}}</span>
+                </span>
+                <button type="button" ng-click="vm.removeExperience($index)"
+                        class="btn btn-remove pull-right"
+                        href="">
+                    {{:preResolved:$root.msg(370305)}}
+                </button>
+                <div class="clearfix"></div>
+            </div>
+
+            <div ng-if="exp.expType=='standard'">
+                <!-- <ocs-input meta="meta.experienceId" model="exp.experienceId"></ocs-input> -->
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ocs-input meta="meta.companyName" model="exp.companyName"></ocs-input>
+                    </div>
+                    <div class="col-sm-6">
+                        <ocs-radio meta="meta.isPresentWorkingCompany" model="exp.isPresentWorkingCompany"></ocs-radio>
+                        <!--<pre>{{exp.isPresentWorkingCompany}}</pre>-->
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <ocs-input meta="meta.companyCity" model="exp.companyCity"></ocs-input>
+                    </div>
+                    <div class="col-sm-4">
+                        <span ng-if="meta.expStates[key].items.length > 1">
+                            <ocs-select meta="meta.expStates[key]" model="exp.companyState"></ocs-select>
+                            <!-- <ocs-select meta="meta.companyStateId" model="exp.companyStateId"></ocs-select> -->
+                        </span>
+                    </div>
+                    <div class="col-sm-4">
+                        <ocs-select meta="meta.companyCountry" model="exp.companyCountryId"></ocs-select>
+                        <!--<ocs-select meta="meta.companyCountryId" model="exp.companyCountryId"></ocs-select>-->
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ocs-input meta="meta.jobTitle" model="exp.jobTitle"></ocs-input>
+                    </div>
+                    <div class="col-sm-3">
+                        <ocs-date meta="meta.expstartDate" model="exp.startDate" match="{ model: exp.endDate, operator: 'dateLesserThan'}"></ocs-date>
+                    </div>
+                    <div class="col-sm-3">
+                        <span ng-if="!exp.isPresentWorkingCompany">
+                            <ocs-date meta="meta.expendDate" model="exp.endDate" match="{ model: exp.startDate, operator: 'dateGreaterThan'}"></ocs-date>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        <ocs-input meta="meta.amount" model="exp.salary.amount" add-on="{text: $root.msg(367255)}"></ocs-input>
+                    </div>
+                    <div class="col-sm-3">
+                        <ocs-select meta="meta.currencyType" model="exp.salary.experienceCurrencyId"></ocs-select>
+                    </div>
+                    <div class="col-sm-3">
+                        <ocs-select meta="meta.salaryPeriod" model="exp.salary.experienceFrequencyId"></ocs-select>
+                    </div>
+                    <div class="col-sm-3">
+                        <ocs-input meta="meta.averageHoursPerWeek" model="exp.averageHoursPerWeek"></ocs-input>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ocs-textarea meta="meta.companyDescription" model="exp.companyDescription"></ocs-textarea>
+                    </div>
+                </div>
+                <!-- <ocs-select meta="meta.dutiesAccomplishmentsRelatedSkills" model="exp.dutiesAccomplishmentsRelatedSkills"></ocs-select> -->
+                <!-- <ocs-input meta="meta.federalSeries" model="exp.federalSeries"></ocs-input> -->
+                <!-- <ocs-select meta="meta.payPlan" model="exp.payPlan"></ocs-select> -->
+
+            </div>
+
+
+            <div ng-if="exp.expType=='military'">
+                <!-- <ocs-input meta="meta.militaryExperienceId" model="exp.militaryExperienceId"></ocs-input> -->
+                <div class="row">
+                    <div class="col-sm-4">
+                        <ocs-select meta="meta.branchId" model="exp.branchId"></ocs-select>
+                    </div>
+                    <div class="col-sm-4">
+                        <ocs-select meta="meta.rankId" model="exp.rankId"></ocs-select>
+                    </div>
+                    <div class="col-sm-4">
+                        <ocs-radio meta="meta.isPresentExperience" model="exp.isPresentExperience"></ocs-radio>
+                        <!--<pre>{{exp.isPresentExperience}}</pre>-->
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ocs-input meta="meta.militaryOccupationCode" model="exp.militaryOccupationCode"></ocs-input>
+                    </div>
+                    <div class="col-sm-6">
+                        <ocs-select meta="meta.statusId" model="exp.statusId"></ocs-select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        <ocs-date meta="meta.milStartDate" model="exp.milStartDate" match="{ model: exp.milEndDate, operator: 'dateLesserThan'}"></ocs-date>
+                    </div>
+                    <div class="col-sm-3">
+                        <span ng-if="!exp.isPresentExperience">
+                            <ocs-date meta="meta.milEndDate" model="exp.milEndDate" match="{ model: exp.milStartDate, operator: 'dateGreaterThan'}"></ocs-date>
+                        </span>
+                    </div>
+                    <div class="col-sm-6">
+                        <ocs-input meta="meta.unitName" model="exp.unitName"></ocs-input>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <ocs-input meta="meta.locationOfLastDutyStation" model="exp.locationOfLastDutyStation"></ocs-input>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <span ng-if="meta.expStates[key].items.length > 1">
+                            <ocs-select meta="meta.expStates[key]" model="exp.lastDutyStationStateId"></ocs-select>
+                        </span>
+                        <!--<pre>{{exp.lastDutyStationStateId | json}}</pre>-->
+                    </div>
+
+                    <div class="col-sm-4">
+                        <ocs-select meta="meta.lastDutyStationCountryId" model="exp.lastDutyStationCountryId"></ocs-select>
+                        <!--<pre>{{exp.lastDutyStationCountryId | json}}</pre>-->
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ocs-textarea meta="meta.responsibilities" model="exp.responsibilities"></ocs-textarea>
+                    </div>
+                    <div class="col-sm-6">
+                        <ocs-input meta="meta.unitPhone" model="exp.unitPhone"></ocs-input>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-if="exp.expType=='standard'">
+                <hr class="hr-short" />
+                <p>{{:preResolved:$root.msg(373097)}}</p>
+                <hr class="hr-short" />
+                <div ng-repeat="(skey,item) in exp.skills.items" ng-show="exp.skills && exp.skills.items">
+                    <div class="mb15">
+                        <span class="label label-default">{{skey + 1}} - {{$root.msg(157709)}}</span>
+                        <button class="btn btn-remove pull-right"
+                                type="button" ng-click="vm.removeExperienceSkill(key, skey)"
+                                ng-show="index !== '0'">
+                            {{:preResolved:$root.msg(368069)}} {{$root.msg(157709)}}
+                        </button>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <div class="row">
+                        <div class="col-sm-4 col-md-3">
+                            <ocs-autocomplete meta="meta.skillName"
+                                              aria-label="{{:preResolved:$root.msg(157709)}}"
+                                              model="item.skillName"
+                                              search-string="item.skillName"
+                                              remote-api-handler="vm.skillHandler"
+                                              remote-response-formatter="vm.skillFormatter"
+                                              duplicates="vm.duplicates"
+                                              input-class="form-control">
+                            </ocs-autocomplete>
+                        </div>
+                        <div class="col-sm-2 col-md-3">
+                            <ocs-select meta="meta.skillLevelID" model="item.skillLevelID"></ocs-select>
+                        </div>
+                        <div class="col-sm-3">
+                            <ocs-select meta="meta.skillUsedID" model="item.skillUsedID"></ocs-select>
+                        </div>
+                        <div class="col-sm-3">
+                            <ocs-input meta="meta.skillYearsExperience" model="item.yearsExperience"></ocs-input>
+                        </div>
+                    </div>
+                    <hr class="hr-short" />
+                </div>
+                <div>
+                    <button class="btn btn-add"
+                            type="button"
+                            ng-click="vm.addExperienceSkill(key)"
+                            ng-disabled="exp.skills.items && exp.skills.items.length == exp.skills.maxItemsCount">
+                            {{:preResolved:$root.msg(303888)}}
+                    </button>
+
+                    <hr class="hr-short" />
+                </div>
+
+            </div>
+        </div>
+
+        <label for="noRelExp" class="ng-hide" ng-hide="vm.view.experiences.items[0]">
+            <input type="checkbox" id="noRelExp" ng-model="vm.data.experience.noRelevantExperience" />
+            <span class="checkbox-custom"></span>
+            <span class="checkbox-label">{{:preResolved:$root.msg(154002)}}</span>
+        </label>
+
+        <div>
+            <button ng-click="vm.addExperience('standard')"
+                    type="button" class="btn btn-add"
+                    ng-disabled="vm.data.experience.noRelevantExperience || (vm.view.experiences.items.length >= vm.view.experiences.maxItemsCount) || vm.thisForm.$invalid">
+                {{$root.msg(370069)}}
+            </button>
+            <span ng-if="vm.isMilitaryService">
+                <span class="text-muted" style="padding: 0 10px;">or</span>
+                <button ng-click="vm.addExperience('military')"
+                        type="button" class="btn btn-add"
+                        ng-disabled="vm.data.experience.noRelevantExperience || (vm.view.experiences.items.length >= vm.view.experiences.maxItemsCount) || vm.thisForm.$invalid">
+                    {{$root.msg(370070)}}
+                </button>
+            </span>
+        </div>
+        <hr class="hr-short" />
+
+    </ng-form>
+</div>

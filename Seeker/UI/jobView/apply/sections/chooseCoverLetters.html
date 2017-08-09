@@ -1,0 +1,50 @@
+﻿<div class="row" ng-if="meta.templateHasLoaded == false">
+    <div class="col-sm-6">
+        <ocs-select meta="meta.templates" model="model.letter.id"></ocs-select>
+    </div>
+    <div class="col-sm-6">
+        <label class="display-block">&nbsp;</label>
+        <button class="btn btn-primary" ng-click="meta.loadTemplate(model.letter.id)" ng-disabled="!model.letter.id">{{:preResolved:$root.msg(371371)}}</button> <!--Load Template-->
+    </div>
+</div>
+
+<div class="row" ng-if="meta.templateHasLoaded == true">
+    <div class="col-sm-12">
+        <div class="pull-right btn btn-link" ng-click="model.letter.id = null; meta.templateHasLoaded = false; ">{{:preResolved:$root.msg(371372)}}</div><br/> <!--Remove the cover letter from this application-->
+        <hr class="hr-short" />
+
+        <input ng-model="model.letter.id" ng-show="false" aria-label="ID" aria-hidden="true" />
+        <ocs-input meta="meta.coverLettertitle" model="model.letter.title"></ocs-input>
+        <ocs-richtexteditor meta="meta.richTextBody" model="model.letter.body"></ocs-richtexteditor>
+
+        <!--<pre>meta.itsANewCoverLetter = {{meta.itsANewCoverLetter}}</pre>
+        <pre>itsanEditedCoverLetter = {{meta.itsanEditedCoverLetter}}</pre>-->
+    </div>
+    <div class="col-sm-12 btn-group" role="group">
+        <button 
+            class="btn btn-md btn-success" 
+            ng-disabled="((meta.itsANewCoverLetter == false && meta.itsanEditedCoverLetter == false) || (meta.blankLetterSlots <= 0 && meta.itsANewCoverLetter == true))" 
+            ng-click="meta.saveThisLetter(model.letter.id, meta.itsANewCoverLetter, meta.itsanEditedCoverLetter)" 
+            type="button">
+            <span ng-if="meta.itsanEditedCoverLetter == false">
+                {{:preResolved:$root.msg(371373)}}  <!-- Save this as a new cover letter template-->
+            </span>
+            <span ng-if="meta.itsanEditedCoverLetter == true">
+                <span ng-show="meta.itsANewCoverLetter == false">{{:preResolved:$root.msg(371374)}}</span> <!--Update this cover letter template-->
+                <span ng-show="meta.itsANewCoverLetter == true">{{:preResolved:$root.msg(371375)}}</span> <!--Save this as a new cover letter template-->
+            </span>
+        </button>
+    </div>
+
+    <div class="col-sm-12">
+        <span class="error-message" ng-if="(meta.blankLetterSlots <= 0 && meta.itsANewCoverLetter == true)">{{:preResolved:$root.msg(371376)}}</span>&nbsp; <!--You have saved the maximum number of cover letters-->
+    </div>
+
+    <!-- dont delete this: dont know why but by forcing an update on this template it fixes the update issue for letter.body,  without it, try to add "1111" at the end, it will not trip the watcher. -mb -->    
+    <span style="display: none;">
+        <pre>{{model.letter.body | json}}</pre>
+    </span>
+
+
+
+</div>

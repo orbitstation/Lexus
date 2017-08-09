@@ -1,0 +1,92 @@
+﻿<div ng-controller="ProfileInformation as vm">
+    <div ocs-spinner is-loaded="$root.finishedLoadingResumeInfo" options="{top: '100px'}">
+        <ng-form name="profileForm">
+            <p class="text-warning">
+                {{:preResolved:$root.msg(347548)}} {{:preResolved:$root.msg(347549)}}
+            </p>
+            
+            <div class="row">
+                <div class="col-sm-6">
+                    <ocs-input meta="meta.firstName" model="vm.data.user.firstName"></ocs-input>
+                </div>
+                <div class="col-sm-6">
+                    <ocs-input meta="meta.lastName" model="vm.data.user.lastName"></ocs-input>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <ocs-google-address-auto-complete id="address" meta="meta.addressAutocomplete"
+                                                      ng-if="vm.data.user.address.country == 164"
+                                                      model="vm.data.user.address.homeAddress"
+                                                      ng-model="vm.data.user.address.homeAddress"
+                                                      google-model="vm.googleHomeAddress"
+                                                      on-select="vm.onHomeAddressSelection($item, vm.data.user.address)">
+                    </ocs-google-address-auto-complete>
+                    <ocs-input meta="meta.homeAddress" model="vm.data.user.address.homeAddress" ng-if="vm.data.user.address.country != 164"></ocs-input>
+                </div>
+                <div class="col-sm-6">
+                    <ocs-input meta="meta.homeAddress2" model="vm.data.user.address.homeAddress2"></ocs-input>
+                </div>
+
+                <div class="col-sm-6">
+                    <ocs-input meta="meta.city" model="vm.data.user.address.city"></ocs-input>
+                </div>
+                <div class="col-sm-6">
+                    <ocs-select ng-init="0" meta="meta.state" model="vm.data.user.address.state" ng-if="meta.state.items.length > 1"></ocs-select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <ocs-zip-code meta="meta.postalCode"
+                                  model="vm.data.user.address.postalCode"
+                                  state="vm.data.user.address.state"
+                                  county="vm.data.user.address.county"
+                                  ng-if="vm.data.user.address.country == 164">
+                    </ocs-zip-code>
+                    <ocs-input meta="meta.postalCodeInternational" model="vm.data.user.address.postalCode" ng-if="vm.data.user.address.country != 164"></ocs-input>
+                </div>
+                <div class="col-sm-6">
+                    <ocs-select meta="meta.country" model="vm.data.user.address.country"></ocs-select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <ocs-input meta="meta.email" model="vm.data.user.emailAddress"></ocs-input>
+                </div>
+            </div>
+
+            <!-- Phone 1 -->
+            <div class="row">
+                <div class='col-md-6' ng-if="$root.cfg('contactInfo.primaryPhone') == 'true'">
+                    <ocs-input meta="meta.primaryPhone" model="vm.data.user.phoneNumber.primaryPhone"></ocs-input>
+                </div>
+                <div class='col-md-6' ng-if="$root.cfg('contactInfo.primaryPhoneType') == 'true'">
+                    <ocs-select meta="meta.primaryPhoneType" model="vm.data.user.phoneNumber.primaryPhoneType"></ocs-select>
+                </div>
+            </div>
+
+            <!-- Phone 2 -->
+            <div class="row">
+                <div class='col-md-6' ng-if="$root.cfg('contactInfo.telephoneNumber2') == 'true'">
+                    <ocs-input meta="meta.telephoneNumber2" model="vm.data.user.phoneNumber.alternatePhone1"></ocs-input>
+                </div>
+                <div class='col-md-6' ng-if="$root.cfg('contactInfo.telephoneNumber2Type') == 'true'">
+                    <ocs-select meta="meta.telephoneNumber2Type" model="vm.data.user.phoneNumber.alternatePhone1Type"></ocs-select>
+                </div>
+            </div>
+
+            <!-- Phone 3 -->
+            <div class="row">
+                <div class='col-md-6' ng-if="$root.cfg('contactInfo.telephoneNumber3') == 'true'">
+                    <ocs-input meta="meta.telephoneNumber3" model="vm.data.user.phoneNumber.alternatePhone2"></ocs-input>
+                </div>
+                <div class='col-sm-6' ng-if="$root.cfg('contactInfo.telephoneNumber3Type') == 'true'">
+                    <ocs-select meta="meta.telephoneNumber3Type" model="vm.data.user.phoneNumber.alternatePhone2Type"></ocs-select>
+                </div>
+            </div>
+
+        </ng-form>
+        <hr class="hr-short" />
+    </div>
+</div>
+

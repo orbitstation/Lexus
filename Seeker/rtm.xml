@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RTMPackage>
+  <Name>${PACKAGE_NAME}</Name>
+  <Type>RTM-MSDWebAppResource</Type>
+  <Version>${BUILD_VERSION}</Version>
+  <Locales>
+    <Locale>
+      <Name>NA</Name>
+    </Locale>
+  </Locales>
+</RTMPackage>

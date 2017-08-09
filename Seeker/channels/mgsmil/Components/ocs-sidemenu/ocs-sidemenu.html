@@ -1,0 +1,36 @@
+﻿<nav class="side-menu">
+    <!--<pre>{{$ctrl.menu | json}}</pre>-->
+    <div class="menu-wrap">
+        <ul class="home menu-level" ng-class="{'menu-level-current': $ctrl.home}">
+            <li class="menu-item menu-name" role="menuitem">
+                <a href="http://military.com">Military.com</a>
+            </li>
+            <li class="menu-item menu-bold" ng-hide="$root.isAuthenticated" role="menuitem">
+                <a href="http://www.military.com/newmembers/member-reg">Login</a>
+            </li>
+            <li class="menu-item" role="menuitem" 
+                ng-repeat="menu in $ctrl.menu track by $index" 
+                ng-hide="menu.display === 'Profile' && !$root.isAuthenticated">
+                <span ng-click="$ctrl.open($index)" 
+                      ng-if="menu[$index].display"  
+                      class="material-icons go-next">keyboard_arrow_right</span>
+                <a href="{{menu.url}}" ng-click="$ctrl.closeMenu()">{{menu.display}}</a>
+            </li>
+        </ul>
+
+        <ul class="sub menu-level"
+            ng-repeat="menu in $ctrl.menu track by $index"
+            ng-class="{'menu-level-current': menu.open}">
+            <li class="menu-item menu-name" role="menuitem">
+                <span class="material-icons go-back" ng-click=$ctrl.goHome()>keyboard_arrow_left</span>
+                <a>{{menu.display}}</a>
+            </li>
+            <li class="menu-item" ng-repeat="subMenu in menu track by $index" ng-if="subMenu.display && !subMenu.home" role="menuitem">
+                <a href="{{subMenu.url}}" ng-click="$ctrl.closeMenu()" ng-bind-html="subMenu.display | unsafe"></a>
+            </li>
+            <li class="menu-item menu-bold" ng-if="menu.display == 'Profile'" role="menuitem">
+                <a ng-click="$ctrl.logout()">Log out</a>
+            </li>
+        </ul>
+    </div>
+</nav>

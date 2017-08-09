@@ -1,0 +1,33 @@
+﻿.bar-chart{
+     @colors: @brand-primary, @brand-secondary, @brand-accent, @brand-option-gray, @brand-option-a, @brand-option-b;
+    .loop-colors(@counter, @start: 1) when ((@counter + @start) >= 0) {
+        @child: @counter + @start;
+        .loop-colors((@counter - 1), @start); // next iteration
+        &:nth-child(@{child}) {
+            .progress-bar-info {
+                background-color: extract(@colors, @counter); // code for each iteration
+            }
+        }
+    }
+    .loop-colors(6,0);
+     background-color: darken(@gray-lighter, 3%);
+     height: 36px;
+     margin-bottom: 5px;
+     .badge{
+         margin-top: 6px;
+         background: #fff;
+         color: @gray;
+         padding-top: 6px;
+         padding-bottom: 6px;
+         border-radius: 2px;
+         font-weight: 600;
+         &:first-child{
+             margin-left: 12px; 
+             left:0;
+         }
+         &:last-child{
+             margin-right: 12px; 
+             right: 0;
+         }
+     }
+}

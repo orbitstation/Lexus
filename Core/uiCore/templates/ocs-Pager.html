@@ -1,0 +1,50 @@
+﻿<nav class="pagination-nav">
+    <ul class="pagination pagination-sm">
+        <!-- First -->
+        <li ng-show="showFirstLast" ng-class="{'disabled': currentPage == 0}">
+            <a ng-click="setPage(0)" title="{{msg(363528)}}">
+                <span class="fa fa-angle-double-left"></span>
+                <span class="hidden-xs" ng-bind="::msg(363528)"></span>
+            </a>
+        </li>
+        <!-- Previous -->
+        <li ng-class="{'disabled': currentPage == 0}">
+            <a ng-click="setPage(currentPage - 1)" title="{{msg(363528)}}">
+                <span class="fa fa-angle-left"></span>
+                <span class="hidden-xs" ng-bind="::msg(363528)"></span>
+            </a>
+        </li>
+        <!-- Separator && First page ID -->
+        <li ng-show="showLowerSeparator">
+            <a ng-click="setPage(0)">{{1}}</a>
+        </li>
+        <li ng-show="showLowerSeparator">
+            <span class="separator" role="separator">...</span>
+        </li>
+        <!-- Page -->
+        <li ng-repeat="i in range(currentPage)" ng-class="{'active': currentPage + 1 == i}">
+            <a ng-click="setPage(i - 1)">{{i}}</a>
+        </li>
+        <!-- Separator && Last page ID-->
+        <li ng-show="showUpperSeparator">
+            <span class="separator" role="separator">...</span>
+        </li>
+        <li ng-show="showUpperSeparator">
+            <a ng-click="setPage(numberOfPages - 1)">{{numberOfPages}}</a>
+        </li>
+        <!-- Next -->
+        <li ng-class="{'disabled': currentPage >= numberOfPages - 1}">
+            <a ng-click="setPage(currentPage + 1)" title="{{msg(363527)}}">
+                <span class="hidden-xs" ng-bind="::msg(363527)"></span>
+                <span class="fa fa-angle-right"></span>
+            </a>
+        </li>
+        <!-- Last -->
+        <li ng-show="showFirstLast" ng-class="{'disabled': currentPage >= numberOfPages - 1}">
+            <a ng-click="setPage(numberOfPages - 1)" title="{{msg(363527)}}">
+                <span class="hidden-xs" ng-bind="::msg(363527)"></span>
+                <span class="fa fa-angle-double-right"></span>
+            </a>
+        </li>
+    </ul>
+</nav>

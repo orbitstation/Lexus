@@ -1,0 +1,102 @@
+﻿<div ng-if="isLoaded">
+    <div class="page-heading">
+        <h1 class="mt0">{{:preResolved:$root.msg(360065)}}</h1>
+        <p class="lead">{{:preResolved:$root.msg(360066) | unsafe}}</p>
+    </div>
+    
+    <ocs-401 meta="meta" msgheader="379087" msgbody="379088"></ocs-401>
+
+    <div ng-if="$root.isAuthenticated">
+        
+
+        <div class="row">
+            <div class="col-md-7">
+                <p class="text-muted">{{:preResolved:$root.msg(360176)}}</p>
+            </div>
+
+            <!-- experimental -->
+            <div class="col-md-4 col-md-offset-1 col-xs-6 col-xs-offset-3">
+                <!--<div style="background: linear-gradient(to right, #3699d4 0%,#71c8c2 100%); padding: 30px" class="text-center text-inverse mb16">
+                    <p class="lead mb0">How to write effective goals</p>
+                </div>-->
+                <a href="/help/careerPlan" target="_blank" class="btn btn-lg btn-outline-success btn-block">{{$root.msg(360118)}}</a>
+                <button ng-disabled="reachedMax" ng-click="createGoal()" class="btn btn-lg btn-info btn-block">{{$root.msg(362109)}}</button>
+            </div>
+        </div>
+
+        <h3 class="mb0">
+            {{:preResolved:$root.msg(365522)}} <small>{{:preResolved:$root.msg(365523)}}</small>
+            <span class="display-block pull-right">
+                <small><strong>{{model.items.length}}</strong> {{$root.msg(365524)}} <strong>{{::model.maxItemsCount}}</strong> {{:preResolved:$root.msg(365526)}}</small>
+            </span>
+        </h3>
+        <div class="clearfix"></div>
+
+        <hr class="hr-short" />
+
+        <div class="list">
+            <div class="list-item" ng-repeat="goal in model.items | orderBy: 'targetDueDate' track by $index" ng-class="{'list-last':$last}">
+                <div class="list-body">
+
+                    <div class="header-actions">
+                        <div>
+                            <h3 class="list-item-heading pull-left pointer">
+                                <a ng-click="goToGoal(goal.id)">{{goal.name | capitalize}}</a>
+                            </h3>
+                        </div>
+
+                        <div class="pull-right small">
+                            <span ng-if="!reachedMax">
+                                <a role="button" ng-click="cloneGoal(goal.id)">{{:preResolved:$root.msg(50022, 'copy')}}</a> /
+                            </span>
+                            <a role="button" ng-click="deleteGoal(goal.id)">{{$root.msg(344391, 'delete')}}</a>
+                        </div>
+                    </div>
+
+
+                    <div class="clearfix"></div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span>
+                                <strong>{{:preResolved:$root.msg(329846)}}:</strong> {{::goal.shortDescription}}
+                            </span><br />
+
+                            <span class="text-muted small">
+                                <strong>{{:preResolved:$root.msg(334509)}}:</strong> {{::goal.summary}}
+                            </span><br />
+
+                            <span class="text-muted small">
+                                <strong>{{:preResolved:$root.msg(365521)}}:</strong> {{::goal.activities.length}}
+                            </span>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- Status -->
+                            <span class="text-muted small">
+                                <strong>{{:preResolved:$root.msg(121355)}}</strong> {{$root.msg(goalStatusList[goal.statusId])}}
+                            </span><br />
+                            <span class="text-muted small">
+                                <strong>{{:preResolved:$root.msg(360183)}}</strong> {{::goal.targetDueDate | date}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!--<hr class="hr-short" ng-if="!$last" />-->
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/ng-template" id="goalModal.html">
+        <div class="modal-header">
+            {{:preResolved:$root.msg(365653)}}
+        </div>
+        <div class="modal-body">
+            {{:preResolved:$root.msg(125210)}} <strong>{{goal.name}}</strong> {{:preResolved:$root.msg(365656)}}?
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-link btn-sm" type="button" ng-click="cancel()">{{$root.msg(360156)}}</button>
+            <button class="btn btn-danger btn-sm" type="button" ng-click="delete()">{{$root.msg(344391)}}</button>
+        </div>
+    </script>
+</div>

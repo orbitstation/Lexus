@@ -1,0 +1,54 @@
+﻿@job-filters: {
+    .job-filters {
+        .material-icons{
+            font-size: inherit;
+            vertical-align: middle
+        }
+        .filter-list {
+            a {
+                display: block;
+                padding-left: 10px;
+            }
+
+            .label-info{
+                background: lighten(@brand-info, 39%);
+                color: @brand-primary;
+                border: 1px solid @brand-info;
+            }
+        }
+        .material-icons{
+            color: @brand-primary;
+        }
+        h5{
+            cursor: pointer;
+            font-weight:400;
+            .text-muted();
+            a{
+                .h5();
+                text-decoration: none;
+            }
+        }
+        .panel-group,
+        .panel{
+            margin-bottom:0;
+        }
+        .panel-collapse{
+            padding-bottom: 10px;
+        }
+        .panel{
+            .noshadow()!important;
+            padding: 0 10px;
+            margin-bottom: 20px;
+            border-radius: 0;
+            border: 1px solid @gray-light-mil;
+        
+            a{
+                cursor: pointer;
+                &.active{
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+};
+

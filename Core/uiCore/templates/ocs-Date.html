@@ -1,0 +1,78 @@
+﻿<ng-form name='singleItemForm' novalidate>
+    <div class='form-group' ng-class="{'has-error': !(singleItemForm.$pristine || singleItemForm.$valid),'form-group-sm': formSize === 'sm'}">
+        <label for='{{::elementID}}'>
+            <span ng-show='{{meta.required}}'>
+                <small class="fa fa-asterisk required-asterisk"></small>
+            </span>{{:preResolved:meta.label.lookUpMsg.value}}
+        </label>
+        <p class="input-group" ng-class="{'open':status.opened}">
+            <!--
+                    ui-mask-placeholder
+                    ui-mask='{{mask}}'
+                    ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 200, 'blur': 0 } }"
+            -->
+            
+            <input class='form-control' 
+                   aria-required='{{meta.required}}'
+                   ng-change='dt'
+                   ng-disabled="meta.disabled" 
+                   datepicker-popup 
+                   is-open='status.opened' 
+                   datepicker-options="dateOptions" 
+                   uib-datepicker-popup='{{format}}' 
+                   show-button-bar="false"
+                   placeholder='{{:preResolved:meta.placeholder.lookUpMsg.value}}'
+                   ocs-match="{{match}}" 
+                   id='{{::elementID}}' 
+                   name='{{::elementID}}' 
+                   MaxLength='{{meta.displaymeta.max}}' 
+                   ng-model='model' 
+                   type='{{::meta.displaymeta.type}}' 
+                   ng-required='{{meta.required}}' />
+
+            <span class="input-group-btn">
+                <button type="button"
+                        ng-disabled="meta.disabled"
+                        class="btn btn-default" 
+                        ng-class="{'btn-sm': formSize === 'sm'}"
+                        ng-click="status.opened = 'true'">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                    <span class="sr-only">Date picker</span>
+                </button>
+            </span>
+        </p>
+        <span class='error-message ng-hide' aria-live="assertive" ng-show="!singleItemForm.$pristine">
+              <!-- [ {{singleItemForm.$valid}} ]&nbsp;-->
+            <!-- field level validation -->
+            <span ng-show='singleItemForm.$dirty && singleItemForm.$invalid'>
+                <span ng-show='singleItemForm.$error.required'>{{:preResolved:meta.error.required.lookUpMsg.value}}</span>
+                <span ng-show="singleItemForm.$error.dateDisabled">Date is outside of allowed range</span>
+            </span>
+
+            <!-- mask level validation -->
+            <span ng-show='singleItemForm.$error.mask[0].$invalid'>
+                <span>{{:preResolved:meta.error.mask.lookUpMsg.value}}</span>
+            </span>
+
+            <!-- match Validation -->
+            <span ng-show="singleItemForm.$error.match[0].$invalid || singleItemForm.$invalid">
+                <span>{{:preResolved:meta.error.match.lookUpMsg.value}}</span>
+            </span>
+
+            <!-- comparison of two date inputs-->
+            <span ng-show="!singleItemForm.$error.date && singleItemForm.$error.match">
+                {{:preResolved:meta.error.comparison.lookUpMsg.value}}
+            </span> 
+
+            <!-- datePicker level validation -->
+            <span ng-show="singleItemForm.$error.date">
+                Invalid Date Format
+            </span>
+        </span>
+
+        <span  ng-hide="meta.hideErrorHolder">
+            <span class="error-message" ng-if="singleItemForm.$pristine || singleItemForm.$valid">&nbsp;</span>
+        </span>
+    </div>
+</ng-form>
+

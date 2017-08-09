@@ -1,0 +1,39 @@
+﻿<div class="">
+    <!-- action buttons -->
+    <h3 class="list-item-heading item-first" ng-show="!item.url || item.url.length === 0">{{item.title}}</h3>
+    <h3 class="list-item-heading item-first" ng-show="item.url && item.url.length !== 0">
+        <a ng-href="events/details/{{item.id}}">{{item.title}}</a>
+    </h3>
+
+    <!-- row data columns -->
+    <div class="row">
+        <div class="col-sm-4">
+            <div ng-show="item.isUserRegistered" class="item-first">
+                <span class="text-success" ng-show="item.category == 'Workshop'">{{$root.msg(372640)}}</span>
+                <span class="text-success" ng-show="item.category == 'JobFair'">{{$root.msg(372889)}}</span>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="text-center">
+                <span ng-show="(item.seatsTaken >= 0) && item.seatsLimit && item.seatsLimit > 0">
+                    {{item.seatsLimit - item.seatsTaken}} {{$root.msg(367333)}} {{item.seatsLimit}}
+                </span>
+                <span ng-show="!item.seatsTaken && !item.seatsLimit">{{$root.msg(372646)}}</span>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="text-center">
+                <span>
+                    {{item.location}}
+                </span>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="text-center">
+                <span>
+                    {{item.friendlyDate}}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+﻿<ng-form name='singleItemForm' novalidate>
+    <fieldset class='form-group'>
+        <legend class="label-type">
+            <span ng-show='{{meta.required}}'>
+                <small class="fa fa-asterisk required-asterisk"></small>
+                <span class="sr-only">Required</span>
+            </span>
+            <span ng-bind-html="meta.label.lookUpMsg.value"></span>
+        </legend>
+        <div class="checkbox" ng-repeat='n in meta.items'>
+            <label for="{{elementID}}-{{n.value}}">
+                <input type="checkbox"
+                       id="{{elementID}}-{{n.value}}"
+                       ng-disabled="{{n.disabled}}"
+                       ng-model='$parent.modelTemp[$index]'
+                       name='{{elementID}}-{{n.value}}'
+                       ng-true-value="{{n.value}}" />
+                <span class="checkbox-custom"></span>
+                <span class="checkbox-label">{{:preResolved:n.text}}</span>
+            </label>
+        </div>
+        <span ng-if="meta.required" class='error-message'>
+            <span ng-show='singleItemForm.$dirty && singleItemForm.$error.atLeastOne'>
+                <span>{{:preResolved:meta.error.required.lookUpMsg.value}}</span>
+            </span>
+            &nbsp;
+        </span>
+        <!--{{model}} | {{modelTemp}}-->
+    </fieldset>
+</ng-form>
+
+
+

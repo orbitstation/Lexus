@@ -1,0 +1,49 @@
+﻿.apply-panel {
+    background: #fff;
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    margin: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top: 1px solid @body-bg;
+    box-shadow: 0 -1px 2px rgba(0,0,0,.03);
+}
+
+/*.body-wrapper {
+    margin-bottom: 75px;
+
+    & > .container {
+        border-bottom: 1px solid @content-border-color;
+    }
+}*/
+
+.apply-section {
+    position: relative;
+
+    .btn-apply {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
+
+.options-btns {
+    pointer-events: none;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+
+    .dropdown-menu {
+        bottom: 0;
+        top: initial;
+        right: 0;
+        left: initial;
+    }
+}
+
+.go-back-btn,
+.social-btn {
+    pointer-events: all;
+}

@@ -1,0 +1,7 @@
+<parameters>
+	<parameter name="path" tags="contentPath"
+		defaultValue="D:\wwwroot\ui.lexus.core">
+		<parameterEntry type="ProviderPath"
+		scope="contentPath" />
+	</parameter>
+</parameters>

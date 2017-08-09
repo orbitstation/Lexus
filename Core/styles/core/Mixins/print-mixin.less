@@ -1,0 +1,20 @@
+.print-defaults(){
+    @media print {
+        .main-footer,
+        .main-header,
+        .navbar,
+        .main-search,
+        .breadcrumb {
+            display: none;
+        }
+        
+        a[href]:after {
+            content: "";
+        }
+        
+        a[href] {
+            text-decoration: underline;
+        }
+    }
+}
+

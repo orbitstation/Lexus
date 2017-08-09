@@ -1,0 +1,63 @@
+﻿<div ng-if="isLoaded">
+    <ocs-intro-section meta="meta.pageHeader"></ocs-intro-section>
+    <ocs-401 meta="meta" msgheader="379091" msgbody="379092"></ocs-401>
+    <div ng-show="$root.isAuthenticated">
+        <div class="alert alert-info" tabindex="0">
+            {{:preResolved:$root.msg(157204)}}
+            <strong>{{schoolsCount}}</strong>
+            {{:preResolved:$root.msg(104616)}}
+            <strong>{{maxSchoolsCount}}</strong>
+            {{:preResolved:$root.msg(364319)}}
+        </div>
+
+        <div class="list display-table">
+            <div class="list-item display-table-row" ng-repeat="school in schools track by $index" ng-class="{'list-last':$last}">
+                <div class="list-col-main display-table-cell vertical-align-middle pt16 pb16">
+                    <div class="list-body">
+                        <div class="header-actions">
+                            <h2 class="list-item-heading h3">
+                                <a href="/schools/view/{{school.oneTcode}}/{{school.schoolId}}">{{school.schoolName}}</a>
+                            </h2>
+                        </div>
+                        <div>
+                            <div>
+                                <span class="list-label">{{msg(346429)}}:</span>
+                                <span class="list-value">{{school.dateSaved | date }}</span>
+                            </div>
+                            <div>
+                                <span class="list-label">{{msg(347222)}}: </span>
+                                <span class="list-value">{{school.programName}}</span>
+                            </div>
+                            <div>
+                                <span class="list-label">{{msg(364637)}} </span>
+                                <span class="list-value">{{school.onetName}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-col-actions display-table-cell vertical-align-middle pt16 pb16">
+                    <div class="list-body">
+                        <div class="list-item-actions text-right">
+                            <button class="btn btn-link" ng-click="delete(school.schoolId, school.programId)">{{msg(157926)}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title">{{msg(365751)}}</h3>
+    </div>
+    <div class="modal-body">
+        <h4>{{msg(364320)}}</h4>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="ok()">{{msg(315145)}}</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">{{msg(162574)}}</button>
+    </div>
+</script>
+

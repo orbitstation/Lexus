@@ -1,0 +1,23 @@
+﻿
+@{ ViewBag.Title = "Cover letters"; }
+
+@section Header
+{
+<!-- Include the JS ReCaptcha API -->
+<script src="//www.google.com/recaptcha/api.js?render=explicit&onload=vcRecaptchaApiLoaded" async defer></script>
+
+<!-- build:js -->
+<script src="~/UI/coverLetters/coverLetters-meta.js"></script>
+<script src="~/UI/coverLetters/coverLetters-config.js"></script>
+
+<script src="~/UI/coverLetters/coverLetters-app.js"></script>
+<script src="~/UI/coverLetters/create/coverLetters-create-ctrl.js"></script>
+<script src="~/UI/coverLetters/edit/coverLetters-edit-ctrl.js"></script>
+<script src="~/UI/coverLetters/send/coverLetters-send-ctrl.js"></script>
+<script src="~/UI/coverLetters/index/coverLetters-index-ctrl.js"></script>
+<script src="~/UI/coverLetters/view/coverLetters-view-ctrl.js"></script>
+<!-- endbuild -->
+}
+
+<div ng-view></div>
+

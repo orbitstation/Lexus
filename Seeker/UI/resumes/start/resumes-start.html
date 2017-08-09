@@ -1,0 +1,58 @@
+﻿<div ng-if="$root.isLoaded">
+    <ocs-intro-section meta="meta.pageHeaderStartNew" ng-if="finishedLoadingResume && newResume"></ocs-intro-section>
+    <ocs-intro-section meta="meta.pageHeaderStartEdit" ng-if="finishedLoadingResume && !newResume"></ocs-intro-section>
+    <ocs-401 meta="meta" msgheader="379077" msgbody="379078"></ocs-401>
+
+    <div ng-if="$root.isAuthenticated">
+        <ng-form name="forms.globalForm" novalidate>
+            <div ocs-spinner is-loaded="finishedLoadingResume" options="{top: '100px'}">
+                <ocs-error error-list="errors"></ocs-error>
+                <ocs-accordion-steps meta="meta" 
+                                     config-layout="configLayout" 
+                                     accordion-name="'accordion'" 
+                                     model="resume"></ocs-accordion-steps>
+                
+                <pre class="ng-hide" ng-hide="true">{{meta.globalFormValid = globalForm.$valid}}</pre>
+            </div>
+        </ng-form>
+    </div>
+
+    <script type="text/ng-template" id="profile-modal.html">
+        <div class="modal-header">
+            {{msg(370168)}}
+            <button type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                    ng-click="close()"
+                    style="color: #fff;">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <h4>{{msg(370188)}}</h4>
+        </div>
+        <div class="modal-footer">
+            <div class="row" ng-if="!$root.leavingResumeEdit">
+                <div class="col-sm-5">
+                    <button class="btn btn-link" type="button" ng-click="cancel()">{{msg(370167)}}</button>
+                </div>
+                <div class="col-sm-7">
+                    <button class="btn btn-primary" type="button" ng-click="ok()">{{msg(370166)}}</button>
+                </div>
+            </div>
+            <div class="row" ng-if="$root.leavingResumeEdit">
+                <div class="col-sm-7">
+                    <button class="btn btn-link" type="button" ng-click="cancel()">{{msg(370167)}}</button>
+                </div>
+                <div class="col-sm-5">
+                    <button class="btn btn-primary" type="button" ng-click="ok()">{{msg(370253)}}</button>
+                </div>
+            </div>
+        </div>
+    </script>
+</div>
+
+
+
+

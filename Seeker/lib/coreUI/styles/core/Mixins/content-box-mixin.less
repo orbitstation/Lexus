@@ -1,0 +1,89 @@
+﻿.content-box(@content-box-color: #fff) {
+    background: @content-box-color;
+    padding: @grid-gutter-width/2 @grid-gutter-width/2 0;
+    margin-bottom: @grid-gutter-width/2;
+    height: 350px;
+    overflow: hidden;
+    position: relative;
+
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+
+    @media (max-width: @screen-sm-max) {
+        &.remove-hight-sm{
+            height: auto;
+        }
+    }
+    
+
+    h2 {
+        .h3();
+        margin-top: 0;
+
+        &.slim{
+            font-weight:normal;
+            color:#000;
+        }
+    }
+
+    .content-link {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        padding: 0 @grid-gutter-width/2;
+        line-height: 80px;
+        vertical-align: bottom;
+        width: 100%;
+        //pointer-events: none;
+        #gradient .vertical(fade(@content-box-color,0), @content-box-color, 0%, 30px);
+
+        a {
+            position: relative;
+            display: inline-block;
+
+            &:not(.btn) {
+                top: 10px;
+            }
+
+            &.btn {
+                top: 5px;
+            }
+        }
+    }
+
+    &.unrestricted {
+        height: auto;
+        overflow: auto;
+    }
+    &.muted{
+        background: @gray-lighter;
+        .content-link {
+            #gradient .vertical(fade(@gray-lighter,0), @gray-lighter, 0%, 30px);
+        }
+    }
+
+    
+    .bar-chart{
+        height: 30px;
+        margin-bottom: 10px;
+        .badge{
+            margin-top: 5px;
+            padding-top: 4px;
+            padding-bottom: 4px;
+        }
+    }
+
+    .expired {
+        color: @gray;
+    }
+
+    .expired small {
+        .text-danger;
+    }
+}

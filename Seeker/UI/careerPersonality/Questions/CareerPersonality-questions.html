@@ -1,0 +1,55 @@
+﻿<div class="career-peronality">
+    <div ng-if="isLoaded">
+        <ocs-intro-section meta="meta.pageHeader"></ocs-intro-section>
+        <div ocs-spinner is-loaded="allLoaded">
+            <ng-form name="globalForm" novalidate ng-show="allLoaded">
+                <span ng-show="false">{{form.dirty=globalForm.$dirty}}</span>
+                <div class="sticky-area">
+                    <div sticky sticky-class="im-sticky">
+                        <div class="personality-header">
+                            <div class="personality-header-title">
+                                {{msg(367525)}}
+                            </div>
+                            <div class="personality-header-titles" ng-repeat="answer in answerTypes">{{answer.text}}</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="personality-questions" ng-repeat="question in questions | startFrom:currentPage*pageSize | limitTo: pageSize">
+                    <div class="personality-question-title" ng-class="(question.error==true) ? ['alert', 'alert-danger'] : ['']">
+                        {{question.text}}
+                    </div>
+                    <div class="personality-question-pick" ng-class="{focus: focused}" ng-repeat="answer in answerTypes track by $index">
+                        <label for="pick-{{$parent.$index}}-{{$index}}">
+                            <input class="radio" type="radio"
+                                   id="pick-{{$parent.$index}}-{{$index}}"
+                                   name="pick-{{$parent.$index}}-{{$index}}"
+                                   ng-model="answers[$parent.$index]"
+                                   ng-click="clearError($parent.$index)"
+                                   ng-value="answer.value" required 
+                                   ng-init="focused = false" 
+                                   ng-focus="focused = true" 
+                                   ng-blur="focused = false"/>
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!--<ocs-pager datasetSize="questions.length" pageSize="pageSize" currentPage="currentPage" showFirstLast="false" visiblePages="5" ng-show="false"></ocs-pager>-->
+
+                <ocs-error error-list="error"></ocs-error>
+
+                <div class="btn-group pull-right mt15" role="group" aria-label="Actions">
+                    <button type="button" class="btn btn-link" ng-click="resetAll()">
+                        {{msg(367526)}}
+                    </button>
+                    <button class="btn btn-primary" ng-click="submit()">
+                        {{msg(367527)}}
+                    </button>
+                </div>
+
+                <div class="clearfix"></div>
+            </ng-form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+﻿{
+  "_comment_": "List of miniSPAs that are NOT included in routing",
+  "_important_": "!!! ONCE YOU DO CHANGE IN THIS FILE YOU NEED TO IISRESET or touch web.config - it is CACHED !!!",
+  "exclusions": [ "JobSearch3" ],
+  "routing": {
+    "_comment_": "List of channel aliases",
+    "mgsmil": {
+      "_comment_": "/JobSearch is to be taken from /JobSearch3",
+      "JobSearch": "JobSearch3",
+      "ContactUs": "",
+      "Programs": ""
+    },
+    "skr_techvets": {
+    }
+  }
+}

@@ -1,0 +1,28 @@
+﻿<!--  CMS:topBanner Edit -->
+<div class="">
+    <div class="row match-my-cols cmsHighlight" ng-class="openThis[key]?'currentLiveEdit': ''">
+        <div class="col-xs-11" ng-show="!openThis[key]">
+            <ng-include src="'/UI/cms/multiPage/cmsTopBanner/cmsTopBanner.html'"></ng-include>
+        </div>
+        <div class="col-xs-1 slideButtonBox" ng-click="openThis[key] = !openThis[key]" ng-show="!openThis[key]">
+            <i class="fa fa-plus-circle hugeFont" aria-hidden="true"></i>
+        </div>
+
+        <div class="col-xs-11 cmsError" ng-show="openThis[key]">
+            <!--  CMS edit Inputs -->
+            <div class="editZone" ng-class="openThis[key]? 'fadeIn' : 'fadeOut'">
+                <div class="col-sm-5">
+                    <ocs-input meta="meta.topBannerTitle" model="modules.meta.title"></ocs-input>
+                    <ocs-input meta="{label:{lookUpMsg:{value:'p tag'}}}" model="modules.meta.p"></ocs-input>
+                </div>
+                <div class="col-sm-7">
+                    <ocs-input meta="{label:{lookUpMsg:{value:'img url'}}}" model="modules.meta.img"></ocs-input>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-1 slideButtonBox" ng-click="openThis[key] = !openThis[key]" ng-show="openThis[key]">
+            <i class="fa fa-minus-circle hugeFont" aria-hidden="true"></i>
+        </div>
+    </div>
+</div>
+

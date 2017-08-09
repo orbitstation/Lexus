@@ -1,0 +1,35 @@
+﻿<!--  CMS:topBanner Edit -->
+<div class="">
+    <div class="row match-my-cols cmsHighlight" ng-class="openThis[key]?'currentLiveEdit': ''">
+        <div class="col-xs-11" ng-show="!openThis[key]">
+            <ng-include src="'/UI/cms/multiPage/pageMetaWidget/pageMetaWidget.html'"></ng-include>
+        </div>
+        <div class="col-xs-1 slideButtonBox" ng-click="openThis[key] = !openThis[key]" ng-show="!openThis[key]">
+            <i class="fa fa-plus-circle hugeFont" aria-hidden="true"></i>
+        </div>
+
+        <div class="col-xs-11" ng-show="openThis[key]">
+
+            <div class="" ng-class="openThis[key]? 'fadeIn' : 'fadeOut'">
+                <div class="col-sm-6">
+                    <ocs-input meta="meta.metaUrl" model="meta.cmsMultiPage[0].pageInfo.pageName"></ocs-input>
+                    <ocs-radio meta="meta.metaInNav" model="meta.cmsMultiPage[0].pageInfo.hasMenuItem"></ocs-radio>
+                    <span ng-if="meta.cmsMultiPage[0].pageInfo.hasMenuItem == 0">
+                        <ocs-select meta="meta.mataNavChannel" model="meta.cmsMultiPage[0].pageInfo.navChannel"></ocs-select>
+                        <!--<ocs-input meta="meta.metaPlacement" model="meta.cmsMultiPage[0].pageInfo.navPlacement"></ocs-input>-->
+                    </span>
+                </div>
+                <div class="col-sm-6">
+                    <ocs-textarea meta="meta.metaTags" model="meta.cmsMultiPage[0].pageInfo.metaTags"></ocs-textarea>
+                    <ocs-textarea meta="meta.metaNotes" model="meta.cmsMultiPage[0].pageInfo.notes"></ocs-textarea>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-xs-1 slideButtonBox" ng-click="openThis[key] = !openThis[key]" ng-show="openThis[key]">
+            <i class="fa fa-minus-circle hugeFont" aria-hidden="true"></i>
+        </div>
+    </div>
+</div>
+

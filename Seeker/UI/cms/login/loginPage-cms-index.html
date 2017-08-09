@@ -1,0 +1,36 @@
+﻿<div class="row">
+	<div class="col-sm-12">
+		<ocs-bread-crumbs></ocs-bread-crumbs>
+		<h1 ocs-msg="207426">Welcome to My Career Site!</h1>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="col-sm-6 col-md-5">
+		<h4 ocs-msg="282198">
+			<span style="padding: 0px; margin: 0px;">Our goal is to help power your career search by <br>providing the jobs, tools, social networks and <br>technologies that you need to find your next <br> great career fast!</span>
+		</h4>
+		<p>
+			<ocs-button meta="meta.viewalljobs"  ng-click="jobsearch()" options="{classes:'btn-primary pull-left'}"></ocs-button>
+		</p>
+	</div>
+
+	<div class="col-sm-6 col-md-6 col-md-offset-1">
+		<ng-form name="globalForm">
+			<div class="panel panel-primary">
+				<div class="panel-body" style="padding: 30px">
+					<h4 class="mt0 mb16" ocs-msg="320405">Sign In</h4> 
+					<span ng-bind="error" class="error-message">&nbsp;</span> 
+					<ocs-input meta="meta.userName" model="logIn.userName"></ocs-input>
+					<div class="form-group">
+						<ocs-input   meta="meta.password" inputType="password" model="logIn.password"></ocs-input>
+						<a ng-click="#">Forgot Password?</a>
+					</div>						 
+					<a href="/Account/" ng-click="meta.createanaccount" ocs-msg="103555">CREATE AN ACCOUNT</a>
+
+					<ocs-button meta="meta.loginbutton" validation="globalForm.$invalid" ng-click="authenticateLogin()" options="{classes:'btn-primary pull-right'}"></ocs-button>
+				</div>
+			</div>
+		</ng-form>
+	</div>

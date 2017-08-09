@@ -1,0 +1,42 @@
+﻿<div ng-if="isLoaded">
+    <ocs-intro-section meta="meta.pageHeaderEdit"></ocs-intro-section>
+   
+    <ocs-401 meta="meta" msgheader="379085" msgbody="379086"></ocs-401>
+    
+    <div class="row" ng-show="$root.isAuthenticated">
+        <div class="col-sm-6">
+            <ocs-input meta="meta.title" model="agent.agent_name"></ocs-input>
+            <ocs-select meta="meta.select" model="agent.email_frequency_days" change-fn=""></ocs-select>
+        </div>
+
+        <div class="col-sm-6">
+            <span class="label-type">{{msg(30305)}}*</span>
+            <ul class="list-unstyled">
+                <li ng-show="agent.title" class="ng-hide">{{msg(347077)}} <strong>{{agent.title}}</strong></li>
+                <li ng-show="agent.keywords" class="ng-hide">{{msg(347078)}} <strong>{{agent.keywords}}</strong></li>
+                <li ng-show="agent.location" class="ng-hide">{{msg(347079)}} <strong>{{agent.location}}</strong></li>
+                <li ng-show="agent.company" class="ng-hide">{{msg(129561)}} <strong>{{agent.company}}</strong></li>
+                <li>{{msg(347080)}} <strong>{{getRadius(agent.radius)}} {{msg(254822)}}</strong></li>
+                <li ng-show="agent.job_type_id" class="ng-hide">
+                    {{msg(347081)}}
+                    <strong ng-if="agent.job_type_id == 1">{{msg(1717)}}</strong>
+                    <strong ng-if="agent.job_type_id == 2">{{msg(70721)}}</strong>
+                    <strong ng-if="agent.job_type_id == 3">{{msg(30028)}}</strong>
+                    <strong ng-if="agent.job_type_id == 4">{{msg(60032)}}</strong>
+                    <strong ng-if="agent.job_type_id == 5">{{msg(70722)}}</strong>
+                    <strong ng-if="agent.job_type_id == 6">{{msg(73245)}}</strong>
+                </li>
+                <li ng-show="agent.onet_code_name" class="ng-hide">{{msg(364637)}} <strong>{{agent.onet_code_name}}</strong></li>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+        <hr />
+
+        <div class="btn-group pull-right" role="group" aria-label="actions">
+            <button type="button" class="btn btn-link" ng-click="back()">{{msg(162574)}}</button> 
+            <button type="button" class="btn btn-link" ng-click="save()">{{msg(866)}}</button> 
+            <button type="button" class="btn btn-primary" ng-click="saveRun()">{{msg(176527)}}</button>
+        </div>
+    </div>
+</div>
+

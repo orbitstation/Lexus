@@ -1,0 +1,14 @@
+﻿@{ ViewBag.Title = "Message Center"; }
+
+@section Header
+{
+<!-- build:js -->
+<script src="~/UI/messageCenter/messageCenter-meta.js"></script>
+<script src="~/UI/messageCenter/messageCenter-config.js"></script>
+
+<script src="~/UI/messageCenter/messageCenter-app.js"></script>
+<script src="~/UI/messageCenter/index/messageCenter-index-ctrl.js"></script>
+<!-- endbuild -->
+}
+
+<div ng-view></div>

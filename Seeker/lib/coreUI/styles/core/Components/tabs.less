@@ -1,0 +1,193 @@
+﻿
+.tabs-component {
+    @colors: @homepage;
+
+    .loop-colors(@counter, @start: 1) when ((@counter + @start) >= 0) {
+        @child: @counter + @start;
+        .loop-colors((@counter - 1), @start); // next iteration
+        &:nth-child(@{child}) {
+            background-color: extract(@colors, @counter); // code for each iteration
+        }
+    }
+
+
+    .nav.nav-tabs {
+        float: left;
+        width: 50%;
+    }
+
+    .tab-item {
+        border-width: 0;
+        font-size: 24px;
+        text-align: center;
+        min-height: 76px;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        & when (@brightColors = true){
+            color: #fff;
+        }
+        & when (@brightColors = false){
+            color: @brand-primary;
+        }
+        margin-top: 0;
+    }
+
+    h2 {
+        margin-bottom: 20px;
+    }
+
+    h3, p {
+        margin-bottom: 16px;
+    }
+
+    .separator {
+        height: 16px;
+        overflow: hidden;
+        font-size: 0;
+        line-height: 0;
+    }
+
+    .tab-content {
+        float: right;
+        width: 50%;
+        overflow: auto;
+
+        > div {
+            min-height: 100%;
+            padding: 27px 20px 27px 40px;
+            .loop-colors(6,0);
+        }
+
+        .tab-content-inner {
+            padding: 0 20px 20px 0;
+            & when (@brightColors = true){
+                color: #fff;
+            }
+        }
+    }
+
+    .nav-tabs {
+        & > li {
+            .loop-colors(6,0);
+            margin-bottom: 0;
+
+            & > a {
+                min-height: 76px;
+                height: 76px; // for flex, otherwise it doesn't work in IE
+                border: 0;
+                border-radius: 0;
+                line-height: 1.42857;
+                margin-right: 2px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                & when (@brightColors = true){
+                    color: #fff;
+                }
+                & when (@brightColors = false){
+                    color: @brand-secondary;
+                }
+
+                &:focus,
+                &:hover{
+                    background-color: transparent;
+                    & when (@brightColors = true){
+                        color: #fff;
+                    }
+                    & when (@brightColors = false){
+                        color: @brand-primary;
+                    }
+                }
+            }
+        }
+    }
+
+    .nav-tabs > li.active > a {
+        background-color: transparent; //initial is not supported in IE
+        border-width: 0;
+        cursor: default;
+        & when (@brightColors = true){
+            color: #fff;
+        }
+        & when (@brightColors = false){
+            color: @brand-primary;
+        }
+        &:focus,
+        &:hover {
+            & when (@brightColors = true){
+                color: #fff;
+            }
+            & when (@brightColors = false){
+                color: @brand-primary;
+            }
+        }
+    }
+
+    .nav-stacked > li + li {
+        margin-top: 0;
+    }
+
+    .panel-default {
+        & > .panel-heading {
+            background-color: transparent;
+        }
+    }
+
+    .panel-group {
+        .panel {
+            border-radius: 0;
+            border: 0;
+            .loop-colors(6,0);
+
+            .panel-body {
+                padding: 30px 45px;
+                border: 0;
+            }
+        }
+
+        .panel + .panel {
+            margin: 0;
+        }
+    }
+
+    .panel {
+        .panel-heading {
+            padding: 0;
+
+            .panel-title {
+                padding: 0;
+                & when (@brightColors = true){
+                    color: #fff;
+                }
+                & when (@brightColors = false){
+                    color: @brand-secondary;
+                }
+                a {
+                    text-decoration: none;
+                }
+            }
+
+            .accordion-toggle {
+                min-height: 76px;
+                font-size: 24px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        &.panel-open {
+            .panel-title {
+                a {
+                    & when (@brightColors = true){
+                        color: #fff;
+                    }
+                    & when (@brightColors = false){
+                        color: @brand-primary;
+                    }
+                }
+            }
+        }
+    }
+}

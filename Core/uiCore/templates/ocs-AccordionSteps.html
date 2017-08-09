@@ -1,0 +1,44 @@
+﻿<div>
+    <uib-accordion close-others="true">
+        <div novalidate ng-repeat="(key,a) in meta[accordionName] track by $index" class="accordion-form">
+            <ng-form name="a.formName">
+                <uib-accordion-group ng-if="a.show"
+                                     is-open="a.isOpen"
+                                     is-disabled="a.isDisabled"
+                                     class="panel panel-default"
+                                     ng-class="{
+                                        'panel-primary': a.isOpen,
+                                        'panel-optional': !a.isOpen && !a.isDisabled && a.isOptional && !a.hasData,
+                                        'panel-default': !a.isOpen && !a.isDisabled && a.formName.$valid && !a.hasData,
+                                        'panel-success': !a.isOpen && !a.isDisabled && a.formName.$valid && a.hasData || a.notInvalid,
+                                        'panel-danger': !a.isOpen && !a.isDisabled && a.formName.$invalid,
+                                        'panel-muted': a.isDisabled,
+                                     }"
+                                     template-url="../lib/ui-bootstrap/template/accordion/ui-accordion-group-steps.html">
+                    <uib-accordion-heading>
+                        <span ng-if="a.isNumeric" class="number">{{stepIndex(key)}}</span>
+                        <span ng-if="a.heading.lookUpMsg !== undefined">{{:preResolved:a.heading.lookUpMsg.value}}</span>
+                        <span ng-if="a.heading.lookUpMsg === undefined"> {{:preResolved:a.heading}}</span>
+                        <div class="collapse-button">
+                            <i class="glyphicon"
+                               ng-class="{'glyphicon-plus' : !a.isOpen && !a.isDisabled, 'glyphicon-minus': a.isOpen}">
+                            </i>
+                        </div>
+                    </uib-accordion-heading>
+
+                    <ng-include src="a.url"></ng-include>
+                    <div class="btn-group pull-right" role="group" aria-label="Actions" ng-if="!a.noButton">
+                        <button ng-disabled="a.formName.$invalid || $root.busyLinks.mainBusyAction"
+                                ocs-busy="$root.busyLinks.mainBusyAction" ignore-disabled="a.ignoreBusy"
+                                ng-if="!a.lastOne"
+                                type="button"
+                                class="btn btn-info"
+                                ng-click="moveToNextSection(key,meta.accordion)">
+                            {{:preResolved:$root.meta.messages['AccordionGoButton'].lookUpMsg.value}}
+                        </button>
+                    </div>
+                </uib-accordion-group>
+            </ng-form>
+        </div>
+    </uib-accordion>
+</div>

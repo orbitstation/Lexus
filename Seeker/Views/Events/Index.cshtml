@@ -1,0 +1,15 @@
+﻿@{ ViewBag.Title = "Events"; }
+
+@section Header
+{
+<!-- build:js -->
+<script src="~/UI/events/events-meta.js"></script>
+<script src="~/UI/events/events-config.js"></script>
+
+<script src="~/UI/events/events-app.js"></script>
+<script src="~/UI/events/Index/events-index-ctrl.js"></script>
+<script src="~/UI/events/Details/event-details.js"></script>
+<!-- endbuild -->
+}
+
+<div ng-view></div>

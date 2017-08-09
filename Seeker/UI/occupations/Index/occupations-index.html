@@ -1,0 +1,55 @@
+﻿<div ng-if="isLoaded">
+    <ocs-intro-section meta="meta.pageHeader"></ocs-intro-section>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6">
+            <h2 class="h3 mb0 mt0">{{:preResolved:msg(322909)}}</h2>
+            <ng-form name="industry">
+                <ocs-select meta="meta.industry" model="model.industry"></ocs-select>
+                <div class="text-right">
+                    <ocs-button meta="meta.industryButton" ng-click="industrySearch()" options="{classes:'btn btn-primary btn-wide'}"></ocs-button>
+                </div>
+            </ng-form>
+
+            <hr class="hr-short" />
+
+            <h2 class="h3 mb0">{{:preResolved:msg(322910)}}</h2>
+            <ng-form name="keyword">
+                <ocs-input meta="meta.keyword" model="model.keyword"></ocs-input>
+                <div class="text-right">
+                    <ocs-button meta="meta.keywordButton" ng-click="keywordSearch()" options="{classes:'btn btn-primary btn-wide'}"></ocs-button>
+                </div>
+            </ng-form>
+
+            <hr class="hr-short" />
+            <h2 class="h3">{{:preResolved:msg(360439)}}</h2>
+            <p>{{:preResolved:msg(360440)}}</p>
+            <p ng-bind-html=":preResolved:msg(360441)"></p>
+            <ng-form name="military">
+                <ocs-select meta="meta.military" model="model.military"></ocs-select>
+                <ocs-input meta="meta.militaryKeyword" model="model.militaryKeyword"></ocs-input>
+                <div class="text-right">
+                    <ocs-button meta="meta.militaryButton" ng-click="militarySearch()" options="{classes:'btn btn-primary btn-wide'}" class="pull-right"></ocs-button>
+                </div>
+            </ng-form>
+        </div>
+        <div class="col-sm-6">
+            <div class="well well-primary">
+                <div class="content-box unrestricted mb0">
+                    <h2 ng-bind-html=":preResolved:msg(356219)" class="slim"></h2>
+                    <div ng-if="chartSettings.length" class="mb15">
+                        <ocs-Bar-Chart settings="chartSettings"></ocs-Bar-Chart>
+                    </div>
+                    <div ng-if="!chartSettings.length">
+                        <!--<p ng-bind-html="msg(356220)"></p>-->
+                        <p ng-bind-html=":preResolved:msg(376538)"></p>
+                    </div>
+                    <div class="text-center mb15">
+                        <a class="btn btn-primary" href="{{chartSettings.length ? '/careerPersonality/questions/edit' : '/careerPersonality'}}" 
+                           ng-bind-html="chartSettings.length ? msg(370117) : msg(356221)"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

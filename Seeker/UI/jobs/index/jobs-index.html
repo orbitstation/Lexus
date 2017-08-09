@@ -1,0 +1,59 @@
+﻿<div class="row">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <h1 class="mt0">Browse Jobs</h1>
+            </div>
+        </div>
+        <div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="browse-jobs browse-jobs-container">
+                        <div class="browse-jobs-header">
+                            <span class="fa fa-briefcase"></span>
+                            <h2>Jobs By Job Title</h2>
+                        </div>
+                        <ul>
+                            <li ng-repeat="letter in vm.alpha" class="type-one"><a href>{{letter}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="browse-jobs browse-jobs-container">
+                        <div class="browse-jobs-header">
+                            <span class="fa fa-building"></span>
+                            <h2>Jobs By Company</h2>
+                        </div>
+                        <ul>
+                            <li ng-repeat="letter in vm.alpha" class="type-one"><a href>{{letter}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="browse-jobs browse-jobs-container">
+                        <div class="browse-jobs-header">
+                            <span class="fa fa-folder-open"></span>
+                            <h2>Jobs By Category</h2>
+                        </div>
+                        <ul>
+                            <li ng-repeat="category in vm.jobsByCat" class="type-two"><a href>{{category}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="browse-jobs browse-jobs-container">
+                        <div class="browse-jobs-header">
+                            <span class="fa fa-map-marker"></span>
+                            <h2>Jobs By Location</h2>
+                        </div>
+                        <ul>
+                            <li ng-repeat="location in vm.jobsByLoc" class="type-two"><a href>{{location}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

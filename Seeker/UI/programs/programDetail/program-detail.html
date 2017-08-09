@@ -1,0 +1,110 @@
+﻿<div ocs-spinner is-loaded="isLoaded">
+    <ocs-401 meta="meta"></ocs-401>
+    <div ng-if="$root.isAuthenticated">
+        <ocs-error error-list="errors"></ocs-error>
+        <div ng-if="programValid">
+            <ocs-intro-section meta="meta.pageHeader">
+                <ocs-intro-section-body>
+                    <p class="lead mb0">
+                        <span>{{programDetails.provider.providerName}}</span><br />
+                    </p>
+                    <div class="text-muted">
+                        {{programDetails.program.recognitionResults}}
+                    </div>
+                    <div class="text-muted">
+                        <span ng-if="programDetails.program.locationAddresses.length === 1" ng-repeat="address in programDetails.program.locationAddresses">
+                            {{address.address1}},<span ng-if="address.address2.length !== 0"> {{address.address2}},</span> {{address.city}}, {{address.state}} {{address.postalCode}}
+                        </span>
+                        <span ng-if="programDetails.program.locationAddresses.length > 1">
+                            {{$root.msg(363932)}}: <a href="" ng-click="viewAllLocations()">{{$root.msg(378599)}}</a>
+                        </span>
+                    </div>
+                    <div class="mt15">
+                        <button type="button" class="btn" ng-class="{'btn-done disabled' : programDetails.isSaved, 'btn-add' : !programDetails.isSaved}" 
+                                ng-disabled="programDetails.isSaved || savedPrograms >= maxSaved" ng-click="saveProgram()">
+                            <span ng-if="!programDetails.isSaved">{{:preResolved:$root.msg(374800)}}</span>
+                            <span ng-if="programDetails.isSaved">{{:preResolved:$root.msg(374798)}}</span>
+                        </button>
+
+                        <label for="cbx_compare"
+                               ng-disabled="!canAddToCompare"
+                               ng-class="meta.isCompared ? 'btn btn-done disabled' : 'btn btn-add'"
+                               class="">
+                            <input id="cbx_compare"
+                                   type="checkbox"
+                                   ng-model="meta.isCompared"
+                                   ng-change="change()"
+                                   ng-true-value="true"
+                                   ng-false-value="false"
+                                   class="sr-only"
+                                   ng-disabled="!canAddToCompare" />
+                            {{meta.isCompared ? $root.msg(376515) : $root.msg(364213)}}
+                           
+                        </label>
+                    </div>
+                </ocs-intro-section-body>
+                <ocs-intro-section-actions>
+                    <div class="alert alert-warning mb0" ng-if="savedPrograms >= maxSaved && !programDetails.isSaved">
+                        {{:preResolved:$root.msg(157204)}} <strong>{{maxSaved}}</strong> {{:preResolved:$root.msg(374801)}} <strong>{{maxSaved}}</strong> {{:preResolved:$root.msg(374802)}}
+                        <span class="pl30"><a href="programs/saved">{{$root.msg(378600)}}</a></span>
+                    </div>
+                </ocs-intro-section-actions>
+                <ocs-well>
+                    <div class="text-center">
+                        <h5>{{$root.msg(378601)}}</h5>
+                        <a href="#" class="btn btn-primary multiline btn-block">{{$root.msg(378601)}}</a>
+                        <a href="#" class="btn btn-link multiline btn-block">{{$root.msg(378602)}}</a>
+                    </div>
+                </ocs-well>
+            </ocs-intro-section>
+            <div class="program-detail-compare mt15 mb15">
+                <div class="compare-panel" ng-class="{'can-compare' : selected.length >= 2}">
+                    <spa-program-compare meta="meta" on-remove="remove(code)"></spa-program-compare>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 dashboard-accordions ">
+                    <uib-accordion class="accordion-list ng-cloak" close-others="false">
+                        <uib-accordion-group ng-repeat="a in $root.meta.accordion" ng-if="a.show"
+                                             is-open="a.isOpen"
+                                             is-disabled="a.isDisabled"
+                                             class="panel"
+                                             ng-class="{'panel-dashboard-blue' : $first, 'panel-dashboard-green' : $last}"
+                                             template-url="lib/ui-bootstrap/template/accordion/ui-accordion-dashboard.html">
+
+                            <uib-accordion-heading>
+                                <span ng-if="a.heading.lookUpMsg !== undefined">{{:preResolved:a.heading.lookUpMsg.value}}</span>
+                                <span ng-if="a.heading.lookUpMsg === undefined"> {{:preResolved:a.heading}}</span>
+                                <div class="collapse-button">
+                                    <i class="fa" ng-class="{'fa-plus': !a.isOpen, 'fa-minus' : a.isOpen}"></i>
+                                </div>
+                            </uib-accordion-heading>
+                            <ng-include src="a.url"></ng-include>
+                        </uib-accordion-group>
+                    </uib-accordion>
+                </div>
+            </div>
+            <div class="row mt16">
+                <div class="col-sm-12">
+                    <a href="{{backButton.url}}" class="btn btn-sm btn-marketing"><i class="fa fa-caret-left"></i> {{backButton.text}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+        <h4 class="modal-title">{{$root.msg(378604)}} {{programName}}</h4>
+    </div>
+    <div class="modal-body">
+        <p ng-repeat="address in addresses">
+            {{address.address1}},<span ng-if="address.address2.length !== 0"> {{address.address2}},</span> {{address.city}}, {{address.state}} {{address.postalCode}}
+        </p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="brn btn-link">{{$root.msg(366340)}}</button>
+        <button class="btn btn-primary" type="button" ng-click="ok()">{{getText('close')}}</button>
+    </div>
+</script>

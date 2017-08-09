@@ -1,0 +1,76 @@
+﻿<!--<div ng-bind-html=":preResolved:msg(253446) | unsafe"></div>-->
+<div ng-controller="footerController">
+    <div ng-bind-html="$root.footerHtml"></div>
+
+    <script type="text/ng-template" id="modalTimeoutWarning.html">
+        <div class="modal-header">
+            <h3 class="modal-title">{{:preResolved:msg(352181)}}</h3>
+        </div>
+        <div class="modal-body">
+            <p>{{:preResolved:msg(352182)}}</p>
+            <p>{{:preResolved:msg(361253)}}: {{timeoutManager.timeRemainingBeforeLogout}}</p>
+
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">{{:preResolved:msg(352183)}}</button>
+        </div>
+    </script>
+
+
+    <!--  Session Time Out -->
+    <script type="text/ng-template" id="modalTimeoutLoggedOut.html">
+        <div class="modal-header">
+            <span class="modal-title">{{:preResolved:msg(353122)}}</span>
+        </div>
+        <div class="modal-body">
+            <p>{{:preResolved:msg(353120)}}</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">{{:preResolved:msg(353121)}}</button>
+        </div>
+    </script>
+
+
+    <!--  Communication Error Modal -->
+    <script type="text/ng-template" id="communicationError.html">
+        <div class="modal-header">
+            <span class="modal-title">Error - there was a communication Error</span>
+        </div>
+        <div class="modal-body">
+            <span class="h4">Sorry, a communication error occurred; this could be due to a server reset or an unplanned outage, please, try again later.</span>
+        </div>
+        <div class="modal-footer">
+        </div>
+    </script>
+</div>
+
+
+
+<!--<div class="row">
+    <div class="col-sm-6">
+        <div class="footer-logo">
+            <img src="https://securemedia.newjobs.com/id/mgs/8210/US-TechVets-logo-retina@2x.png" alt="" />
+        </div>
+        <div class="footer-logo-extra">
+            <img src="https://securemedia.newjobs.com/id/mgs/8210/powered-by-header-retina@2x.png" alt="" />
+        </div>
+    </div>
+    <div class="col-sm-6 text-right">
+        <p class="small">
+            <a target="_blank" href="http://inside.monster.com/policy/inside2.aspx">Privacy Policy</a>
+            |
+            <a target="_blank" href="http://inside.monster.com/terms-of-use">Terms of Use</a>
+            |
+            <a href="/contactus">Contact Us</a>
+        </p>
+        <p class="small">
+            Copyright © <span id="full-year"></span> USTechVets
+            <script>
+                var textnode = document.createTextNode(new Date().getFullYear());
+                document.getElementById("full-year").appendChild(textnode);
+            </script>
+        </p>
+    </div>
+</div>-->
+
+<!--  Session Warning -->

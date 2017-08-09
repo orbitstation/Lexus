@@ -1,0 +1,46 @@
+﻿<ng-form name='singleItemForm' novalidate>
+    <div class="form-group" ng-class="{'has-error': !(singleItemForm.$pristine || singleItemForm.$valid), 'form-group-sm': meta.small}">
+        <label for='{{elementID}}' id='{{elementID}}_label' class='ng-cloak ocs-select-label'>
+            <span ng-show='meta.required'>
+                <small class="fa fa-asterisk required-asterisk"></small>
+            </span>
+            {{:preResolved:meta.label.lookUpMsg.value}}
+            <ocs-Help meta="meta.help" ng-show="{{meta.help}}" class="ng-hide"></ocs-Help>
+        </label>
+        <div class="select-wrapper" ng-class="{'active': active.isActive}" ng-init="active = {}">
+            <select id="{{elementID}}"
+                    aria-required='{{meta.required}}'
+                    aria-labelledby="{{elementID}}_label"
+                    ng-if='meta.items[0].text.lookUpMsg'
+                    class='form-control'
+                    ng-focus="active.isActive = true" ng-blur="active.isActive = false"
+                    ng-model='$parent.model'
+                    ng-disabled='meta.disabled'
+                    ng-required='meta.required'
+                    ng-change='changeFn()'
+                    name="{{meta.label.lookupMessage.value}}"
+                    ng-options='item.value as item.text.lookUpMsg.value for item in meta.items'></select>
+
+            <select id="{{elementID}}"
+                    aria-required='{{meta.required}}'
+                    aria-labelledby="{{elementID}}_label"
+                    ng-if='!meta.items[0].text.lookUpMsg'
+                    class='form-control'
+                    ng-focus="active.isActive = true" ng-blur="active.isActive = false"
+                    ng-model='$parent.model'
+                    ng-disabled='meta.disabled'
+                    ng-required='meta.required'
+                    ng-change='changeFn()'
+                    ng-options='item.value as item.text disable when item.disabled for item in  meta.items'></select>
+        </div>
+        <!-- field level validation -->
+        <span class="error-message ng-hide" aria-live="assertive" ng-show="!meta.hideErrorHolder">
+            <span ng-show='singleItemForm.$dirty && singleItemForm.$invalid' class="ng-hide">
+                <span ng-show='singleItemForm.$error.required'>{{:preResolved:meta.error.required.lookUpMsg.value}}</span>
+            </span>
+            <span class="error-message" ng-show="singleItemForm.$pristine || singleItemForm.$valid"></span>
+            &nbsp;
+        </span>
+    </div>
+
+</ng-form>

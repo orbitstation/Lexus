@@ -1,0 +1,38 @@
+﻿<div class="panel-content">
+    <div class="row">
+        <div class="col-sm-6">
+            <div>
+                <span class="content-label">{{:preResolved:msg(374759)}}</span> {{programDetails.program.totalCost}}
+            </div>
+            <div ng-repeat="item in programDetails.program.programDurations">
+                <span class="content-label">{{:preResolved:msg(374757)}}</span> {{item.startDate | date: 'MMMM dd, yyyy'}} <span class="content-label">{{:preResolved:msg(374758)}}</span> {{item.endDate | date: 'MMMM dd, yyyy'}}
+            </div>
+            <div>
+                <span class="content-label">{{:preResolved:msg(374760)}}</span> {{programDetails.program.creditHours}}
+            </div>
+            <div>
+                <span class="content-label">{{:preResolved:msg(374761)}}</span> {{programDetails.program.recognitionResults}}
+            </div>
+            <div>
+                <span class="content-label">{{:preResolved:msg(374762)}}</span> {{programDetails.program.category}}
+            </div>
+            <div ng-repeat="item in programDetails.program.onetCodes">
+                <span class="content-label">{{:preResolved:msg(374763)}}</span> {{item}}
+            </div>
+            <div ng-if="programDetails.program.fundingSources.length > 0">
+                <span class="content-label">{{:preResolved:msg(374764)}}</span>
+                <span ng-repeat="item in programDetails.program.fundingSources">
+                    {{item}}<span ng-if="!$last">, </span>
+                </span>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div>
+                <span class="content-label">{{:preResolved:msg(374765)}}</span>
+            </div>
+            <div>
+                {{programDetails.program.descriptionOfDCL}}
+            </div>
+        </div>
+    </div>
+</div>

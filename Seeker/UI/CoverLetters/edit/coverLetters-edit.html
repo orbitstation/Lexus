@@ -1,0 +1,36 @@
+﻿<div ng-if="isLoaded" class="sr-fixes">
+    <ocs-intro-section meta="meta.pageHeaderEdit"></ocs-intro-section>
+    <ocs-401 meta="meta" msgheader="363999" msgbody="364000"></ocs-401>
+
+    <div class="row" ng-show="$root.isAuthenticated">
+        <div class="col-sm-12">
+
+                    <form name="mainform" class="form" role="form" ng-submit="editLetter()" novalidate>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <ocs-input meta="meta.title" model="letter.title"></ocs-input>
+                                <!--{{msg(157862)}}&nbsp;{{msg(160042)}}-->
+                            </div>
+                            <div class="col-sm-12" ng-show="meta.richTextBody.richTextBoxOn !== 'true'">
+                                <ocs-Textarea meta="meta.body" model="letter.body"></ocs-Textarea>
+                            </div>
+                            <div class="col-sm-12" ng-show="meta.richTextBody.richTextBoxOn === 'true'">
+                                <ocs-richtexteditor meta="meta.richTextBody" model="letter.body"></ocs-richtexteditor>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="pull-right">
+                                    <button type="button" class="btn btn-default" ng-click="close()">{{:preResolved:$root.msg(361345)}}</button> <!--Back-->
+                                    <button type="submit" class="btn btn-md btn-primary" ng-disabled="mainform.$invalid">{{:preResolved:$root.msg(41107)}}</button> <!--Save Letter-->
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+</div>
+
+
+
+

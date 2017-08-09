@@ -1,0 +1,32 @@
+﻿<ng-form name='singleItemForm' novalidate>
+    <div class="form-group" ng-class="{'has-error': !(singleItemForm.$pristine || singleItemForm.$valid)}">
+        <label ng-show="meta.label.lookUpMsg.value" for='{{:preResolved:elimentId}}_value' class='ng-cloak ng-hide'>
+            <span ng-show='{{:preResolved:meta.required}}' class="ng-hide">*</span>
+            {{:preResolved:meta.label.lookUpMsg.value}}
+        </label>
+        <br ng-show="meta.label.lookUpMsg.value" class="ng-hide" />
+        <angucomplete-alt id="{{:preResolved:elimentId}}"
+                          placeholder='{{:preResolved:meta.placeholder.lookUpMsg.value}}'
+                          pause="100"
+                          selected-object="model"
+                          local-data="meta.items"
+                          search-fields="{{:preResolved:meta.searchfields}}"
+                          title-field="{{:preResolved:meta.titlefield}}"
+                          remote-api-handler="remoteApiHandler"
+                          remote-url-response-formatter="remoteResponseFormatter"
+                          input-changed="inputChanged"
+                          minlength={{:preResolved:meta.minlength}}
+                          field-required="meta.required"
+                          field-required-class="required"
+                          ng-disabled="meta.disabled"
+                          input-class="{{:preResolved:inputClass}}"
+                          input-name="{{:preResolved:elimentId}}"
+                          initial-value="initialValue"
+                          match-class="highlight"></angucomplete-alt>
+
+        <!-- field level validation -->
+        <span class="error-message ng-hide" ng-show='singleItemForm.$dirty && singleItemForm.$invalid'>
+            <span ng-show='singleItemForm.$error.required'>{{:preResolved:meta.error.required.lookUpMsg.value}}</span>
+        </span>
+    </div>
+</ng-form>

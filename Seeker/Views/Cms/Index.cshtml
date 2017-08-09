@@ -1,0 +1,19 @@
+﻿@{ ViewBag.Title = "CMS"; }
+
+@section Header
+{
+    <!-- build:js -->
+    <script src="~/UI/cms/cms-meta.js"></script>
+    <script src="~/UI/cms/cms-config.js"></script>
+
+    <script src="~/UI/cms/cms-app.js"></script>
+    <script src="~/UI/cms/multiPage/cms-multiPage-ctrl.js"></script>
+    <script src="~/UI/cms/cmsIndex/cms-index-ctrl.js"></script>
+    <script src="~/UI/cms/login/logIn-cms-ctrl.js"></script>
+    <!-- endbuild -->
+}
+
+<div ng-view></div>
+
+
+

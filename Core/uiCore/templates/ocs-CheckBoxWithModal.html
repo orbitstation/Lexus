@@ -1,0 +1,82 @@
+﻿<div class="mb15">
+    <div>
+        <fieldset class='form-group' ng-disabled="meta.disabled">
+            <legend class="label-type" ng-class="{'sr-only': meta.hideLabel}">
+                <span ng-bind-html="meta.label.lookUpMsg.value"></span>
+            </legend>
+            <div class="checkbox" ng-repeat='n in meta.items | limitTo: meta.limit' ng-class="{'mb0' : $last}">
+                <label for="{{elementID}}-{{n.value}}">
+                    <input type="checkbox"
+                           id="{{elementID}}-{{n.value}}"
+                           ng-model='$parent.trueModel[$index]'
+                           name='{{elementID}}-{{n.value}}'
+                           ng-true-value="{{n.value}}"/>
+                    <span class="checkbox-custom"
+                          style="height: calc(1em + 1px); width: calc(1em + 1px);"
+                          ng-style="meta.items.length == 1 && {'width': 'calc(1em + 5px)'}"
+                          ng-class="{'checkbox-toggle': meta.items.length == 1}"></span>
+                    <span class="checkbox-label">{{n.text.lookUpMsg.value || n.text}}</span>
+                </label>
+            </div>
+        </fieldset>
+    </div>
+    <div ng-if="meta.items.length > meta.limit">
+        <a href="" ng-click="open()">{{$root.msg(378654)}} <span class="fa fa-caret-down"></span></a>
+    </div>
+    
+
+    <script type="text/ng-template" id="checkFilterModalContent.html">
+        <div class="modal-header">
+            <h4 class="modal-title"><strong>{{$root.msg(378655)}} {{meta.label.lookUpMsg.value}}</strong></h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <fieldset class='form-group'>
+                        <legend class="label-type sr-only">
+                            <span ng-bind-html="meta.label.lookUpMsg.value"></span>
+                        </legend>
+                        <div class="checkbox" ng-repeat='n in items.left'>
+                            <label for="{{elementID}}-{{n.value}}">
+                                <input type="checkbox"
+                                       id="{{elementID}}-{{n.value}}"
+                                       ng-model='model[$index]'
+                                       name='{{elementID}}-{{n.value}}'
+                                       ng-true-value="{{n.value}}" />
+                                <span class="checkbox-custom"
+                                      style="height: calc(1em + 1px); width: calc(1em + 1px);"
+                                      ng-style="meta.items.length == 1 && {'width': 'calc(1em + 5px)'}"
+                                      ng-class="{'checkbox-toggle': meta.items.length == 1}"></span>
+                                <span class="checkbox-label">{{n.text.lookUpMsg.value || n.text}}</span>
+                            </label>
+                        </div>
+                    </fieldset>
+                </div>
+               <div class="col-sm-6">
+                    <fieldset class='form-group'>
+                        <legend class="label-type sr-only">
+                            <span ng-bind-html="meta.label.lookUpMsg.value"></span>
+                        </legend>
+                        <div class="checkbox" ng-repeat='n in items.right'>
+                            <label for="{{elementID}}-{{n.value}}">
+                                <input type="checkbox"
+                                       id="{{elementID}}-{{n.value}}"
+                                       ng-model='model[$index + items.left.length]'
+                                       name='{{elementID}}-{{n.value}}'
+                                       ng-true-value="{{n.value}}" />
+                                <span class="checkbox-custom"
+                                      style="height: calc(1em + 1px); width: calc(1em + 1px);"
+                                      ng-style="meta.items.length == 1 && {'width': 'calc(1em + 5px)'}"
+                                      ng-class="{'checkbox-toggle': meta.items.length == 1}"></span>
+                                <span class="checkbox-label">{{n.text.lookUpMsg.value || n.text}}</span>
+                            </label>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="return(filter.popup)">{{$root.msg(378656)}}</button>
+        </div>
+    </script>
+</div>

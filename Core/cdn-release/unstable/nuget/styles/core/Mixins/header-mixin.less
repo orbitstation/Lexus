@@ -1,0 +1,100 @@
+﻿.header( @background: #fff, @logo-height: 40px, @padding: @grid-gutter-width ) {
+    background: @background;
+    height: auto;
+
+    .logo {
+        padding: 19px;
+
+        img {
+            height: @logo-height;
+        }
+    }
+
+    .options {
+        vertical-align: middle;
+
+        .text-resize {
+            display: inline-block;
+            vertical-align: middle;
+            a {
+                text-decoration: none;
+                font-weight: 600;
+                color: @gray-light;
+                cursor: pointer;
+
+                &:nth-child(1) {
+                    font-size: @font-size-small;
+                }
+
+                &:nth-child(2) {
+                    font-size: @font-size-base;
+                }
+
+                &:nth-child(3) {
+                    font-size: ceil((@font-size-base * 1.1)); // ~17px;
+                }
+
+                &:hover:not(.active) {
+                    color: @brand-info;
+                }
+
+                &.active {
+                    font-weight: bold;
+                    color: @brand-primary;
+                    cursor: default;
+                }
+            }
+        }
+    }
+
+    .users {
+        .pull-right();
+        font-size: @font-size-base;
+        .login-boxes {
+            position: relative;
+            margin-right: @grid-gutter-width/2;
+            margin-top: 3px;
+
+            .alert{
+                margin-top: @grid-gutter-width/2;
+            }
+
+            //Changes to dropdown styles
+            .dropdown {
+                position: initial;
+            }
+
+            .dropdown-menu {
+                border-color: #ccc;
+                margin: 0;
+                right: 0;
+                left: auto;
+            }
+            //end dropdown changes
+            .box {
+                display: inline-block;
+                vertical-align: middle;
+                .box-content {
+                    &.pre-login {
+                        .dropdown-menu {
+                            padding: 0;
+                            border-radius: 0;
+                        }
+                    }
+                    .login-form {
+                        padding: @padding/2;
+                        width: 300px;
+                        /*@media (max-width: @screen-xs-max){
+                           width: auto;
+                        }*/
+
+                        h4 {
+                            text-transform: capitalize;
+                            margin-top : 15px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

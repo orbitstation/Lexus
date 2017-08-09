@@ -1,0 +1,24 @@
+﻿<div ng-if="isLoaded">
+    <ocs-intro-section meta="meta.pageHeader"></ocs-intro-section>
+    <ocs-401 meta="meta"></ocs-401>
+
+    <div ng-show="$root.isAuthenticated">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">{{$root.msg(154678)}}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="btn-group pull-right" role="group" aria-label="{{$root.msg(339822)}}">
+                    <button type="button" class="btn btn-default" ng-click="">{{$root.msg(339822)}}</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

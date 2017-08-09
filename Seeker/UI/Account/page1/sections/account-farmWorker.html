@@ -1,0 +1,23 @@
+﻿<div ng-if="$root.cfg('farmWorkers.farmWorker') == 'true'">
+    <ocs-radio meta="meta.farmWorker" model="model.farmWorker.farmWorker"></ocs-radio>
+    <div class="child-section" ng-if="$root.cfg('farmWorkers.farmWorkerFollowUp') == 'true' && model.farmWorker.farmWorker == $root.constants.UBF_CRL_DEFAULT_YES">
+            <ocs-radio ng-if="$root.cfg('farmWorkers.farmWorkerType') == 'true'" 
+                       meta="meta.farmWorkerType" 
+                       model="model.farmWorker.farmWorkerType"></ocs-radio>
+
+
+            <ocs-radio ng-if="$root.cfg('farmWorkers.farmWorkRecentlyEmployed') == 'true'" 
+                       meta="meta.farmWorkRecentlyEmployed" 
+                       model="model.farmWorker.farmWorkRecentlyEmployed"></ocs-radio>
+
+
+            <ocs-radio ng-if="$root.cfg('farmWorkers.farmWorkerLackOfWork') == 'true'" 
+                       meta="meta.farmWorkerLackOfWork" 
+                       model="model.farmWorker.farmWorkerLackOfWork"></ocs-radio>
+
+
+            <ocs-radio ng-if="$root.cfg('farmWorkers.farmWorkAwayFromHome') == 'true'" 
+                       meta="meta.farmWorkAwayFromHome" 
+                       model="model.farmWorker.farmWorkAwayFromHome"></ocs-radio>
+    </div>
+</div>

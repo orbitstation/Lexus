@@ -1,0 +1,49 @@
+﻿.well{
+    padding: @well-padding;
+    margin-bottom: @well-padding;
+    h5{
+        font-size: @well-heading-size;
+        margin-top: 0;
+    }
+    p{
+        font-size: @well-text-size;
+        margin-bottom: @well-padding;
+    }
+    .well-action{
+        padding: 0 (@well-padding - (@well-padding/2));
+        .btn{
+            margin-bottom: 10px;
+            &:last-child{
+                margin: 0;
+            }
+        }
+        
+    }
+}
+
+//.well-variant(@background; @header-color)
+.well-primary{
+    .well-variant(@well-primary-bg-color; @well-primary-text-color);
+}
+
+.well-secondary{
+    .well-variant(@brand-secondary-l-5; @brand-secondary-d-2);
+}
+
+.well-tertiary{
+    .well-variant(@brand-accent-l-5; @brand-accent-d-2);
+}
+
+.well-marketing{
+    .well-variant(@brand-option-a-l-5; @brand-option-a-d-2);
+}
+
+.well-primary-filter {
+    .well-variant(@brand-option-gray; @brand-option-gray-d-2);
+    color:#fff;
+}
+
+.well-secondary-filter {
+    .well-variant(#fff; @brand-option-gray-l-4);
+    color:#000;
+}

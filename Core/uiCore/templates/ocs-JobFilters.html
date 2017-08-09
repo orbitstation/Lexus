@@ -1,0 +1,70 @@
+﻿<div class="filters-content mobile-filters-body">
+    <div ocs-spinner is-loaded="doneLoading">
+        <div class="text-center" ng-if="(agent !== null && !agentSaved && !json.is_zero_result) || agentSaved">
+            <button type="button"
+                    ng-show="agent !== null && !agentSaved && !json.is_zero_result"
+                    class="btn btn-outline-primary btn-block"
+                    ng-click="saveSearch($event)">
+                {{:preResolved:msg(363525)}}
+            </button>
+            <div ng-show="agentSaved" class="btn btn-outline-success btn-block">
+                <i class="glyphicon glyphicon-ok"></i> {{:preResolved:msg(363675)}}
+            </div>
+            <hr class="hr-short" />
+        </div>
+        <ocs-recent-searches view-type="other"></ocs-recent-searches>
+        <div class="filter-list" ng-if="json.active_filters.length">
+            <a href="" class="small pull-right" style="padding:0 0 0 10px;" ng-click="removeFilters()">
+                {{:preResolved:$root.msg(288378)}}
+            </a>
+            <h5 class="mt0"><strong>{{:preResolved:msg(284057)}}</strong></h5>
+
+            <div ng-repeat="item in json.active_filters track by $index" class="btn btn-outline-primary btn-xs">
+                <a href="" ng-click="removeFilter(item)" title="{{:preResolved:msg(363526)}}" ng-show="item.type !== 'CommonRadius'">
+                    {{ item.title }} - {{ item.values[0].name }}
+                    <i class="fa fa-close"></i>
+                    <span class="sr-only">{{:preResolved:msg(363526)}}</span>
+                </a>
+                <span ng-show="item.type === 'CommonRadius'">
+                    {{ item.title }} - {{ item.values[0].name }}
+                </span>
+            </div>
+            <hr class="hr-short mb0" />
+        </div>
+
+        <uib-accordion class="accordion-list ng-cloak" close-others="true" ng-if="$root.isAuthenticated && savedSearches.length">
+            <uib-accordion-group heading="{{:preResolved:msg(370226)}}"
+                                 template-url="/lib/ui-bootstrap/template/accordion/ui-accordion-group-jobs.html"
+                                 is-open="true">
+                <div ng-repeat="job in savedSearches">
+                    <a ng-click="gotoJobsearch(job.value)" href="" ng-class="{'active': job.selected}">
+                        {{ job.name }}
+                    </a>
+                </div>
+            </uib-accordion-group>
+        </uib-accordion>
+
+        <div ng-if="companyFilterNotSet">
+            <h5><strong>{{:preResolved:msg(70733)}}</strong></h5>
+            <ocs-input meta="meta.companyName"
+                       form-size="sm"
+                       add-on-btn="{'text':'Add', 'type':'btn-info'}"
+                       add-on-btn-fn="addCompanyToSearch(search.company)"
+                       model="search.company"></ocs-input>
+            <hr class="hr-short" />
+        </div>
+
+
+        <uib-accordion ng-repeat="item in staticFilters track by $index" class="accordion-list">
+            <uib-accordion-group heading="{{item.title}}"
+                                 template-url="/lib/ui-bootstrap/template/accordion/ui-accordion-group-jobs.html"
+                                 is-open="true">
+                <div ng-repeat="filter in item.values">
+                    <a ng-click="applyFilter(filter, item.type, item, true)" href="">
+                        {{ filter.name }}
+                    </a>
+                </div>
+            </uib-accordion-group>
+        </uib-accordion>
+    </div>
+</div>

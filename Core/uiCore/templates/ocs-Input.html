@@ -1,0 +1,152 @@
+﻿<ng-form name='singleItemForm' novalidate>
+    <div class='form-group' ng-class="{'has-error': !(singleItemForm.$pristine || singleItemForm.$valid), 'form-group-sm': formSize == 'sm', 'form-group-lg': formSize == 'lg'}">
+        <label for='{{::elementID}}' ng-class="{'sr-only': meta.hideLabel}">
+            <span ng-show="meta.required">
+                <small class="fa fa-asterisk required-asterisk"></small>
+            </span>{{:preResolved:meta.label.lookUpMsg.value}}
+
+            <!-- aria-live ? -->
+            <ocs-Help meta="meta.help" ng-show="{{meta.help}}" class="ng-hide"></ocs-Help>
+        </label>
+        <div ng-class="{'input-group': addOn || addOnBtn}">
+            <span ng-if="addOn" class="input-group-addon">{{addOn.text}}</span>
+
+            <input class='form-control ng-hide'
+                   ng-hide="meta.autoComplete != null || meta.email != null"
+                   aria-invalid='{{singleItemForm.$invalid}}'
+                   aria-required='{{meta.required}}'
+                   ng-disabled='meta.disabled'
+                   data-ng-model='model'
+                   ocs-only-numbers="::meta.decimal"
+                   ng-readonly="meta.readonly"
+                   id='{{::elementID}}'
+                   ocs-match="{{match}}"
+                   ocs-uneque="{{meta.unequeFrom}}"
+                   ui-mask='{{::meta.mask.face}}'
+                   ui-mask-placeholder
+                   ui-mask-placeholder-char="{{::meta.mask.placeholderChar}}"
+                   placeholder='{{(!meta.mask.disableTextPlaceholder && meta.placeholder.lookUpMsg.value || "")}}'
+                   maxlength='{{::meta.max}}'
+                   max='{{::meta.max}}'
+                   min='{{::meta.min}}'
+                   step='{{::meta.step}}'
+                   type='{{meta.type}}'
+                   ng-required='{{meta.required}}'
+                   ng-trim='{{trim}}'
+                   ng-model-options="{ updateOn: 'default', debounce: { 'default': 0, 'blur': 0 } }"
+                   tab-index="0"
+                   ng-pattern="meta.pattern" />
+
+            <input class='form-control ng-hide'
+                   ng-hide="!meta.autoComplete"
+                   ng-change='getTypeAhead()'
+                   list='list-{{::elementID}}'
+                   ng-model-options='{ debounce: 500 }'
+                   aria-invalid='{{singleItemForm.$invalid}}'
+                   aria-required='{{meta.required}}'
+                   ng-disabled='meta.disabled'
+                   data-ng-model='model'
+                   ocs-only-numbers="::meta.decimal"
+                   ng-readonly="meta.readonly"
+                   id='{{::elementID}}'
+                   ocs-match="{{match}}"
+                   ocs-uneque="{{meta.unequeFrom}}"
+                   ui-mask='{{::meta.mask.face}}'
+                   ui-mask-placeholder
+                   ui-mask-placeholder-char="{{::meta.mask.placeholderChar}}"
+                   placeholder='{{(!meta.mask.disableTextPlaceholder && meta.placeholder.lookUpMsg.value || "")}}'
+                   maxlength='{{::meta.max}}'
+                   max='{{::meta.max}}'
+                   min='{{::meta.min}}'
+                   step='{{::meta.step}}'
+                   type='{{meta.type}}'
+                   ng-required='{{meta.required}}'
+                   ng-trim='{{trim}}'
+                   tab-index="0"
+                   ng-pattern="meta.pattern" />
+
+            <input class='form-control ng-hide'
+                   ng-hide="!meta.email"
+                   ng-change='checkEmailExists()'
+                   list='list-{{::elementID}}'
+                   ng-model-options='{ debounce: 700 }'
+                   aria-invalid='{{singleItemForm.$invalid}}'
+                   aria-required='{{meta.required}}'
+                   ng-disabled='meta.disabled'
+                   data-ng-model='model'
+                   ocs-only-numbers="::meta.decimal"
+                   ng-readonly="meta.readonly"
+                   id='{{::elementID}}'
+                   ocs-match="{{match}}"
+                   ocs-uneque="{{meta.unequeFrom}}"
+                   ui-mask='{{::meta.mask.face}}'
+                   ui-mask-placeholder
+                   ui-mask-placeholder-char="{{::meta.mask.placeholderChar}}"
+                   placeholder='{{(!meta.mask.disableTextPlaceholder && meta.placeholder.lookUpMsg.value || "")}}'
+                   maxlength='{{::meta.max}}'
+                   max='{{::meta.max}}'
+                   min='{{::meta.min}}'
+                   step='{{::meta.step}}'
+                   type='{{meta.type}}'
+                   ng-required='{{meta.required}}'
+                   ng-trim='{{trim}}'
+                   tab-index="0"
+                   ng-pattern="meta.pattern" />
+
+            <datalist id="list-{{::elementID}}" ng-if="meta.autoComplete">
+                <option ng-if="!meta.searchByCode" ng-repeat="x1 in meta.autoCompleteData" value="{{model}} - {{x1.text}}"></option>
+                <option ng-if="meta.searchByCode" ng-repeat="x1 in meta.autoCompleteData" value="{{x1.value}} - {{x1.text}}"></option>
+            </datalist>
+
+            <span ng-if="addOnBtn" class="input-group-btn">
+                <button class="btn {{addOnBtn.type}}" ng-class="{'btn-default': !addOnBtn.type, 'btn-sm': formSize == 'sm'}" type="button" ng-click="addOnBtnFn()">{{addOnBtn.text}}</button>
+            </span>
+        </div>
+
+
+        <span class="ng-hide error-message" aria-live="assertive" ng-show="!singleItemForm.$pristine && !meta.hideErrorHolder">
+            <!-- field level validation -->
+            <span ng-show='singleItemForm.$dirty && singleItemForm.$invalid'>
+                {{:preResolved:meta.error.softError.lookUpMsg.value}}
+                <span ng-show='singleItemForm.$error.required'>
+                    {{:preResolved:meta.error.required.lookUpMsg.value}}
+                </span>
+            </span>
+
+            <!-- custom add on validations -->
+            <span ng-repeat="item in meta.customValidatorNames">
+                <span>{{:preResolved:meta.error[item].lookUpMsg.value}}</span>
+            </span>
+
+            <!-- mask level validation -->
+            <span ng-show='singleItemForm.$error.mask[0].$invalid'>
+                <span>{{:preResolved:meta.error.mask.lookUpMsg.value}}</span>
+            </span>
+
+            <!-- uneque value validation -->
+            <span ng-show="singleItemForm.$error.isUneque">
+                <span>{{:preResolved:meta.error.isUneque.lookUpMsg.value}}</span>
+            </span>
+
+
+            <!-- workinf matching validation -->
+            <span ng-show="singleItemForm.$error.match">
+                <span>{{:preResolved:meta.error.match.lookUpMsg.value}}</span>
+            </span>
+
+            <span ng-show="singleItemForm.$error.pattern">
+                <span>{{:preResolved:meta.error.pattern.lookUpMsg.value}}</span>
+            </span>
+
+            <span ng-show="singleItemForm.$error.emailexists">
+                <span>{{:preResolved:meta.error.emailexists.lookUpMsg.value}}</span>
+            </span>
+            &nbsp;
+        </span>
+
+        <span ng-hide="meta.hideErrorHolder">
+            <span class="error-message" ng-if="singleItemForm.$pristine || singleItemForm.$valid">&nbsp;</span>
+        </span>
+
+    </div>
+</ng-form>

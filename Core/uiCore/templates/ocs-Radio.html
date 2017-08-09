@@ -1,0 +1,31 @@
+﻿<ng-form name='singleItemForm' novalidate>
+    <fieldset class='form-group' role="radiogroup" aria-required="{{meta.required}}" ng-disabled="meta.disabled">
+        <legend aria-live="assertive" class="label-type" ng-class="{'display-block': meta.isInline, 'legend-inline': meta.isLegendInline }" id="{{:preResolved:elementLegendID}}">
+            <span ng-show='{{:preResolved:meta.required}}'>
+                <small class="fa fa-asterisk required-asterisk"></small>
+            </span>
+            {{:preResolved:meta.label.lookUpMsg.value}}
+            <span ng-show='{{:preResolved:meta.required}}'>
+                <span class="sr-only">{{$root.msg(555)}}</span>
+            </span>
+            <ocs-Help meta="meta.help" ng-show="{{meta.help}}" class="ng-hide"></ocs-Help>
+        </legend>
+        <div ng-class="(meta.isInline)?'radio-inline':'radio'" ng-repeat='n in :preResolved:meta.items'>
+            <label for='{{:preResolved:elementID}}-{{:preResolved:n.value}}'>
+                <input type="radio"
+                       name="{{:preResolved:elementID}}"
+                       id='{{:preResolved:elementID}}-{{:preResolved:n.value}}'
+                       ng-model="$parent.model"
+                       ng-value='{{:preResolved:n.value}}'
+                       ng-required='{{meta.required}}' 
+                       aria-labelledby="{{:preResolved:elementLegendID}} option_label_{{:preResolved:elementID}}-{{:preResolved:n.value}}" />
+                <span class="radio-custom" style="height: calc(1em + 1px); width: calc(1em + 1px);"></span>
+                <span id="option_label_{{:preResolved:elementID}}-{{:preResolved:n.value}}">
+                    <span class="radio-label" ng-show="!n.text || !n.text.lookUpMsg">{{:preResolved:n.text}}</span>
+                    <span class="radio-label" ng-show="n.text && n.text.lookUpMsg">{{:preResolved:n.text.lookUpMsg.value}}</span>
+                </span>
+            </label>
+        </div>
+        <span class='error-message' aria-live="assertive">&nbsp;</span>
+    </fieldset>
+</ng-form>

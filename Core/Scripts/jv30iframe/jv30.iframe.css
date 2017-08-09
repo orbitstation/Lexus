@@ -1,0 +1,32 @@
+﻿html{
+    overflow: hidden;
+}
+.container {
+    width: 100% !important;
+    overflow: visible!important;
+}
+
+.w-page {
+    background: transparent;
+}
+
+#content {
+    margin: 0;
+}
+
+.panel{
+    box-shadow: 0 1px 3px rgba(0,0,0,.2);
+}
+/* larger than 768px */
+@media screen and (min-width: 768px) {
+    #content {
+        padding: 25px 0 0 0;
+    }
+}
+
+/* smaller than 768px */
+@media screen and (max-width: 767px){
+    #content {
+        padding: 4px 0 0 0;
+    }
+}

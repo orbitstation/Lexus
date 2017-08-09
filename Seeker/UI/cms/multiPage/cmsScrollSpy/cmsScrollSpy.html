@@ -1,0 +1,23 @@
+﻿<!-- cms-ScrollSpy: display -->
+<div>
+    <div class="sticky-closure">
+        <div class="row scroll-spy" ocs-spinner is-loaded="true" ocs-scroll-spy>
+            <div class="col-md-3 hidden-xs">
+                <div ocs-sticky slide-inside=".sticky-closure">
+                    <ul class="pagemenu list-group">
+                        <li ng-repeat="(key,items) in modules.meta.items" class="list-group-item" spy="{{items.title}}">{{items.title}}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div ng-repeat="(key,items) in modules.meta.items" id="{{items.title}}">
+
+                    <ng-include src="'/UI/cms/multiPage/cmsScrollSpy/cmsScrollSpy-Section.html'" ></ng-include>
+
+                    <hr />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

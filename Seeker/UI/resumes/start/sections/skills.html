@@ -1,0 +1,51 @@
+﻿<div ng-controller="ResumeSkillsController as vm">
+    <p>{{:preResolved:$root.msg(373098)}}</p>
+    <hr class="hr-short" />
+    <div ng-repeat="(key,item) in vm.data.skills.items track by $index" ng-show="vm.data.skills && vm.data.skills.items">
+        <div class="mb15">
+            <span class="label label-default">
+                {{key + 1}} - {{:preResolved:$root.msg(157709)}}
+            </span>
+            <button class="btn btn-remove pull-right"
+                    type="button" ng-click="vm.removeSkill(key)"
+                    ng-show="index !== '0'">
+                {{:preResolved:$root.msg(368069)}} {{:preResolved:$root.msg(157709)}}
+            </button>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-sm-4 col-md-3">
+                <ocs-autocomplete meta="meta.skillName"
+                                  aria-label="{{:preResolved:$root.msg(157709)}}"
+                                  model="item.skillName"
+                                  search-string="item.skillName"
+                                  remote-api-handler="vm.skillHandler"
+                                  remote-response-formatter="vm.skillFormatter"
+                                  duplicates="vm.duplicates"
+                                  input-class="form-control">
+                </ocs-autocomplete>
+            </div>
+            <div class="col-sm-2 col-md-3">
+                <ocs-select meta="meta.skillLevelID" model="item.skillLevelID"></ocs-select>
+            </div>
+            <div class="col-sm-3">
+                <ocs-select meta="meta.skillUsedID" model="item.skillUsedID"></ocs-select>
+            </div>
+            <div class="col-sm-3">
+                <ocs-input meta="meta.skillYearsExperience" model="item.yearsExperience"></ocs-input>
+            </div>
+        </div>
+        <hr class="hr-short" />
+    </div>
+    <div ng-show="vm.data.skills && vm.data.skills.items">
+        <button class="btn btn-add"
+                type="button"
+                ng-click="vm.addSkill()"
+                ng-disabled="(vm.data.skills.items.length >= vm.data.skills.maxItemsCount) || vm.thisForm.$invalid">
+            {{:preResolved:$root.msg(303888)}}
+        </button>
+        <hr class="hr-short" />
+    </div>
+</div>

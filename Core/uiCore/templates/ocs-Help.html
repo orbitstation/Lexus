@@ -1,0 +1,28 @@
+﻿<span ng-if="$root.configLayout.helpTextType.lookUpConfig.value === '1'">
+    <a href="" class="helpIcon" 
+        popover-trigger="focus" 
+        title="{{meta.title.lookUpMsg.value || meta.title.lookUpMsg.text}}"
+        aria-label="{{meta.title.lookUpMsg.value || meta.title.lookUpMsg.text}}"
+        uib-popover-template="'popOverActivities.html'" 
+        popover-title="{{meta.title.lookUpMsg.value || meta.title.lookUpMsg.text}}">
+            <i class="glyphicon glyphicon-info-sign"></i>
+       </a>
+
+    <script type="text/ng-template" id="popOverActivities.html">
+        <p ng-bind-html="meta.content.lookUpMsg.value || meta.content.lookUpMsg.text"></p>
+    </script>
+</span>
+<span ng-if="$root.configLayout.helpTextType.lookUpConfig.value === '2'">
+    <a href="" 
+        class="" 
+        title="{{meta.title.lookUpMsg.value}}" 
+        aria-label="{{meta.title.lookUpMsg.value}}"
+        ng-click="meta.opened=!meta.opened">
+            <i class="glyphicon glyphicon-info-sign"></i>
+        </a>
+    <small class="display-block help-slide" 
+        ng-show="meta.opened" 
+        ng-bind-html="meta.content.lookUpMsg.value | unsafe">
+    </small>
+</span>
+

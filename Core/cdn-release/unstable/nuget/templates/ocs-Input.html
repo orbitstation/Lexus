@@ -1,0 +1,63 @@
+﻿<ng-form name='singleItemForm' novalidate>
+    <div class='form-group' ng-class="{'has-error': !(singleItemForm.$pristine || singleItemForm.$valid), 'form-group-sm': formSize == 'sm', 'form-group-lg': formSize == 'lg'}">
+        <label for='{{::elementID}}'>
+            <span ng-show="meta.required">
+                <small class="fa fa-asterisk required-asterisk"></small>
+            </span>{{:preResolved:meta.label.lookUpMsg.value}}
+
+            <!-- aria-live ? -->
+            <span ng-show="{{::meta.help}}">
+                <a href="" class="helpIcon" popover-trigger="focus" title="{{:preResolved:meta.help.title.lookUpMsg.value}}" role="button"
+                   uib-popover-template="'popOverActivities-4.html'" popover-is-open="popoverStatus" popover-title="{{::meta.help.title.lookUpMsg.text}}">[?]</a>
+                <script type="text/ng-template" id="popOverActivities-4.html">
+                    <p ng-bind-html="meta.help.content.lookUpMsg.text | unsafe"></p>
+                </script>
+            </span>
+        </label>
+
+
+        <input class='form-control'
+               aria-invalid='{{singleItemForm.$invalid}}'
+               aria-required='{{meta.required}}'
+               ng-disabled='{{meta.disabled}}'  
+               data-ng-model='model'
+               id='{{::elementID}}'
+               ocs-match="{{match}}"
+               ui-mask='{{::meta.mask.face}}'
+               ui-mask-placeholder
+               ui-mask-placeholder-char="{{::meta.mask.placeholderChar}}"
+               placeholder='{{(!meta.mask.disableTextPlaceholder && meta.placeholder.lookUpMsg.value || "")}}'
+               MaxLength='{{::meta.max}}'
+               type='{{::meta.type}}'
+               ng-required='{{meta.required}}'
+               ng-trim='{{::trim}}'
+               ng-model-options="{ updateOn: 'default', debounce: { 'default': 200, 'blur': 0 } }"
+               tab-index="0"
+               ng-pattern="meta.pattern" />
+
+
+        <span class="ng-hide error-message" ng-show="!singleItemForm.$pristine">
+            <!-- field level validation -->
+            <span ng-show='singleItemForm.$dirty && singleItemForm.$invalid'>
+                <span ng-show='singleItemForm.$error.required'>
+                    {{:preResolved:meta.error.required.lookUpMsg.value}}
+                </span>
+            </span>
+            <!-- mask level validation -->
+            <span ng-show='singleItemForm.$error.mask[0].$invalid'>
+                <span>{{:preResolved:meta.error.mask.lookUpMsg.value}}</span>
+            </span>
+            <!-- workinf matching validation -->
+            <span ng-show="singleItemForm.$error.match">
+                <span>{{:preResolved:meta.error.match.lookUpMsg.value}}</span>
+            </span>
+            <span ng-show="singleItemForm.$error.pattern">
+                <span>{{:preResolved:meta.error.pattern.lookUpMsg.value}}</span>
+            </span>
+            &nbsp;
+        </span>
+        <span ng-hide="meta.hideErrorHolder">
+            <span class="error-message" ng-if="singleItemForm.$pristine || singleItemForm.$valid">&nbsp;</span>
+        </span>
+    </div>
+</ng-form>

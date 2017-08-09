@@ -1,0 +1,234 @@
+﻿.list {
+    list-style-type: none;
+    padding: 0;
+    @number-width: 60px;
+
+    .list-heading {
+        background: #042565;
+
+        .list-heading-item {
+            .h4;
+            padding: 0 6px;
+            color: #fff;
+            &.item-first {
+                padding-left: 15px;
+            }
+        }  
+
+    }
+
+    .item-first {
+        padding-left: 15px;
+    }
+
+    .list-item {
+        position: relative;
+        padding-top: @grid-gutter-width/2;
+        padding-bottom: @grid-gutter-width/2 + 5px;
+        border-bottom: 1px solid @list-row-border-color;
+
+        &:nth-child(even) {
+            background: @list-row-alternate-bgcolor;
+        }
+
+        &.list-last {
+            border-bottom: 0;
+        }
+
+        &:not(.list-heading):hover {
+            background: @list-row-hover-bgcolor;
+        }
+
+        &.hover-none:hover {
+            background: none;
+        }
+
+        .list-number {
+            padding-top: 15px;
+            color: @gray-light;
+            font-size: @font-size-h3;
+            line-height: 100%;
+            text-align: center;
+            font-weight: 500;
+            width: @number-width;
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+
+            @media (max-width: @screen-xs-max) {
+                font-size: @font-size-h4;
+            }
+
+            & + .list-body {
+                margin-left: @number-width;
+                padding-left: 0;
+            }
+        }
+
+        .header-actions{
+            display: table;
+            width: 100%;
+        }
+
+        .list-body {
+            padding-left: @grid-gutter-width;
+            padding-right: @grid-gutter-width;
+        }
+
+
+
+        .list-item-heading {
+            .h5;
+            padding-right: @grid-gutter-width/2;
+            @media (max-width: @screen-xs-max) {
+                font-size: @font-size-h4;
+            }
+            
+            a{
+                color: @list-link-color;
+                text-decoration: none;
+                &:hover{
+                    border-bottom: 1px solid @link-color;
+                }
+            }
+            word-wrap: break-word;
+            margin: 0;
+            color: @list-link-color;
+
+            small {
+                .text-danger;
+            }
+
+            &.deleted {
+                opacity: .8;
+            }
+        }
+
+
+        .expired {
+            .list-item-heading {
+                //color: @gray;
+            }
+        }
+
+        .deleted {
+            //color: @gray;
+        }
+    }
+
+    .list-label {
+        color: @list-label-color;
+    }
+    .list-value {
+        color: @list-value-color;
+    }
+
+    .list-col-main {
+        width: 60%;
+    }
+
+    .list-col-actions {
+        width: 40%;
+    }
+
+    .list-col-50-percent {
+        width: 50%;
+    }
+
+    .list-col-main,
+    .list-col-actions,
+    .list-col-50-percent{
+        .list-item-actions {
+            text-align: right;
+        }
+        @media (max-width: @screen-xs-max){
+            display: block;
+            width: 100%;
+            & .list-item-actions.pull-right {
+                padding-bottom: 16px;
+            }
+        }
+    }
+
+    &.display-table {
+        .list-item-heading {
+            font-size: 15px;
+        }
+    }
+}
+
+.label-stack {
+    margin-bottom: 3px;
+    //margin-right: 3px;
+    display: block;
+    font-size: .85em;
+    padding: 0 4px;
+    line-height: 150%;
+    border-radius: 2px;
+
+    &.success {
+        background: @brand-success;
+    }
+}
+
+.vertical-separator {
+    color: @vertical-divider-color;
+    display: inline-block;
+    padding: 3px 5px;
+    &.no-padding {
+        padding: 0;
+    }
+}
+
+.list-filter {
+    .form-group {
+        margin: 0;
+        display: inline-block;
+    }
+
+    .form-control {
+        display: inline-block;
+    }
+
+    .well {
+        padding: 5px 20px;
+        margin: 0;
+    }
+
+    .ocs-select-label {
+        float: left;
+        margin: 0 5px 0 0;
+    }
+    .select-wrapper {
+        float: left;
+        select {
+            padding-right: 20px;
+        }
+    }
+
+    .btn {
+        vertical-align: initial;
+    }
+
+    .text-search {
+        input.form-control {
+            min-width: 370px;
+        }
+    }
+
+    .advanced-search-wrapper {
+        padding: 6px 0;
+    }
+
+    .advanced-search-switcher {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .filter-advanced {
+        .well {
+            padding: 0 20px 20px 20px;
+        }
+    }
+}

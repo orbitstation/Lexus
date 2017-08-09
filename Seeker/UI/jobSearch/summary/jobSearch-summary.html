@@ -1,0 +1,146 @@
+﻿<div ng-if="$root.isLoaded">
+
+    <!-- Fixed filters testing grounds -->
+    <div class="visible-xs-block mobile-filters">
+        <div class="mobile-filters-header">
+            <div class="filter-toggle" ng-init="isFilterCollapsed = false" ng-click="isFilterCollapsed = !isFilterCollapsed">
+                <i class="fa fa-sliders"></i> 
+                
+                <span ng-switch="isFilterCollapsed">
+                    <span ng-switch-when="true">{{:preResolved:$root.msg(379241)}}</span>
+                    <span ng-switch-default>{{:preResolved:$root.msg(379242)}}</span>
+                </span>
+            </div>
+        </div>
+        
+        <ocs-job-filters freeze-screen="isFilterCollapsed" make-fixed=".mobile-filters"></ocs-job-filters>
+    </div>
+    <div ng-if="!json.is_zero_result">
+        <h1 class="job-basics" ng-if="location !== undefined">
+            <strong ng-bind="keywords">{{keywords}}</strong>
+            {{:preResolved:msg(363529)}}
+            <strong>{{location}}</strong>
+        </h1>
+        <h4 ng-if="!json.is_zero_result">{{:preResolved:msg(363530)}} {{ json.number_found }} {{:preResolved:msg(363531)}}</h4>
+    </div>
+
+
+    <div ng-if="json.is_zero_result">
+        <h1 class="job-basics">
+            {{:preResolved:msg(353319)}}
+        </h1>
+
+        <h4 class="job-basics ng-hide" ng-if="location !== undefined" ng-show="!json.is_empty_search">
+            {{:preResolved:msg(377188)}} {{ json.number_found }}
+            <span class="ng-hide" ng-show="!json.keywords_removed">{{keywords}}</span>
+            {{:preResolved:msg(363529)}}
+            {{location}}
+        </h4>
+        <h4 class="job-basics ng-hide" ng-if="location !== undefined" ng-show="json.is_empty_search">
+            {{:preResolved:msg(353320)}}
+        </h4>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4 col-md-3 hidden-xs">
+            <div class="job-filters">
+
+                <div class="panel panel-muted">
+                    <div class="panel-body">
+                        <ocs-job-filters></ocs-job-filters>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-8 col-md-9" ocs-spinner is-loaded="doneLoading" options="{top: '100px'}">
+
+            <div id="jsAdvertisement" class="row js-top-advert" ng-show="configMeta.JobsearchAdvertisement.isEnabled.lookUpConfig.value === 'true'">
+                <ocs-jobsearch-ad-component keyword="search.keywords" location="search.location" ad-type="default" position="Top1"></ocs-jobsearch-ad-component>
+            </div>
+
+            <div class="row ng-hide" ng-show="!json.jobs.length && doneLoading">
+                <div class="col-sm-12 no-results-msg">
+                    <p class="h2">
+                        <strong>{{:preResolved:msg(182937)}}</strong>
+                    </p>
+                    <p class="h3">{{:preResolved:msg(182938)}}</p>
+                </div>
+            </div>
+
+            <div class="row search-results">
+                <div class="col-sm-12">
+
+                    <ul class="list-unstyled" ng-class="{'search-authenticated': isAuthenticated}">
+                        <ocs-recommended-jobs></ocs-recommended-jobs>
+                        <li ng-repeat="job in json.jobs track by $index">
+                            <div class="pull-right" style="padding: 0 0 10px;">
+                                <button class="btn btn-xs list-save-btn btn-secondary btn-wide"
+                                        type="button"
+                                        ng-if="(!job.is_saved && !job.can_be_saved) || (!job.is_saved && saveJobs.MaxJobSavesReached == true)"
+                                        ng-disabled="true">
+                                    {{:preResolved:msg(370218)}}
+                                </button>
+                                <button class="btn btn-xs list-save-btn btn-secondary btn-wide"
+                                        type="button"
+                                        ocs-busy="busyLinks.saveJob"
+                                        ng-disabled="busyLinks.saveJob"
+                                        ng-if="(!job.is_saved && job.can_be_saved) && (saveJobs.MaxJobSavesReached == false)"
+                                        ng-click="saveJob((job.source.toLowerCase() == 'core') ? (job.id) : (job.cloud_posting_id), job.source, job)">
+                                    {{:preResolved:msg(370218)}}
+                                </button>
+                                <div tabindex="1"
+                                     ng-if="(job.is_saved)"
+                                     class="btn btn-xs btn-success list-save-btn btn-outline-success btn-wide">
+                                    {{:preResolved:msg(370219)}}
+                                </div>
+                            </div>
+                            <a ng-href="{{job.url}}"
+                               ng-if="ppcTrackingEnabled == '' || ppcTrackingEnabled == 'false'">
+                                <span class="pull-right small" ng-if="job.flags.direct_job">
+                                    <i class="fa fa-flag-o"></i>
+                                </span>
+                                {{job.title}}
+                            </a>
+                            <a href="{{job.url}}"
+                               class="lead"
+                               ng-click="ppcTrackJobClick(job, $event)"
+                               ng-if="ppcTrackingEnabled == 'true'">
+                                <span class="pull-right small" ng-if="job.flags.direct_job">
+                                    <i class="fa fa-flag-o"></i>
+                                </span>
+                                {{job.title}}
+                            </a>
+
+                            <div class="clearfix"></div>
+                            <!--<p ng-bind-html="::job.html" ng-if="detail"></p>-->
+
+                            <div>
+                                <small class="job-labels display-block text-muted">
+                                    <span ng-bind="job.company"></span> |
+                                    <span ng-bind="job.city"></span>,
+                                    <span ng-bind="job.state"></span>
+                                    <br />
+                                    <span ng-bind="job.active_from | date: format: medium" style="margin-right: 10px;"></span>
+                                    <span style="border: lightskyblue solid 1px;padding:4px 5px 3px 5px" ng-if="showSalaryResearch == 'true'">
+                                        <img width="15"style="margin-left: 2px;vertical-align: top" src="https://securemedia.newjobs.com/id/mgs/8210/payscale_logo.png"/>
+                                        <a title="{{msg(359463)}}" ng-click="salaryResearchLink({title:job.title,city: job.city, state: job.state})">{{msg(182179)}}</a>
+                                    </span>
+                                </small>
+                            </div>
+                            
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="hidden-xs">
+                {{ json.native_query }}
+                {{ json.native_response }}
+            </div>
+            <nav class="text-center-xs pagination-nav text-right" ng-show="json.pages.length !== 0">
+                <ocs-pager datasetSize="datasetSize" pageSize="pageSize" currentPage="pager.currentPage" showFirstLast="false" visiblePages="6" callback="changePage" page-number-limit="40"></ocs-pager>
+            </nav>
+        </div>
+    </div>
+</div>

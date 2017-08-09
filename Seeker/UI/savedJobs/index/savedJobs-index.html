@@ -1,0 +1,72 @@
+﻿<div ng-if="isLoaded">
+    <ocs-intro-section meta="meta.pageHeaderSavedJobs"></ocs-intro-section>
+
+    <ocs-401 meta="meta" msgheader="379083" msgbody="379084"></ocs-401>
+    <div ng-if="$root.isAuthenticated" ocs-spinner is-loaded="pageLoaded">
+        <div ng-show="pageLoaded">
+            <div class="alert alert-info" tabindex="0">
+                {{:preResolved:$root.msg(157204)}}
+                <strong>{{itemsCount}}</strong>
+                {{:preResolved:$root.msg(157932)}}
+                <strong>{{maxItemsCount}}</strong>
+                {{:preResolved:$root.msg(157931)}}
+            </div>
+
+            <div class="list display-table">
+                <div class="list-item display-table-row" ng-repeat="job in jobs | orderBy:'-modifiedDate'" ng-class="{'list-last':$last}">
+                    <!--<div class="list-number">{{$index + 1}}.</div>-->
+                    <div class="list-col-main display-table-cell vertical-align-middle pt16 pb16">
+                        <div class="list-body">
+                            <div class="header-actions">
+                                <div>
+                                    <h2 class="list-item-heading h3" ng-if="!isJobExpired(job.expires_on)">
+                                        <a href="{{job.constructedUrl}}">{{job.title}}</a>
+                                    </h2>
+                                    <h2 class="list-item-heading h3" ng-if="isJobExpired(job.expires_on)" title="{{msg(512)}}">
+                                        {{job.title | capitalize}} <small>{{msg(107436) | lowercase}}</small>
+                                    </h2>
+                                </div>
+                            </div>
+                            <div>
+                                <span class="list-label" title="{{$root.msg(51)}}">{{job.company}}</span>
+                                <span class="vertical-separator" ng-if="job.company && job.location">|</span>
+                                <span class="list-value" title="{{$root.msg(44)}}">{{job.location}}</span>
+                                <div>
+                                    <span class="list-label"><span data-ng-bind="msg(346429)"></span>:</span>
+                                    <span class="list-value">{{job.savedDate | date}}</span>
+                                    <span class="vertical-separator" ng-if="job.savedDate && job.expires_on">|</span>
+                                    <span class="list-label" ng-if="job.expires_on && !isJobExpired(job.expires_on)">{{$root.msg(672)}}: </span>
+                                    <span class="list-label" ng-if="job.expires_on && isJobExpired(job.expires_on)">{{$root.msg(107436)}}: </span>
+                                    <span class="list-value">{{job.expires_on | date}}</span>
+                                </div>
+                            </div>
+                            <!--<hr class="hr-short" ng-if="!$last" />-->
+                        </div>
+                    </div>
+                    <div class="list-col-actions display-table-cell vertical-align-middle pt16 pb16">
+                        <div class="list-body">
+                            <div class="pull-right list-item-actions">
+                                <a role="button" ng-click="deleteSavedJob(job.jobId, job.source)">{{msg(99473)}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title">{{msg(365751)}}</h3>
+    </div>
+    <div class="modal-body">
+        <h3>{{msg(365750)}}</h3>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="ok()">{{msg(315145)}}</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">{{msg(162574)}}</button>
+    </div>
+</script>

@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title>Jobsearch Ad</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+
+    <style type="text/css">
+        .text-left {
+            text-align: left;
+        }
+
+        .well-ad {
+            padding: 10px 20px;
+            margin-bottom: 0px;
+            background-color: #FFF;
+            border-top: 1px solid #eeeeee;
+            border-bottom: 1px solid #eeeeee;
+            border-radius: 2px;
+            min-height: 120px;
+        }
+
+        .logo-ad {
+            float: right;
+            padding: 0px;
+            margin: 0px 0px 0px 15px;
+            /*background-color: #9F9F9F;*/
+            border: 0px none;
+            border-radius: 0px;
+            resize: both;
+        }
+
+        .text-ad-legal {
+            color: #777;
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 10px;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        .text-ad-main {
+            color: #00529B;
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 15px;
+            line-height: 1.5;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .text-ad-sub {
+            color: #555;
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 13px;
+            line-height: 1.25;
+            margin-bottom: 5px;
+        }
+
+        .container-fluid {
+            padding: 0;
+        }
+
+        @media(max-width: 500px) {
+            .logo-ad img {
+                width:100%;
+                height:100%;
+            }
+
+            .logo-ad {
+                margin-top:5%;
+                width:100px;
+            }
+
+            .text-ad-main {
+                font-size:14px;
+                margin-bottom: 0;
+            }
+
+            .well-ad {
+                min-height:90px;
+                border-top: none;
+                padding:5px 20px;
+            }
+
+            .text-ad-legal{
+                margin-bottom:5px;
+            }
+        }
+    </style>
+
+    <script type="text/javascript">
+        function getQueryString(field) {
+            var href = window.location.href;
+            var reg = new RegExp('[?&]' + field + '=([^&#]*)', 'i');
+            var string = reg.exec(href);
+            return string ? string[1] : null;
+        };
+        
+        //configuration
+        OAS_url = '//oas.monster.com/RealMedia/ads/';
+        OAS_sitepage = 'us.military.en/mgs/job-search';
+        OAS_listpos = getQueryString('pos');
+        OAS_query = 'sst=70&str=00&sr=70&s=7&a=ag0&r=0&sta=0&z=&k=&XE';
+        OAS_target = '_blank';
+        //end of configuration
+        OAS_version = 10;
+        OAS_rn = '001234567890';
+        OAS_rns = '1234567890';
+        OAS_rn = new String(Math.random());
+        OAS_rns = OAS_rn.substring(2, 11);
+
+        var OAS_keyword = getQueryString('q');
+        var OAS_location = getQueryString('loc');
+
+        if ((OAS_keyword != null) && (OAS_keyword.length > 0)) {
+            OAS_query += "&q=" + OAS_keyword;
+        }
+        if ((OAS_location != null) && (OAS_location.length > 0)) {
+            OAS_query += "&lid=" + OAS_location;
+        }
+
+        OAS_version = 11;
+        if ((navigator.userAgent.indexOf('Mozilla/3') != -1) || (navigator.userAgent.indexOf('Mozilla/4.0 WebTV') != -1))
+            OAS_version = 10;
+        if (OAS_version >= 11) {
+            var script = '<script type="text/javascript" src="' + OAS_url + 'adstream_mjx.ads/' + OAS_sitepage + '/1' + OAS_rns + '@' + OAS_listpos + '?' + OAS_query + '"><\/script>'
+            document.write(script);
+        }
+
+
+        function OAS_NORMAL(pos) {
+            document.write('<a href="' + OAS_url + 'click_nx.ads/' + OAS_sitepage + '/1' + OAS_rns + '@' + OAS_listpos + '!' + pos + '?' + OAS_query + '" target="' + OAS_target + '">');
+            document.write('<img src="' + OAS_url + 'adstream_nx.ads/' + OAS_sitepage + '/1' + OAS_rns + '@' + OAS_listpos + '!' + pos + '?' + OAS_query + '" alt="Advertisement" border="0" /></a>');
+            console.log("OAS_NORMAL");
+        }
+
+        function OAS_AD(pos) {
+            if (OAS_version >= 11 && typeof (OAS_RICH) != 'undefined') {
+                OAS_RICH(pos);
+            }
+            else {
+                OAS_NORMAL(pos);
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="jsAdvertisement">
+        <script type="text/javascript" id="OAS-RenderAd">
+            if (OAS_AD != null) {
+                OAS_AD(this.OAS_listpos);
+            }
+        </script>
+    </div>
+</body>
+</html>

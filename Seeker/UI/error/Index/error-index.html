@@ -1,0 +1,29 @@
+﻿<div class="row">
+    <div class="col-sm-12">
+        <div class="row" ng-if="error">
+            <div class="col-sm-12">
+                <h1>{{$root.msg(371123)}}&nbsp;<span ng-if="$root.registry.localStore.global.context.EnvironmentType != 'Production'">-&nbsp;{{error.statusText}}</span></h1>
+                <hr />
+                <h2 ng-bind="$root.msg(371124)"></h2>
+                <h3 ng-bind="$root.msg(371125)"></h3>
+            </div>
+            <div class="col-sm-12">
+                <h3>{{error.config.url}}</h3>
+                <h4>{{error.data.exceptionGuid}}</h4>
+                <!--<hr /><pre>{{error | json}}</pre><hr />-->
+            </div>
+
+            <input type="button" value="Back" class="btn btn-primary pull-right" onclick="history.back(-1)" />
+
+        </div>
+
+        <div class="panel panel-danger" ng-if="$root.registry.localStore.global.context.EnvironmentType != 'Production'">
+            <div class="panel-heading">
+                DEBUG ONLY BOX: You are not in production
+            </div>
+            <div class="panel-body">
+                <ocs-error error-list="$root.topErrorList"></ocs-error>
+            </div>
+        </div>
+    </div>
+</div>

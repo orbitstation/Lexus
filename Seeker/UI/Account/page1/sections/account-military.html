@@ -1,0 +1,67 @@
+﻿<ocs-radio meta="meta.activeDuty" model="model.militaryService.activeDuty"></ocs-radio>
+
+<div class="child-section" ng-if="model.militaryService.activeDuty == $root.constants.UBF_CRL_DEFAULT_YES">
+    <div class="row">
+        <div class='col-sm-6 col-md-4'>
+            <ocs-select meta="meta.militaryServiceType" model="model.militaryService.militaryServiceType"></ocs-select>
+        </div>
+
+        <div class="col-sm-12" ng-if="model.militaryService.militaryServiceType">
+            <div class="child-section">
+                <div ng-if="model.militaryService.militaryServiceType == 87135">
+                    <ocs-radio meta="meta.transitionalServiceMember" model="model.militaryService.transitionalServiceMember"></ocs-radio>
+                    <div ng-if="model.militaryService.transitionalServiceMember == $root.constants.UBF_CRL_DEFAULT_YES"
+                         ng-include="'UI/account/page1/sections/account-military-active.html'">
+                    </div>
+                </div>
+
+                <!-- veteran -->
+                <div ng-if="model.militaryService.militaryServiceType == 87136">
+                    <ocs-radio meta="meta.veteran" model="model.militaryService.veteran"></ocs-radio>
+                </div>
+                <div ng-if="model.militaryService.veteran == $root.constants.UBF_CRL_DEFAULT_YES && model.militaryService.militaryServiceType == 87136">
+                    <div ng-include="'UI/account/page1/sections/account-military-veteran.html'"></div>
+                </div>
+
+                <!-- title 10 (nationa guard) -->
+                <div ng-if="model.militaryService.militaryServiceType == 87138">
+                    <ocs-radio meta="meta.title10Activation" model="model.militaryService.title10Activation"></ocs-radio>
+
+                    <div ng-if="model.militaryService.title10Activation == $root.constants.TITLE10ACTIVATION_VETERAN">
+                        <div ng-include="'UI/account/page1/sections/account-military-active.html'"></div>
+                    </div>
+                    <div ng-if="model.militaryService.title10Activation == $root.constants.TITLE10ACTIVATION_ACTIVE">
+                        <div ng-include="'UI/account/page1/sections/account-military-veteran.html'"></div>
+                    </div>
+                </div>
+
+                <!-- spouse of military vet  -->
+                <div ng-if="model.militaryService.militaryServiceType == 87137">
+                    <ocs-radio meta="meta.spouseOfDisabledVet" model="model.militaryService.spouseOfDisabledVet"></ocs-radio>
+                    <div ng-if="model.militaryService.spouseOfDisabledVet == $root.constants.UBF_CRL_DEFAULT_YES">
+                        <h3 ng-bind-html="$root.msg(365259)"></h3>
+                        <div ng-include="'UI/account/page1/sections/account-military-veteran.html'"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<br>
+
+<div class="row">
+    <div class='col-sm-12' ng-if="$root.cfg('military.nationalGuard') == 'true'">
+        <ocs-radio meta="meta.nationalGuard" model="model.militaryService.nationalGuard"></ocs-radio>
+    </div>
+
+    <div class='col-sm-12'>
+        <ocs-radio meta="meta.militarySpouse" model="model.militaryService.militarySpouse"></ocs-radio>
+        <div class="child-section" ng-if="model.militaryService.militarySpouse == $root.constants.UBF_CRL_DEFAULT_YES">
+            <ocs-select meta="meta.militarySpouseRelationship" model="model.militaryService.militarySpouseRelationship"></ocs-select>
+        </div>
+    </div>
+</div>
+

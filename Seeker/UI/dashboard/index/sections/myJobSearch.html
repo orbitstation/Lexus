@@ -1,0 +1,43 @@
+﻿<div class="row">
+    <div class="col-xs-12">
+        <uib-accordion close-others="false">
+            <uib-accordion-group class="panel panel-dashboard-yellow"
+                                 is-open="true"
+                                 template-url="lib/ui-bootstrap/template/accordion/ui-accordion-dashboard.html">
+                <uib-accordion-heading>
+                    <span>{{msg(369088)}} </span>
+                    <div class="collapse-button">
+                        <i class="fa" ng-class="{'fa-plus': !$parent.isOpen, 'fa-minus' : $parent.isOpen}"></i>
+                    </div>
+                </uib-accordion-heading>
+
+                <div class="row">
+                    <div class="col-md-4 col-sm-6" ng-repeat="section in myJobSearch track by $index">
+                        <div class="content-box">
+                            <h3>{{msg(section.title) }}</h3>
+                            <div ng-if="section.active">
+                                <div class="row" ng-repeat="item in section.items | limitTo:3" ng-class="{'mt24' : $first}">
+                                    <div class="col-md-12">
+                                        <a href="{{item.itemLink}}">{{item.title}}</a><br />
+                                        <span class="text-muted">{{item.date}}</span>
+                                        <hr class="hr-short" ng-if="!$last" />
+                                    </div>
+                                </div>
+                                <div class="content-link text-right">
+                                    <a href="{{ section.link }}" class="btn btn-primary btn-block">{{ msg(369029)}} {{  msg(section.title) }}</a>
+                                </div>
+                            </div>
+                            <div ng-if="!section.active">
+                                {{:preResolved:$root.msg(377769)}}
+                                <div class="content-link text-right">
+                                    <a href="{{ section.inactiveLink }}" class="btn btn-primary btn-block">{{ msg(369028) }}</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </uib-accordion-group>
+        </uib-accordion>
+    </div>
+</div>

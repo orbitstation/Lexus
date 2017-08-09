@@ -1,0 +1,48 @@
+﻿<form class="login-form" novalidate>
+    <div class="btn-group btn-group-justified">
+        <div role="group" class="btn-group btn-group-xs">
+            <button class="btn btn-default" ng-class="{'btn-info':loginType == 'seeker'}" type="button"
+                    ng-model="loginType" uib-btn-radio="'seeker'" ng-click="applyModel(this)">
+                {{$root.msg(180040)}}
+            </button>
+        </div>
+        <div role="group" class="btn-group btn-group-xs">
+            <button class="btn btn-default" ng-class="{'btn-info':loginType == 'employer'}" type="button"
+                    ng-model="loginType" uib-btn-radio="'employer'" ng-click="applyModel(this)">
+                {{$root.msg(100750)}}
+            </button>
+        </div>
+    </div>
+    <div ng-hide="!error" class="alert alert-danger" role="alert">
+        {{error}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="error=''">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <h4>{{loginType}} {{$root.msg(100749)}}</h4>
+    <ocs-input meta="meta.loginEmail" model="user.email" form-size="sm"></ocs-input>
+    <ocs-input meta="meta.loginPassword" model="user.password" form-size="sm"></ocs-input>
+    <ocs-button meta="meta.signInButton"
+                options="{classes:'btn-block btn-primary btn-sm', type:'submit'}"
+                id="signIn"
+                validation="loginForm.$invalid"
+                ng-click="go()"
+                is-busy="user.isBusy"></ocs-button>
+
+    <div>
+        <div ng-if="loginType == 'seeker'">
+            <a href="/AccountReset/forgotPassword" class="small">{{$root.msg(205119)}}</a>
+        </div>
+        <div ng-if="loginType == 'employer'">
+            <a href="https://{{$root.configLayout.hiringDomain.lookUpConfig.value}}/forgotpassword.aspx" class="small">{{$root.msg(205119)}}</a>
+        </div>
+        <hr class="hr-short"/>
+        <div ng-if="loginType == 'seeker'">
+            <a href="" ng-click="createAccount($event)" class="display-block text-center">{{$root.msg(204843)}}</a>
+        </div>
+        <div ng-if="loginType == 'employer'">
+            <a href="https://{{$root.configLayout.hiringDomain.lookUpConfig.value}}/modules/account/CreateAccount.aspx?hpredir=true" class="display-block text-center">{{$root.msg(364563)}}</a>
+        </div>
+    </div>
+</form>

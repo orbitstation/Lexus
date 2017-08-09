@@ -1,0 +1,382 @@
+﻿<div ng-if="$root.isLoaded">
+    <div id="jsAdvertisement_04" class="js-position-advert text-center" ng-show="configMeta.JobsearchAdvertisement.isEnabled.lookUpConfig.value === 'true'" ng-if="adSwitch.topBanner && isMobileView && showBanner">
+        <ocs-jobsearch-ad-component keyword="search.keywords" location="search.location" ad-type="mobile" position="Bottom1"></ocs-jobsearch-ad-component>
+    </div>
+    <div id="jsAdvertisement_05" class="js-position-advert text-center" ng-show="configMeta.JobsearchAdvertisement.isEnabled.lookUpConfig.value === 'true'" ng-if="adSwitch.topBanner && ((isMobileView && !showBanner) || isTabletView)">
+        <ocs-jobsearch-ad-component keyword="search.keywords" location="search.location" ad-type="banner" position="Bottom1"></ocs-jobsearch-ad-component>
+    </div>
+    <div class="mb15 visible-xs visible-sm">
+        <div class="display-table">
+            <div class="display-table-cell ng-hide" ng-show="!json.is_zero_result">
+                <h1 class="job-basics h4 text-muted mt0 mb0 btn-match " ng-if="location !== undefined">
+                    {{msg(363530)}} {{ json.number_found }}
+                    {{keywords}}
+                    {{msg(363529)}}
+                    {{location}}
+                </h1>
+            </div>
+
+            <div class="display-table-cell ng-hide" ng-show="json.is_zero_result">
+                <div class="form-group form-group-sm mb0  ng-hide" ng-if="location !== undefined" ng-show="!json.is_empty_search && json.keywords_removed">
+                    <h1 class="job-basics h4 text-muted mt0 mb0 btn-match">
+                        {{msg(353319)}}
+                    </h1>
+                    {{msg(377188)}} {{ json.number_found }}
+                    {{msg(363529)}}
+                    {{location}}
+                </div>
+                <div class="form-group form-group-sm mb0 ng-hide" ng-if="location !== undefined" ng-show="json.is_empty_search">
+                    <h1 class="job-basics h4 text-muted mt0 mb0 btn-match">
+                        {{msg(353319)}}
+                    </h1>
+                    {{msg(353320)}}
+                </div>
+            </div>
+            <div class="display-table-cell save-job-group" ng-if="json.number_found">
+                <div ng-switch="agentSaved">
+                    <button type="button"
+                            ng-switch-when="false"
+                            ng-show="agent !== null && !maxSavedAgentsReached"
+                            class="btn btn-sm btn-outline-primary"
+                            ng-click="saveSearch()">
+                        {{:preResolved:msg(370227)}}
+                    </button>
+                    <div ng-switch-when="true"
+                         class="btn btn-sm btn-outline-success">
+                        <i class="glyphicon glyphicon-ok"></i> {{:preResolved:msg(363675)}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="advanced-search visible-xs-block">
+        <div class="input-group">
+            <div class="input-group-btn" style="padding-right:5px;" ng-if="useOnpremIndex">
+                <button class="btn btn-default btn-sm vets-only" ng-click="veteransSorted({type: 'OnPrem'})" ng-class="{'active-vet': pbsort}">
+                    <i class="material-icons stars">stars</i>
+                </button>
+            </div>
+            <div class="input-group-btn" style="padding-right:5px;" ng-if="usePriorityBoardSorting">
+                <button class="btn btn-default btn-sm vets-only" ng-click="veteransSorted({type: 'PBSort'})" ng-class="{'active-vet': pbsort}">
+                    <i class="material-icons stars">stars</i>
+                </button>
+            </div>
+            <div class="form-group form-group-sm mb0"
+                 ng-style="(!$root.isAuthenticated || (savedSearches.length === 0)) && { visibility: 'hidden'}">
+                <div class="select-wrapper" ng-class="{'active':active2}">
+                    <select class="form-control"
+                            aria-label="{{:preResolved:msg(370226)}}"
+                            ng-focus="active2 = true" ng-blur="active2 = false"
+                            ng-model="currentSavedJobId"
+                            ng-change="gotoJobsearch(currentSavedJobId)"
+                            ng-options="savedJob.value as savedJob.name for savedJob in savedSearches">
+                        <option value="" ng-selected="selected">{{:preResolved:msg(370226)}}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="input-group-btn" style="padding-left:5px;">
+                <button class="btn btn-default btn-sm"
+                        ng-init="isCollapsed = true"
+                        ng-click="isCollapsed = !isCollapsed"
+                        aria-label="{{isCollapsed ? msg(378998) : msg(378999)}}">
+                    <!--{{:preResolved:msg(370221)}}-->
+                    <i class="glyphicon" ng-class="{'glyphicon-triangle-bottom':isCollapsed, 'glyphicon-triangle-top': !isCollapsed}"></i>
+                </button>
+            </div>
+        </div>
+
+        <div uib-collapse="isCollapsed">
+            <div class="advanced-search-filters">
+                <div ng-if="json.active_filters.length" class="mb15">
+                    <div class="display-table">
+                        <div class="display-table-row">
+                            <div class="display-table-cell" style="width:65%">
+                                <p>
+                                    <strong>
+                                        {{:preResolved:msg(284057)}}
+                                    </strong>
+                                </p>
+                            </div>
+                            <div class="display-table-cell text-right">
+                                <a href="" class="small" ng-click="removeFilters()">
+                                    <!--{{:preResolved:msg(370522)}}-->{{$root.msg(288378)}}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <span ng-repeat="item in json.active_filters track by $index"
+                          class="label label-info label-filter"
+                          ng-class="{'no-x': item.type == 'CommonRadius'}"
+                          tabindex="1">
+                        {{ item.title }}
+                        <span ng-if="item.values[0].name">
+                            - {{ item.values[0].name }}
+                        </span>
+                        <a ng-click="removeFilter(item)" href=""
+                           class="small"
+                           title="{{msg(363526)}}"
+                           aria-label="{{msg(363526)}}"
+                           style="display: block; height: auto; position: absolute; right: 7px; top: 8px; padding:0;"
+                           ng-show="item.type !== 'CommonRadius'">
+                            <i class="glyphicon glyphicon-remove"></i>
+                        </a>
+                    </span>
+                </div>
+                <form ng-if="companyFilterNotSet" ng-submit="addCompanyToSearch(search.company)">
+                    <strong ng-click="toggleOpen()">
+                        {{:preResolved:msg(70733)}}
+                    </strong>
+                    <ocs-input meta="meta.companyName" form-size="sm" add-on-btn="{'text':'Add','type':'btn-info'}" add-on-btn-fn="addCompanyToSearch(search.company)" model="search.company"></ocs-input>
+                </form>
+                <div ng-repeat="item in staticFilters track by $index">
+                    <strong>{{item.title}}</strong>
+                    <p>
+                        <div ng-repeat="filter in item.values">
+                            <a ng-click="filter.selected = applyFilter(filter, item.type, item, true)" href="" ng-class="{'active': filter.selected}">
+                                {{ filter.name }}
+                            </a>
+                        </div>
+                    </p>
+                </div>
+
+            </div>
+            <div class="close-button" ng-click="isCollapsed = !isCollapsed">
+                <i class="material-icons">arrow_drop_up</i>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="js-left-col hidden-xs">
+            <div class="job-filters">
+                <ocs-recent-searches view-type="other" channel-class="military"></ocs-recent-searches> 
+                <div class="filter-list" ng-if="json.active_filters.length">
+                    <div class="panel" style="padding-bottom: 10px;">
+                        <div class="display-table">
+                            <div class="display-table-row">
+                                <div class="display-table-cell" style="width:65%">
+                                    <h5>
+                                        {{:preResolved:msg(284057)}}
+                                    </h5>
+                                </div>
+                                <div class="display-table-cell text-right">
+                                    <a href="" class="small" ng-click="removeFilters()">
+                                        <!--{{:preResolved:msg(370522)}}-->{{$root.msg(288378)}}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <span ng-repeat="item in json.active_filters track by $index"
+                              class="label label-info label-filter"
+                              tabindex="1"
+                              ng-class="{'no-x': item.type == 'CommonRadius'}">
+                            {{ item.title }}
+                            <span ng-if="item.values[0].name">
+                                - {{ item.values[0].name }}
+                            </span>
+                            <a ng-click="removeFilter(item)" href=""
+                               class="small"
+                               title="{{msg(363526)}}"
+                               aria-label="{{msg(363526)}}"
+                               style="display: block; height: auto; position: absolute; right: 7px; top: 8px; padding:0;"
+                               ng-show="item.type !== 'CommonRadius'">
+                                <i class="glyphicon glyphicon-remove"></i>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="panel" ng-if="usePriorityBoardSorting || useOnpremIndex">
+                    <div class="accordion-toggle">
+                        <h5>{{:preResolved:msg(370499)}}</h5>
+                    </div>
+                    <div style="padding-bottom: 10px;" ng-if="usePriorityBoardSorting">
+                        <a class="small" ng-click="veteransSorted({type: 'PBSort'})">
+                            <i class="material-icons veteran-star-red fs20">stars</i> {{:preResolved:msg(375947)}}
+                        </a>
+                    </div>
+                    <div style="padding-bottom: 10px;" ng-if="useOnpremIndex">
+                        <a class="small" ng-click="veteransSorted({type: 'OnPrem'})">
+                            <i class="material-icons veteran-star-red fs20">stars</i> {{:preResolved:msg(370220)}}
+                        </a>
+                    </div>
+                </div>
+
+
+                <form class="panel" ng-if="companyFilterNotSet" ng-submit="addCompanyToSearch(search.company)">
+                    <h5>{{:preResolved:msg(70733)}}</h5>
+                    <ocs-input meta="meta.companyName" form-size="sm" add-on-btn="{'text':'Add'}" add-on-btn-fn="addCompanyToSearch(search.company)" model="search.company"></ocs-input>
+                </form>
+
+                <uib-accordion class="accordion-list ng-cloak" close-others="true" ng-if="$root.isAuthenticated && savedSearches.length">
+                    <uib-accordion-group heading="{{:preResolved:msg(370226)}}"
+                                         template-url="/channels/mgsmil/partials/ui-accordion-group-jobs.html"
+                                         is-open="true">
+                        <div ng-repeat="job in savedSearches" class="small">
+                            <a ng-click="gotoJobsearch(job.value)" href="" ng-class="{'active': job.selected}">
+                                {{ job.name }}
+                            </a>
+                        </div>
+                    </uib-accordion-group>
+                </uib-accordion>
+
+                <uib-accordion ng-repeat="item in staticFilters track by $index" class="accordion-list ng-cloak" close-others="true">
+                    <uib-accordion-group heading="{{item.title}}"
+                                         template-url="/channels/mgsmil/partials/ui-accordion-group-jobs.html"
+                                         is-open="true">
+                        <div ng-repeat="filter in item.values" class="small">
+                            <a ng-click="filter.selected = applyFilter(filter, item.type, item, true)" href="" ng-class="{'active': filter.selected}">
+                                {{ filter.name }}
+                            </a>
+                        </div>
+                    </uib-accordion-group>
+                </uib-accordion>
+            </div>
+        </div>
+
+        <div class="js-right-col">
+            <div class="mb10 visble-md visible-lg">
+                <div class="display-table">
+                    <div class="display-table-cell ng-hide" ng-show="!json.is_zero_result">
+                        <h1 class="job-basics h4 text-muted mt0 mb0 btn-match " ng-if="location !== undefined">
+                            {{msg(363530)}} {{ json.number_found }}
+                            {{keywords}}
+                            {{msg(363529)}}
+                            {{location}}
+                        </h1>
+                    </div>
+
+                    <div class="display-table-cell ng-hide" ng-show="json.is_zero_result">
+                        <div class="form-group form-group-sm mb0  ng-hide" ng-if="location !== undefined" ng-show="!json.is_empty_search && json.keywords_removed">
+                            <h1 class="job-basics h4 text-muted mt0 mb0 btn-match">
+                                {{msg(353319)}}
+                            </h1>
+                            {{msg(377188)}} {{ json.number_found }}
+                            {{msg(363529)}}
+                            {{location}}
+                        </div>
+                        <div class="form-group form-group-sm mb0 ng-hide" ng-if="location !== undefined" ng-show="json.is_empty_search">
+                            <h1 class="job-basics h4 text-muted mt0 mb0 btn-match">
+                                {{msg(353319)}}
+                            </h1>
+                            {{msg(353320)}}
+                        </div>
+                    </div>
+                    <div class="display-table-cell save-job-group" ng-if="json.number_found">
+                        <div ng-switch="agentSaved">
+                            <button type="button"
+                                    ng-switch-when="false"
+                                    ng-show="agent !== null && !maxSavedAgentsReached"
+                                    class="btn btn-sm btn-outline-primary"
+                                    ng-click="saveSearch()">
+                                {{:preResolved:msg(370227)}}
+                            </button>
+                            <div ng-switch-when="true"
+                                 class="btn btn-sm btn-outline-success">
+                                <i class="glyphicon glyphicon-ok"></i> {{:preResolved:msg(363675)}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="jsAdvertisement_01" class="js-bottom-advert" ng-show="configMeta.JobsearchAdvertisement.isEnabled.lookUpConfig.value === 'true'" ng-if="adSwitch.topBanner && !isMobileView && !isTabletView" style="text-align:center;">
+                <ocs-jobsearch-ad-component keyword="search.keywords" location="search.location" ad-type="banner" position="Bottom1"></ocs-jobsearch-ad-component>
+            </div>
+            <div id="jsAdvertisement_02" class="js-top-advert" ng-show="configMeta.JobsearchAdvertisement.isEnabled.lookUpConfig.value === 'true'" ng-if="adSwitch.middleAd">
+                <ocs-jobsearch-ad-component keyword="search.keywords" location="search.location" ad-type="default" position="Top1"></ocs-jobsearch-ad-component>
+            </div>
+            <div class="list" ocs-spinner is-loaded="doneLoading" options="{top: '100px'}">
+                <div class="list-item" ng-repeat="(key,job) in json.jobs track by $index" ng-class="{'list-last':$last}">
+                    <div class="list-body">
+                        <div class="row">
+                            <div class="col-sm-9">
+                                <div class="header-actions">
+                                    <div>
+                                        <h3 class="list-item-heading">
+                                            <a ng-href="{{job.url}}"
+                                               ng-if="ppcTrackingEnabled == '' || ppcTrackingEnabled == 'false'">
+                                                <span class="pull-right small" ng-if="job.flags.direct_job">
+                                                    <i class="fa fa-flag-o"></i>
+                                                </span>
+                                                {{job.title}}
+                                            </a>
+                                            <a href="{{job.url}}"
+                                               ng-click="ppcTrackJobClick(job, $event)"
+                                               ng-if="ppcTrackingEnabled == 'true'">
+                                                <span class="pull-right small" ng-if="job.flags.direct_job">
+                                                    <i class="fa fa-flag-o"></i>
+                                                </span>
+                                                {{job.title}}
+                                            </a>
+
+                                        </h3>
+                                    </div>
+                                </div>
+                                <strong class="text-muted small">
+                                    <span ng-bind="job.company"></span> |
+                                    <span ng-bind="job.city"></span> |
+                                    <span ng-bind="job.state"></span> |
+                                </strong>
+                                <small aria-label="Date posted: " ng-bind="job.active_from | date: format: medium"></small>
+                            </div>
+                            <div class="col-sm-3 text-right">
+                                <small class="pull-left-xs" ng-show="job.flags.direct_job">
+                                    <i class="material-icons align-icon veteran-star-red">stars</i> {{:preResolved:msg(370217)}}
+                                </small>
+                                
+                                <button class="btn btn-sm list-save-btn btn-outline-primary"
+                                        type="button"
+                                        ng-if="(!job.is_saved && !job.can_be_saved) || (!job.is_saved && saveJobs.MaxJobSavesReached == true)"
+                                        ng-disabled="true">
+                                    {{:preResolved:msg(370218)}}
+                                </button>
+                                <button class="btn btn-sm btn-primary list-save-btn btn-outline-primary"
+                                        type="button"
+                                        ocs-busy="busyLinks.saveJob"
+                                        ng-disabled="busyLinks.saveJob"
+                                        ng-if="(!job.is_saved && job.can_be_saved) && (saveJobs.MaxJobSavesReached == false)"
+                                        ng-click="saveJob((job.source.toLowerCase() == 'core') ? (job.id) : (job.cloud_posting_id), job.source, job)">
+                                    {{:preResolved:msg(370218)}}
+                                </button>
+
+                                <div tabindex="1"
+                                     ng-if="(job.is_saved)"
+                                     class="btn btn-sm btn-success list-save-btn btn-outline-success">
+                                    {{:preResolved:msg(370219)}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row ng-hide" ng-show="!json.jobs.length && doneLoading">
+                    <div class="col-sm-8 col-sm-offset-2 mt15 no-results-msg">
+                        <p class="h2">
+                            <strong>{{:preResolved:msg(182937)}}</strong>
+                        </p>
+                        <p class="h3">{{:preResolved:msg(182938)}}</p>
+                    </div>
+                </div>
+            </div>
+            <div id="jsAdvertisement_03" ng-if="!isMobileView && adSwitch.bottomAd" class="js-top-advert" ng-show="configMeta.JobsearchAdvertisement.isEnabled.lookUpConfig.value === 'true'">
+                <ocs-jobsearch-ad-component keyword="search.keywords" location="search.location" ad-type="default" position="Middle1"></ocs-jobsearch-ad-component>
+            </div>
+            <div class="hidden-xs">
+                {{ json.native_query }}
+                {{ json.native_response }}
+            </div>
+            <nav class="text-center-xs pagination-nav text-right mt15" ng-if="json.pages.length > 1">
+                <ocs-pager datasetSize="datasetSize"
+                           pageSize="pageSize"
+                           currentPage="pager.currentPage"
+                           showFirstLast="false"
+                           visiblePages="6"
+                           callback="changePage"
+                           page-number-limit="40"></ocs-pager>
+            </nav>
+            <hr class="hr-short visible-xs-block">
+        </div>
+    </div>
+</div>

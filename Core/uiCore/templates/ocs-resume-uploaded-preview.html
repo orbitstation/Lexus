@@ -1,0 +1,42 @@
+﻿<div class="resume-preview-section">
+    <dl>
+        <dt>{{$root.msg(216831)}}</dt>
+        <dd>
+            <div ng-if="ctrl.documents[0].fileType != ctrl.fileTypePdf">
+                <div class="well mt16 preview-container">
+                    <div class="preview preview-non-pdf">
+                        <div ng-bind-html="ctrl.model.preview.resumeBody"></div>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="ctrl.documents[0].fileType == ctrl.fileTypePdf">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="text-muted" ng-if="ctrl.pdfDocInfo">
+                            <div class="mt24">
+                                {{$root.msg(105916)}}: {{ctrl.currentPdfPage}}/{{ctrl.pdfDocInfo.pageNo}}
+                                <a href="" ng-click="ctrl.goToPreviousPage()" title="{{$root.msg(113457)}}" ng-disabled="ctrl.currentPdfPage == 1" class="btn btn-default btn-sm" ng-class="{'disabled': ctrl.currentPdfPage == 1}">
+                                    <span class="sr-only">{{$root.msg(113457)}}</span><span class="fa fa-angle-left"></span>
+                                </a>
+                                <a href="" ng-click="ctrl.goToNextPage()" title="{{$root.msg(113458)}}" ng-disabled="ctrl.currentPdfPage == ctrl.pdfDocInfo.pageNo" class="btn btn-default btn-sm" ng-class="{'disabled': ctrl.currentPdfPage == ctrl.pdfDocInfo.pageNo}">
+                                    <span class="sr-only">{{$root.msg(113458)}}</span><span class="fa fa-angle-right"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="mt24 pull-right text-muted">
+                            {{$root.msg(369145)}}:
+                            <a href="" ng-click="ctrl.pdfZoomIn()" class="btn btn-default btn-sm" title="{{$root.msg(310946)}}" ng-disabled="ctrl.pdfPreviewImgPercentWidth >= ctrl.pdfPreviewImgPercentWidthMax" ng-class="{'disabled': ctrl.pdfPreviewImgPercentWidth >= ctrl.pdfPreviewImgPercentWidthMax}"><span class="sr-only">{{$root.msg(310946)}}</span><span class="glyphicon glyphicon-plus"></span></a>
+                            <a href="" ng-click="ctrl.pdfZoomOut()" class="btn btn-default btn-sm" title="{{$root.msg(310947)}}" ng-disabled="ctrl.pdfPreviewImgPercentWidth <= ctrl.pdfPreviewImgPercentWidthMin" ng-class="{'disabled': ctrl.pdfPreviewImgPercentWidth <= ctrl.pdfPreviewImgPercentWidthMin}"><span class="sr-only">{{$root.msg(310947)}}</span><span class="glyphicon glyphicon-minus"></span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="well mt16 preview-container" ocs-spinner is-loaded="!ctrl.loading">
+                    <div ng-if="!ctrl.pdfImage">{{$root.msg(216831)}}...</div>
+                    <img ng-show="ctrl.pdfImage" ng-src="{{ctrl.pdfImage}}" style="width:{{ctrl.pdfPreviewImgPercentWidth}}%;" class="preview preview-pdf" alt="{{$root.msg(216831)}}" />
+                </div>
+            </div>
+        </dd>
+    </dl>
+</div>

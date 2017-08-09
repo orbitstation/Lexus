@@ -1,0 +1,130 @@
+﻿<h4 class="">{{$root.msg(365639)}}</h4>
+
+<!-- Add a Primary Address button-->
+<button type="button" class="btn btn-add btn-xs" ng-click="model.noAddress = 2009" ng-if="model.noAddress != 2009"> {{$root.msg(365643)}}</button>
+
+<div ng-if="model.noAddress == 2009">
+    <!-- I do not have a Primary Address -->
+    <button type="button" class="btn btn-remove btn-xs mb15" ng-click="model.noAddress = 2008"> {{$root.msg(365644)}}</button>
+
+    <div class="row">
+        <!-- home Address -->
+        <div class="col-md-6" ng-if="$root.cfg('addressInformation.homeAddress') == 'true'">
+            <ocs-google-address-auto-complete id="address" meta="meta.homeAddressAutocomplete"
+                                              ng-if="model.address.country == 164"
+                                              model="model.address.homeAddress"
+                                              ng-model="model.address.homeAddress"
+                                              google-model="formValues.googleHomeAddress"
+                                              on-select="$root.onHomeAddressSelection($item, model.address)">
+            </ocs-google-address-auto-complete>
+            <ocs-input meta="meta.homeAddress" model="model.address.homeAddress" ng-if="model.address.country != 164"></ocs-input>
+        </div>
+
+        <!-- home Address2 -->
+        <div class="col-md-6" ng-if="$root.cfg('addressInformation.homeAddress2') == 'true'">
+            <ocs-input meta="meta.homeAddress2" model="model.address.homeAddress2"></ocs-input>
+        </div>
+    </div>
+    <div class="row">
+        <!-- city -->
+        <div class='col-md-6' ng-if="$root.cfg('addressInformation.city') == 'true'">
+            <ocs-input meta="meta.city" model="model.address.city"></ocs-input>
+        </div>
+
+        <!-- state -->
+        <div class='col-md-6' ng-if="$root.cfg('addressInformation.state') == 'true'">
+            <!-- <ocs-input meta="meta.stateInternational" model="model.address.state" ng-if="meta.state.items.length <= 1"></ocs-input> -->
+            <ocs-select ng-init="0" meta="meta.state" model="model.address.state" ng-if="meta.state.items.length > 1"></ocs-select>
+            <!--<pre>{{meta.state.items | json}}</pre>-->
+        </div>
+    </div>
+    <div class="row">
+        
+        <!-- postal code -->
+        <div class='col-md-4' ng-if="$root.cfg('addressInformation.postalCode') == 'true'">
+            <ocs-input meta="meta.postalCodeInternational" model="model.address.postalCode" ng-if="model.address.country != 164"></ocs-input>
+            <ocs-zip-code meta="meta.postalCode"
+                          model="model.address.postalCode"
+                          state="model.address.state"
+                          county="model.address.county"
+                          ng-if="model.address.country == 164">
+            </ocs-zip-code>
+        </div>
+
+        <!-- county -->
+        <div class='col-md-4' ng-if="$root.cfg('addressInformation.county') == 'true'">
+            <ocs-input meta="meta.county" model="model.address.county" ng-if="meta.state.items.length > 1"></ocs-input>
+        </div>
+
+        <!-- country -->
+        <div class='col-md-4' ng-if="$root.cfg('addressInformation.county') == 'true'">
+            <ocs-select meta="meta.country" model="model.address.country"></ocs-select>
+        </div>
+    </div>
+</div>
+
+<h4 class="">{{$root.msg(354965)}}</h4>
+<div>
+    <div ng-show="model.showMailingAddress == false">
+        <p>{{$root.msg(365640)}}</p>
+        <div class="row">
+            <div class='col-sm-12 form-group' ng-if="$root.cfg('addressInformation.showHideMailingAddress') == 'true'">
+                <button type="button" class="btn btn-add btn-xs" ng-click="model.showMailingAddress = true"> {{$root.msg(365641)}}</button>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="model.showMailingAddress == true ">
+        <div class="row">
+            <div class='col-sm-12 form-group' ng-if="$root.cfg('addressInformation.showHideMailingAddress') == 'true'">
+                <button type="button" class="btn btn-remove btn-xs" ng-click="model.showMailingAddress = false"> {{$root.msg(365642)}}</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class='col-md-6' ng-if="$root.cfg('addressInformation.mailingHomeAddress') == 'true'">
+                <ocs-google-address-auto-complete id="addressMail" meta="meta.mailAddressAutocomplete"
+                                                  ng-if="model.address.mailingCountry == 164"
+                                                  model="model.address.mailingHomeAddress"
+                                                  ng-model="model.address.mailingHomeAddress"
+                                                  google-model="formValues.googleMailingAddress"
+                                                  on-select="$root.onMailaddressSelection($item, model.address)">
+                </ocs-google-address-auto-complete>
+                <ocs-input meta="meta.mailingHomeAddress" model="model.address.mailingHomeAddress" ng-if="model.address.mailingCountry != 164"></ocs-input>
+            </div>
+            <div class='col-md-6' ng-if="$root.cfg('addressInformation.mailingHomeAddress2') == 'true'">
+                <ocs-input meta="meta.mailingHomeAddress2" model="model.address.mailingHomeAddress2"></ocs-input>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class='col-md-6' ng-if="$root.cfg('addressInformation.mailingCity') == 'true'">
+                <ocs-input meta="meta.mailingCity" model="model.address.mailingCity"></ocs-input>
+            </div>
+            <div class='col-md-6' ng-if="$root.cfg('addressInformation.mailingState') == 'true'">
+                <ocs-select meta="meta.mailingState" model="model.address.mailingState" ng-if="meta.mailingState.items.length > 1"></ocs-select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class='col-xs-6 col-md-4' ng-if="$root.cfg('addressInformation.mailingPostalCode') == 'true'">
+                <ocs-input meta="meta.postalCodeInternational" model="model.address.mailingPostalCode" ng-if="model.address.mailingCountry != 164"></ocs-input>
+
+                <ocs-zip-code meta="meta.mailingPostalCode"
+                              model="model.address.mailingPostalCode"
+                              state="model.address.mailingState"
+                              county="model.address.mailingCounty"
+                              ng-if="model.address.mailingCountry == 164">
+                </ocs-zip-code>
+
+            </div>
+            <div class='col-xs-6 col-md-4' ng-if="$root.cfg('addressInformation.mailingCounty') == 'true'">
+                <ocs-input meta="meta.mailingCounty" model="model.address.mailingCounty" ng-if="meta.mailingState.items.length > 1"></ocs-input>
+            </div>
+            <div class='col-sm-12 col-md-4' ng-if="$root.cfg('addressInformation.mailingPostalCode') == 'true'">
+                <ocs-select meta="meta.mailingCountry" model="model.address.mailingCountry"></ocs-select>
+            </div>
+
+        </div>
+    </div>
+</div>

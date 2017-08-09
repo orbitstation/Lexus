@@ -1,0 +1,72 @@
+﻿<div ng-if="isLoaded">
+    <div class="row">
+        <div class="col-sm-12">
+            <ocs-bread-crumbs></ocs-bread-crumbs>
+            <h1>{{msg(356189)}}&nbsp;:&nbsp;"{{resume.resumeBasics.resumeTitle}}"</h1>
+        </div>
+    </div>
+
+    <ocs-401 meta="meta" msgheader="379077" msgbody="379078"></ocs-401>
+
+    <div ng-show="$root.isAuthenticated && configLayout.ResumeRatingEnabled.lookUpConfig.value == 'true' && resume.resumeValue">
+        <span ng-if="!resume.rating.ratingGrade">TODO: throw spinner; doRating;</span>
+
+        <div class="col-md-4">
+            <div class="panel panel-info">
+                <div class="panel-heading text-center">{{msg(332736)}}</div>
+                <div class="panel-body pt0">
+                    <div class="text-center" style="font-weight: bold; font-size: 160px;">{{resume.rating.ratingGrade}}</div>
+
+                    <div class="progress" ng-attr-title="{{ (resume.rating.ratingImpact > 95) ? msg(364937) : (resume.rating.ratingImpact > 75) ? msg(364938) : (resume.rating.ratingImpact > 25) ? msg(364939) : msg(364940) }}">
+                        <div class="progress-bar animate" role="progressbar" aria-valuenow="{{resume.rating.ratingImpact}}" aria-valuemin="0" aria-valuemax="100"
+                             ng-class="{'progress-bar-danger': resume.rating.ratingImpact < 25, 'progress-bar-info': resume.rating.ratingImpact < 75, 'progress-bar-success': resume.rating.ratingImpact >= 75 }"
+                             ng-style="{'width': ratingImpact+'%', 'color': 'black'}">{{msg(333010)}}:{{resume.rating.ratingImpact}}</div>
+                    </div>
+                    <div class="progress" ng-attr-title="{{ (resume.rating.ratingDepth > 95) ? msg(364937) : (resume.rating.ratingDepth > 75) ? msg(364938) : (resume.rating.ratingDepth > 25) ? msg(364939) : msg(364940) }}">
+                        <div class="progress-bar animate" role="progressbar" aria-valuenow="{{resume.rating.ratingDepth}}" aria-valuemin="0" aria-valuemax="100"
+                             ng-class="{'progress-bar-danger': resume.rating.ratingDepth < 25, 'progress-bar-info': resume.rating.ratingDepth < 75, 'progress-bar-success': resume.rating.ratingDepth >= 75 }"
+                             ng-style="{'width': ratingDepth+'%', 'color': 'black'}">{{msg(333008)}}:{{resume.rating.ratingDepth}}</div>
+                    </div>
+                    <div class="progress" ng-attr-title="{{ (resume.rating.ratingBrevity > 95) ? msg(364937) : (resume.rating.ratingBrevity > 75) ? msg(364938) : (resume.rating.ratingBrevity > 25) ? msg(364939) : msg(364940) }}">
+                        <div class="progress-bar animate" role="progressbar" aria-valuenow="{{resume.rating.ratingBrevity}}" aria-valuemin="0" aria-valuemax="100"
+                             ng-class="{'progress-bar-danger': resume.rating.ratingBrevity < 25, 'progress-bar-info': resume.rating.ratingBrevity < 75, 'progress-bar-success': resume.rating.ratingBrevity >= 75 }"
+                             ng-style="{'width': ratingBrevity+'%', 'color': 'black'}">{{msg(333006)}}:{{resume.rating.ratingBrevity}}</div>
+                    </div>
+
+                    <p>{{msg(364906).replace('{0}',resume.rating.ratingPercentile)}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <h2>{{msg(364904)}}</h2>
+            <p>{{resume.rating.ratingDescription}}</p>
+            <div ng-if="resume.rating.ratingTips">
+                <p>{{msg(364905)}}:</p>
+                <ul ng-repeat="tip in resume.rating.ratingTips">
+                    <li>{{tip}}</li>
+                </ul>
+            </div>
+
+            <div ng-if="resume.rating.ratingDate > resume.rating.dateModified" class="panel panel-info mt56">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-10 mt8">{{msg(364941)}}</div>
+                        <div class="col-md-2 text-right"><span class="btn btn-default">{{msg(319779)}}</span></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <h2>{{msg(332738)}}</h2>
+            <h3>{{msg(320771)}}</h3>
+            {{msg(320772)}}
+            <h3>{{msg(320773)}}</h3>
+            {{msg(320774)}}
+            <h3>{{msg(320775)}}</h3>
+            {{msg(320776)}}
+        </div>
+    </div>
+</div>

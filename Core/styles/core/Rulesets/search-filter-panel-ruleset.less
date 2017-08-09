@@ -1,0 +1,125 @@
+﻿@job-filters:{
+
+    //directive inner selector
+    .filters-content{
+        uib-accordion {
+            h5 {
+                cursor: pointer;
+
+                a {
+                    .h5();
+                    text-decoration: none;
+                }
+            }
+            .panel-group,
+            .panel {
+                margin-bottom: 0;
+            }
+
+            .panel {
+                .noshadow()!important;
+                border-bottom: 1px solid @gray-lighter;
+                .panel-collapse{
+                    margin-bottom: @grid-gutter-width/2;
+                }
+                a {
+                    cursor: pointer;
+                }
+                
+                .fa-plus,
+                .fa-minus{
+                    position: relative;
+                    top: 3px;
+                }
+            }
+            &:last-child{
+                .panel-collapse{
+                    margin-bottom: 0;
+                }
+                .panel{
+                    border: 0;
+                }
+            }
+        }
+    }
+
+    @media (max-width: @screen-xs-max) {
+        .mobile-filters{
+            position: fixed;
+            width: 100%;
+            margin: 0 (-@grid-gutter-width/2);
+            background-color: #fff;
+            z-index: 99;
+            box-shadow: 0 2px 6px rgba(0,0,0,.09);
+
+            .mobile-filters-header{
+                padding: @grid-gutter-width/4 @grid-gutter-width/2;
+                border-bottom: 1px solid rgba(0,0,0,.05);
+                background-color: @brand-secondary-l-5;
+                .filter-toggle{
+                    text-align: center;
+                    color: @brand-secondary-d-1;
+                }
+            }
+
+            .filters-content > div{
+                padding: @grid-gutter-width/2;
+                background-color: lighten(@brand-secondary-l-5, 5%);
+
+                .input-group{
+                    max-width: 300px;
+                }
+            }
+
+            .panel{
+                background-color: transparent!important;
+                box-shadow: none;
+            }
+        }
+    }
+
+    .filter-list {
+        .btn-outline-primary{
+            margin-right: 5px;
+            margin-bottom: 5px;
+            max-width: 100%;
+            a{
+                text-decoration: none;
+                &:focus{
+                    text-decoration: none;
+                }
+            }
+        }
+        .fa, i {
+            opacity: .7;
+        }
+    }
+    
+    
+    
+    .job-filters {
+        .panel-body{
+            padding: @grid-gutter-width/2;
+        }
+        .filter-list {
+            .label{
+                padding: 5px 10px;
+            }
+            a {
+                display: block;
+                padding-right: 15px;
+                position: relative;
+                text-decoration: none;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                .fa, i {
+                    position: absolute;
+                    top: 4px;
+                    right: 0;
+                }
+            }
+        }
+
+        
+    }
+};

@@ -1,0 +1,23 @@
+﻿<ng-form name='singleItemForm' novalidate>
+    <fieldset class='form-group'>
+        <legend class="label-type" ng-class="{'display-block': meta.isInline }">
+            <span ng-show='{{:preResolved:meta.required}}'>
+                <small class="fa fa-asterisk required-asterisk"></small>
+                <span class="sr-only">{{$root.msg(555)}}</span>
+            </span>
+            {{:preResolved:meta.label.lookUpMsg.value}}
+        </legend>
+        <div ng-class="(meta.isInline)?'radio-inline':'radio'" ng-repeat='n in :preResolved:meta.items'>
+            <label for='{{:preResolved:elementID}}-{{:preResolved:n.value}}'>
+                <input type="radio"
+                       id='{{:preResolved:elementID}}-{{:preResolved:n.value}}'
+                       ng-model="$parent.model"
+                       value='{{:preResolved:n.value}}'
+                       ng-required='{{meta.required}}' />
+                <span class="radio-custom"></span>
+                <span class="radio-label">{{:preResolved:n.text}}</span>
+            </label>
+        </div>
+        <span class='error-message'>&nbsp;</span>
+    </fieldset>
+</ng-form>

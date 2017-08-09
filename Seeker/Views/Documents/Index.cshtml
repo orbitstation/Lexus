@@ -1,0 +1,21 @@
+﻿@{ ViewBag.Title = "Documents"; }
+
+@section Header
+{
+
+<!-- google drive api     -->
+<script src="https://apis.google.com/js/client.js"></script>
+<script src="https://apis.google.com/js/api.js"></script>
+<!-- dropbox api -->
+<script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="40czhmremdxh40c"></script>
+
+<!-- build:js -->
+<script src="~/UI/documents/documents-meta.js"></script>
+<script src="~/UI/documents/documents-config.js"></script>
+
+<script src="~/UI/documents/documents-app.js"></script>
+<script src="~/UI/documents/summary/documents-summary-ctrl.js"></script>
+<!-- endbuild -->
+}
+
+<div ng-view></div>

@@ -1,0 +1,70 @@
+.hr-short{
+    margin-top: @grid-gutter-width/2;
+    margin-bottom: @grid-gutter-width/2;
+}
+
+.body-wrapper{
+    background: @body-bg;
+    >.container{
+        @border-color: darken(@body-bg, 10%);
+        border-left: 1px solid @border-color;
+        border-right: 1px solid @border-color;
+    }
+}
+
+.content-wrapper{
+    background-color: @content-bg;
+    padding: @grid-gutter-width;
+    @media (max-width: @screen-xs-max){
+        padding: @grid-gutter-width/2;
+    }
+}
+
+.required-asterisk{
+    color: @brand-danger;
+    vertical-align: super;
+    font-size: 50%;
+}
+
+.error-message {
+    color: @brand-danger;
+}
+
+//Sub sections to have side border
+//Example radio buttons that open sub sections
+.child-section{
+    border-left: 1px solid rgba(0,50,50,.1);
+    display: table;
+    margin-left: 10px;
+    padding: 15px 0px;
+    border-top: 1px solid rgba(0,50,50,.1);
+    background-color: rgba(100, 100, 100, 0.04);
+
+    /*border-left: 2px solid #dddddd;
+    display: table;
+    margin-left: 15px;
+    padding: 15px 0;*/
+}
+
+//When search doesn't provide any results
+//Default text styles.
+.no-results-msg {
+    color: @gray;
+    //text-align: center;
+}
+
+.show-hide {
+    -webkit-transition: all linear 0.2s;
+    transition: all linear 0.2s;
+    //opacity: 1;
+    &.ng-hide {
+        opacity: 0;
+    }
+}
+
+
+
+select option:disabled{
+    color: white;
+    background-color: #b9b9b9;
+}

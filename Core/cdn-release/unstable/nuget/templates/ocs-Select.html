@@ -1,0 +1,45 @@
+﻿<ng-form name='singleItemForm' novalidate>
+    <div class="form-group" ng-class="{'has-error': !(singleItemForm.$pristine || singleItemForm.$valid), 'form-group-sm': meta.small}">
+        <label for='{{elementID}}' class='ng-cloak'>
+            <span ng-show='{{:preResolved:meta.required}}'>
+                <small class="fa fa-asterisk required-asterisk"></small>
+                <span class="sr-only">Required</span>
+            </span>
+            {{:preResolved:meta.label.lookUpMsg.value}}
+            <span ng-show="{{::meta.help}}">
+                <a href="" class="helpIcon" popover-trigger="focus" title="{{:preResolved:meta.help.title.lookUpMsg.value}}" role="button"
+                   uib-popover-template="'popOverActivities-4.html'" popover-is-open="popoverStatus" popover-title="{{::meta.help.title.lookUpMsg.text}}">[?]</a>
+                <script type="text/ng-template" id="popOverActivities-4.html">
+                    <p ng-bind-html="meta.help.content.lookUpMsg.text | unsafe"></p>
+                </script>
+            </span>
+        </label>
+        <select id="{{elementID}}"
+                ng-if='meta.items[0].text.lookUpMsg'
+                class='form-control'
+                ng-model='$parent.model'
+                ng-disabled='meta.disabled'
+                ng-required='meta.required'
+                ng-change='changeFn()'
+                ng-options='item.value as item.text.lookUpMsg.value for item in meta.items'></select>
+
+        <select id="{{elementID}}"
+                ng-if='!meta.items[0].text.lookUpMsg'
+                class='form-control'
+                ng-model='$parent.model'
+                ng-disabled='meta.disabled'
+                ng-required='meta.required'
+                ng-change='changeFn()'
+                ng-options='item.value as item.text disable when item.disabled for item in  meta.items'
+                ></select>
+        <!-- field level validation -->
+        <span class="error-message">
+            <span ng-show='singleItemForm.$dirty && singleItemForm.$invalid' class="ng-hide">
+                <span ng-show='singleItemForm.$error.required'>{{:preResolved:meta.error.required.lookUpMsg.value}}</span>
+            </span>
+            <span class="error-message" ng-show="singleItemForm.$pristine || singleItemForm.$valid"></span>&nbsp;
+            &nbsp;
+        </span>
+    </div>
+
+</ng-form>

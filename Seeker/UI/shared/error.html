@@ -1,0 +1,43 @@
+﻿<div class="content-wrapper" ng-controller="ErrorCtrl">
+    <div class="row" ng-if="error">
+        <div class="col-sm-12">
+            <h1>{{$root.msg(371123)}}&nbsp;<span ng-if="$root.registry.localStore.global.context.EnvironmentType != 'Production'">-&nbsp;{{error.statusText}}</span></h1>
+            <hr />
+            <h2 ng-bind="$root.msg(371124)"></h2>
+            <h3 ng-bind="$root.msg(371125)"></h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 ng-bind="$root.msg(371126)"></h1>
+            <h2 ng-if="$root.topErrorList[0].message2">{{$root.topErrorList[0].message2}}</h2>
+            <h2 ng-if="!$root.topErrorList[0].message2" ng-bind="$root.msg(371128)"></h2>
+            <h3 ng-bind="$root.msg(371129)"></h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h3>{{$root.registry.sessionStore.PageErrors['500Error'].config.url}}</h3>
+            <h4>{{$root.registry.sessionStore.PageErrors['500Error'].data.exceptionGuid}}</h4>
+            <!-- <hr /><pre>{{$rootScope.registry.sessionStore.PageErrors['500Error'] | json}}</pre><hr /> -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-danger" ng-if="$root.registry.localStore.global.context.EnvironmentType != 'Production'">
+                <div class="panel-heading">
+                    DEBUG ONLY BOX:
+                </div>
+                <div class="panel-body">
+                    <ocs-error error-list="$root.topErrorList"></ocs-error>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <input type="button" value="Back" class="btn btn-primary pull-right" ng-click="back()" />
+        </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+﻿<div>
+    <div class="panel-heading" ng-keypress="toggleOpen($event)" ng-click="toggleOpen()" tabindex="0">
+        <h2 class="panel-title" uib-accordion-transclude="heading">
+            <span uib-accordion-header>{{heading}}</span>
+        </h2>
+    </div>
+    <div class="panel-collapse collapse" uib-collapse="!isOpen">
+        <div class="panel-body" ng-transclude></div>
+    </div>
+</div>

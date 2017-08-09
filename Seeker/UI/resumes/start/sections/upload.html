@@ -1,0 +1,88 @@
+﻿<div ng-controller="Upload as vm">
+    <ocs-error error-list="vm.errorList"></ocs-error>
+    <div>
+        <ocs-upload meta="vm.accordionMeta.documentUpload"
+                    documents="vm.data.documents"
+                    extra-upload-params="vm.accordionMeta.extraUploadParams"
+                    on-error="vm.onUploadError"
+                    on-success="vm.onUploadSuccess">
+        </ocs-upload>
+    </div>
+    <br />
+    <div class="alert alert-info" tabindex="0">
+        {{:preResolved:$root.msg(365522)}}
+        {{:preResolved:$root.msg(365523)}}
+        {{:preResolved:$root.msg(360766)}}
+        <strong>{{vm.data.documents.length}}</strong>
+        {{:preResolved:$root.msg(157932)}}
+        <strong>{{vm.maxItems}}</strong>
+        {{:preResolved:$root.msg(365794)}}
+    </div>
+
+    <div ng-if="vm.data.documents && vm.data.documents.length > 0">
+        <hr class="hr-short" />
+        <div class="list display-table">
+            <!-- (DOCUMENTS)  this is one row template -->
+            <div class="list-item display-table-row" ng-repeat="doc in vm.data.documents | orderBy:'-createDate' track by $index" ng-class="{'list-last':$last}">
+                <div class="list-col-50-percent display-table-cell vertical-align-middle pt16 pb16">
+                    <div class="list-body">
+                        <div class="header-actions">
+                            <!-- row heading link -->
+                            <div>
+                                <h2 class="list-item-heading h3">
+                                    <a ng-click="vm.downloadFile(doc.id)" href="">{{doc.name}}</a>
+
+                                </h2>
+                            </div>
+                            <!-- row data columns -->
+                            <div>
+                                <span>
+                                    <span class="list-label">{{:preResolved:$root.msg(253912)}}</span>
+                                    <span class="list-value">{{doc.createDate |date}}</span>
+                                </span>
+                                <div>
+                                    <span class="list-label">{{:preResolved:$root.msg(354555)}}:</span>
+                                    <span class="list-value">{{doc.fileType}}</span>
+                                    <span class="vertical-separator">|</span>
+                                    <span class="list-label">{{$root.meta.documentUpload.docSize.label.lookUpMsg.value}}:</span>
+                                    <span class="list-value">{{doc.fileSize}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-col-50-percent display-table-cell vertical-align-middle pt16 pb16">
+                    <div class="list-body">
+                        <div class="list-item-actions text-right">
+                            <!-- action buttons -->
+                            <button class="btn btn-link" ng-click="vm.deleteFunction(doc.id)">{{:preResolved:$root.msg(157853)}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script type="text/ng-template" id="verify-delete-modal.html">
+                <div class="modal-header">
+                    {{msg(246651)}}
+                    <button type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                            ng-click="close()"
+                            style="color: #fff;">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4>{{msg(365795)}}</h4>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-link" type="button" ng-click="cancel()">{{msg(162574)}}</button>
+                    <button class="btn btn-primary" type="button" ng-click="ok()">{{msg(315145)}}</button>
+                </div>
+            </script>
+        </div>
+        <hr class="hr-short" />
+    </div>
+</div>
+

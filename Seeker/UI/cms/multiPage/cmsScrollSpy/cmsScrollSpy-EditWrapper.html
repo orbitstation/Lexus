@@ -1,0 +1,80 @@
+﻿<!-- cms-ScrollSpy: edit -->
+<div class="sticky-closure">
+    <div class="row scroll-spy" ocs-spinner is-loaded="true" ocs-scroll-spy>
+        <div class="col-md-3 hidden-xs">
+            <div ocs-sticky slide-inside=".sticky-closure">
+                <ul class="pagemenu list-group">
+                    <li ng-repeat="(key,items) in modules.meta.items" class="list-group-item" spy="{{items.title}}">{{items.title}}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+
+
+
+
+            <div class="row match-my-cols cmsHighlight" ng-repeat="(key,items) in modules.meta.items" id="{{items.title}}" ng-class="openThis[key]?'currentLiveEdit': ''">
+                <div ng-form name='tempForm1' novalidate>
+
+                    <div ng-class="tempForm1.$invalid ? 'cmsErrorSubSection': ''">
+                        <!-- display -->
+                        <div class="col-xs-11" ng-show="!openThis[key]">
+
+                            <div class="" ng-class="!openThis[key]? 'fadeIn' : 'fadeOut'">
+                                <ng-include src="'/UI/cms/multiPage/cmsScrollSpy/cmsScrollSpy-Section.html'"></ng-include>
+                            </div>
+
+                        </div>
+
+
+                        <!-- edit -->
+                        <div class="col-xs-11 currentLiveEdit" ng-show="openThis[key]">
+                            <div class="" ng-class="openThis[key]? 'fadeIn' : 'fadeOut'">
+                                <div ng-repeat="(key1,items) in modules.meta.items" ng-hide="!openThis[key]">
+
+
+                                    <div class="" ng-if="openThis[key1]">
+                                        <ocs-input meta="{label:{lookUpMsg:{value:'Section Name:'}}, required: 'true'}" model="items.title"></ocs-input>
+                                        <div ng-if="items.rightBox">
+                                            <div>
+                                                <h6>Right Box</h6>
+                                                <ocs-input meta="{label:{lookUpMsg:{value:'Title'}}}" model="items.rightBox.title"></ocs-input>
+                                                <div ng-repeat="(key,para) in items.rightBox.paragraphs">
+                                                    <ocs-richtexteditor meta="{label:{lookUpMsg:{value:'Paragraph:', text: 'Paragraph'}}, required: 'false', max: 200}" model="para.p"></ocs-richtexteditor>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ng-repeat="(key,para) in items.paragraphs">
+                                            <div ng-if="para.p">
+                                                <h6>Paragraph #{{key}}</h6>
+                                                <ocs-richtexteditor meta="{label:{lookUpMsg:{value:'Paragraph:', text: 'Paragraph'}}, required: 'false', max: 2000}" model="para.p"></ocs-richtexteditor>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-info pull-right" ng-click="items.paragraphs.push({p:'text'})">add a paragraph</button>
+                                        <br /><br /><br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-xs-1 slideButtonBox" ng-click="openThis[key] = !openThis[key]" ng-show="!openThis[key]">
+                            <i class="fa fa-plus-circle hugeFont" aria-hidden="true"></i>
+                        </div>
+
+                        <div class="col-xs-1 slideButtonBox" ng-click="openThis[key] = !openThis[key]" ng-show="openThis[key]">
+                            <i class="fa fa-minus-circle hugeFont" aria-hidden="true"></i>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+

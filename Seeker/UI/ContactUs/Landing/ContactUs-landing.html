@@ -1,0 +1,28 @@
+﻿<div ng-if="isLoaded">
+    <ocs-intro-section meta="meta.pageHeader"></ocs-intro-section>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6">
+            <ocs-error error-List="meta.errors"></ocs-error>
+            <ng-form name="contactForm" novalidate>
+                <div class="panel panel-primary">
+                    <div class="panel-body">
+                        <h2 class="mt0">{{$root.msg(362913)}}</h2>
+                        <ocs-input meta="meta.firstName" model="contact.firstName"></ocs-input>
+                        <ocs-input meta="meta.lastName" model="contact.lastName"></ocs-input>
+                        <ocs-input meta="meta.userEmail" model="contact.userEmail"></ocs-input>
+                        <ocs-select meta="meta.reason" model="contact.reason"></ocs-select>
+                        <ocs-textarea meta="meta.userComment" model="contact.userComment"></ocs-textarea>
+
+                        <ocs-button meta="meta.button1" validation="contactForm.$invalid" is-busy="isBusy" aria-label="Actions"
+                                    ng-click="submitContactUs(contactForm)" options="{classes:'btn-primary pull-right'}"></ocs-button>
+
+                    </div>
+                </div>
+            </ng-form>
+        </div>
+        <div class="col-sm-6 col-md-5 col-md-offset-1">
+            <p class="lead">{{$root.msg(362912)}}</p>
+        </div>
+    </div>
+</div>

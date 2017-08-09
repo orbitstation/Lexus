@@ -1,0 +1,12 @@
+﻿<div class="alert {{x.type}}" aria-role="alert" ng-repeat="(key,x) in errorList track by $index">
+    <button ng-click="$parent.popError(key)"
+            tabindex="0" 
+            type="button" 
+            class="close" 
+            ng-if="!$parent.removeClose" 
+            data-dismiss="alert" 
+            aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <p><span ng-bind-html="x.text | unsafe"></span></p>
+</div>

@@ -1,0 +1,27 @@
+﻿@{ ViewBag.Title = "Job Summary"; }
+
+@section Header 
+{
+<!-- google drive api -->
+<script src="https://apis.google.com/js/client.js"></script>
+<script src="https://apis.google.com/js/api.js"></script>
+<!-- dropbox api -->
+<script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="40czhmremdxh40c"></script>
+
+<!-- Include the JS ReCaptcha API -->
+<script src="https://www.google.com/recaptcha/api.js?render=explicit&onload=vcRecaptchaApiLoaded" async defer></script>
+
+<!-- build:js -->
+<script src="~/UI/jobView/jobView-meta.js"></script>
+<script src="~/UI/jobView/jobView-config.js"></script>
+
+<script src="~/UI/jobView/jobView-app.js"></script>
+<script src="~/UI/jobView/index/jobView-index-ctrl.js"></script>
+<script src="~/UI/jobView/apply/jobView-apply-ctrl.js"></script>
+<script src="~/UI/jobView/apply-by-email/jobView-applyByEmail-ctrl.js"></script>
+
+<script src="~/UI/jobView/apply/sections/eeoCtrl.js"></script>
+<!-- endbuild -->
+}
+
+<div ng-view></div>

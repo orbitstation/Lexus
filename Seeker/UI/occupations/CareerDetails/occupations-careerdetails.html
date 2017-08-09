@@ -1,0 +1,202 @@
+﻿<div ocs-spinner is-loaded="isLoaded">
+    <ocs-intro-section meta="meta.pageHeader">
+        <ocs-intro-section-body>
+            <h2>{{ occDetails.title }}</h2>
+            <p class="lead">
+                <div class="occupations-description-area">
+                    <div class="text-muted" ng-show="occDetails.inDemand" title="{{:preResolved:msg(347179)}}">
+                        <img ng-src="{{$root.meta.occupationSearchResults.exclamation}}" alt="{{:preResolved:msg(347179)}}" class="icon-occupation" />
+                        <strong>{{:preResolved:msg(347179)}}</strong>: <span class="occupation-icon-description">{{:preResolved:msg(367168)}}</span>
+                    </div>
+                    <div class="text-muted" ng-show="occDetails.green" title="{{:preResolved:msg(347181)}}">
+                        <img ng-src="{{$root.meta.occupationSearchResults.leaf}}" alt="{{:preResolved:msg(347181)}}" class="icon-occupation" />
+                        <strong>{{:preResolved:msg(347181)}}</strong>: <span class="occupation-icon-description">{{:preResolved:msg(367167)}}</span>
+                    </div>
+                    <div class="text-muted" ng-show="occDetails.brightOutlook" title="{{:preResolved:msg(347180)}}">
+                        <img ng-src="{{$root.meta.occupationSearchResults.sun}}" alt="{{:preResolved:msg(347180)}}" class="icon-occupation" />
+                        <strong>{{:preResolved:msg(347180)}}</strong>: <span class="occupation-icon-description">{{msg(367169)}}</span>
+                    </div>
+                    <div class="text-muted" ng-show="occDetails.apprenticeship" title="{{:preResolved:msg(347182)}}">
+                        <img ng-src="{{$root.meta.occupationSearchResults.book}}" alt="{{:preResolved:msg(347182)}}" class="icon-occupation" />
+                        <strong>{{:preResolved:msg(347182)}}</strong>: <span class="occupation-icon-description">{{:preResolved:msg(367170)}}</span>
+                    </div>
+                </div>
+            </p>
+        </ocs-intro-section-body>
+        <ocs-intro-section-actions>
+            <ocs-occupation-detail-actions 
+                meta="{isSaved: isSaved,
+                    occupationsCount: occupationsCount,
+                    maxOccupationsCount: maxOccupationsCount,
+                    canAddToCompare: canAddToCompare,
+                    isCompared: isCompared}"
+                msg="msg"
+                save="save" 
+                change="change"></ocs-occupation-detail-actions>
+        </ocs-intro-section-actions>
+        <ocs-well>
+            <ocs-occupation-related-links data="{occDetails: occDetails}" msg="msg" tokenize="tokenize"></ocs-occupation-related-links>
+        </ocs-well>
+    </ocs-intro-section>
+
+    <hr class="mb16 mt32" />
+    <div class="row">
+        <div class="col-sm-12">
+            <spa-occupation-compare meta="meta" on-remove="remove(code)"></spa-occupation-compare>
+        </div>
+    </div>
+    <hr class="mt16 mb32" />
+
+    <div class="sticky-closure display-full-width">
+        <div class="row scroll-spy" ocs-spinner is-loaded="doneLoading" ocs-scroll-spy>
+            <div class="col-md-3 col-sm-4">
+                <div ocs-sticky slide-inside=".sticky-closure" update="updateStickyCont">
+                    <ul class="pagemenu list-group">
+                        <li class="list-group-item" spy="l_overview">{{:preResolved:msg(202482)}}</li>
+                        <li class="list-group-item" spy="l_skills">{{:preResolved:msg(347186)}}</li>
+                        <li class="list-group-item" spy="l_abilities">{{:preResolved:msg(347187)}}</li>
+                        <li class="list-group-item" spy="l_knowledge">{{:preResolved:msg(347188)}}</li>
+                        <li class="list-group-item" spy="l_education">{{:preResolved:msg(347189)}}</li>
+                        <li class="list-group-item" spy="l_pay">{{:preResolved:msg(319954)}}</li>
+                        <li class="list-group-item" spy="l_trends">{{:preResolved:msg(347194)}}</li>
+                        <li class="list-group-item" spy="l_personality">{{:preResolved:msg(347195)}}</li>
+                        <li class="list-group-item" spy="l_tools">{{:preResolved:msg(347196)}}</li>
+                        <li class="list-group-item" spy="l_technology">{{:preResolved:msg(272067)}}</li>
+                        <li class="list-group-item" spy="l_work_activities">{{:preResolved:msg(347185)}}</li>
+                        <li class="list-group-item" spy="l_work_style">{{:preResolved:msg(376199)}}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9 col-sm-8" pageitems selector="pageitem" topmargin="20">
+
+                <!-- overview -->
+                <h2 id="l_overview" class="pageitem h3 mt0">{{:preResolved:msg(202482)}}</h2>
+
+                <p class="lead">{{occDetails.description}}</p>
+
+                <!-- Related-->
+                <div class="jumbotron">
+                    <div class="row">
+                        <div class="col-sm-6" ng-if="occDetails.relatedOccupations.length">
+                            <strong>{{:preResolved:msg(330019)}}</strong><br />
+                            <div ng-repeat="relatedOcc in occDetails.relatedOccupations">
+                                <a ng-href="/occupations/career-detail/{{tokenize(relatedOcc.value)}}-id-{{relatedOcc.key}}">{{relatedOcc.value}}</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" ng-if="occDetails.relatedIndustries.length">
+                            <strong>{{:preResolved:msg(163047)}}</strong><br />
+                            <div ng-repeat="industry in occDetails.relatedIndustries">
+                                <a ng-href="/occupations/search?industry={{industry.key}}&sortOrder=salaryDescending">{{industry.value}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-show="isLoaded">
+
+                    <!-- skills-->
+                    <h2 id="l_skills" class="pageitem h3">{{:preResolved:msg(347186)}}</h2>
+                    <p>
+                        <span ng-repeat="(key,skill) in occDetails.skills">
+                            <span>{{skill.key}}</span>
+                            <span ng-if="occDetails.skills.length != key+1">, </span>
+                        </span>
+                    </p>
+
+                    <!-- abilities -->
+                    <h2 id="l_abilities" class="pageitem h3">{{:preResolved:msg(347187)}}</h2>
+                    <p>
+                        <span ng-repeat="(key,ability) in occDetails.abilities">
+                            <span>{{ability.key}}</span>
+                            <span ng-if="occDetails.abilities.length != key+1">, </span>
+                        </span>
+                    </p>
+
+                    <!-- knowledge -->
+                    <h2 id="l_knowledge" class="pageitem h3">{{:preResolved:msg(347188)}}</h2>
+                    <p>
+                        <span ng-repeat="(key,knowledge) in occDetails.knowledge">
+                            <span>{{knowledge.key}}</span>
+                            <span ng-if="occDetails.knowledge.length != key+1">, </span>
+                        </span>
+                    </p>
+
+                    <!-- education-->
+                    <h2 id="l_education" class="pageitem h3">{{:preResolved:msg(347189)}}</h2>
+                    <p>
+                        <strong>{{:preResolved:msg(347189)}}:</strong>
+                        <span>{{occDetails.educationTitle}}</span>
+                    </p>
+
+                    <p>
+                        <strong>{{:preResolved:msg(347190)}}:</strong>
+                        <span>{{occDetails.experienceTitle}}</span>
+                    </p>
+
+                    <p>
+                        <strong>{{:preResolved:msg(347191)}}:</strong>
+                        <span>{{occDetails.trainingTitle}}</span>
+                    </p>
+                    <a ng-href="/occupations/education-training/{{occDetails.code}}">{{:preResolved:msg(347217)}}</a>
+
+                    <!-- pay-->
+                    <h2 id="l_pay" class="pageitem h3">{{:preResolved:msg(319954)}}</h2>
+                    <p ng-if="occDetails.medianAnnualSalaryDescription && occDetails.medianAnnualSalary">
+                        <strong>{{occDetails.medianAnnualSalaryDescription}}:</strong>
+                        <span>{{occDetails.medianAnnualSalary}}</span>
+                    </p>
+                    <p ng-if="occDetails.medianHourlySalaryDescription && occDetails.medianHourlySalary">
+                        <strong>{{occDetails.medianHourlySalaryDescription}}:</strong>
+                        <span>{{occDetails.medianHourlySalary}}</span>
+                    </p>
+
+                    <!-- State Employment Trends -->
+                    <h2 id="l_trends" class="pageitem h3">{{msg(347194)}}</h2>
+                    <p>
+                        <strong>{{:preResolved:msg(319960)}}:</strong>
+                        <span>{{occDetails.currentlyEmployed}}</span>
+                    </p>
+                    <p>
+                        <strong>{{:preResolved:msg(319961)}}:</strong>
+                        <span>{{occDetails.openingsPerYear}}</span>
+                    </p>
+
+                    <!-- Personality-->
+                    <h2 id="l_personality" class="pageitem h3">{{:preResolved:msg(347195)}}</h2>
+                    <p>
+                        <strong>{{occDetails.topInterest.key}}:</strong>
+                        <span>{{occDetails.topInterest.value}}</span>
+                    </p>
+
+                    <!-- Tools -->
+                    <h2 id="l_tools" class="pageitem h3">{{:preResolved:msg(347196)}}</h2>
+                    <span ng-repeat="(key, tools) in occDetails.tools">
+                        <span>{{tools}}</span>
+                        <span ng-if="occDetails.tools.length != key+1">, </span>
+                    </span>
+
+                    <!-- technology -->
+                    <h2 id="l_technology" class="pageitem h3">{{:preResolved:msg(272067)}}</h2>
+                    <span ng-repeat="(key, tech) in occDetails.technology">
+                        <span>{{tech}}</span>
+                        <span ng-if="occDetails.tech.length != key+1">, </span>
+                    </span>
+
+                    <!-- work activities -->
+                    <h2 id="l_work_activities" class="pageitem h3">{{:preResolved:msg(347185)}}</h2>
+                    <ul ng-repeat="(key, task) in occDetails.tasks">
+                        <li>{{task}}</li>
+                    </ul>
+
+                    <!-- work style -->
+                    <h2 id="l_work_style" class="pageitem h3">{{:preResolved:msg(376199)}}</h2>
+                    <span ng-repeat="(key, style) in occDetails.workStyle">
+                        <span>{{style}}</span>
+                        <span ng-if="occDetails.style.length != key+1">, </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

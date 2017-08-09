@@ -1,0 +1,156 @@
+﻿<div ng-if="$root.isLoaded">
+    <ocs-intro-section meta="meta.pageHeader">
+        <ocs-well ng-if="$root.isAuthenticated && (resumes.items.length < resumes.maxItemsCount)">
+            <a href="" ng-click="goStart()" class="btn btn-primary btn-block" type="button">{{$root.msg(367575)}}</a>
+        </ocs-well>
+    </ocs-intro-section>
+
+    <ocs-401 meta="meta" msgheader="379077" msgbody="379078"></ocs-401>
+
+    <div ng-if="$root.isAuthenticated">
+        <div>
+            <div class="alert alert-info" tabindex="0">
+                {{:preResolved:$root.msg(157204)}}
+                <strong>{{resumes.items.length}}</strong>
+                {{:preResolved:$root.msg(157932)}}
+                <strong>{{resumes.maxItemsCount}}</strong>
+                {{:preResolved:$root.msg(157205)}}
+            </div>
+            <div class="list display-table"
+                 ocs-spinner
+                 is-loaded="resumeListLoaded && $root.isLoaded"
+                 options="{top: '50px', minHeight: '50px'}">
+
+                <div class="list-item display-table-row" 
+                     ng-repeat="(key,resume) in resumes.items | orderBy:'-dateModified' track by $index" 
+                     ng-class="{'list-last':$last}">
+                    <div class="list-col-50-percent display-table-cell vertical-align-middle pt16 pb16">
+                        <div class="list-body">
+                            <div class="header-actions">
+                                <div>
+                                    <h2 class="list-item-heading h3">
+                                        <a href="/resumes/view/{{resume.resumeValue}}">{{resume.resumeBasics.resumeTitle | capitalize}}</a>
+                                        <span ng-show="isNew(resume.dateCreated)" style="font-size: small">
+                                            <i class="material-icons" style="color: green; font-size:small" ng-if="$root.registry.localStore.global.context.ChannelAlias === 'MGSMIL'">grade</i>
+                                            <i class="fa fa-star" style="color: green" ng-if="$root.registry.localStore.global.context.ChannelAlias !== 'MGSMIL'"></i>
+                                            {{msg(363846)}}
+                                        </span>
+                                    </h2>
+                                </div>
+
+                                <!-- Date last modifiyed -->
+                                <span>
+                                    <span class="list-label">{{:preResolved:$root.msg(99536)}}:</span>
+                                    <span class="list-value">{{resume.dateModified | date}}</span>
+                                </span>
+                                <span class="vertical-separator">|</span>
+                                <!-- resume status [Private,Limited,Public] -->
+                                <span class="display-inline-block">
+                                    <span class="list-label">{{:preResolved:$root.msg(158474)}}:</span>
+                                    <span class="list-value">
+                                        <a role="button" ng-click="gotoStatus(resume.resumeValue, resume.resumeStatus)">
+                                            <span ng-if="resume.resumeBasics.resumeStatus=='Private'" ng-bind="$root.msg(158816)"></span>
+                                            <span ng-if="resume.resumeBasics.resumeStatus=='Confidential'" ng-bind="$root.msg(337950)"></span>
+                                            <span ng-if="resume.resumeBasics.resumeStatus=='Public'" ng-bind="$root.msg(158815)"></span>
+                                        </a>
+                                    </span>
+                                </span>
+                                <div>
+                                    <!-- views -->
+                                    <span>
+                                        <span class="list-label">{{:preResolved:$root.msg(107)}}:</span>
+                                        <span class="list-value">{{resume.resumeSearchViews}}</span>
+                                    </span>
+                                    <span class="vertical-separator">|</span>
+                                    <!-- saves -->
+                                    <span>
+                                        <span class="list-label">{{:preResolved:$root.msg(202324)}}:</span>
+                                        <span class="list-value">{{resume.resumeSearchSaves}}</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div>
+                                <!-- resume type -->
+                                <!--
+                                <span class="list-label">
+                                    <span ng-bind="$root.msg(370287)"></span>
+                                    <span ng-if="resume.resumeType=='ResumeBuilder'" ng-bind="$root.msg(370263)"></span>
+                                    <span ng-if="resume.resumeType=='UploadResume'" ng-bind="$root.msg(370264)"></span><span ng-if="resume.resumeType=='UploadResume' && resume.documents && resume.documents.length">:</span>
+                                </span>
+                                <span class="list-value">
+                                    <span ng-if="resume.documents">{{resume.documents[0].name | json}}</span>
+                                </span>
+                                <br />
+                                -->
+                                <!-- resume progress -->
+                                <!--
+                                <span ng-if="!resume.isFinishedResume">
+                                    <span class="list-label" ng-bind="$root.msg(370285)"></span>
+                                    <span class="list-value" ng-bind="$root.msg(96395)"></span>
+                                </span>
+                                -->
+                                <!-- resume rating -->
+                                <!--
+                                <span ng-if="configLayout.ResumeRatingEnabled.lookUpConfig.value == 'true'" class="text-muted small pull-right">
+                                    {{msg(320404)}}:&nbsp;
+                                    <a role="button" href="/resumes/rating/{{resume.resumeValue}}" ng-if="resume.rating.ratingGrade" class="btn btn-lg btn-info" title="{{$root.msg(378620)}}">{{resume.rating.ratingGrade}}</a>
+                                    <span ng-if="!resume.rating.ratingGrade">
+                                        <a ng-if="resume.rating.ratingRateable" class="btn btn-lg btn-warning" title="Rating: Not rated - click to rate" href="/rating/{{resume.resumeValue}}">NR</a>
+                                        <span ng-if="!resume.rating.ratingRateable" class="btn btn-lg btn-warning disabled" title="{{$root.msg(378621)}}">NA</span>
+                                    </span>
+                                </span>
+                                -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-col-50-percent display-table-cell vertical-align-middle pt16 pb16">
+                        <div class="list-body">
+                            <div class="list-item-actions">
+                                <a href="/resumes/start/{{resume.resumeValue}}" class="btn btn-link">{{msg(157940)}}</a>
+
+
+                                <span class="vertical-separator no-padding" ng-if="resumes.items.length < resumes.maxItemsCount">
+                                    |
+                                    <button class="btn btn-link" ng-click="copy(resume.resumeValue)">
+                                        {{msg(157852)}}
+                                    </button>
+                                </span>
+
+                                <span ng-show="resume.resumeType == 'ResumeBuilder'">
+                                    <span class="vertical-separator no-padding">|</span>
+                                    <button class="btn btn-link" ng-click="save(resume.resumeValue)" ng-show="resume.resumeType == 'ResumeBuilder'">{{msg(171395)}}</button>
+                                </span>
+                                <span class="vertical-separator no-padding">|</span>
+                                <span class="display-inline-block">
+                                    <a href="/resumes/send/{{resume.resumeValue}}" class="btn btn-link">{{msg(157854)}}</a>
+                                    <span class="vertical-separator no-padding">|</span>
+                                    <button class="btn btn-link" ng-click="delete(resume.resumeValue)">{{msg(157853)}}</button>
+                                </span>
+                                <!-- <a href="/resumes/start/{{resume.resumeValue}}" class="btn btn-link btn-sm pull-right" ng-show="resume.resumeType == 'UploadResume'">{{msg(157940)}}</a> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--<hr class="hr-short" ng-if="!$last" />-->
+                    <!--<pre>{{resume | json}}</pre>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="myModalContent.html">
+    <div tabindex="0">
+        <div class="modal-header">
+            {{msg(246651)}}
+        </div>
+        <div class="modal-body">
+            <h4 id="modal-body">{{msg(161022)}}</h4>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-link" type="button" ng-click="cancel()">{{msg(162574)}}</button>
+            <button class="btn btn-danger" type="button" ng-click="ok()">{{msg(157853)}}</button>
+        </div>
+    </div>
+</script>
+

@@ -1,0 +1,113 @@
+﻿.list {
+    list-style-type: none;
+    padding: 0;
+    @number-width: 60px;
+
+    .list-item {
+        position: relative;
+        padding-top: @grid-gutter-width/2;
+        padding-bottom: @grid-gutter-width/2 + 5px;
+        border-bottom: 1px solid @hr-border;
+
+        &:nth-child(odd) {
+            background: @list-card-bg;
+        }
+
+        &.list-last {
+            border-bottom: 0;
+        }
+
+
+        .list-number {
+            padding-top: 15px;
+            color: @gray-light;
+            font-size: @font-size-h3;
+            line-height: 100%;
+            text-align: center;
+            font-weight: 500;
+            width: @number-width;
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+
+            @media (max-width: @screen-xs-max) {
+                font-size: @font-size-h4;
+            }
+
+            & + .list-body {
+                margin-left: @number-width;
+                padding-left: 0;
+            }
+        }
+
+        .header-actions{
+            display: table;
+            width: 100%;
+        }
+
+        .list-body {
+            padding-left: @grid-gutter-width/2;
+            padding-right: @grid-gutter-width/2;
+        }
+
+
+
+        .list-item-heading {
+            padding-right: @grid-gutter-width/2;
+            @media (max-width: @screen-xs-max) {
+                font-size: @font-size-h4;
+            }
+            
+            a{
+                text-decoration: none;
+                &:hover{
+                    border-bottom: 1px solid @link-color;
+                }
+            }
+            word-wrap: break-word;
+            margin-top: 0;
+            color: @brand-primary;
+
+            small {
+                .text-danger;
+            }
+
+            &.deleted {
+                opacity: .8;
+            }
+        }
+
+
+        .expired {
+            .list-item-heading {
+                //color: @gray;
+            }
+        }
+
+        .deleted {
+            //color: @gray;
+        }
+    }
+}
+
+.label-stack {
+    margin-bottom: 3px;
+    //margin-right: 3px;
+    display: block;
+    font-size: .85em;
+    padding: 0 4px;
+    line-height: 150%;
+    border-radius: 2px;
+
+
+    strong {
+    }
+    /*&.label-muted{
+        background: @search-bg;
+        border: 1px solid darken(@search-bg, 5%);
+    }*/
+    &.success {
+        background: @brand-success;
+    }
+}

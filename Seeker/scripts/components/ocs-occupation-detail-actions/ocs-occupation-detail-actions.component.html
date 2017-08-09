@@ -1,0 +1,19 @@
+<div class="clearfix">
+    <button type="button" class="btn" ng-class="{'btn-done disabled' : $ctrl.meta.isSaved, 'btn-add' : !$ctrl.meta.isSaved }" ng-disabled="$ctrl.meta.occupationsCount >= $ctrl.meta.maxOccupationsCount" ng-click="!$ctrl.meta.isSaved && $ctrl.save($event)">
+        {{$ctrl.meta.isSaved ? $ctrl.msg(366431) : $ctrl.msg(366985)}}
+    </button>
+    <label for="cbx_compare"
+            ng-disabled="!$ctrl.meta.canAddToCompare"
+            ng-class="$ctrl.meta.isCompared ? 'btn-done disabled' : 'btn-add'"
+            class="btn">
+        <input id="cbx_compare"
+                type="checkbox"
+                ng-model="$ctrl.meta.isCompared"
+                ng-change="$ctrl.change()"
+                ng-true-value="true"
+                ng-false-value="false"
+                class="sr-only"
+                ng-disabled="!$ctrl.meta.canAddToCompare" />
+        {{$ctrl.meta.isCompared ? $ctrl.msg(348880) : $ctrl.msg(364213)}}
+    </label>
+</div>

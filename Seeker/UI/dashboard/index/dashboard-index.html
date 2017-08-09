@@ -1,0 +1,102 @@
+﻿<div ng-if="isLoaded">
+    <ocs-401 meta="meta" msgheader="379143" msgbody="379144"></ocs-401>
+
+    <div ng-show="$root.isAuthenticated" class="dashboard-wrapper">
+        <div ocs-spinner is-loaded="pageLoaded" options="{top: '110px', minHeight: '360px'}">
+            <div ng-show="pageLoaded">
+                <div class="dashboard-panel">
+                    <div>
+                        <h2>{{:preResolved:msg(376293)}}</h2>
+                        <div class="dynamic-content-box no-bottom-link">
+                            <h3>{{:preResolved:msg(376294)}}</h3>
+                            <p>
+                                <span ng-repeat="item in upcomingEvents.items track by $index">
+                                    <a ng-href="events/details/{{item.id}}">
+                                        {{item.title}} - 
+                                        <span ng-switch on="item.category">
+                                            <span class="animate-switch" ng-switch-when="Workshop">{{:preResolved:msg(376295)}}</span>
+                                            <span class="animate-switch" ng-switch-when="JobFair">{{:preResolved:msg(376297)}}</span>
+                                        </span> 
+                                        {{item.start | date : "MMM, dd"}}
+                                    </a>
+                                    <br />
+                                </span>
+                            </p>
+
+                            <h3>{{:preResolved:msg(369088)}}</h3>
+                            <p>
+                                <a href="/SavedJobs">{{:preResolved:msg(169802)}}</a><br />
+                                <a href="/SavedSearches">{{:preResolved:msg(370226)}}</a><br />
+                                <a href="/applicationHistory">{{:preResolved:msg(377779)}}&nbsp;</a>
+                            </p>
+
+                            <h3>{{:preResolved:msg(369199)}}</h3>
+                            <p>
+                                <a href="/budgetCalculator">{{:preResolved:msg(376300)}}</a><br />
+                                <a href="/careerPersonality">{{:preResolved:msg(376298)}}</a><br />
+                                <a href="/occupations">{{:preResolved:msg(376299)}}</a><br />
+                            </p>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <h2>{{:preResolved:msg(370268)}}</h2>
+                            <div class="thumbnails">
+                                <i class="fa fa-chevron-left" ng-click="thumbs.move('left')" ng-class="{'disabled' : thumbs.start === 0}" ng-if="checkListSections.length > thumbs.limit"></i>
+                                <div ng-repeat="cl in checkListSections | startFrom:thumbs.start | limitTo: thumbs.limit track by $index" class="thumbnail-item">
+                                    <a class="thumbnail-box" ng-class="{'done': cl.status}" ng-href="{{cl.url}}">
+                                        <div class="thumbnail-status">
+                                            <div class="circle">
+                                                <i ng-if="cl.status" class="fa fa-check"></i>
+                                                <span ng-if="!cl.status" class="number">{{$index + 1 + start}}</span>
+                                            </div>
+                                            <div class="status-text-box">{{:preResolved:msg(cl.text)}}</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <i class="fa fa-chevron-right" ng-click="thumbs.move('right')" ng-class="{'disabled' : thumbs.start + 4 === checkListSections.length}" ng-if="checkListSections.length > thumbs.limit"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h2 class="h3">{{:preResolved:msg(376301)}}</h2>
+                            <div class="dynamic-content-box">
+                                <h3>{{:preResolved:msg(376303)}}</h3>
+                                <div>
+                                    <a href="">{{:preResolved:msg(376305)}}</a><br />
+                                    <a href="">{{:preResolved:msg(376295)}}</a><br />
+                                    <a href="">{{:preResolved:msg(376297)}}</a><br />
+                                    <a href="">{{:preResolved:msg(376297)}}</a>
+                                </div>
+                                <div>
+                                    <a href="/calendar">{{:preResolved:msg(376304)}}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h2 class="h3">{{ msg(370579) }}</h2>
+                            <div class="dynamic-content-box">
+                                <h3>{{ msg(370580) }}</h3>
+                                <div>
+                                    {{ msg(370581) }}
+                                </div>
+                                <div>
+                                    <a href="">{{ msg(370582) }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-accordions">
+                    <ng-include src="'ui/dashboard/index/sections/myJobSearch.html'"></ng-include>
+                    <ng-include src="'ui/dashboard/index/sections/myCareerTools.html'"></ng-include>
+
+                    <!--<ocs-accordion-steps meta="meta" config-layout="configLayout" accordion-name="'accordionDashboard'" model="dashboard"></ocs-accordion-steps>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-show="$root.channelsTest">
+        <pre>{{$root.channelsTest | json}}</pre>
+    </div>
+</div>
+

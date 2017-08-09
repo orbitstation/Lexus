@@ -1,0 +1,55 @@
+﻿<div class="child-section">
+    <div class="row">
+        <div class='col-sm-12'>
+            <ocs-select meta="meta.characterOfService" model="model.militaryService.characterOfService"></ocs-select>
+        </div>
+        <div ng-if="model.militaryService.characterOfService != 86773">
+            <div class='col-sm-12'>
+                <ocs-radio meta="meta.multipleToursOfDuty" model="model.militaryService.multipleToursOfDuty"></ocs-radio>
+            </div>
+            <br />
+            <div class='col-sm-6'>
+                <ocs-date meta="meta.militaryCampaignStartDate" model="model.militaryService.militaryCampaignStartDate"></ocs-date>
+            </div>
+            <div class='col-sm-6'>
+                <ocs-date meta="meta.militaryCampaignEndDate" model="model.militaryService.militaryCampaignEndDate"></ocs-date>
+            </div>
+            <div ng-if="model.militaryService.multipleToursOfDuty == $root.constants.UBF_CRL_DEFAULT_YES">
+                <div class='col-sm-6'>
+                    <ocs-date meta="meta.militarySecondEntryDate" model="model.militaryService.militarySecondEntryDate"></ocs-date>
+                </div>
+                <div class='col-sm-6'>
+                    <ocs-date meta="meta.militarySecondDischargeDate" model="model.militaryService.militarySecondDischargeDate"></ocs-date>
+                </div>
+                <div class='col-sm-6'>
+                    <ocs-date meta="meta.militaryThirdEntryDate" model="model.militaryService.militaryThirdEntryDate"></ocs-date>
+                </div>
+                <div class='col-sm-6'>
+                    <ocs-date meta="meta.militaryThirdDischargeDate" model="model.militaryService.militaryThirdDischargeDate"></ocs-date>
+                </div>
+            </div>
+            <div class='col-sm-12'>
+                <ocs-radio meta="meta.militaryCampaignBadge" model="model.militaryService.militaryCampaignBadge"></ocs-radio>
+            </div>
+            <div class='col-sm-12'>
+                <ocs-select meta="meta.militaryBranchOfService" model="model.militaryService.militaryBranchOfService"></ocs-select>
+            </div>
+            <div class='col-sm-12'>
+                <ocs-select meta="meta.activeMilitaryReserves" model="model.militaryService.activeMilitaryReserves"></ocs-select>
+            </div>
+            <div class='col-sm-12'>
+                <ocs-select meta="meta.disabledVeteran" model="model.militaryService.disabledVeteran"></ocs-select>
+            </div>
+            <div class='col-sm-12'>
+                <ocs-radio meta="meta.militaryHomeless" model="model.militaryService.militaryHomeless"></ocs-radio>
+            </div>
+            <div class='col-sm-12'>
+                <ocs-radio meta="meta.vacationalRehab" model="model.militaryService.vacationalRehab"></ocs-radio>
+            </div>
+            <div class='col-sm-12'>
+                <ocs-radio meta="meta.transitionAssistanceWorkShop" model="model.militaryService.transitionAssistanceWorkShop"></ocs-radio>
+            </div>
+        </div>
+    </div>
+</div>
+

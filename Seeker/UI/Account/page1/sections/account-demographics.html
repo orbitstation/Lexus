@@ -1,0 +1,59 @@
+﻿<div class="row" ng-if="$root.cfg('demographics.gender') == 'true'">
+    <div class='col-sm-12'>
+        <ocs-radio meta="meta.gender" model="model.demographic.gender"></ocs-radio>
+    </div>
+</div>
+
+<div class="row" ng-if="$root.cfg('demographics.race') == 'true'">
+    <div class='col-sm-12'>
+        <ocs-check-box meta="meta.race" model="model.demographic.race"></ocs-check-box>
+    </div>
+</div>
+
+<div class="row" ng-if="$root.cfg('demographics.ethnicity') == 'true'">
+    <div class='col-sm-12'>
+        <ocs-radio meta="meta.ethnicity" model="model.demographic.ethnicity"></ocs-radio>
+    </div>
+</div>
+
+
+<div class="row" ng-if="$root.cfg('demographics.isConvict') == 'true'">
+    <div class='col-sm-12'>
+        <ocs-radio meta="meta.isConvict" model="model.demographic.isConvict"></ocs-radio>
+    </div>
+</div>
+
+<div class="row" ng-if="$root.cfg('demographics.isHomeless') == 'true'">
+    <div class='col-sm-12'>
+        <ocs-radio meta="meta.isHomeless" model="model.demographic.isHomeless"></ocs-radio>
+    </div>
+</div>
+
+<div class="row" ng-if="$root.cfg('demographics.limitedEnglishProficiency') == 'true'">
+    <div class='col-sm-12'>
+        <ocs-radio meta="meta.limitedEnglishProficiency" model="model.demographic.limitedEnglishProficiency"></ocs-radio>
+    </div>
+</div>
+
+<div class="row" ng-if="$root.cfg('demographics.isNeedTranslationAssistance') == 'true'">
+    <div class='col-sm-12'>
+        <ocs-radio meta="meta.isNeedTranslationAssistance" model="model.demographic.isNeedTranslationAssistance"></ocs-radio>
+    </div>
+</div>
+
+<div class="row" ng-if="model.demographic.isNeedTranslationAssistance == $root.constants.UBF_CRL_DEFAULT_YES && $root.cfg('demographics.translationAssistanceLanguage') == 'true'">
+    <div class='col-sm-12'>
+            <ocs-select meta="meta.translationAssistanceLanguage" model="model.demographic.translationAssistanceLanguage"></ocs-select>
+    </div>
+</div>
+
+<div class="row" ng-if="$root.cfg('demographics.isRunaway') == 'true'">
+    <div class='col-sm-12'>
+        <ocs-radio meta="meta.isRunaway" model="model.demographic.isRunaway"></ocs-radio>
+    </div>
+</div>
+
+<!-- Selective service -->
+
+
+

@@ -1,0 +1,42 @@
+﻿<div>
+
+    <uib-accordion close-others="true">
+        <ng-form name='{{key}}' novalidate ng-repeat="(key,a) in meta[accordionName]">
+            <!--{{a.isOpen}}-->
+            <uib-accordion-group ng-if="a.show"
+                                 is-open="a.isOpen"
+                                 is-disabled="a.isDisabled"
+                                 class="panel"
+                                 ng-class="{
+                                    'panel-primary': a.isOpen && !a.isDisabled,
+                                    'panel-default': !a.isOpen && !a.isDisabled && !{{key}}.$valid,
+                                    'panel-success': {{key}}.$valid,
+                                    'panel-muted': a.isDisabled,
+                                    'panel-danger': {{key}}.$invalid && a.touched
+                                 }"
+                                 template-url="/lib/ui-bootstrap/template/accordion/ui-accordion-group-steps.html">
+
+                <!--class="panel {{a.cssClass}}  disabled-{{a.isDisabled}}"-->
+
+                <uib-accordion-heading>
+                    <span ng-if="a.isNumeric" class="number">{{$index+1}}</span> 
+                    <span ng-if="a.heading.lookUpMsg !== undefined">{{:preResolved:a.heading.lookUpMsg.value}}</span>
+                    <span ng-if="a.heading.lookUpMsg === undefined"> {{:preResolved:a.heading}}</span>
+                    <i ng-show="{{key}}.$valid && !a.isDisabled" class="check-mark fa fa-check pull-right"></i>
+                    <i ng-show="{{key}}.$invalid && a.touched && !a.isDisabled" class="check-wrong fa fa-close pull-right"></i>
+                </uib-accordion-heading>
+
+                <ng-include src="a.url"></ng-include>
+
+                <div class="btn-group pull-right" role="group" aria-label="..." ng-if="!a.noButton">
+                    <button ng-disabled ="{{key}}.$invalid"
+                            ng-if="!a.lastOne"
+                            type="button"
+                            class="btn btn-info"
+                            ng-click="moveToNextSection(key,meta.accordion)">
+                        Next Section
+                    </button>
+                </div>
+        </ng-form>
+    </uib-accordion>
+</div>

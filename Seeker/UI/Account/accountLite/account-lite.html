@@ -1,0 +1,89 @@
+﻿<div ng-if="isLoaded" ng-controller="accountLiteCtrl as vm">
+
+    <ocs-intro-section meta="meta.pageHeader"></ocs-intro-section>
+
+
+    <div>
+        <div class="row">
+            <div class='col-sm-6'>
+                <ocs-input meta="meta.firstName" model='vm.user.firstName'></ocs-input>
+            </div>
+            <div class='col-sm-6'>
+                <ocs-input meta="meta.lastName" model="vm.user.lastName"></ocs-input>
+            </div>
+        </div>
+        <div class="row">
+            <div class='col-sm-6'>
+                <ocs-input meta="meta.emailNew" model="vm.user.emailAddress" valideemail="key"></ocs-input>
+            </div>
+        </div>
+        <div ng-if="vm.user.userId">
+            <a class="btn btn-outline-primary mb15" submit="button" href="account/change-password">
+                {{:preResolved:$root.msg(374989)}}
+            </a>
+            <hr class="short-hr" />
+        </div>
+
+        <div class="row" ng-if="!vm.user.userId">
+            <div class='col-sm-6'>
+                <ocs-input meta="meta.password" model="vm.user.password"></ocs-input>
+                <ocs-input meta="meta.passwordConfirm" model="vm.user.passwordConfirm" match="vm.user.password"></ocs-input>
+            </div>
+            <div class='col-sm-6'>
+                <password-assist meta="meta.passwordAssist"
+                                 model="vm.user.password"
+                                 passwordconfirm="vm.user.passwordConfirm"
+                                 messages="meta.password.RequirementMessages"></password-assist>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <ocs-select meta="meta.usMilitaryInvolvement" model="vm.user.militaryServiceLite.usMilitaryInvolvementID"></ocs-select>
+            </div>
+            <div class="col-sm-6" ng-if="vm.user.militaryServiceLite.usMilitaryInvolvementID == 2">
+                <ocs-date meta="meta.availabilityToWorkDate" model="vm.user.militaryServiceLite.availabilityToWorkDate"></ocs-date>
+            </div>
+        </div>
+
+        <fieldset class="form-group">
+            <legend class="label-type">
+                <span>{{:preResolved:msg(378259)}}</span>
+            </legend>
+            <div class="checkbox ng-scope">
+                <label for="woundedWarrior">
+                    <input type="checkbox" id="woundedWarrior" ng-model="vm.user.militaryServiceLite.isWoundedWarrior">
+                    <span class="checkbox-custom checkbox-toggle" style="height: calc(1em + 1px); width: calc(1em + 5px);"></span>
+                    <span class="checkbox-label">{{:preResolved:msg(378260)}}</span>
+                </label>
+            </div>
+        </fieldset>
+
+        <div ng-if="!$root.isAuthenticated">
+            <ocs-check-box meta="meta.userTermsMessage" model="vm.user.privacyPolicy.privacy"></ocs-check-box>
+        </div>
+
+        <div aria-live="assertive">
+            <ocs-error error-list="$root.errorList"></ocs-error>
+        </div>
+
+        <hr class="short-hr" />
+        <div class="row">
+            <!--ng-if="vm.user.userIsVerified"-->
+            <div class="col-sm-12">
+                <button ng-show="$root.isAuthenticated"
+                        ng-click="vm.updateUser()"
+                        class="btn btn-md btn-primary pull-right"
+                        ng-disabled="!globalForm.$valid || busyLinks.saveUserAction"
+                        ocs-busy="busyLinks.saveUserAction">
+                    {{msg(364090)}}
+                </button>
+                <button ng-hide="$root.isAuthenticated"
+                        ng-click="vm.createUser()" class="btn btn-md btn-primary pull-right"
+                        ng-disabled="!globalForm.$valid || busyLinks.createUserAction"
+                        ocs-busy="busyLinks.createUserAction">
+                    {{msg(204843)}}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

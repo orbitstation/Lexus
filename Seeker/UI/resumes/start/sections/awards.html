@@ -1,0 +1,34 @@
+﻿<div ng-controller="awardsCtrl as vm">
+    <!--<h3 class="mt0">{{:preResolved:$root.msg(370244)}}</h3>-->
+    <p>{{:preResolved:$root.msg(370245)}}</p>
+    <hr class="hr-short" />
+    
+    <!--<pre>{{vm.data.awards | json}}</pre>-->
+
+    <ng-form name="meta.awardsForm">
+        <div ng-repeat="(key,award) in vm.data.awards.items track by $index">
+            <div class="mb15">
+                <span class="label label-default">
+                    {{key + 1}} - {{$root.msg(378606)}}
+                </span>
+                <button class="btn btn-remove pull-right" 
+                        type="button" 
+                        ng-click="vm.removeAward(key)" 
+                        ng-show="index !== '0'">
+                    {{:preResolved:$root.msg(378860)}}
+                </button>
+            </div>
+
+            <div class="clearfix"></div>
+            <ocs-textarea meta="meta.awardName" model="award.awardName"></ocs-textarea>
+            <hr class="hr-short" />
+        </div>
+        <button ng-click="vm.addAward()"
+                ng-disabled="vm.data.awards.items.length >= vm.data.awards.maxItemsCount || vm.thisForm.$invalid"
+                type="button"
+                class="btn btn-add">
+            {{:preResolved:$root.msg(371705)}}
+        </button>
+        <hr class="hr-short" />
+    </ng-form>
+</div>

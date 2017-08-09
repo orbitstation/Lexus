@@ -1,0 +1,15 @@
+﻿.well-variant(@background; @header-color;){
+    h5{
+        color: @header-color;
+    }
+    background: @background;
+
+    & when (@well-overides = 'true'){
+        .btn-primary {
+            .button-variant(@btn-secondary-color; @header-color; darken(@header-color, 5%));
+        }
+        .btn-link, a{
+            color: @header-color;
+        }
+    }
+}

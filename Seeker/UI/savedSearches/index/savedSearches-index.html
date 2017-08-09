@@ -1,0 +1,78 @@
+﻿<div ng-if="isLoaded">
+
+    <ocs-intro-section meta="meta.pageHeaderSaved"></ocs-intro-section>
+
+    <ocs-401 meta="meta" msgheader="379085" msgbody="379086"></ocs-401>
+    <div ng-if="$root.isAuthenticated">
+
+        <div class="alert alert-info" tabindex="0">
+            {{:preResolved:$root.msg(157204)}}
+            <strong>{{agentsCount}}</strong>
+            {{:preResolved:$root.msg(104616)}}
+            <strong>{{maxAgentsCount}}</strong>
+            {{:preResolved:$root.msg(157942)}}
+        </div>
+
+        <div class="list display-table">
+            <div class="list-item display-table-row" ng-repeat="agent in agents | orderBy:'-dateModified'" ng-class="{'list-last':$last}">
+
+                <div class="list-col-main display-table-cell vertical-align-middle pt16 pb16">
+                    <div class="list-body">
+                        <div class="header-actions">
+                            <div>
+                                <h2 class="list-item-heading h3">
+                                    <a ng-click="gotoJobsearch(agent.id)">{{agent.agent_name}}</a>
+                                </h2>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="list-label">{{msg(347038)}}:</span>&nbsp;
+                            <span class="list-value">
+                                <span ng-if="agent.email_frequency_days == 0">{{msg(347059)}}</span>
+                                <span ng-if="agent.email_frequency_days != 0">{{msg(347058)}}</span>
+                            </span>
+                            <span class="vertical-separator">|</span>
+                            <span class="list-label">{{msg(347039)}}:</span>&nbsp;
+                            <span class="list-value">
+                                <span ng-if="agent.email_frequency_days == 30">{{msg(171462)}}</span>
+                                <span ng-if="agent.email_frequency_days == 14">{{msg(171461)}}</span>
+                                <span ng-if="agent.email_frequency_days == 7">{{msg(171460)}}</span>
+                                <span ng-if="agent.email_frequency_days == 1">{{msg(171459)}}</span>
+                                <span ng-if="agent.email_frequency_days == 0">{{msg(272187)}}</span>
+                            </span>
+                        </div>
+                        <div>
+                            <span class="list-label">{{msg(346429)}} :</span> {{agent.date | date}}
+                        </div>
+                    </div>
+                </div>
+                <div class="list-col-actions display-table-cell vertical-align-middle pt16 pb16">
+                    <div class="list-body">
+                        <div class="pull-right list-item-actions">
+                            <a href="/savedSearches/edit/{{agent.id}}" class="btn btn-link">{{msg(157940)}}</a>
+                            <span class="vertical-separator no-padding">|</span>
+                            <button class="btn btn-link" ng-click="delete(agent.id)">{{msg(157926)}}</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!--<hr class="hr-short" ng-if="!$last" />-->
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">{{msg(246651)}}</h3>
+        </div>
+        <div class="modal-body">
+            <h4>{{msg(363679)}}</h4>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">{{msg(315145)}}</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">{{msg(162574)}}</button>
+        </div>
+    </script>
+
+</div>

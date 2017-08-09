@@ -1,0 +1,25 @@
+﻿<div ng-if="isLoaded">
+    <div class="row">
+        <div class="col-sm-12">            
+            <h2 ng-bind-html="msg(267584)"></h2>
+            <p class="lead" ng-bind-html="msg(204974) | unsafe"></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            {{msg(369112)}}
+            
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="btn-group pull-right" role="group" aria-label="...">
+                {{$root.confirmPageRedirect}}
+                <button type="button" class="btn btn-default" ng-click="click()">{{msg(339822)}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+

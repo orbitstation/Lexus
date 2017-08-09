@@ -1,0 +1,61 @@
+﻿.upload-document{
+    @height: 150px;
+    @media (max-width: @screen-xs-max) {
+        .btn{
+            margin-bottom: 5px;
+        }
+    }
+    .my-drop-zone{
+        margin-top: @grid-gutter-width/2;
+        height: @height;
+        background: @brand-primary-l-5;
+        border-radius: @navbar-border-radius;
+        border: @brand-primary 2px dashed;
+        text-align: center;
+        padding-top: @height/4;
+        opacity: 1;
+        transition: opacity .05s ease-in-out;
+        -moz-transition: opacity .05s ease-in-out;
+        -webkit-transition: opacity .05s ease-in-out;
+        .upload-icons{
+            -webkit-transition: background .1s ease-in;
+            -moz-transition: background .1s ease-in;
+            -ms-transition: background .1s ease-in;
+            -o-transition: background .1s ease-in;
+            transition: background .1s ease-in;
+            background: @brand-primary;
+            font-size: 180%;
+            line-height: @height/2;
+            display: inline;
+            border-radius: @navbar-border-radius;
+            padding: @grid-gutter-width/2 @grid-gutter-width;
+            i{
+                color: #fff;
+            }
+        }
+        strong{
+            font-size: 120%;
+            color: @brand-primary;
+        }
+        &:not(.my-drop-zone-disabled):hover{
+            cursor: pointer;
+            .upload-icons{
+                background: @brand-primary-d-2;
+            }
+        }
+    }
+    
+    .nv-file-over {
+        opacity: 0.5;
+    }
+    .my-drop-zone-disabled{
+        background: @input-bg-disabled;
+        border-color: #999999;
+        strong{
+            color: #999999;
+        }
+        .upload-icons{
+            background: #999999;
+        }
+    }
+}

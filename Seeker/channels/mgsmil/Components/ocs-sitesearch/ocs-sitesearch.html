@@ -1,0 +1,22 @@
+﻿<form class="site-search-form" ng-submit="$ctrl.siteSearch($ctrl.searchQuery)">
+    <div class="form-group has-feedback has-feedback-left">
+        <label class="control-label sr-only" for="siteSearch_{{$ctrl.randomNumber}}">Site Search</label>
+        <input class="form-control" id="siteSearch_{{$ctrl.randomNumber}}" 
+               ng-model="$ctrl.searchQuery"
+               ng-click="focused = true"
+               ng-blur="focused = false"
+               ng-mouseover="hover = true" 
+               ng-mouseleave="hover = false">
+        <div class="clear-search" 
+                ng-hide="$ctrl.searchQuery == ''" 
+                ng-click="$ctrl.clearQuery()">
+            <i class="material-icons">&#xE5CD;</i>
+        </div>
+        <span class="material-icons form-control-feedback" aria-hidden="true">&#xE8B6;</span>
+        
+    </div>
+    <button type="submit" tabindex="1">
+        <span class="search-text">Search</span>
+        <span class="search-icon"><i class="material-icons">&#xE8B6;</i></span>
+    </button>
+</form>

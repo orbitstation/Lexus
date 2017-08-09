@@ -1,0 +1,22 @@
+﻿@{ ViewBag.Title = "Calendar"; }
+
+@if (!string.IsNullOrEmpty(Model.ChannelCssTelerikLink))
+{
+    <link rel="stylesheet" type="text/css" href="@Model.ChannelCssTelerikLink" />
+}
+
+
+@section Header
+{
+<!-- TODO: replace with "local kendo" -->
+<script src="//kendo.cdn.telerik.com/2016.1.226/js/kendo.all.min.js"></script>
+<!-- build:js -->
+<script src="~/UI/calendar/calendar-meta.js"></script>
+<script src="~/UI/calendar/calendar-config.js"></script>
+
+<script src="~/UI/calendar/calendar-app.js"></script>
+<script src="~/UI/calendar/Index/calendar-index-ctrl.js"></script>
+<!-- endbuild -->
+}
+
+<div ng-view></div>

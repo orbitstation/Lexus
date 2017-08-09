@@ -1,0 +1,512 @@
+﻿@header-dt: 80px;
+@header-dt-scrolling: 46px;
+@header-border-color: #dfdfde;
+@detached-header:{
+    width: 100%;
+    position: relative;
+    transition: transform .25s ease-in-out, height .1s ease;
+    will-change: transform;
+    .header-wrapper{
+        background: #fff;
+        box-shadow: 0 0 4px rgba(0,0,0,.15);
+        border-bottom: 1px solid @header-border-color!important;
+    }
+    .header-wrap {
+        height: @header-dt;
+        width: 970px;
+        margin: 0 auto;
+        @media (max-width: @screen-xs-max) {
+            width: 100%;
+            height: auto;
+            padding: 10px 10px 5px;
+            text-align: center;
+        }
+
+        #main-navigation{
+            .dropdown-menu{
+                top: 98%;
+            }
+        }
+
+        .logo-text{
+            display: none;
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 21px;
+            text-transform: initial;
+            margin: 0;
+            width: 100%;
+            text-align: center;
+            @media (max-width: @screen-xs-max) {
+                display: block;
+            }
+        }
+
+        .logo {
+            width: auto;
+            height: 50px;
+            float: left;
+            position: relative;
+            top: 15px;
+            
+            @media (max-width: @screen-xs-max) {
+                top: auto;
+                height: auto;
+            }
+
+            a {
+                background: url("//images.military.com/media/shared/css-global/logo-blue-hires.png") no-repeat scroll 0 0 transparent;
+                background-size: 182px 50px;
+                width: 182px;
+                height: 50px;
+                top: 0;
+                display: inline-block;
+                text-indent: -999em;
+                @media (max-width: @screen-xs-max) {
+                    height: 26px;
+                    width: 15px;
+                    background: url('//images.military.com/media/shared/css-global/m-blue-logo-ts90.png') no-repeat center center transparent;
+                    background-size: 15px 25.96px;
+                }
+            }
+            
+
+        }
+
+        .hamburger-mixin(@top){
+            background: #75A1C7 none repeat scroll 0 0;
+            display: block;
+            height: 2px;
+            position: absolute;
+            top: @top;
+            width: 17px;
+            content: '';
+        }
+        .mobile-search-toggle,
+        .mobile-menu-toggle{
+            position: absolute;
+            top: 6px;
+            padding: 15px;
+            width: 17px;
+            box-sizing: initial;
+            height: 16px;
+            cursor: pointer;
+        }
+
+
+        .mobile-search-toggle{
+            right: 5px;
+            .visible-xs-block();
+            color: #75A1C7;
+        }
+        .mobile-menu-toggle{
+            left: 5px;
+            .visible-xs-block();
+            span{
+                border: 0;
+                position: absolute;
+                left: 15px;
+                .hamburger-mixin(50%);
+                &:before{
+                    .hamburger-mixin(6px);
+                }
+                &:after{
+                    .hamburger-mixin(-6px);
+                }
+            }
+        }
+    }
+
+    //navbar-nav
+    .header-links {
+        position: relative;
+        float: left;
+        top: 34px;
+        display: inline-block;
+    }
+
+    .header-icons {
+        display: block;
+        position: relative;
+        right: 0;
+        top: 0;
+        height: 100%;
+        padding: 27px 0 0;
+        box-sizing: border-box;
+        float: right;
+
+
+        > div {
+            display: inline-block;
+            height: 100%;
+        }
+
+        .site-login,
+        .site-user,
+        .site-search {
+            position: static;
+            float: right;
+            button {
+                display: inline-block;
+                background: transparent;
+                height: 34px;
+                border: 1px solid transparent;
+                padding: 0;
+                color: @brand-primary;
+                text-align: center;
+                background-image: none;
+                border-radius: 4px;
+                i {
+                    top: 1px;
+                    left: 1px;
+                    position: relative;
+                    padding: 4px;
+                    font-size: 24px;
+                }
+                &:hover{
+                    border: 1px solid @header-border-color;
+                }
+            }
+
+            &.open{
+                button{
+                    @header-icons-hover();
+                    border: 1px solid @header-border-color;
+                }
+            }
+
+            .dropdown-menu {
+                @nav-dropdown();
+                border-radius: 0;
+                margin-top: 0;
+                left: auto;
+                right: 0;
+            }
+        }
+
+        .site-login {
+            div {
+                margin-left: 10px;
+                display: inline-block;
+                a {
+                    padding: 0 5px;
+                    font-size: 13px;
+                    font-weight: 400;
+                    display: block;
+                    border-radius: 4px;
+                    border: 1px solid @header-border-color;
+                    vertical-align: top;
+                    text-decoration: none;
+                    line-height: 32px;
+                    vertical-align: middle;
+                }
+                &:hover{
+                    @header-icons-hover();
+                }
+            }
+        }
+
+        
+        .site-search,
+        .site-user {
+            button{
+                margin-left: 10px;
+                &:hover{
+                    @header-icons-hover();
+                }    
+            }
+        }
+
+        .site-search{
+            .dropdown-menu{
+                padding: 13px 0 0;
+                margin-top: -14px;
+                border: 0;
+                .site-search-form{
+                    position: relative;
+                    width: 500px;
+                    padding: 10px;
+                    height: 100%;
+                    display: block;
+                    border: 1px solid @dropdown-border;
+                    border-top :0;
+                    .clear-search{
+                        position: absolute;
+                        top: 0px;
+                        right: 0px;
+                        width: 30px;
+                        text-align: center;
+                        line-height: 35px;
+                        color: @brand-primary;
+                        cursor: pointer;
+                        i{
+                            vertical-align: middle;
+                            &:hover{
+                                color: @brand-primary!important;
+                            }
+                        }
+                    }
+
+                    .form-group{
+                        margin: 0;
+                        display: inline-block;
+                        width: 357px;
+                        &.has-feedback{
+                            
+                        }
+                        &.has-feedback-left{
+                            input{
+                                padding-left: 43.75px;
+                                padding-right: 12px;
+                                font-size: 16px;
+                                padding: 6px 25px 6px 32px;
+                                border: 1px solid @dropdown-border;
+                                border-radius: 4px;
+                                background-color: #fafafa;
+                            }
+                            span{
+                                left: 1px;
+                                top: 1px;
+                                right: auto;
+                                color: #c8c8c8;
+                                font-size: 28px;
+                            }
+                        }
+                    }
+                    button{
+                        background-color: #00529b;
+                        color: #fff;
+                        border: 0;
+                        font-size: 16px;
+                        padding: 6px 30px;
+                        border-radius: 4px;
+                        display: inline-block;
+                        vertical-align: middle;
+                        float: right;
+                        font-weight: 400;
+                    }
+                }
+
+            }
+        }
+
+        .site-user{
+            .site-user-info{
+                span{
+                    display: block;
+                    font-weight: 300;
+                    font-size: 15px;
+                    background-color: #ededed;
+                    padding: 10px 14px;
+                    border-bottom: 1px solid @dropdown-border;
+                }
+            }
+        }
+    }
+
+    @media (max-width: @screen-xs-max) {
+        .header-links,
+        .header-icons{
+            display: none;
+        }    
+
+        .header-wrap{
+            text-align: center;
+            .logo{
+                float: none;
+            }
+        } 
+    }
+
+    &.header--fixed {
+        position: fixed;
+        z-index: 20;
+        right: 0;
+        left: 0;
+        top: 0
+    }
+
+    &.headroom--pinned {
+        height: @header-dt-scrolling;
+        @media (max-width: @screen-xs-max) {
+            height: auto;
+            transform: translateY(0);
+        }
+    }
+
+    &.headroom--unpinned {
+        height: @header-dt-scrolling;
+        @media (max-width: @screen-xs-max) {
+            height: auto;
+            transform: translateY(-100%);
+        }
+    }
+
+    &.headroom--top{
+        height: @header-dt!important;
+         @media (max-width: @screen-xs-max) {
+            height: auto!important;
+        }
+         .search-icon{
+            display: none;
+        }
+    }
+    &:not(.headroom--not-top){
+        .site-search-not-top{
+            display: none!important;
+        }
+    }
+    &.headroom--not-top{
+        .site-search-form{
+            position: relative;
+            .has-feedback{
+                display: inline-block;
+                input {
+                    width: 170px;
+                    padding-right: 25px;
+                    font-size: 15px;
+                    font-weight: 100;
+                }
+            }
+            .clear-search{
+                position: absolute;
+                top: 0px;
+                right: 0px;
+                width: 30px;
+                text-align: center;
+                line-height: 32px;
+                color: @brand-primary;
+                cursor: pointer;
+                i{
+                    vertical-align: middle;
+                    font-size: 15px;
+                    &:hover{
+                        color: @brand-primary!important;
+                    }
+                }
+            }
+            .search-text,
+            .form-control-feedback{
+                display: none;
+            }
+            button{
+                i{
+                    position: absolute;
+                    top: 10px;
+                    right: 8px;
+                    font-size: 14px;
+                    color: @brand-primary;
+                }
+                &:hover{
+                    i{
+                        @header-icons-hover();
+                    }
+                }
+            }
+        }
+        .site-search-not-top{
+            margin-top: 2px;
+            float: right;
+            display: inline-block;
+            height: 100%;
+            input, button{
+                border: 1px solid @header-border-color;
+                line-height: 32px;
+                height: 32px;
+                vertical-align: middle;
+                display: inline-block;
+            }
+            input{
+                padding: 5px 10px;
+                background: #fafafa;
+                border-radius: 4px 0 0 4px;
+            }
+            button{
+                margin-left: -5px;
+                border-radius: 0 4px 4px 0;
+                background: #fff;
+                .square(32px);
+                color: @brand-primary;
+                i{
+                    position: relative;
+                    font-size: 20px;
+                    top: 4px;
+                    right: 1px;
+                }
+                &:hover{
+                    @header-icons-hover();
+                    border-radius: 0 4px 4px 0;
+                }
+            }
+        }
+        .site-user{
+            button{
+                margin-top: 2px;
+                border: 1px solid @header-border-color;
+                margin-left: 10px;
+                border-radius: 4px;
+                background: #fff;
+                .square(32px);
+                color: @brand-primary;
+                i{
+                    position: relative;
+                    font-size: 20px;
+                }
+                &:hover{
+                    @header-icons-hover();
+                    border-radius: 4px;
+                }
+            }
+        }
+        #main-navigation{
+            .dropdown-menu{
+                top: 95%!important;
+            }
+        }
+        .header-wrap{
+            
+            @media (min-width: @screen-xs-max) {
+                height: @header-dt-scrolling;
+                .logo {
+                    width: auto;
+                    height: 30px;
+                    float: left;
+                    position: relative;
+                    top: 8px;
+                    a {
+                        display: inline-block;
+                        text-indent: -999em;
+                        height: 30px!important;
+                        width: 18px!important;
+                        background: url('//images.military.com/media/shared/css-global/m-blue-logo-ts90.png') no-repeat center center transparent!important;
+                        background-size: 18px 30px!important;
+                    }
+                }
+            }
+            .header-links{
+                top: 10px;
+                .nav {
+                    height: 36px!important;
+                    a{
+                        font-size: 14px!important;
+                    }
+                }
+            }
+        }
+        .site-search{
+            display: none!important;
+        }
+        .header-icons{
+            padding-top: 5px!important;
+        }
+    }
+};
+
+ @header-icons-hover:{
+    background-color: #fafafa;
+    border-radius: 4px;
+    color: #c8d8e7;
+    >a,>i{
+        color: #c8d8e7;   
+    }
+};

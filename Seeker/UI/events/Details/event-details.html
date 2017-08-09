@@ -1,0 +1,90 @@
+﻿<div ng-if="isLoaded">
+    <ocs-intro-section title="::event.title" description="::event.description">
+        <!--<ocs-well></ocs-well>-->
+        <ocs-intro-section-actions>
+            <div class="mb30">
+                <button class="btn btn-xs"
+                        ng-if="!(event.seatsTaken >= event.seatsLimit)"
+                        ng-class="{'btn-add': !registrationActive, 'btn-done': event.isUserRegistered}"
+                        type="button"
+                        ocs-busy="busyLinks.register" ignore-disabled="event.isUserRegistered"
+                        ng-disabled="busyLinks.register || registrationActive"
+                        ng-click="registerForm();">
+
+                    <span ng-switch="status">
+                        <span ng-switch-when="workshopAction" ng-bind=":preResolved:$root.msg(372520)"></span>
+                        <span ng-switch-when="eventAction" ng-bind=":preResolved:$root.msg(372546)"></span>
+                        <span ng-switch-when="workshopComplete" ng-bind=":preResolved:$root.msg(372547)"></span>
+                        <span ng-switch-when="eventComplete" ng-bind=":preResolved:$root.msg(372548)"></span>
+                    </span>
+                </button>
+
+                <span ng-if="event.isUserRegistered">
+                    <button class="btn btn-link btn-xs"
+                            type="button"
+                            ocs-busy="busyLinks.unregister"
+                            ng-disabled="busyLinks.unregister"
+                            ng-click="unregister()"
+                            ng-bind=":preResolved:$root.msg(372521)"></button>
+                    <span class="vertical-separator no-padding">|</span>
+                </span>
+                <a class="btn btn-link btn-xs" href="/" ng-bind=":preResolved:$root.msg(372522)"></a>
+            </div>
+            <div ng-include="formUrl"></div>
+        </ocs-intro-section-actions>
+    </ocs-intro-section>
+
+
+    <div class="row">
+        <div class="col-sm-12" ng-class="{'col-md-6': !isWorkshop, 'col-md-4': isWorkshop}">
+            <div class="content-box muted remove-hight-sm">
+                <h4 class="mt0" ng-bind=":preResolved:$root.msg(372524)"></h4>
+                <div>
+                    <h5 ng-if="event.location" class="mb0">{{:preResolved:$root.msg(372524)}}:</h5>
+                    <p ng-bind="::event.location"></p>
+
+                    <h5 ng-if="event.county" class="mb0">{{:preResolved:$root.msg(338884)}}:</h5>
+                    <p ng-bind="::event.county"></p>
+
+                    <h5 ng-if="event.url" class="mb0">{{:preResolved:$root.msg(347221)}}:</h5>
+                    <a href="{{::event.url}}" ng-bind="::event.url" target="_blank"></a>
+
+                    <h5 class="mb0" ng-if="event.phoneNumber" ng-bind=":preResolved:$root.msg(367339)"></h5>
+                    <p ng-bind="::event.phoneNumber"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12" ng-class="{'col-md-6': !isWorkshop, 'col-md-4': isWorkshop}">
+            <div class="content-box muted remove-hight-sm">
+                <h4 class="mt0" ng-bind=":preResolved:$root.msg(372519)"></h4>
+                <div>
+                    <h5 ng-if="!isSameDay" class="mb0" ng-bind=":preResolved:$root.msg(155831)"></h5>
+                    <strong ng-bind="::startDate"></strong>
+                    <p>
+                        {{::startTime}}
+                        <span ng-if="isSameDay"> - {{::endTime}}</span>
+                    </p>
+
+                    <div ng-if="!isSameDay">
+                        <h5 class="mb0" ng-bind=":preResolved:$root.msg(98373)"></h5>
+                        <strong ng-bind="::endDate"></strong>
+                        <p ng-bind="::endTime"></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-12" ng-if="isWorkshop">
+            <div class="content-box muted remove-hight-sm">
+                <h4 class="mt0" ng-bind=":preResolved:$root.msg(372525)"></h4>
+                <div>
+                    <p>
+                        <strong>{{(event.seatsLimit - event.seatsTaken)}} {{:preResolved:$root.msg(367333)}} {{event.seatsLimit}}</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

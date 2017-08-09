@@ -1,0 +1,127 @@
+﻿<div ng-if="isLoaded">
+    <section>
+        <div class="carousel-container">
+            <div class="content">
+                <slick class="slider" settings="slickConfig">
+                    <div ng-repeat="slide in slides track by $index">
+                        <div class="row no-gutter">
+                            <div class="col-sm-6 slide-text">
+                                <h1 class="website">{{::slide.title}}</h1>
+                                <h2 class="mt0">{{::slide.subTitle}}</h2>
+                                <ul class="slite-text-list hidden-xs">
+                                    <li ng-repeat="item in ::slide.textList track by $index" ng-bind="item"></li>
+                                </ul>
+
+                                <div class="slide-actions">
+                                    <a class="btn btn-primary mb15" href="{{::slide.primaryLinkUrl}}">
+                                        {{::slide.primaryLinkText}}
+                                    </a>
+                                    <div ng-if="::slide.simpleLinkText">
+                                        <a href="{{::slide.simpleLinkUrl}}">
+                                            {{::slide.simpleLinkText}}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6" ng-class="{'slide-video':slide.iframe, 'slide-image': slide.imgUrl}">
+                                <div class="embed-responsive embed-responsive-16by9" 
+                                     ng-if="::slide.iframe" 
+                                     ng-bind-html="::slide.iframe | unsafe">
+                                </div>
+                                <div ng-if="::slide.imgUrl" style="background-image: url({{::slide.imgUrl}})"></div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </slick>
+
+
+                <!--<div>
+                    <button class="btn btn-info" ng-click="slickConfig.method.slickFilter(':even')">Filter</button>
+                    <button class="btn btn-info" ng-click="slickConfig.method.slickUnfilter()">unFilter</button>
+                    <button class="btn btn-info" ng-click="slickConfig.method.slickGoTo(2)">GoTo(2)</button>
+                    <button class="btn btn-info" ng-click="slickConfig.method.slickPrev()">Prev()</button>
+                    <button class="btn btn-info" ng-click="slickConfig.method.slickNext()">Next()</button>
+                    <button class="btn btn-info" ng-click="updateNumber1()">Update/Add()</button>
+                    <button class="btn btn-info" ng-click='slickConfig.method.slickRemove(3)'>Remove(3)</button>
+                    <button class="btn btn-info" ng-click='slickConfig.method.slickPlay()'>Play()</button>
+                    <button class="btn btn-info" ng-click='slickConfig.method.slickPause()'>Pause()</button>
+                </div>-->
+                
+            </div>
+        </div>
+    </section>
+
+    <section class="content-wrapper-adjuster content-wrapper-bottom-adjuster" ng-if="tabs.displayTabs">
+
+        <uib-tabset active="activePill" vertical="true" type="tabs" class="tabs-component tab-selected-index-{{tabs.activeTabIndex + 1}}">
+            <uib-tab ng-repeat="tabitem in tabs.tabsItems | orderBy:'order' track by $index" index="$index" heading="{{tabitem.title}}" classes="tab-item tab-{{$index+1}}" select="tabs.tabselected($index, tabitem.color)" ng-style="{'background-color': tabitem.color}">
+                <div class="tab-content-inner">
+                    <div ng-repeat="contentItem in tabitem.contentItems | orderBy: 'order'">
+                        <h2 ng-if="contentItem.type == 'heading'" class="heading {{contentItem.classes}}">{{contentItem.content}}</h2>
+                        <h3 ng-if="contentItem.type == 'subheading'" class="{{contentItem.classes}}">{{contentItem.content}}</h3>
+                        <p ng-if="contentItem.type == 'paragraph'" ng-bind-html="contentItem.content"></p>
+                        <div ng-if="contentItem.type == 'rule-separator'">
+                            <hr class="hr-table-gray mb40 mt40" />
+                        </div>
+                        <div ng-if="contentItem.type == 'separator'">
+                            <div class="separator" ng-attr-style="height: {{contentItem.height}}px"></div>
+                        </div>
+                        <div ng-if="contentItem.type == 'image-link'">
+                            <a href="{{contentItem.linkUrl}}"><img ng-src="{{contentItem.imgSrc}}" alt="{{contentItem.imgAlt}}" /></a>
+                        </div>
+                        <div ng-if="contentItem.type == 'link'" ng-style="{'text-align': contentItem.align}">
+                            <a href="{{contentItem.linkUrl}}" class="{{contentItem.classes}}" style="min-width:141px;">{{contentItem.linkText}}</a>
+                        </div>
+                        <div ng-if="contentItem.type == 'video'">
+                            <div ng-bind-html="contentItem.code | unsafe"></div>
+                        </div>
+                    </div>
+                </div>
+            </uib-tab>
+        </uib-tabset>
+        <div class="clearfix"></div>
+
+    </section>
+
+    <section class="content-wrapper-adjuster" ng-if="tabs.displayAccordion">
+        <uib-accordion class="tabs-component tab-selected-index-{{tabs.activeTabIndex + 1}}">
+
+            <div uib-accordion-group ng-repeat="tabitem in tabs.tabsItems | orderBy:'order' track by $index" index="$index" 
+                 heading="{{tabitem.title}}" classes="tab-item tab-{{$index+1}}" ng-click="tabs.tabselected($index, tabitem.color)" style="background-color: {{tabitem.color}}"
+                 ng-init="status.open = $first" is-open="status.open">
+                <div class="tab-content-inner">
+                    <div ng-repeat="contentItem in tabitem.contentItems | orderBy: 'order'">
+                        <h2 ng-if="contentItem.type == 'heading'" class="heading {{contentItem.classes}}">{{contentItem.content}}</h2>
+                        <h3 ng-if="contentItem.type == 'subheading'" class="{{contentItem.classes}}">{{contentItem.content}}</h3>
+                        <p ng-if="contentItem.type == 'paragraph'" ng-bind-html="contentItem.content"></p>
+                        <div ng-if="contentItem.type == 'rule-separator'">
+                            <hr class="hr-table-gray mb40 mt40" />
+                        </div>
+                        <div ng-if="contentItem.type == 'separator'">
+                            <div class="separator" ng-attr-style="height: {{contentItem.height}}px"></div>
+                        </div>
+                        <div ng-if="contentItem.type == 'image-link'">
+                            <a href="{{contentItem.linkUrl}}"><img ng-src="{{contentItem.imgSrc}}" alt="{{contentItem.imgAlt}}" /></a>
+                        </div>
+                        <div ng-if="contentItem.type == 'link'" style="text-align: {{contentItem.align}}">
+                            <a href="{{contentItem.linkUrl}}" class="{{contentItem.classes}}" style="min-width:141px;">{{contentItem.linkText}}</a>
+                        </div>
+                        <div ng-if="contentItem.type == 'video'">
+                            <div ng-bind-html="contentItem.code | unsafe"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </uib-accordion>
+
+    </section>
+
+</div>
+
+
+
+
+
+
+

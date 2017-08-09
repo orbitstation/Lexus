@@ -1,0 +1,13 @@
+﻿<div>
+    <div kendo-scheduler="scheduler{{calendarId}}" k-options="schedulerOptions">
+    </div>
+
+    <div ng-repeat="entry in legendEntries track by $index" ng-show="showLegend" class="display-inline-block" style="margin-right: 15px;">
+        <div ng-show="$parent.isAuthenticated || !entry.authenticatedOnly">
+            <span class="display-inline-block" style="background-color:{{ entry.color }}; padding: 2px 7px;">
+                <input type="checkbox" id="legendEntry-{{ $index}}" ng-model="entry.checked" ng-click="rebind()" />
+            </span>
+            <label for="legendEntry-{{ $index }}">{{ entry.name }}</label>
+        </div>
+    </div>
+</div>

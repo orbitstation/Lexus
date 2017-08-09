@@ -1,0 +1,35 @@
+﻿<div ng-if="isLoaded">
+    <div class="row">
+        <div class="col-sm-12">
+            <h2 ng-bind-html="msg(175689)"></h2>
+            <p class="lead" ng-bind-html="msg(365473) | unsafe"></p>
+        </div>
+    </div>
+
+    <ng-form name="unsubscribeForm" novalidate>
+        <div class="row">
+            <div class="col-sm-12">
+
+                <ocs-error error-list="errorList"></ocs-error>
+
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        {{msg(127121)}} : <b>{{email}}</b><br />
+                        <br />
+                        <ocs-radio meta="meta.optOut" model="model.optOut"></ocs-radio>
+                        <ocs-check-box meta="meta.survey" model="model.survey"></ocs-check-box>
+                        <ocs-textarea meta="meta.otherComment" model="model.otherComment" id="txtOtherComment" ng-if="showOtherComments==true" options="{}"></ocs-textarea>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-12">
+                <div class="btn-group pull-right" role="group" aria-label="...">
+                    <button ng-click="submit()" class="btn btn-primary pull-right">{{msg(364722)}}</button>
+                </div>
+            </div>
+
+        </div>
+    </ng-form>
+
+</div>

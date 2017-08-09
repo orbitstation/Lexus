@@ -1,0 +1,19 @@
+﻿    <div class="row">
+        <div class='col-sm-12' ng-if="$root.cfg('programAssistance.programAssistanceEligibility') == 'true'">
+            <ocs-radio meta="meta.programAssistanceEligibility" model="model.programAssistance.programAssistanceEligibility">
+            </ocs-radio>
+        </div>
+        <div class='col-sm-12' ng-if="$root.cfg('programAssistance.uiBenefits') == 'true'">
+            <ocs-radio meta="meta.uiBenefits" model="model.programAssistance.uiBenefits">
+            </ocs-radio>
+        </div>
+        <div class='col-sm-12' ng-if="$root.cfg('programAssistance.lowIncomeHousehold') == 'true'">
+            <ocs-radio meta="meta.lowIncomeHousehold" model="model.programAssistance.lowIncomeHousehold">
+            </ocs-radio>
+        </div>
+        <div class='col-sm-12' ng-if="$root.cfg('programAssistance.receivingTANF') == 'true'">
+            <ocs-radio meta="meta.receivingTANF" model="model.programAssistance.receivingTANF">
+            </ocs-radio>
+        </div>
+    </div>
+

@@ -1,0 +1,33 @@
+﻿<section class="side-search" role="search" ng-controller="SearchPanelController">
+    <form class="">
+        <div class="search-boxes">
+            <div>{{:preResolved:msg(369991)}}</div>
+            <div class="mb-sm-half-gutter">
+                <ocs-autocomplete meta="meta.keywordsMeta"
+                                  aria-label="Keywords"
+                                  model=""
+                                  search-string="$root.search.keywords"
+                                  remote-api-handler="keywordHandler"
+                                  remote-response-formatter="keywordFormatter"
+                                  input-class="form-control input-sm">
+                </ocs-autocomplete>
+                <label for="keywords" class="sr-only">{{:preResolved:msg(347078)}}</label>
+            </div>
+            <div>
+                <ocs-autocomplete meta="meta.locationMeta"
+                                  aria-label="Location"
+                                  model="selLocation"
+                                  search-string="$root.search.location"
+                                  remote-api-handler="locationHandler"
+                                  remote-response-formatter="locationFormatter"
+                                  input-class="form-control input-sm">
+                </ocs-autocomplete>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-info btn-sm" ng-click="search()">
+                    <span>{{:preResolved:msg(370222)}}</span>
+                </button>
+            </div>
+        </div>
+    </form>
+</section>

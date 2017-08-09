@@ -1,0 +1,13 @@
+﻿<ol class="breadcrumb" 
+    ng-show="$root.configLayout.MGS_Breadcrumbs_On.lookUpConfig.value=='true'" 
+    ng-if="($root.meta.breadCrumbs && $root.meta.breadCrumbs.length) || meta">
+    <li ng-repeat="item in $root.meta.breadCrumbs track by $index">
+        <a ng-show="(($last && meta.length > 0) || !$last) && item.url" ng-href="{{item.url}}">{{(item.display.value) ? item.display.value : (item.display.lookUpMsg) ? item.display.lookUpMsg.value : item.display}}</a>
+        <span ng-show="((!meta || meta.length === 0) && $last) || !item.url">{{(item.display.value) ? item.display.value : (item.display.lookUpMsg) ? item.display.lookUpMsg.value : item.display}}</span>
+    </li>
+    <li ng-repeat="item in meta track by $index">
+        <a ng-show="item.url" ng-href="{{item.url}}">{{:preResolved:item.display.lookUpMsg.value}}</a>
+        <span ng-hide="item.url">{{item.display.lookUpMsg.value}}</span>
+    </li>
+</ol>
+

@@ -1,0 +1,53 @@
+﻿.apply-panel{
+    background: #fff;
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    margin: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top: 1px solid #d9d9d9;
+    box-shadow: 0 -1px 2px rgba(0,0,0,.03);
+}
+.body-wrapper{
+    margin-bottom: 80px;
+    
+}
+.body-wrapper >.container{
+    border-bottom: 1px solid #c7c7ca;
+}
+
+.apply-section{
+    position: relative;
+}
+
+.options-btns{
+    pointer-events: none;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+}
+
+.go-back-btn,
+.social-btn{
+    pointer-events:all;
+}
+/* smaller than 768px */
+@media (min-width: 480px){
+    .options-btns {
+        position: absolute;
+    }
+    .hr-show{
+        display: none;
+    }
+}
+@media (max-width: 480px){
+    .options-btns {
+        position: relative!important;
+    }
+    .hr-show{
+        display: block!important;
+    }
+}
+

@@ -1,0 +1,166 @@
+﻿<style>
+    .mochTableLabels {
+        background-color: #373B52; /* Option-B */
+        color: white;
+        margin-top: 20px;
+        line-height: 1.1;
+        margin-top: 10px;
+        font-weight: 600;
+        font-size: 18px;
+        padding: 10px 6px;
+        color: #fff;
+    }
+
+        .mochTableLabels i {
+            color: #D9E2F3; /* Primary +5 */
+        }
+
+        .mochTableLabels .rightCol {
+            text-align: right;
+            padding-right: 20px;
+        }
+
+    .mochTableRow {
+        border-bottom: 1px solid #808080;
+        padding: 5px;
+    }
+
+        .mochTableRow .rightCol {
+            text-align: right;
+        }
+
+        .mochTableRow.altRow {
+            background-color: #fff5f5;
+        }
+
+        .mochTableRow .actionsBox {
+            width: 200px;
+            border: 1px solid black;
+            background-color: white;
+            z-index: 100;
+            position: absolute;
+            right: 30px;
+        }
+
+
+    .filterBar {
+        background-color: #5c6c87; /*  optionGray */
+        margin-bottom: -30px;
+    }
+
+        .filterBar p {
+            line-height: 1.1;
+            margin-top: 15px;
+            font-weight: 600;
+            font-size: 18px;
+            padding: 10px 6px;
+            color: #fff;
+        }
+
+        .filterBar .filterButton {
+            padding-top: 5px;
+        }
+
+
+    .btn-success {
+        background-color: #00a372; /* go Green */
+    }
+
+
+    .starBadge.draft {
+        color: #DB5A28;
+    }
+
+    /*.starBadge.dreftPending {
+        color: #E0278D;
+    }*/
+
+    .starBadge.archived {
+        color: #662D91;
+    }
+
+    .starBadge.published {
+        color: #007B3F;
+    }
+</style>
+
+
+
+
+
+
+
+<div ng-if="isLoaded">
+    <div class="row"><h1>CMS Index Page</h1></div>
+
+    <!-- Filter Bar -->
+    <div class="row filterBar hidden-xs">
+        <div class="col-sm-2"><p class="pull-right">Filters:</div>
+        <div class="col-sm-2"><ocs-select meta="meta.urlFilter" model="model.filterOnUrl"></ocs-select></div>
+        <div class="col-sm-2"><ocs-select meta="meta.dateFilter" model="model.filterOnDate"></ocs-select></div>
+        <div class="col-sm-2"><ocs-select meta="meta.editorFilter" model="model.filterOnEditor"></ocs-select></div>
+        <div class="col-sm-2"><ocs-select meta="meta.statusFilter" model="model.filterOnStatus"></ocs-select></div>
+        <div class="col-sm-2"><p class="filterButton"><button class="btn btn-success" ng-click="filter();">Apply Filters</button></p></div>
+    </div>
+
+    <!-- Sorting Bar -->
+    <div class="row mochTableLabels hidden-xs">
+        <div class="col-sm-3">URL <i class="fa fa-sort" ng-click="sort('url', meta.urlDirection)"></i></div>
+        <div class="col-sm-2">Status <i class="fa fa-sort" ng-click="sort('status', meta.statusDirection)"></i></div>
+        <div class="col-sm-2">Editor name <i class="fa fa-sort" ng-click="sort('name', meta.nameDirection)"></i></div>
+        <div class="col-sm-2">Date <i class="fa fa-sort" ng-click="sort('date', meta.dateDirection)"></i></div>
+        <div class="col-sm-1">Time </div>
+        <div class="col-sm-2 rightCol">Actions </div>
+    </div>
+
+    <div class="row mochTableRow" ng-repeat="(n,rows) in indexList" ng-class="n%2==1? 'altRow': ''">
+        <div class="col-sm-3 hidden-xs"><a href="/cms/">.../CMS/{{rows.Url}}</a></div>
+        <div class="col-sm-3 col-xs-12 visible-xs"><h4><a href="/cms/">.../CMS/{{rows.Url}}</a></h4></div>
+
+        <div class="col-sm-2 col-xs-12 hidden-xs">
+            <span>
+                <i ng-if="rows.Status!='Published' && rows.Status!='Archived'" aria-hidden="true" class="fa fa-certificate starBadge draft"></i>
+                <i ng-if="rows.Status=='Published'" aria-hidden="true" class="fa fa-certificate starBadge published"></i>
+                <i ng-if="rows.Status=='Archived'" aria-hidden="true" class="fa fa-certificate starBadge archived"></i>
+                &nbsp;{{rows.Status}}
+            </span>
+        </div>
+        <div class="col-sm-2 col-xs-12">
+            <span class="visible-xs"><span class="gray">User:</span>&nbsp;{{rows.Editor}}</span>
+            <span class="hidden-xs">{{rows.Editor}}</span>
+        </div>
+        <div class="col-sm-2 col-xs-12">
+            <span class="visible-xs"><span class="gray">Date:</span>&nbsp;{{rows.Date}}</span>
+            <span class="hidden-xs">{{rows.Date}}</span>
+        </div>
+        <div class="col-sm-1 col-xs-12">
+            <span class="visible-xs"><span class="gray">Time:</span>&nbsp;{{rows.Time}}</span>
+            <span class="hidden-xs">{{rows.Time}}</span>
+        </div>
+
+        <div class="col-sm-2 col-xs-12 visible-xs">
+            <span><i class="fa fa-certificate" aria-hidden="true"></i>&nbsp;{{rows.Status}}</span>
+        </div>
+
+        <div class="col-sm-2 col-xs-12 rightCol" ng-init="actionsOpened='false'">
+            <button class="btn btn-default" ng-click="actionsOpened!='true'? actionsOpened='true': actionsOpened='false'">
+                Actions&nbsp;<i class="fa fa-caret-down" aria-hidden="true"></i>
+            </button>
+
+            <div class="row visible-xs" ng-show="actionsOpened == 'true'">
+                <button ng-if="rows.Status !== 'Published'" class="col-xs-12 btn btn-default" ng-click="actionsOpened='false'">Publish</button>
+                <button class="col-xs-12 btn btn-default" ng-click="actionsOpened='false'">Copy</button>
+                <button ng-if="rows.Status !== 'Archived'" class="col-xs-12 btn btn-default" ng-click="actionsOpened='false'">Archive</button>
+                <button ng-if="rows.Status !== 'Archived'" class="col-xs-12 btn btn-default" ng-click="actionsOpened='false'">Delete</button>
+            </div>
+            <div class="row actionsBox hidden-xs" ng-show="actionsOpened == 'true'">
+                <button ng-if="rows.Status !== 'Published'" class="col-xs-12 btn btn-default" ng-click="actionsOpened='false'">Publish</button>
+                <button class="col-xs-12 btn btn-default" ng-click="actionsOpened='false'">Copy</button>
+                <button ng-if="rows.Status !== 'Archived'" class="col-xs-12 btn btn-default" ng-click="actionsOpened='false'">Archive</button>
+                <button ng-if="rows.Status !== 'Archived'" class="col-xs-12 btn btn-default" ng-click="actionsOpened='false'">Delete</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>

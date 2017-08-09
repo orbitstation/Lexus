@@ -1,0 +1,61 @@
+﻿.sticky-closure {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    vertical-align: top;
+}
+
+.budget-calculation {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    .alert{
+        margin: 15px 0 0 0!important;
+    }
+}
+
+.wrap {
+    display: inline;
+    top: 0;
+    z-index: 0;
+    vertical-align: top;
+}
+
+.sticky .wrap {
+    position: fixed;
+    display: block;
+    width: auto;
+}
+
+.program-search-compare {
+    &.sticky {
+       & .wrap {
+            z-index:10;
+           & .compare-panel {
+                background: #fff;
+                box-shadow: 0 4px 4px -2px rgba(0,0,0,.2);
+            }
+        }
+        & .list {
+            padding-top:44px;
+        }
+    }
+}
+
+.at-bottom .wrap {
+    position: absolute;
+    bottom: 0;
+    top: inherit;
+}
+
+.sticky-stop {
+    clear: both;
+}
+
+@media (max-width: @screen-xs-max) {
+    .sticky-closure, .wrap, .sticky .wrap, .at-bottom .wrap, .budget-calculation {
+        width: 100%;
+        display: block;
+        position: static;
+    }
+}

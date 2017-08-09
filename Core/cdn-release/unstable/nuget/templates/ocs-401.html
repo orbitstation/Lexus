@@ -1,0 +1,25 @@
+﻿<div ng-show="!$root.isAuthenticated">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-muted">
+                <div class="panel-body">
+
+                    <h2 class="mt0 h3" ng-bind-html="$root.msg(363999)"></h2>
+                    <p ng-bind-html="$root.msg(364000)"></p>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="btn-group pull-right" role="group" aria-label="...">
+                                <a ng-click="createAccount()" type="button" class="btn btn-info">{{$root.msg(204843)}}</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <ocs-login meta="meta"></ocs-login>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+﻿<div>
+    <div class='form-group' ng-class="{
+         'form-group-sm': formSize == 'sm', 
+         'form-group-lg': formSize == 'lg'}">
+        <label for='{{::elementID}}'>
+            <span ng-show="meta.required">
+                <small class="fa fa-asterisk required-asterisk"></small>
+            </span>{{:preResolved:meta.label.lookUpMsg.value}}
+
+            <!-- aria-live ? -->
+            <ocs-Help meta="meta.help" ng-show="{{meta.help}}" class="ng-hide"></ocs-Help>
+        </label>
+        <div>
+            <input class='form-control'
+                   ng-required='{{meta.required}}'
+                   aria-required='{{meta.required}}'
+                   googleModel="{{googleModel}}"
+                   on-select="{{onSelect}}"
+                   ng-model='ngModel'
+                   id='{{::elementID}}'
+                   tab-index="0"
+                   type="text"
+                   autocomplete="off" />
+        </div>
+
+    </div>
+    <style>
+        .pac-container:after{
+            display: none!important;
+        }
+    </style>
+</div>

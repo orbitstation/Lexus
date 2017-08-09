@@ -1,0 +1,12 @@
+﻿<!--  CMS:topBanner Display -->
+<div class="row topBanner">
+    <div class="" ng-class="!openThis[key]? 'fadeIn' : 'fadeOut'">
+        <div class="col-sm-5">
+            <h1>{{modules.meta.title}}</h1>
+            <p ng-bind-html="modules.meta.p | unsafe"></p>
+        </div>
+        <div class="col-sm-7">
+            <img src="{{modules.meta.img}}" class="img-responsive img-rounded" />
+        </div>
+    </div>
+</div>

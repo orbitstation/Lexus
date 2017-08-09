@@ -1,0 +1,24 @@
+﻿<div>
+    <ng-form name="resumeBasicForm">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3 class="mt0">{{:preResolved:$root.msg(154438)}}</h3>
+                <ocs-input meta="meta.resumeTitle" model="resume.resumeTitle"></ocs-input>
+                <ocs-textarea meta="meta.resumeObjective" model="contact.resumeObjective"></ocs-textarea>
+                <hr class="hr-short" />
+                <h3>{{:preResolved:$root.msg(159461)}}</h3>
+                <p>{{:preResolved:$root.msg(343680)}}</p>
+                <ocs-select meta="meta.careerLevel" model="resume.careerLevel"></ocs-select>
+                <ocs-radio meta="meta.willingRelocate" model="resume.willingRelocate"></ocs-radio>
+                <ocs-select meta="meta.willingTravel" model="resume.willingTravel"></ocs-select>
+                <ocs-select meta="meta.securityClearance" model="resume.securityClearance"></ocs-select>
+            </div>
+            <div class="col-sm-6">
+                <h3>{{:preResolved:$root.msg(154467)}}</h3>
+                <p ng-bind-html="$root.msg(154468)"></p>
+                <ocs-check-box meta="meta.desiredJobType" model="model.desiredJobType"></ocs-check-box>
+            </div>
+        </div>
+    </ng-form>
+    <hr class="hr-short" />
+</div>

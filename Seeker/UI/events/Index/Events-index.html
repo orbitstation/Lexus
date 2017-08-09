@@ -1,0 +1,136 @@
+﻿<div>
+    <ocs-intro-section meta="meta.pageHeaderEvents"></ocs-intro-section>
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <ocs-select meta="meta.eventSortOrder" model="selectedSortOrderFilter"></ocs-select>
+    </div>
+    <div class="col-sm-6">
+    </div>
+</div>
+
+<div class="list-filter">
+    <div class="well well-primary">
+        <div class="display-table">
+            <div class="display-table-row">
+                <div class="display-table-cell vertical-align-middle cancel-inline-for-sm">
+                    <ocs-radio meta="meta.eventTypeFilter" model="filter.eventType"></ocs-radio>
+                </div>
+                <div class="display-table-cell vertical-align-middle text-search">
+                    <ocs-input meta="meta.eventTextFilter" model="filter.keyWord"></ocs-input>
+                    <button class="btn btn-primary" ng-click="doSearch()">{{$root.msg(372647)}}</button>
+                </div>
+                <div class="display-table-cell vertical-align-middle advanced-search-wrapper pull-right">
+                    <a class="advanced-search-switcher" ng-click="advancedFilterToggle()" href="">
+                        {{$root.msg(372648)}}
+                        <i class="fa fa-caret-up" aria-hidden="true" ng-show="filter.advancedFilterOpened"></i>
+                        <i class="fa fa-caret-down" aria-hidden="true" ng-show="!filter.advancedFilterOpened"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="filter-advanced" ng-show="filter.advancedFilterOpened">
+        <div class="well well-primary">
+            <div class="well well-secondary">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="filter-advanced-overview">
+                            <div ng-if="filter.keyWord">
+                                <i class="fa fa-plus" aria-hidden="true"></i> {{filter.keyWord}}
+                            </div>
+                            <div>
+                                <i class="fa fa-plus" aria-hidden="true"></i> {{filter.datesLabel.lookUpMsg.text}}
+                            </div>
+                            <div class="filter-regions-overview">
+                                <div ng-repeat="regionLabel in filter.regionsLabels">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                    <span ng-bind-html="regionLabel"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <a ng-click="doFilterClear()" href="">{{$root.msg(372641)}}</a>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="filter-regions">
+                            <ocs-check-box meta="meta.regionsFilter" model="filter.regions"></ocs-check-box>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="filter-dates">
+                            <ocs-radio meta="meta.eventDateFilter" model="selectedDateFilter"></ocs-radio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<div class="list display-table">
+    <div class="list-heading list-item display-table-row pt16 pb16">
+        <div class="display-table-cell vertical-align-middle col-xs-4 no-float">
+            <div class="list-heading-item text-align-left item-first">{{$root.msg(372643)}}</div>
+        </div>
+        <div class="display-table-cell vertical-align-middle col-xs-2 no-float">
+            <div class="list-heading-item text-center">{{$root.msg(372525)}}</div>
+        </div>
+        <div class="display-table-cell vertical-align-middle col-xs-3 no-float">
+            <div class="list-heading-item text-center">
+                {{$root.msg(372644)}}
+            </div>
+        </div>
+        <div class="display-table-cell vertical-align-middle col-xs-3 no-float">
+            <div class="list-heading-item text-center">
+                {{$root.msg(372519)}}
+            </div>
+        </div>
+    </div>
+
+    <div class="list-item display-table-row pt16 pb16" ng-repeat="item in events.items">
+        <!--<events-row meta="meta" item="item"></events-row>-->
+        <div class="display-table-cell vertical-align-middle pt16 pb16 col-xs-4 no-float">
+            <h3 class="list-item-heading item-first" ng-show="!item.url || item.url.length === 0">{{item.title}}</h3>
+            <h3 class="list-item-heading item-first" ng-show="item.url && item.url.length !== 0">
+                <a ng-href="events/details/{{item.id}}">{{item.title}}</a>
+            </h3>
+            <div ng-show="item.isUserRegistered" class="item-first">
+                <!-- You are registered for this event -->
+                <span class="text-success" ng-show="item.category == 'Workshop'">{{$root.msg(372640)}}</span>
+                <span class="text-success" ng-show="item.category == 'JobFair'">{{$root.msg(372889)}}</span>
+            </div>
+        </div>
+        <div class="display-table-cell vertical-align-middle pt16 pb16 col-xs-2 no-float">
+            <div class="text-center">
+                <span ng-show="(item.seatsTaken >= 0) && item.seatsLimit && item.seatsLimit > 0">
+                    {{item.seatsLimit - item.seatsTaken}} {{$root.msg(367333)}} {{item.seatsLimit}}
+                </span>
+                <span ng-show="!item.seatsTaken && !item.seatsLimit">{{$root.msg(372646)}}</span>
+            </div>
+        </div>
+        <div class="display-table-cell vertical-align-middle pt16 pb16 col-xs-3 no-float">
+            <div class="text-center">
+                <span>
+                    {{item.location}}
+                </span>
+            </div>
+        </div>
+        <div class="display-table-cell vertical-align-middle pt16 pb16 col-xs-3 no-float">
+            <div class="text-center">
+                <span>
+                    {{item.friendlyDate}}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-show="events.totalItemsCount > pageSize" class="ng-hide">
+    <hr class="hr-short" />
+    <div class="btn-group pull-right">
+        <ocs-pager datasetSize="events.totalItemsCount" pageSize="pageSize" currentPage="events.pageNumber" showFirstLast="true" visiblePages="5"></ocs-pager>
+    </div>
+</div>
+<div class="clearfix"></div>

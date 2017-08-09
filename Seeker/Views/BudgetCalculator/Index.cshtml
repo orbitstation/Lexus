@@ -1,0 +1,13 @@
+﻿@{ ViewBag.Title = "Budget Calculator"; }
+
+@section Header
+{
+<!-- build:js -->
+<script src="~/UI/budgetCalculator/budgetCalculator-meta.js"></script>
+<script src="~/UI/budgetCalculator/budgetCalculator-config.js"></script>
+
+<script src="~/UI/budgetCalculator/budgetCalculator-app.js"></script>
+<script src="~/UI/budgetCalculator/index/budgetCalculator-index-ctrl.js"></script>
+<!-- endbuild -->
+}
+<div ng-view></div>

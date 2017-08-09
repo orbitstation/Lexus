@@ -1,0 +1,101 @@
+﻿<div ng-if="isLoaded">
+    <div class="row">
+        <div class="col-sm-12">
+            <ocs-bread-crumbs></ocs-bread-crumbs>
+            <h2>Menu Creator</h2>
+            <p class="lead">Use this tool to create a new Menu.</p>
+        </div>
+    </div>
+    <br>
+    <br>
+    <ocs-401 meta="meta"></ocs-401>
+
+    <div ng-show="$root.isAuthenticated">
+
+
+        <ocs-Navbar meta="meta.navTemp" template-name="ocs-navbar"></ocs-Navbar>
+
+
+        <div ng-repeat="(key,x) in buckets">
+            <div class="row">
+                <div class="col-sm-1">
+                    <button ng-click="delete(x,key)" class="btn btn-xs btn-danger">[remove]</button>
+                </div>
+                <div class="col-sm-3">
+                    <select ng-model="x.bucket.masterListItem"
+                            ng-options='item.value as item.display.lookUpMsg.value for item in meta.navMasterItems'></select>
+                </div>
+                <div class="col-sm-2">
+                    <span ng-if="x.bucket.masterListItem=='CmsPage'">
+                        <input ng-model="x.bucket.queryString" placeholder="QueryString" />
+                    </span>
+                </div>
+                <div class="col-sm-2">
+                    <span ng-if="x.bucket.masterListItem=='externalUrl' || (x.bucket.masterListItem=='icon')">
+                        <input ng-model="x.bucket.url" placeholder="Custom Url" />
+                    </span>
+                </div>
+                <div class="col-sm-2">
+                    <span ng-if="(x.bucket.masterListItem=='externalUrl') || (x.bucket.masterListItem=='CmsPage')">
+                        <input ng-model="x.bucket.display" placeholder="Display Text" />
+                    </span>
+                    <span ng-if="x.bucket.masterListItem=='icon'">
+                        <input ng-model="x.bucket.icon" placeholder="Icon Class" />
+                    </span>
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <div class="row" ng-repeat="(key,y) in x.bucket.items">
+                <div class="col-sm-2">
+                    <button ng-click="deleteSub(x,key)" class="btn btn-xs btn-danger">[remove]</button>
+                </div>
+
+                <div class="col-sm-2">
+                    <select ng-model="y.masterListItem" ng-options='item.value as item.display.lookUpMsg.value for item in meta.navMasterItems'></select>
+                </div>
+                <div class="col-sm-2">
+                    <span ng-if="y.masterListItem=='CmsPage'"><input ng-model="y.queryString" placeholder="QueryString" /></span>
+                </div>
+                <div class="col-sm-2">
+                    <span ng-if="y.masterListItem=='externalUrl'"><input ng-model="y.url" placeholder="Custom Url" /></span>
+                </div>
+                <div class="col-sm-2">
+                    <span ng-if="(y.masterListItem=='externalUrl') || (y.masterListItem=='CmsPage')"><input ng-model="y.display" placeholder="Display Text" /></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-10">
+                    <span ng-click="addSub(x)" class="btn btn-xs btn-primary">Add a Sub Navigation Item</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-11">
+                <span ng-click="addBucket(buckets)" class="btn btn-xs btn-primary">[Add top Menu Item]</span>
+            </div>
+        </div>
+
+        <br>
+        <br>
+
+
+        <div class="row">
+            <pre class="col-sm-12">buckets: {{buckets}}</pre>
+        </div>
+
+        <div class="row">
+            <pre class="col-sm-6">buckets: {{buckets | json}}</pre>
+            <pre class="col-sm-6">meta.navTemp: {{meta.navTemp | json}}</pre>
+        </div>
+    </div>
+</div>

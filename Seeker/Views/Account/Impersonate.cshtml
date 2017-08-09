@@ -1,0 +1,26 @@
+﻿@section Header
+{
+    <script>
+        (function () {
+            "use strict";
+            var urlParams = function () {
+                var match,
+                    pl = /\+/g,  // Regex for replacing addition symbol with a space
+                    search = /([^&=]+)=?([^&]*)/g,
+                    decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+                    query = window.location.search.substring(1);
+
+                urlParams = {};
+                while (match = search.exec(query))
+                    urlParams[decode(match[1])] = decode(match[2]);
+                return urlParams;
+            };
+            
+            angular.module('miniSPA', ['globalApp'])
+            .run(['$http', '$window', '$rootScope', 'authentication', function ($http, $window, $rootScope, authentication) {
+                authentication.impersonate(urlParams().auth);
+            }]);
+        })();
+    </script>
+}
+

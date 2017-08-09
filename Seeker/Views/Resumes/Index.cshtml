@@ -1,0 +1,57 @@
+﻿@{ ViewBag.Title = "Resumes"; }
+
+@section Header
+{
+
+<!-- google drive api     -->
+<script src="https://apis.google.com/js/client.js"></script>
+<script src="https://apis.google.com/js/api.js"></script>
+<!-- dropbox api -->
+<script type="text/javascript" src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="40czhmremdxh40c"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0HlOnhp_0PYqZylJT-GMYCfUDjCZyfg0&libraries=places"></script>
+<!-- build:js -->
+<script src="~/UI/resumes/resumes-meta.js"></script>
+<script src="~/UI/resumes/resumes-config.js"></script>
+
+<script src="~/UI/resumes/resumes-app.js"></script>
+<script src="~/UI/resumes/index/resumes-index-ctrl.js"></script>
+<script src="~/UI/resumes/send/resumes-send-ctrl.js"></script>
+<script src="~/UI/resumes/rating/resumes-rating-ctrl.js"></script>
+<script src="~/UI/resumes/status/resumes-status-ctrl.js"></script>
+<script src="~/UI/resumes/view/resumes-view-ctrl.js"></script>
+<script src="~/UI/resumes/start/resumes-start-ctrl.js"></script>
+<script src="~/UI/resumes/profile-incomplete/resumes-profile-incomplete-ctrl.js"></script>
+<script src="~/UI/resumes/profile-incomplete/resumes-profile-incomplete-service.js"></script>
+<!-- endbuild -->
+<script src="~/UI/resumes/start/resume-data-share.js"></script>
+<script src="~/UI/resumes/start/sections/resume-basicsCtrl.js"></script>
+<script src="~/UI/resumes/start/sections/objective-summaryCtrl.js"></script>
+<script src="~/UI/resumes/start/sections/profile-informationCtrl.js"></script>
+<script src="~/UI/resumes/start/sections/experienceCtrl.js"></script>
+<script src="~/UI/resumes/start/sections/target-employer-info.controller.js"></script>
+<script src="~/UI/resumes/start/sections/resume-skills.controller.js"></script>
+
+<!-- education -->
+<script src="~/UI/resumes/start/sections/educationCtrl.js"></script>
+
+<!-- certification -->
+<script src="~/UI/resumes/start/sections/certificationCtrl.js"></script>
+
+<!-- awards -->
+<script src="~/UI/resumes/start/sections/awardsCtrl.js"></script>
+
+<!-- references -->
+<script src="~/UI/resumes/start/sections/referencesCtrl.js"></script>
+
+<!-- languages -->
+<script src="~/UI/resumes/start/sections/languagesCtrl.js"></script>
+
+
+<script src="~/UI/resumes/start/sections/profile-settingsCtrl.js"></script>
+<script src="~/UI/resumes/start/sections/uploadCtrl.js"></script>
+
+<script src="~/UI/resumes/start/sections/finishing-upCtrl.js"></script>
+
+
+}
+<div ng-view></div>

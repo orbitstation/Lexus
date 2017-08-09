@@ -1,0 +1,65 @@
+﻿<div class="panel-content">
+    <div class="row">
+        <div class="col-sm-6">
+            <div>
+                <span class="content-label">{{:preResolved:msg(374766)}}</span> {{programDetails.provider.providerType}}
+            </div>
+            <div>
+                <span class="content-label">{{:preResolved:msg(374767)}}</span> <span ng-repeat="item in programDetails.provider.typeOfschool">{{item}}<span ng-if="!$last">, </span></span>
+            </div>
+            <div>
+                <span class="content-label">{{:preResolved:msg(374768)}}</span> {{programDetails.provider.contactInformation.lastName}} {{programDetails.provider.contactInformation.firstName}}
+            </div>
+            <div>
+                <span class="content-label">{{:preResolved:msg(374769)}}</span> {{programDetails.provider.contactInformation.emailAddress}}
+            </div>
+            <div>
+                <span class="content-label">{{:preResolved:msg(374770)}}</span> {{programDetails.provider.contactInformation.phonePrimary.phoneNumber}}
+            </div>
+            <div>
+                <span class="content-label">{{:preResolved:msg(374771)}}</span> {{programDetails.provider.accreditationLicensingAgency}}
+            </div>
+            <div>
+                <span class="content-label">{{:preResolved:msg(374772)}}</span> {{programDetails.provider.accreditingBody}}
+            </div>
+            <div>
+                <span class="content-label">{{:preResolved:msg(374773)}}</span> {{programDetails.provider.averageStudentTeacherRatio}}
+            </div>
+            <div>
+                <span class="content-label">{{:preResolved:msg(374774)}}</span>  <span ng-repeat="item in programDetails.provider.offeredServices">{{item}}<span ng-if="!$last">, </span></span>
+            </div>
+            <div>
+                <span class="content-label">{{:preResolved:msg(374775)}}</span> <span ng-repeat="item in programDetails.provider.availableLanguages">{{item}}<span ng-if="!$last">, </span></span>
+            </div>
+            <div>
+                <span class="content-label">{{:preResolved:msg(374776)}}</span> {{programDetails.provider.englishAsSecondLanguageAvailable}}
+            </div>
+            <div>
+                <span class="content-label">{{:preResolved:msg(374777)}}</span> {{programDetails.provider.isAdaCompliant}}
+            </div>
+            <div>
+                <span class="content-label">{{:preResolved:msg(374778)}}</span> {{programDetails.provider.publicTransportationAvailable}}
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div>
+                <span class="content-label">{{:preResolved:msg(374779)}}</span>
+            </div>
+            <div>
+                {{programDetails.provider.providerDescription}}
+            </div>
+            <div>
+                <span class="content-label">{{:preResolved:msg(374780)}}</span> <span ng-repeat="item in programDetails.provider.whereConductTraining">{{item}}<span ng-if="!$last">, </span></span>
+            </div>
+            <div>
+                <span class="content-label">{{:preResolved:msg(374781)}}</span> <span ng-repeat="item in programDetails.provider.trainingMethods">{{item}}<span ng-if="!$last">, </span></span>
+            </div>
+            <div>
+                <span class="content-label">{{:preResolved:msg(374782)}}</span> <span ng-repeat="item in programDetails.provider.deliverable">{{item}}<span ng-if="!$last">, </span></span>
+            </div>
+            <div>
+                <span class="content-label">{{:preResolved:msg(374783)}}</span> <span ng-repeat="item in programDetails.provider.industries">{{item}}<span ng-if="!$last">, </span></span>
+            </div>
+        </div>
+    </div>
+</div>

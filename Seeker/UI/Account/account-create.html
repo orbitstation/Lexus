@@ -1,0 +1,10 @@
+﻿<div ng-if="productVariables.DemoChannelID ===productVariables.ChannelID ">
+    <div class="btn-group" role="group" aria-label="reg switcher">
+        <button type="button" class="btn btn-default" ng-class="{'active': vm.lite}" ng-click="vm.switchReg('lite', globalForm)">Lite registration</button>
+        <button type="button" class="btn btn-default" ng-class="{'active': !vm.lite}" ng-click="vm.switchReg('full', globalForm)">Full registration</button>
+    </div>
+</div>
+
+<ng-form name="globalForm" novalidate>
+    <div ng-include="vm.createType"></div>
+</ng-form>

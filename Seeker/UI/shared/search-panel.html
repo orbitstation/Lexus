@@ -1,0 +1,46 @@
+﻿<section class="main-search" ng-controller="SearchPanelController">
+    <div class="close-search visible-xs-inline-block"  
+            role="button" 
+            ng-click="$root.search.open = false" 
+            ng-if="$root.registry.localStore.global.context.ChannelAlias === 'MGSMIL'">
+        <i class="material-icons">close</i>
+    </div>
+    <form class="collapse in navbar-collapse" ng-init="$root.isSearchCollapsed = true" uib-collapse="$root.isSearchCollapsed">
+        <div class="">
+            <div class="search-boxes">
+                <div>{{:preResolved:msg(369991)}}</div>
+                <div class="mb-sm-half-gutter">
+                    <ocs-autocomplete meta="meta.keywordsMeta"
+                                      aria-label="Keywords"
+                                      model="keywords"
+                                      search-string="$root.search.keywords"
+                                      remote-api-handler="keywordHandler"
+                                      remote-response-formatter="keywordFormatter"
+                                      input-class="form-control input-sm"
+                                      custom-id="searchPanelKeywords_{{randomNumber}}">
+                    </ocs-autocomplete>
+                    <label for="keywords" class="sr-only">{{:preResolved:msg(347078)}}</label>
+                </div>
+                <div>
+                    <ocs-autocomplete meta="meta.locationMeta"
+                                      aria-label="Location"
+                                      model="location"
+                                      search-string="$root.search.location"
+                                      remote-api-handler="locationHandler"
+                                      remote-response-formatter="locationFormatter"
+                                      input-class="form-control input-sm"
+                                      custom-id="searchPanelLocation_{{randomNumber}}">
+                    </ocs-autocomplete>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary btn-sm" ng-click="search()">
+                        <span>{{:preResolved:msg(370222)}}</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <ocs-recent-searches view-type="mobile"></ocs-recent-searches>
+        </div>
+    </form>
+</section>

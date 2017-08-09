@@ -1,0 +1,15 @@
+﻿@{ ViewBag.Title = "My Dashboard"; }
+
+@section Header
+{
+<!-- build:js -->
+<script src="~/UI/dashboard/dashboard-meta.js"></script>
+<script src="~/UI/dashboard/dashboard-config.js"></script>
+
+<script src="~/UI/dashboard/dashboard-app.js"></script>
+<script src="~/UI/dashboard/index/dashboard-index-ctrl.js"></script>
+@*<script src="~/UI/dashboard/index/match-height.js"></script>*@
+<!-- endbuild -->
+}
+
+<div ng-view></div>

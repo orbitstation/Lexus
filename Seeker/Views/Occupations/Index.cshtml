@@ -1,0 +1,19 @@
+﻿@{ ViewBag.Title = "Occupations"; }
+
+@section Header
+{
+<!-- build:js -->
+<script src="~/UI/occupations/occupations-meta.js"></script>
+<script src="~/UI/occupations/occupations-config.js"></script>
+
+<script src="~/UI/occupations/occupations-app.js"></script>
+<script src="~/UI/occupations/saved/occupations-saved-ctrl.js"></script>
+<script src="~/UI/occupations/Index/occupations-index-ctrl.js"></script>
+<script src="~/UI/occupations/Search/occupations-search-ctrl.js"></script>
+<script src="~/UI/occupations/Compare/occupations-compare-ctrl.js"></script>
+<script src="~/UI/occupations/CareerDetails/occupations-careerdetails-ctrl.js"></script>
+<script src="~/UI/occupations/EducationTraining/occupations-educationtraining-ctrl.js"></script>
+<!-- endbuild -->
+}
+
+<div ng-view></div>

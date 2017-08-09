@@ -1,0 +1,138 @@
+.fa{
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.body-wrapper{
+    @body-wrapper();
+} 
+
+.angucomplete-holder{
+    > div{
+        width: 100%;
+    }
+}
+
+.main-header,
+.main-search{
+    border-left: 1px solid @content-border-color;
+    border-right: 1px solid @content-border-color;
+    @media (max-width: @screen-xs-max){
+        border: 0;
+    }
+}
+
+.content-wrapper{
+    background-color: @content-bg;
+    padding: @content-wrapper-padding;
+    @media (max-width: @screen-xs-max){
+        padding: @content-wrapper-padding/2;
+    }
+}
+
+.content-wrapper-adjuster{
+    margin: 0 -@content-wrapper-padding;
+    @media (max-width: @screen-xs-max){
+        margin: 0 -@content-wrapper-padding/2;
+    }
+}
+
+.content-wrapper-bottom-adjuster{
+    display: table;
+    margin-bottom: -@content-wrapper-padding;
+    @media (max-width: @screen-xs-max){
+        margin-bottom: -@content-wrapper-padding/2;
+    }
+}
+
+.required-asterisk{
+    color: @brand-danger;
+    vertical-align: middle;
+    font-size: 7px;
+}
+
+.error-message {
+    color: @brand-danger;
+}
+
+
+//When search doesn't provide any results
+//Default text styles.
+.no-results-msg {
+    color: @gray;
+}
+
+.show-hide {
+    -webkit-transition: all linear 0.2s;
+    transition: all linear 0.2s;
+    &.ng-hide {
+        opacity: 0;
+    }
+}
+
+.accessibility{
+    .dropdown-menu{
+        left: auto;
+        right: 0;
+        .text-resize{
+            padding: 3px 20px;
+        }
+    }
+}
+
+
+select option:disabled{
+    color: white;
+    background-color: #b9b9b9;
+}
+
+// add a border to ads when they are blocked (in dev environment)
+.outlineAdvertisement {
+    background: @gray-lighter;
+    position: relative;
+    padding: 1px 2px;
+    margin-bottom: -1px;
+}
+
+.outlineAdvertisement:before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    .translate3d(-50%, -50%, 0);
+    padding: 10px 20px;
+    background: rgba(0,0,0,.75);
+    color: #fff;
+    content: "AD GOES HERE";
+    z-index: 10;
+}
+
+// button override to keep a single color on hover without darken/lighten managed in buttons mixin.
+
+.btn-done, .btn-outline-success {
+    &:hover, &:active, &.active, &:focus, &.focus {
+        color: @state-success-text !important;
+        background-color: #DCE9D8 !important;
+        border-color: @btn-success-border !important;
+    }
+}
+
+.btn-done {
+    &:before {
+      color: @btn-success-bg;
+    }
+}
+
+//FIXES
+
+//FF required/invalid fix
+input:required:invalid {
+  border-color: none;
+  box-shadow:none; 
+}
+
+//Implementation of the mixin is in print-mixin.less. You can define your own version if needed.
+.print-defaults();

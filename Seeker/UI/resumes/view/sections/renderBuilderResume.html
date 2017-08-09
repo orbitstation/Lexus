@@ -1,0 +1,427 @@
+﻿<div ocs-spinner is-loaded="vm.resumePreview" options="{top: '100px', minHeight: '300px'}">
+    <div ng-show="vm.resumePreview">
+        <style>
+            .resume-view { padding: 20px; }
+            .resume-view * { overflow-wrap: break-word; }
+            .resume-view .row { margin-bottom: 30px; }
+            .resume-view .row .row { margin-bottom: 10px; }
+            .resume-view .bottom-border { border-bottom: 1px solid black; }
+            .resume-view .inverse { color: white; background-color: black; }
+        </style>
+
+        <div class="resume-view">
+
+            <div class="row bottom-border">
+                <div class="col-md-4 inverse" ng-bind=":preResolved:$root.msg(154378)"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- name -->
+                    <div>
+                        {{vm.resumePreview.user.firstName}}
+                        {{vm.resumePreview.user.middleName}}
+                        {{vm.resumePreview.user.lastName}}
+                    </div>
+
+                    <!-- Address -->
+                    {{vm.resumePreview.user.address.homeAddress}}<br />
+                    {{vm.resumePreview.user.address.homeAddress2}}<br />
+                    {{vm.resumePreview.user.address.city}},
+                    <span ng-repeat="i in meta.state.items"
+                          ng-if="i.value == vm.resumePreview.user.address.state && (i.value)">
+                        {{i.text}}
+                    </span>,
+                    {{vm.resumePreview.user.address.postalCode}}
+                    <span ng-repeat="i in meta.country.items"
+                          ng-if="i.value == vm.resumePreview.user.address.country && (i.value)">
+                        {{i.text}}
+                    </span><br />
+                    {{vm.resumePreview.user.emailAddress}}
+                    <br />
+                </div>
+                <div class="col-md-6">
+
+                    <!-- Phone -->
+                    <span ng-repeat="i in meta.primaryPhoneType.items"
+                          ng-if="i.value == vm.resumePreview.user.phoneNumber.primaryPhoneType && (i.value)">
+                        <strong>{{i.text}}:</strong>
+                        {{vm.resumePreview.user.phoneNumber.primaryPhone | tel}}
+                    </span><br />
+                    <span ng-repeat="i in meta.primaryPhoneType.items"
+                          ng-if="i.value == vm.resumePreview.user.phoneNumber.alternatePhone1Type && (i.value)">
+                        <strong>{{i.text}}:</strong>
+                        {{vm.resumePreview.user.phoneNumber.alternatePhone1 | tel}}
+                    </span><br />
+                    <span ng-repeat="i in meta.primaryPhoneType.items"
+                          ng-if="i.value == vm.resumePreview.user.phoneNumber.alternatePhone2Type && (i.value)">
+                        <strong>{{i.text}}:</strong>
+                        {{vm.resumePreview.user.phoneNumber.alternatePhone2 | tel}}
+                    </span><br />
+
+
+                </div>
+            </div>
+
+            <!-- resume section-->
+            <div class="row bottom-border">
+                <div class="col-md-4 inverse">{{:preResolved:$root.msg(71545)}}</div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <!-- Resume Title -->
+                    <strong>{{:preResolved:$root.msg(367453)}}:</strong>
+                </div>
+                <div class="col-md-8">
+                    {{vm.resumePreview.resumeBasics.resumeTitle}}
+                </div>
+            </div>
+            <div class="row" ng-if="vm.resumePreview.resumeSummary">
+                <!-- Objective -->
+                <div class="col-md-4"><strong ng-bind=":preResolved:$root.msg(370890)"></strong> </div>
+                <div class="col-md-6" ng-bind-html="vm.resumePreview.resumeSummary | unsafe"></div>
+            </div>
+
+            <!-- experience-->
+            <div class="row" ng-if="vm.resumePreview.experience.standardExperiences.items.length > 0">
+                <div class="col-md-4"><strong>{{:preResolved:$root.msg(71887)}}: </strong></div>
+                <div class="col-md-8">
+                    <div ng-repeat="exp in vm.resumePreview.experience.standardExperiences.items">
+                        <div class="row">
+                            <div class="col-md-4">
+                                {{exp.startDate | date:'MM/yyyy'}}
+                                - <span ng-if="exp.endDate">{{exp.endDate | date:'MM/yyyy'}}</span>
+                                <span ng-if="!exp.endDate">{{:preResolved:$root.msg(70129)}}</span>
+                            </div>
+                            <div class="col-md-4">{{exp.companyName}}</div>
+                            <div class="col-md-4">
+                                {{exp.companyCity}},
+                                <span ng-if="exp.companyState">
+                                    {{exp.companyState}},
+                                </span>
+                                <span ng-repeat="i in meta.country.items"
+                                      ng-if="i.value == exp.companyCountryId && (i.value)">
+                                    {{i.text}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">{{exp.jobTitle}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">{{exp.companyDescription}}</div>
+                        </div>
+                        <div ng-if="exp.skills && exp.skills.items && exp.skills.items.length">
+                            <strong>{{:preResolved:$root.msg(375616)}}</strong>
+                            <div ng-repeat="u in exp.skills.items" class="row">
+                                <div class="col-sm-11 col-sm-offset-1">
+                                    <div ng-if="u.skillName">
+                                        <strong>{{u.skillName}}</strong>
+                                        <div>
+                                            {{:preResolved:$root.msg(70284)}}:
+                                            <span ng-repeat="i in meta.skillLevelID.items" ng-if="(i.value == u.skillLevelID) && (i.value)">{{i.text}}</span>
+                                        </div>
+                                        <div ng-if="u.yearsExperience">
+                                            {{:preResolved:$root.msg(198491)}}:
+                                            {{u.yearsExperience}}
+                                        </div>
+                                        <div>
+                                            {{:preResolved:$root.msg(250590)}}:
+                                            <span ng-repeat="i in meta.skillUsedID.items" ng-if="(i.value == u.skillUsedID) && (i.value)">{{i.text}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" ng-if="exp.supervisorName">
+                            <div class="col-md-4">
+                                {{exp.supervisorName}}
+                            </div>
+                            <div class="col-md-4">
+                                {{exp.supervisorPhoneNumber | tel}}
+                            </div>
+                        </div>
+                        <div class="row" ng-if="exp.salary.amount">
+                            <div class="col-md-12">
+                                <strong>{{:preResolved:$root.msg(195331)}}:</strong>
+                                <span ng-repeat="currencyType in meta.currencyType.items" ng-if="exp.salary.experienceCurrencyId == currencyType.value">{{currencyType.text}}</span>
+                                {{exp.salary.amount}}
+                                <span ng-repeat="salaryPeriod in meta.salaryPeriod.items" ng-if="exp.salary.experienceFrequencyId == salaryPeriod.value">{{salaryPeriod.text}}</span>
+                            </div>
+                        </div>
+                        <div class="row" ng-if="exp.averageHoursPerWeek">
+                            <div class="col-md-12">
+                                <strong>{{:preResolved:$root.msg(195332)}}:</strong> {{exp.averageHoursPerWeek}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Military Work Experience -->
+            <div class="row" ng-if="vm.resumePreview.experience.militaryExperiences.items.length > 0">
+                <div class="col-md-4"><strong>{{:preResolved:$root.msg(103695)}}: </strong></div>
+                <div class="col-md-8">
+                    <div ng-repeat="exp in vm.resumePreview.experience.militaryExperiences.items track by $index">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <strong>{{:preResolved:$root.msg(202255)}}: </strong>
+                                <span ng-repeat="branch in meta.branchId.items" ng-if="exp.branchId == branch.value">{{branch.text}}</span>
+                            </div>
+                            <div class="col-md-6"><strong>{{:preResolved:$root.msg(202257)}}: </strong>{{exp.militaryOccupationCode}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <strong>{{:preResolved:$root.msg(186863)}}: </strong>
+                                <span ng-repeat="rank in meta.rankId.items" ng-if="exp.rankId == rank.value">{{rank.text}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <strong>{{:preResolved:$root.msg(374848)}}: </strong>
+                                <span ng-repeat="discharge in meta.statusId.items" ng-if="exp.statusId == discharge.value">{{discharge.text}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <strong>{{:preResolved:$root.msg(370065)}}: </strong>
+                                <span>{{exp.locationOfLastDutyStation}}</span>
+                                <span ng-repeat="i in meta.expStates[vm.resumePreview.experience.standardExperiences.items.length+$index].items"
+                                      ng-if="i.value == exp.lastDutyStationStateId && (i.value)">
+                                    , {{i.text}}
+                                </span>
+                                <span ng-repeat="i in meta.country.items"
+                                      ng-if="i.value == exp.lastDutyStationCountryId && (i.value)">
+                                    , {{i.text}}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                {{exp.milStartDate | date:'MM/yyyy'}}
+                                -
+                                <span ng-if="exp.milEndDate">{{exp.milEndDate | date:'MM/yyyy'}}</span>
+                                <span ng-if="!exp.milEndDate">{{:preResolved:$root.msg(70129)}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12"><strong>{{:preResolved:$root.msg(181481)}}: </strong>{{exp.responsibilities}}</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- education -->
+            <div class="row" ng-if="vm.resumePreview.education.standardEducations.items.length > 0">
+                <div class="col-md-4"><strong>{{:preResolved:$root.msg(154461)}}: </strong></div>
+                <div class="col-md-8">
+                    <div ng-repeat="edu in vm.resumePreview.education.standardEducations.items">
+                        <div class="row">
+                            <div class="col-md-4">{{("0" + edu.endMonth).slice(-2)}}/{{edu.endYear}}</div>
+                            <div class="col-md-4">{{edu.schoolName}}</div>
+                            <div class="col-md-4">
+                                {{edu.city}},
+                                <span ng-if="edu.state">
+                                    {{edu.state}},
+                                </span>
+                                <span ng-repeat="i in meta.country.items" ng-if="i.value == edu.countryId && (i.value)">{{i.text}}</span>
+                            </div>
+                            <div class="col-md-12">
+                                <span ng-repeat="eduLevel in meta.eduDegreeLevel.items" ng-if="edu.educationLevelId == eduLevel.value">{{eduLevel.text}}</span>
+                            </div>
+                            <div class="col-md-12">{{edu.relevantCourseworkLicensuresAndCertifications}}</div>
+                            <div class="col-md-12" ng-if="edu.major">
+                                <strong>{{:preResolved:$root.msg(195337)}}:</strong>
+                                <span>{{edu.major}}</span>
+                            </div>
+                            <div class="col-md-12" ng-if="edu.minor">
+                                <strong>{{:preResolved:$root.msg(195338)}}:</strong>
+                                <span>{{edu.minor}}</span>
+                            </div>
+                            <div class="col-md-12" ng-if="edu.honorId > 0">
+                                <strong>{{:preResolved:$root.msg(187179)}}:</strong>
+                                <span ng-repeat="i in meta.eduHonors.items" ng-if="i.value == edu.honorId && (i.value)">{{i.text}}</span>
+                            </div>
+                            <div class="col-md-12" ng-if="edu.totalCreditsEarned">
+                                <strong>{{:preResolved:$root.msg(187177)}}:</strong>
+                                <span>{{edu.totalCreditsEarned}}</span>
+                            </div>
+                            <div class="col-md-12" ng-if="edu.gpa">
+                                <strong>{{:preResolved:$root.msg(187176)}}:</strong>
+                                <span>{{edu.gpa}}</span>
+                            </div>
+                            <div class="col-md-12" ng-if="edu.gpaMax">
+                                <strong>{{:preResolved:$root.msg(195339)}}:</strong>
+                                <span>{{edu.gpaMax}}</span>
+                            </div>
+                            <div class="col-md-12" ng-if="edu.systemForAwardedCreditId > 0">
+                                <strong>{{:preResolved:$root.msg(187178)}}:</strong>
+                                <span ng-repeat="i in meta.awardedCreditsType.items" ng-if="i.value == edu.systemForAwardedCreditId && (i.value)">{{i.text.lookUpMsg.value}}</span>
+                                <span ng-if="edu.otherSystemForAwardedCredit"> - {{edu.otherSystemForAwardedCredit}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- military education -->
+            <div class="row" ng-if="vm.resumePreview.education.militaryEducations.items.length > 0">
+                <div class="col-md-4"><strong>{{:preResolved:$root.msg(185819)}}: </strong></div>
+                <div class="col-md-8">
+                    <div ng-repeat="edu in vm.resumePreview.education.militaryEducations.items">
+                        <div class="row">
+                            <div class="col-md-4">{{edu.endMonth}}/{{edu.endYear}}</div>
+                            <div class="col-md-4">{{edu.nameTitleOfSchool}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12"><strong>{{:preResolved:$root.msg(202287)}}: </strong>{{edu.courseTitle}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <strong>{{:preResolved:$root.msg(185982)}} </strong>
+                                <span ng-repeat="training in meta.trainingTypeId.items" ng-if="edu.trainingTypeId == training.value">{{training.text}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Awards -->
+            <div class="row" ng-if="vm.resumePreview.awards.items.length > 0">
+                <div class="col-md-4"><strong>{{:preResolved:$root.msg(370244)}}: </strong></div>
+                <div class="col-md-8">
+                    <div class="row" ng-repeat="a in vm.resumePreview.awards.items">
+                        <div class="col-md-4">{{a.awardName}}</div>
+                        <div class="col-md-8">{{a.awardDescription}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certifications -->
+            <div class="row" ng-if="vm.resumePreview.certifications.items.length > 0">
+                <div class="col-md-4">
+                    <strong>{{:preResolved:$root.msg(161853)}}: </strong>
+                </div>
+                <div class="col-md-8">
+                    <div ng-repeat="c in vm.resumePreview.certifications.items">
+                        <div class="row">
+                            <div class="col-md-4">{{c.monthAcquired}}/{{c.yearAcquired}}</div>
+                            <div class="col-md-8">
+                                <div>{{c.certifcationName}}</div>
+                                <div>{{c.institutionName}}</div>
+                                <div>{{c.summary}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- References -->
+            <div class="row" ng-if="vm.resumePreview.references.items.length > 0">
+                <div class="col-md-4"><strong>{{:preResolved:$root.msg(70158)}}: </strong></div>
+                <div class="col-md-8">
+                    <div ng-repeat="ref in vm.resumePreview.references.items">
+                        <div class="row">
+                            <div class="col-md-4"><strong>{{:preResolved:$root.msg(155680)}} </strong></div>
+                            <div class="col-md-8">{{ref.contactName}}</div>
+                        </div>
+                        <div class="row" ng-if="ref.companyName">
+                            <div class="col-md-4"><strong>{{:preResolved:$root.msg(370929)}} </strong></div>
+                            <div class="col-md-8">{{ref.companyName}}</div>
+                        </div>
+                        <div class="row" ng-if="ref.title">
+                            <div class="col-md-4"><strong>{{:preResolved:$root.msg(370930)}} </strong></div>
+                            <div class="col-md-8">{{ref.title}}</div>
+                        </div>
+                        <div class="row" ng-if="ref.phone">
+                            <div class="col-md-4"><strong>{{:preResolved:$root.msg(100049)}}</strong></div>
+                            <div class="col-md-8">{{ref.phone | tel}}</div>
+                        </div>
+                        <div class="row" ng-if="ref.email">
+                            <div class="col-md-4"><strong>{{:preResolved:$root.msg(70734)}}</strong></div>
+                            <div class="col-md-8">{{ref.email}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4"><strong>{{:preResolved:$root.msg(155682)}} </strong></div>
+                            <div class="col-md-8" ng-if="ref.typeId == 1">{{:preResolved:$root.msg(60063)}}</div>
+                            <div class="col-md-8" ng-if="ref.typeId == 2">{{:preResolved:$root.msg(70167)}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Summary Section -->
+            <div class="row bottom-border">
+                <div class="col-md-4 inverse">{{:preResolved:$root.msg(163132)}}</div>
+            </div>
+
+            <div class="row" ng-if="vm.resumePreview.salary.amount">
+                <div class="col-md-4"><strong>{{:preResolved:$root.msg(134243)}}: </strong></div>
+                <div class="col-md-8">
+                    {{vm.resumePreview.salary.amount | currency}}
+                    <span ng-repeat="freq in meta.resumesalaryTypes.items" ng-if="vm.resumePreview.salary.resumeFrequencyId == freq.value">{{freq.text}}</span>
+                </div>
+            </div>
+
+            <div class="row" ng-if="vm.resumePreview.targetJob.wantsPermanent == true || vm.resumePreview.targetJob.wantsTemp == true || vm.resumePreview.targetJob.wantsIntern == true || vm.resumePreview.targetJob.wantsSeasonal == true || vm.resumePreview.targetJob.wantsFullTime == true || vm.resumePreview.targetJob.wantsPartTime == true || vm.resumePreview.targetJob.wantsPerDiem == true">
+                <div class="col-md-4"><strong>{{:preResolved:$root.msg(70098)}}: </strong></div>
+                <div class="col-md-8">
+
+                    <div class="row" ng-if="vm.resumePreview.targetJob.wantsPermanent == true || vm.resumePreview.targetJob.wantsTemp == true || vm.resumePreview.targetJob.wantsIntern == true || vm.resumePreview.targetJob.wantsSeasonal == true">
+                        <div class="col-md-6"><strong>{{:preResolved:$root.msg(70100)}}: </strong></div>
+                        <div class="col-md-6">
+                            <span ng-if="vm.resumePreview.targetJob.wantsPermanent == true">{{:preResolved:$root.msg(73244)}}<br /></span>
+                            <span ng-if="vm.resumePreview.targetJob.wantsTemp == true">{{:preResolved:$root.msg(185871)}}<br /></span>
+                            <span ng-if="vm.resumePreview.targetJob.wantsIntern == true">{{:preResolved:$root.msg(70335)}}<br /></span>
+                            <span ng-if="vm.resumePreview.targetJob.wantsSeasonal == true">{{:preResolved:$root.msg(134371)}}<br /></span>
+                        </div>
+                    </div>
+
+                    <div class="row" ng-if="vm.resumePreview.targetJob.wantsFullTime == true || vm.resumePreview.targetJob.wantsPartTime == true || vm.resumePreview.targetJob.wantsPerDiem == true">
+                        <div class="col-md-6"><strong>{{:preResolved:$root.msg(374873)}}: </strong></div>
+                        <div class="col-md-6">
+                            <span ng-if="vm.resumePreview.targetJob.wantsFullTime == true">{{:preResolved:$root.msg(106109)}}<br /></span>
+                            <span ng-if="vm.resumePreview.targetJob.wantsPartTime == true">{{:preResolved:$root.msg(106110)}}<br /></span>
+                            <span ng-if="vm.resumePreview.targetJob.wantsPerDiem == true">{{:preResolved:$root.msg(253319)}}<br /></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4"><strong>{{:preResolved:$root.msg(158633)}}: </strong></div>
+                <div class="col-md-8">
+                    <div class="row" ng-show="vm.resumePreview.careerInfo.careerLevelId > 0">
+                        <div class="col-md-6"><strong>{{:preResolved:$root.msg(154123)}} </strong></div>
+                        <div class="col-md-6">
+                            <span ng-repeat="i in meta.careerLevel.items" ng-if="i.value == vm.resumePreview.careerInfo.careerLevelId && (i.value > 0)">{{i.text}}</span>
+                        </div>
+                    </div>
+                    <div class="row" ng-show="vm.resumePreview.careerInfo.willingToTravelId">
+                        <div class="col-md-6"><strong>{{:preResolved:$root.msg(155319)}} </strong></div>
+                        <div class="col-md-6">
+                            <span ng-repeat="i in meta.willingTravel.items" ng-if="i.value == vm.resumePreview.careerInfo.willingToTravelId && (i.value > 0)">{{i.text}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6"><strong>{{:preResolved:$root.msg(155318)}} </strong></div>
+                        <div class="col-md-6">
+                            <span ng-if="vm.resumePreview.careerInfo.willingToRelocate==true">{{:preResolved:$root.msg(367657)}}</span>
+                            <span ng-if="vm.resumePreview.careerInfo.willingToRelocate==false">{{:preResolved:$root.msg(367658)}}</span>
+                        </div>
+                    </div>
+                    <div class="row" ng-show="vm.resumePreview.careerInfo.securityClearanceId > 0">
+                        <div class="col-md-6"><strong>{{:preResolved:$root.msg(134824)}} </strong></div>
+                        <div class="col-md-6">
+                            <span ng-repeat="i in meta.securityClearance.items" ng-if="i.value == vm.resumePreview.careerInfo.securityClearanceId && (i.value)">{{i.text}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--<pre>{{meta.country.items | json}}</pre>-->

@@ -1,0 +1,90 @@
+﻿<div ng-if="isLoaded">
+    <ocs-intro-section meta="meta.pageHeaderSaved"></ocs-intro-section>
+    <ocs-401 meta="meta"></ocs-401>
+
+    <div ng-if="$root.isAuthenticated">
+        <div class="alert alert-info" tabindex="0">
+            {{:preResolved:$root.msg(157204)}}
+            <strong>{{programsCount}}</strong>
+            {{:preResolved:$root.msg(157932)}}
+            <strong>{{maxProgramsCount}}</strong>
+            {{:preResolved:$root.msg(374735)}}
+        </div>
+        <div class="program-search-compare">
+            <div class="compare-panel"><!-- ocs-sticky slide-inside=".program-search-compare" update="updateHeight">-->
+                <spa-program-compare meta="meta" on-remove="remove(code)"></spa-program-compare>
+            </div>
+            <hr class="hr-short" />
+            <div class="list display-table">
+                <div class="list-item display-table-row" ng-repeat="program in programs" ng-class="{'list-last':$last}">
+                    <div class="list-col-main display-table-cell vertical-align-middle pt16 pb16">
+                        <div class="list-body" ng-class="{'expired': !program.isActive}">
+                            <div class="header-actions">
+                                <h3 class="list-item-heading">
+                                    <a ng-if="program.isActive" ng-href="/programs/program-detail/{{tokenize(program.programName)}}-id-{{program.programId}}">{{program.programName}}</a>
+                                    <span ng-if="!program.isActive">{{program.programName}} <small>{{msg(375000) | lowercase}}</small></span>
+                                </h3>
+                            </div>
+                            <div>
+                                <span class="list-label">{{:preResolved:msg(374784)}}</span>
+                                <span class="list-value">{{program.providerName}}</span>
+                                <div>
+                                    <span class="list-label">{{:preResolved:msg(374785)}}</span>
+                                    <span class="list-value">{{program.dateSaved | date: 'MMMM dd, yyyy'}}</span>
+                                    <span class="vertical-separator" ng-if="program.dateSaved && program.cipCode">|</span>
+                                    <span class="list-label">{{:preResolved:msg(374786)}}</span>
+                                    <span class="list-value">{{program.cipCode}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<hr class="hr-short" ng-if="!$last"/>-->
+                    </div>
+                    <div class="list-col-actions display-table-cell vertical-align-middle pt16 pb16">
+                        <div class="list-body">
+                            <div class="list-item-actions text-right">
+                                <a role="button" ng-click="delete(program.programId)" class="btn btn-link btn-xs">{{msg(157926)}}</a>
+                                <label for="cbx_{{program.programId}}"
+                                       ng-show="programs.length > 1"
+                                       ng-disabled="program.checked ? false : (!program.isActive || countSelected(programs))"
+                                       ng-class="program.checked ? 'btn-success' : 'btn-secondary'"
+                                       class="btn btn-xs pull-right minw120 ml10">
+                                    <i class="fa fa-plus" aria-hidden="true" data-ng-if="!program.checked"></i>
+                                    <i class="fa fa-check" aria-hidden="true" data-ng-if="program.checked"></i>
+                                    <input id="cbx_{{program.programId}}"
+                                           type="checkbox"
+                                           ng-click="toggleSelection(program.programId)"
+                                           ng-model="program.checked"
+                                           value="{{program.programId}}"
+                                           ng-change="change()"
+                                           ng-true-value="true"
+                                           ng-false-value="false"
+                                           class="sr-only"
+                                           ng-disabled="program.checked ? false : (!program.isActive || countSelected(programs))"/>
+                                    <span ng-show="!program.checked">{{msg(364213)}}</span>
+                                    <span ng-show="program.checked">{{msg(348880)}}</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt15 col-sm-12" ng-show="totalResults > pageSize">
+                <ocs-pager class="pull-right" datasetSize="totalResults" pageSize="pageSize" currentPage="page" showFirstLast="false" visiblePages="5" callback="setPage"></ocs-pager>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title">{{msg(365751)}}</h3>
+    </div>
+    <div class="modal-body">
+        <h4>{{msg(374795)}}</h4>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="ok()">{{msg(315145)}}</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">{{msg(162574)}}</button>
+    </div>
+</script>
+

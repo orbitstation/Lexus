@@ -1,0 +1,43 @@
+﻿<nav class="navbar" 
+     ng-class="{'navbar-inverse': !defaults.removeInverse }" 
+     role="navigation" id="main-navigation">
+
+    <div class="navbar-collapse mobile-navbar" ng-class="{'mobile-navbar-on': !$root.navIsCollapsed }" aria-live="assertive">
+        <ul class="nav navbar-nav">
+            <li ng-repeat="(key, item) in meta track by $index"
+                uib-dropdown
+                uib-keyboard-nav
+                is-open="status.isopen"
+                ng-class="{'open': status.isopen}"
+                ng-mouseenter="open(this)"
+                ng-mouseleave="close(this)">
+                <a ng-if="item.url" href="{{item.url}}" tabindex="1">
+                    <span ng-if="item.icon">
+                        <span ng-class="::item.icon"></span>
+                        <span ng-class="{'sr-only': item.icon}">{{::item.display}}</span>
+                    </span>
+                    <span ng-if="!item.icon && item.url">
+                        <span>{{item.display}}</span>
+                    </span>
+                </a>
+
+                <a ng-if="!item.icon && !item.url"
+                   uib-dropdown-toggle
+                   id="dropdown-{{::item.display.split(' ').join('-')}}" tabindex="1">
+                    {{::item.display}}
+                    <span ng-if="!$parent.defaults.removeCarets">
+                        &nbsp;<span class="caret pull-right">
+                            <i class="glyphicon glyphicon-chevron-right"></i>
+                        </span>
+                    </span>
+                </a>
+
+                <ul ng-if="!item.url" uib-dropdown-menu aria-labelledby="dropdown-{{::item.display.split(' ').join('-')}}">
+                    <li ng-repeat="(key, child) in ::item" ng-if="(key!='display') && (key!='url') && (key!='icon') && (key!='queryString')" ng-class="{'disabled' : child.disabled}">
+                        <a href="{{::child.url}}" ng-bind-html="::child.display"></a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>

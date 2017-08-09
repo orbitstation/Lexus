@@ -1,0 +1,948 @@
+﻿<ng-include src="'/core/globalApp/0-documentation/landing/sections/documentation-navButtons.html'"></ng-include>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Directives</h2>
+        <hr>
+    </div>
+</div>
+
+<uib-accordion close-others="false">
+    <uib-accordion-group heading="Accordion Steps Flow" is-open="false" is-disabled="false" class="panel-primary">
+
+        <!-- Accordion Steps  -->
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Accordion Steps Flow</h3>
+            </div>
+            <div class="col-md-6">
+                <p>Working Demo:</p>
+                <blockquote>
+                    <ocs-accordion-steps meta="meta" config-layout="configLayout" accordion-name="'accordion'" model="userAccount"></ocs-accordion-steps>
+                </blockquote>
+                <p>Notes:</p>
+            </div>
+            <div class="col-md-6">
+                <p>HTML:</p>
+                <pre>
+&lt;ocs-accordion-steps meta="meta" config-layout="configLayout" accordion-name="'accordion'" model="userAccount">&lt;/ocs-accordion-steps>
+                </pre>
+                <p>Meta:</p>
+                <pre><strong>accordion</strong>:{{meta.accordion | json}}</pre>
+            </div>
+        </div>
+
+
+
+    </uib-accordion-group>
+
+    <uib-accordion-group heading="Messaging" is-open="false" is-disabled="false" class="panel-primary">
+
+
+
+        <!-- Error Messages  -->
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Messaging</h3>
+            </div>
+            <div class="col-md-6">
+                <p>Working Demo:</p>
+                <blockquote>
+                    <ocs-error error-list="errorList"></ocs-error>
+                </blockquote>
+                <p>Notes:</p>
+                <ul><li>requieres "errorList" in the controller</li></ul>
+            </div>
+            <div class="col-md-6">
+                <p>HTML:</p>
+                <pre>&lt;ocs-error error-list="errorList">&lt;/ocs-error></pre>
+                <p>errorList:</p>
+                <pre><strong>errorList</strong>:{{errorList | json}}</pre>
+            </div>
+        </div>
+        <hr>
+
+    </uib-accordion-group>
+
+    <uib-accordion-group heading="Config System" is-open="false" is-disabled="false" class="panel-primary">
+
+        <!-- Config System (Meta)  -->
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Config System (Meta)</h3>
+            </div>
+            <div class="col-md-6">
+                <p>Working Demo:</p>
+                <blockquote>
+                    <ocs-input meta="meta.middleName" model=""></ocs-input>
+
+                    <button ng-click="meta.middleName.required = true">middleName = 'true'</button>
+                    <button ng-click="meta.middleName.required = false">middleName = 'false'</button>
+
+                </blockquote>
+                <p>Notes:</p>
+            </div>
+            <div class="col-md-6">
+                <p>HTML:</p>
+                <pre>&lt;ocs-input meta="<strong>meta.middleName</strong>" model="">&lt;/ocs-input></pre>
+                <p>configMeta:</p>
+                <pre><strong>configMeta</strong>:{{configMeta | json}}</pre>
+                <p>Meta:</p>
+                <pre><strong>middleName</strong>:{{meta.middleName | json}}</pre>
+            </div>
+        </div>
+        <hr>
+
+
+        <!-- config sytstem (layout) -->
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Config System (Layout)</h3>
+            </div>
+            <div class="col-md-6">
+                <p>Working Demo:</p>
+                <span>Option 1:</span>
+                <blockquote>
+                    <span ng-if="getLayoutConfig('middleName') == 'false'">The middle name should be missing</span>
+                </blockquote>
+
+                <span>Option 2:</span>
+                <blockquote>
+                    <!-- Product Option: Middle Name (true|false)-->
+                    <div class="row" ng-if="configLayout.middleName.lookUpConfig.value == 'false'">
+                        <div class='col-sm-12'><ocs-input meta="meta.firstName" model="userAccount.firstName"></ocs-input></div>
+                        <div class='col-sm-12'><ocs-input meta="meta.lastName" model="userAccount.lastName"></ocs-input></div>
+                    </div>
+                    <div class="row" ng-if="configLayout.middleName.lookUpConfig.value == 'true'">
+                        <div class='col-sm-12'><ocs-input meta="meta.firstName" model='userAccount.firstName'></ocs-input></div>
+                        <div class='col-sm-12'><ocs-input meta="meta.middleName" model="userAccount.middleName"></ocs-input></div>
+                        <div class='col-sm-12'><ocs-input meta="meta.lastName" model="userAccount.lastName"></ocs-input></div>
+                    </div>
+                    <!-- end Product Option-->
+
+                    <button ng-click="configLayout.middleName.lookUpConfig.value = 'true'">middleName = true</button>
+                    <button ng-click="configLayout.middleName.lookUpConfig.value = 'false'">middleName = false</button>
+                </blockquote>
+
+
+                <p>Notes:</p>
+                <ul>
+                    <li>The layout config system is based on the $rootScope.config object. it is made use of by adding an "ng-if" into the template.</li>
+                    <li>The meta config system will update the meta object with set config.</li>
+                    <li>Both of the config objects are held in the xxx-config.js file.</li>
+                </ul>
+
+                <p>HTML Options:</p>
+                <ul></ul>
+                <p>Scheduled Improvements:</p>
+                <ul></ul>
+
+
+            </div>
+            <div class="col-md-6">
+                <p>HTML: Option 1</p>
+                <pre style="overflow: scroll; width: 100%; word-wrap: normal;">&lt;span ng-if="getLayoutConfig('middleName') == 'false'">The middle name should be missing&lt;/span></pre>
+
+                <p>HTML: Option 2</p>
+                <pre style="overflow: scroll; width: 100%; word-wrap: normal;">
+&lt;div class="row" ng-if="configLayout.middleName.lookUpConfig.value == 'false'">
+...
+&lt;/div>
+&lt;div class="row" ng-if="configLayout.middleName.lookUpConfig.value == 'true'">
+...
+&lt;/div>
+        </pre>
+                <p>configLayout:</p>
+                <pre><strong>configLayout</strong>:{{configLayout | json}}</pre>
+            </div>
+        </div>
+
+
+
+    </uib-accordion-group>
+
+    <uib-accordion-group heading="Buttons" is-open="false" is-disabled="false" class="panel-primary">
+
+
+        <!-- Buttons -->
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Buttons</h3>
+            </div>
+            <div class="col-md-6">
+                <p>Working Demo:</p>
+                <blockquote>
+                    <ocs-button meta="meta.button1" options="{classes:'btn-block btn-success'}" is-busy="button.isBusy" validation="globalForm.$invalid"></ocs-button>
+                    <a href="" ng-click="button.isBusy=false">cancel is-busy</a>
+                </blockquote>
+                <p>Notes:</p>
+                <ul>
+                    <li><strong>validation</strong> attribute takes true/false expression dedicated for validation objects. Will trigger <strong>ng-disabled</strong>.</li>
+                    <li>
+                        <strong>is-busy</strong> attribute takes true/false model, and designed for async requests.
+                        On click assigns is-busy to <strong>true</strong>, to disable the button and <strong>add a spinner</strong> (has 500ms delay before start).<br />
+                        When resolving the call we want to flip that variable assigned to is-busy to <strong>false</strong>.
+                    </li>
+                </ul>
+
+                <p>HTML Options:</p>
+                <ul>
+                    <li>Can pass 'options' attribute like: options="{classes: 'btn-success btn-block'}"</li>
+                    <li>related to above example options="{classes: 'btn-success btn-block', type: 'submit'}" will convert the type of the button from button to submit, usefull when inside the <strong>form</strong> tag.</li>
+                </ul>
+                <p>Scheduled Improvements:</p>
+                <ul>
+
+                </ul>
+
+
+            </div>
+            <div class="col-md-6">
+                <p>HTML:</p>
+                <pre>&lt;ocs-button meta="<strong>meta.Button1</strong>" options="{classes:'btn-block btn-success'}" is-busy="button.isBusy" validation="globalForm.$invalid">&lt;/ocs-button></pre>
+                <pre>&lt;a href="" ng-click="button.isBusy=false">cancel is-busy&lt;/a></pre>
+
+
+                <p>Meta:</p>
+                <pre><strong>Button1</strong>:{{meta.button1 | json}}</pre>
+            </div>
+        </div>
+
+
+    </uib-accordion-group>
+
+    <uib-accordion-group heading="Input" is-open="false" is-disabled="false" class="panel-primary">
+        <!-- forms: input  -->
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Forms : Input</h3>
+            </div>
+            <div class="col-md-6">
+                <p>Working Demo:</p>
+                <blockquote>
+                    <ocs-input meta="meta.firstName" model=""></ocs-input>
+                </blockquote>
+                <blockquote>
+                    <ocs-input meta="meta.firstName" model="" form-size="sm"></ocs-input>
+                </blockquote>
+                
+                <p>Notes:</p>
+                <ul>
+                    <li>
+                        Optional: <strong>form-size</strong> attribute takes size strings: <strong>'sm'</strong> & <strong>'lg'</strong> to change form element's sizes.
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="col-md-6">
+                <p>HTML:</p>
+                <pre>&lt;ocs-input meta="<strong>meta.firstName</strong>" model="" <strong>form-size="sm"</strong>>&lt;/ocs-input></pre>
+                <p>Meta:</p>
+                <pre><strong>firstName</strong>:{{meta.firstName | json}}</pre>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+                <p>Email Demo:</p>
+                <blockquote>
+                    <ocs-input meta="meta.email" model=""></ocs-input>
+                </blockquote>
+                <p>Notes:</p>
+                <ul>
+                    <li>
+                        <strong>Meta object for email:</strong> 
+                        type: 'email', this will add a regex pattern.<br />
+                        add error message under "pattern" (see example).
+                    </li>
+                </ul>
+                
+            </div>
+            <div class="col-md-6">
+                <p>HTML:</p>
+                <pre>&lt;ocs-input meta="<strong>meta.email</strong>" model="">&lt;/ocs-input></pre>
+                <p>Meta:</p>
+                <pre><strong>Email</strong>:{{meta.email | json}}</pre>
+            </div>
+        </div>
+
+    </uib-accordion-group>
+
+    <uib-accordion-group heading="Text Area" is-open="false" is-disabled="false" class="panel-primary">
+        <!-- forms: textarea  -->
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Forms : TextArea</h3>
+            </div>
+            <div class="col-md-6">
+                <p>Working Demo:</p>
+                <blockquote>
+                    <ocs-textarea meta="meta.textArea" model=""></ocs-textarea>
+                </blockquote>
+                <p>Notes:</p>
+
+
+            </div>
+            <div class="col-md-6">
+                <p>HTML:</p>
+                <pre>&lt;ocs-textarea meta="<strong>meta.textArea</strong>" model="" options="{}">&lt;/ocs-textarea></pre>
+                <p>Meta:</p>
+                <pre><strong>textArea</strong>:{{meta.textArea | json}}</pre>
+            </div>
+        </div>
+
+    </uib-accordion-group>
+
+
+    <uib-accordion-group heading="Richtext Editor" is-open="false" is-disabled="false" class="panel-primary">
+        <!-- forms: richtext editor  -->
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Forms : RichTextEditor</h3>
+            </div>
+            <div class="col-md-6">
+                <p>Working Demo:</p>
+                <blockquote>
+                    <ocs-richtexteditor meta="meta.richTextMeta" model=""></ocs-richtexteditor>
+                </blockquote>
+                <p>
+                    Notes:
+                    RichTextEditor is based on TinyMCE library (https://www.tinymce.com/) and AngularUI UI-TinyMCE directive (https://github.com/angular-ui/ui-tinymce) sitting on top of this library.
+                    It's configurable via common meta-based properties like "label", "placeholder", "required", "error" like the other input form controls have,
+                    plus additional options properties specific to TinyMCE. Via these options you can control appearance, behaviour, features and so on. Complete list of available options can be found at https://www.tinymce.com/docs/configure/.
+                </p>
+
+
+            </div>
+            <div class="col-md-6">
+                <p>HTML:</p>
+                <pre>&lt;ocs-richtexteditor meta="<strong>meta.richTextMeta</strong>" model="">&lt;/ocs-richtexteditor></pre>
+                <p>Meta:</p>
+                <pre><strong>richTextMeta</strong>:{{meta.richTextMeta | json}}</pre>
+            </div>
+        </div>
+
+    </uib-accordion-group>
+
+
+    <uib-accordion-group heading="Dropdown" is-open="false" is-disabled="false" class="panel-primary">
+        <!-- forms: Select List  -->
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Forms : Select List</h3>
+            </div>
+            <div class="col-md-6">
+                <p>Working Demo:</p>
+                <blockquote>
+                    <ocs-select meta="meta.testSelect" model="userAccount.testSelect"></ocs-select>
+                </blockquote>
+
+                <p>Notes:</p>
+                <ul>
+                    <li>The data for the drop down can be brought in by way of the "dataSource" variable in meta. </li>
+                    <li>If you have default items then you must have a defaultSelected. </li>
+                    <li>If you choose to hard code the data, just place it in the "items" variable, this data will be over written with the data returned from "dataSource" if used.</li>
+                </ul>
+
+                <p>HTML Options:</p>
+                <ul><li>change-fn = [the name of a function to run on change]</li></ul>
+
+
+
+                <p>Options:</p>
+                <ul>
+                    <li>
+                        dataSource:
+                        <ul>
+                            <li>name: [getCustomReferenceListItems] </li>
+                            <li>value: [MGS_ETO_BranchOfService]</li>
+                        </ul>
+                    </li>
+                    <li>
+                        dataSource:
+                        <ul>
+                            <li>name: [getLookup] </li>
+                            <li>value: [country] [forgotpassquestions] [phonetypes] [contactpreferenceformats]</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <p>Service:</p>
+                <pre>[getdropDown] <br /><a href="http://services.lexus.monster.com/swagger/ui/index#!/Lookup/Lookup_GetDropdown">http://services.lexus.monster.com/api/lookup/getdropdown/{name}</a></pre>
+                <pre>[getCustomReferenceListItems] <br /><a href="http://services.lexus.monster.com/swagger/ui/index#!/CustomReferenceList/CustomReferenceList_GetCustomReferenceListItemsByName">http://services.lexus.monster.com/api/CustomReferenceList/GetCustomReferenceListItemsByName/{name}</a></pre>
+
+            </div>
+            <div class="col-md-6">
+                <p>HTML:</p>
+
+
+                <pre>&lt;ocs-select meta="<strong>meta.testSelect</strong>" model="" change-fn="">&lt;/ocs-select></pre>
+                <p>Meta:</p>
+                <pre><strong>testSelect</strong>:{{meta.testSelect | json}}</pre>
+            </div>
+
+        </div>
+
+    </uib-accordion-group>
+
+    <uib-accordion-group heading="Date Entry" is-open="false" is-disabled="false" class="panel-primary">
+        <!-- forms: Date Entry  -->
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Forms : Date Field</h3>
+            </div>
+            <div class="col-md-6">
+                <p>Working Demo:</p>
+                <blockquote>
+                    <ocs-date meta="meta.DOB" model=""></ocs-date>
+                </blockquote>
+
+                <p>Notes:</p>
+                <p>Options:</p>
+                <ul>
+                    <li>minDate:</li>
+
+                </ul>
+                <ul>
+                    <li>maxDate: ['today']</li>
+                </ul>
+
+            </div>
+            <div class="col-md-6">
+                <p>HTML:</p>
+                <pre>&lt;ocs-date meta="<strong>meta.DOB</strong>" model="">&lt;/ocs-date></pre>
+                <p>Meta:</p>
+                <pre><strong>DOB</strong>:{{meta.DOB | json}}</pre>
+            </div>
+
+        </div>
+
+        <hr>
+    </uib-accordion-group>
+
+    <uib-accordion-group heading="Radio Button" is-open="false" is-disabled="false" class="panel-primary">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Forms : Radio Buttons</h3>
+            </div>
+            <div class="col-md-6">
+                <p>Working Demo:</p>
+
+                <blockquote>
+                    <ocs-radio meta="meta.citizen" model="26950"></ocs-radio>
+                </blockquote>
+
+                <blockquote>
+                    <ocs-radio meta="meta.citizen" model="26949"></ocs-radio>
+                </blockquote>
+
+
+                <p>Notes:</p>
+                <ul>
+                    <li>this will be updated to take the "dataSource" variable. at that time it will become data enabled. </li>
+                    <li>this will be updated to take the "Selected" variable. </li>
+                </ul>
+
+            </div>
+            <div class="col-md-6">
+                <p>HTML:</p>
+                <pre>&lt;ocs-radio meta="<strong>meta.citizen</strong>" model="">&lt;/ocs-radio></pre>
+                <p>Meta:</p>
+                <pre><strong>citizen</strong>:{{meta.citizen | json}}</pre>
+            </div>
+
+        </div>
+
+
+
+    </uib-accordion-group>
+
+    <uib-accordion-group heading="Checkboxes" is-open="false" is-disabled="false" class="panel-primary">
+        <!-- forms: Check Boxes  -->
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Forms : Check Boxes</h3>
+            </div>
+            <div class="col-md-6">
+                <p>Working Demo:</p>
+                <blockquote>
+                    <ocs-check-box meta="meta.citizen" model="checkBoxes"></ocs-check-box>
+                </blockquote>
+
+                <p>Notes:</p>
+                <ul>
+                    <li>this currently only works as a true false value, (it will toggle)</li>
+                    <li>It only works in single box (true / false) mode right now.</li>
+                </ul>
+                <p>Scheduled Improvements:</p>
+                <ul>
+                    <li>this needs to make use of the "dataSource" variable, this will enable multi-checks, and will get the list from the custom builder field service</li>
+                </ul>
+
+            </div>
+            <div class="col-md-6">
+                <p>HTML:</p>
+                <pre>&lt;ocs-check-box meta="<strong>meta.citizen</strong>" model="">&lt;/ocs-check-box></pre>
+                <p>Model:</p>
+                <pre>{{checkBoxes}}</pre>
+                <p>Meta:</p>
+                <pre><strong>citizen</strong>:{{meta.citizen | json}}</pre>
+            </div>
+
+        </div>
+
+    </uib-accordion-group>
+
+    <uib-accordion-group heading="Password Assist" is-open="false" is-disabled="false" class="panel-primary">
+        <!-- forms: Password Assist  -->
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Forms : Password Assist</h3>
+            </div>
+            <div class="col-md-6">
+                <p>Working Demo:</p>
+                <blockquote>
+                    <ocs-input meta="meta.password" model="userAccount.password"></ocs-input>
+                    <ocs-input meta="meta.passwordConfirm" model="userAccount.passwordConfirm" match="userAccount.password"></ocs-input>
+                    <password-assist meta="meta.passwordAssist"
+                                     model="userAccount.password"
+                                     passwordconfirm="userAccount.passwordConfirm"></password-assist>
+                </blockquote>
+
+                <p>Notes:</p>
+                <ul>
+                    <li>still needs validation tripping to be added</li>
+                </ul>
+
+            </div>
+            <div class="col-md-6">
+                <p>HTML:</p>
+                <pre>&lt;ocs-passwordAssist meta="<strong>meta.passwordAssist</strong>" model="" passwordconfirm="">&lt;/ocs-passwordAssist></pre>
+                <p>Meta:</p>
+                <pre><strong>passwordAssist</strong>:{{meta.passwordAssist | json}}</pre>
+            </div>
+
+        </div>
+
+
+    </uib-accordion-group>
+
+    <uib-accordion-group heading="Zip Code Lookup" is-open="false" is-disabled="false" class="panel-primary">
+        <!-- forms: Zip Code Lookup  -->
+        <div class="row">
+            <div class="col-md-12">
+                <h3>General : Zip Code Lookup</h3>
+            </div>
+            <div class="col-md-6">
+                <p>Working Demo:</p>
+                <blockquote>
+
+
+                    <ocs-select meta="meta.state" model="userAccount.address.state" run-fn="clearZipInfo()"></ocs-select>
+                    <ocs-zip-code meta="meta.postalCode"
+                                  model="userAccount.address.postalCode"
+                                  state="userAccount.address.state"
+                                  county="userAccount.address.county"></ocs-zip-code>
+                    <ocs-input meta="meta.county" model="userAccount.address.county"></ocs-input>
+
+
+                </blockquote>
+
+                <p>Notes:</p>
+                <ul>
+                    <li>
+                        For dropdown we are passing a clearing function for Zipcode model. Just add attribute change-fn="functionName()"
+                        and implement your functionName in the controller.<br />
+                        <strong>This demo doesn't provide the clearing function on state change.</strong>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="col-md-6">
+                <p>HTML:</p>
+                <pre>&lt;ocs-zip-code meta="meta.postalCode" model="userAccount.address.postalCode" state="userAccount.address.state" county="userAccount.address.county">&lt;/ocs-zip-code></pre>
+                <p>Meta:</p>
+                <pre><strong>postalCode</strong>:{{meta.postalCode | json}}</pre>
+            </div>
+        </div>
+    </uib-accordion-group>
+
+    <!-- Messages -->
+    <uib-accordion-group heading="Messages" is-open="false" is-disabled="false" class="panel-primary">
+
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Message ID</h3>
+            </div>
+            <div class="col-md-6">
+                <p>Working Demo:</p>
+                <blockquote>
+                    {{msg(157861)}}
+                </blockquote>
+                <p>Notes:</p>
+                <ul>
+                    <li>the message id must listed under "messages"in the meta data, in order to be avalable.</li>
+                </ul>
+
+            </div>
+            <div class="col-md-6">
+                <p>HTML:</p>
+                <pre>&#123; &#123;msg(157861) }}</pre>
+                <p>Meta:</p>
+                <pre><strong>messages</strong>:{{meta.messages | json}}</pre>
+            </div>
+        </div>
+    </uib-accordion-group>
+
+    <uib-accordion-group heading="Autocomplete" is-open="false" is-disabled="false" class="panel-primary">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Forms : autocomplete input</h3>
+            </div>
+            <div class="col-md-6">
+                <p>Working Demo:</p>
+                <blockquote>
+                    <ocs-autocomplete meta="meta.autoCompleteRemoteCall"
+                                      model="autoCompleteModel1"
+                                      remote-api-handler="remoteApiHandler"
+                                      input-class="form-control"
+                                      remote-response-formatter="responseFormatter"></ocs-autocomplete>
+                    <div class="result">
+                        <div ng-show="autoCompleteModel1 && autoCompleteModel1.originalObject">
+                            You selected <span class="bold-span">{{autoCompleteModel1.title}}</span> which has a value of <span class="bold-span">{{autoCompleteModel1.originalObject[meta.autoCompleteRemoteCall.valuefield]}}.</span>
+                        </div>
+                    </div>
+                </blockquote>
+                <p>
+                    Notes:
+                    <ul>
+                        <li>Based on the <a href="https://github.com/ghiden/angucomplete-alt">angucomplete-alt</a> directive</li>
+                        <li>Suppport both local data and remote api calls to get the data</li>
+                    </ul>
+
+                    Meta properties:
+                    <ul>
+                        <li><strong>searchfields</strong> : The fields from your local data to search on (comma separate them). Each field can contain dots for accessing nested attribute</li>
+                        <li><strong>titlefield</strong>: The name of the field in the JSON objects returned back that should be used for displaying the title in the autocomplete list. Note, if you want to combine fields together, you can comma separate them here (e.g. for a first and last name combined). If you want to access nested field, use dot to connect attributes (e.g. name.first).</li>
+                        <li><strong>valuefield</strong>: The name of the field in the JSON objects returned back that should hold the item value</li>
+                        <li><strong>minlength</strong>: The minimum length of string required before searching. If set to 0, it shows all items. It works both local and remote but is intended to use with local data. If used with remote API, it needs to return all items when query parameter is empty string.</li>
+                        <li><strong>remoteItemsWrapper</strong>: The name of the field in the JSON object returned back that holds the Array of objects to be used for the autocomplete list</li>
+                        <li><strong>items</strong>: The hardcoded local data items in json format</li>
+                        <li><strong>dataSource</strong>: name/value pointing to Lexus build-in dataSource items resolution</li>
+                        <li><strong>dropdownStyle</strong>: Extra inline styles applied to the suggestion dropdown as an addition to the default styles within angucomplete_dropdown class. This serves as a workaround for the allignment issue on the job location typeahead control</li>
+                    </ul>
+
+                    Model attribute:
+                    <ul>
+                        <li>The actual object that was selected is accessible in <strong>model.originalObject</strong> property</li>
+                    </ul>
+
+                    Other attributes
+                    <ul>
+                        <li>
+                            <strong>options</strong>: 
+                            Takes an object. Right now only 'class' property is being supported. <br />
+                            <strong>Usage</strong>: option="{class:'mb0'}". This will append classes to the wrapper div '.form-group'
+                        </li>
+                        <li><strong>input-class</strong>: The names of the classes applied to the input control as a string "form-control input-sm"</li>
+                        <li><strong>remote-api-handler</strong>: This gives a way to fully delegate handling of remote search API. This function takes user input string and timeout promise, and it needs to return a promise. For example, if your search API is based on POST, you can use this function to create your own http handler</li>
+                        <li><strong>remote-response-formatter</strong>: A function on the scope that will modify raw response from remote API before it is rendered in the drop-down. Useful for adding data that may not be available from the API. The specified function must return the object in the format that angucomplete understands.</li>
+                        <li><strong>search-string</strong>: Property getting/setting the search input control value. It's in sync with the input control value as opposed to the model property that is only set when one of the sugguested item is selected.</li>
+                    </ul>
+                </p>
+            </div>
+            <div class="col-md-6">
+                <p>HTML:</p>
+                <pre>&lt;ocs-autocomplete meta="<strong>meta.autoCompleteRemoteCall</strong>" 
+                    input-class="form-control"
+                    model="">
+                    &lt;/ocs-autocomplete>
+                </pre>
+                <p>Meta:</p>
+                <pre><strong>autoCompleteRemoteCall</strong>:{{meta.autoCompleteRemoteCall | json}}</pre>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Autocomplete data source suppport examples</h4>
+            </div>
+            <div class="col-md-6">
+                1.Hardcoded local items
+                <blockquote>
+                    <ocs-autocomplete meta="meta.autoCompleteLocalItems"
+                                      input-class="form-control"
+                                      model="autoCompleteModel2"></ocs-autocomplete>
+                    <div class="result">
+                        <div ng-show="autoCompleteModel2 && autoCompleteModel2.originalObject">
+                            You selected <span class="bold-span">{{autoCompleteModel2.title}}</span> which has a value of <span class="bold-span">{{autoCompleteModel2.originalObject[meta.autoCompleteLocalItems.valuefield]}}.</span>
+                        </div>
+                    </div>
+                </blockquote>
+            </div>
+            <div class="col-md-6">
+                <p>HTML:</p>
+                <pre>&lt;ocs-autocomplete meta="<strong>meta.autoCompleteLocalItems</strong>" model="">&lt;/ocs-autocomplete></pre>
+                <p>Meta:</p>
+                <pre><strong>autoCompleteLocalItems</strong>:
+                    {  
+                      ...
+                      "searchfields": "text",
+                      "titlefield": "text",
+                      "valuefield": "id",
+                      "minlength": 1,
+                      "items": [
+                        {
+                          "text": "John",
+                          "id": 1
+                        },
+                        {
+                          "text": "Joshua",
+                          "id": 2
+                        },
+                        {
+                          "text": "Jeremy",
+                          "id": 3
+                        }
+                      ]
+                    }
+                </pre>
+            </div>
+
+            <div class="col-md-6">
+                2.Lexus build-in dataSource support
+                <blockquote>
+                    <ocs-autocomplete meta="meta.autoCompleteDataSource"
+                                      input-class="form-control"
+                                      model="autoCompleteModel3"></ocs-autocomplete>
+                    <div class="result">
+                        <div ng-show="autoCompleteModel3 && autoCompleteModel3.originalObject">
+                            You selected <span class="bold-span">{{autoCompleteModel3.title}}</span> which has a value of <span class="bold-span">{{autoCompleteModel3.originalObject[meta.autoCompleteDataSource.valuefield]}}.</span>
+                        </div>
+                    </div>
+                </blockquote>
+            </div>
+            <div class="col-md-6">
+                <p>HTML:</p>
+                <pre>&lt;ocs-autocomplete meta="<strong>meta.autoCompleteDataSource</strong>" model="">&lt;/ocs-autocomplete></pre>
+                <p>Meta:</p>
+                <pre><strong>autoCompleteDataSource</strong>:
+                     {
+                      ...
+                      "dataSource": {
+                        "name": "getStates",
+                        "value": "164"
+                      },
+                      "searchfields": "text",
+                      "titlefield": "text",
+                      "valuefield": "value",
+                      "minlength": 1
+                    }
+                </pre>
+            </div>
+
+            <div class="col-md-6">
+                3.Remote API calls based on input as you type
+                <blockquote>
+                    <ocs-autocomplete meta="meta.autoCompleteRemoteCall"
+                                      model="autoCompleteModel4"
+                                      remote-api-handler="remoteApiHandler"
+                                      input-class="form-control"
+                                      remote-response-formatter="responseFormatter"></ocs-autocomplete>
+                    <div class="result">
+                        <div ng-show="autoCompleteModel4 && autoCompleteModel4.originalObject">
+                            You selected <span class="bold-span">{{autoCompleteModel4.title}}</span> which has a value of <span class="bold-span">{{autoCompleteModel4.originalObject[meta.autoCompleteRemoteCall.valuefield]}}.</span>
+                        </div>
+                    </div>
+                </blockquote>
+            </div>
+            <div class="col-md-6">
+                <p>HTML:</p>
+                <pre>&lt;ocs-autocomplete meta="<strong>meta.autoCompleteRemoteCall</strong>" model="" remote-api-handler="remoteApiHandler" remote-response-formatter="responseFormatter">&lt;/ocs-autocomplete></pre>
+                <p>Meta:</p>
+                <pre><strong>autoCompleteRemoteCall</strong>:
+                    {
+                      ...
+                      "titlefield": "text",
+                      "valuefield": "id",
+                      "minlength": 2,
+                      "remoteItemsWrapper": "items"
+                    }
+                </pre>
+            </div>
+        </div>
+
+    </uib-accordion-group>
+
+    <!-- NavBar -->
+    <uib-accordion-group heading="NavBar" is-open="false" is-disabled="false" class="panel-primary">
+
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Main navigation bar</h3>
+            </div>
+            <div class="col-md-6">
+                <p>Working Demo:</p>
+                <blockquote>
+
+
+                </blockquote>
+                <p>Notes:</p>
+                <ul>
+                    <li>The item string is defined in rootscope under globalApp meta.navbar</li>
+                    <li>It always uses lookUpMsg to check for message which contains the string (to allow for easy channelization), if it doesn't exists it defaults to a predefined string</li>
+                </ul>
+
+            </div>
+            <div class="col-md-6">
+                <p>HTML:</p>
+                <pre>&lt;ocs-Navbar>&lt;/ocs-Navbar></pre>
+                <p>Sample string:</p>
+            </div>
+        </div>
+    </uib-accordion-group>
+
+    <!-- Modal -->
+    <uib-accordion-group heading="Modal" is-open="false" is-disabled="false" class="panel-primary">
+
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Modal Popup</h3>
+            </div>
+            <div class="col-md-6">
+                <p>Working Demo:</p>
+                <blockquote>
+
+                    <button type="button" class="btn btn-info" ng-click="showDocumentationModal=true" >Modal Button</button>  
+
+                    <modal shown="showDocumentationModal" name="documentationModal.html" ok-modal="modalOkButton()" cancel-modal="modalCancelButton()"></modal>
+
+                    <script type="text/ng-template" id="documentationModal.html">
+                        <div class="modal-header">
+                            <h4 class="modal-title"><strong>Header HTML</strong></h4>
+                        </div>
+                        <div class="modal-body">
+                            <ocs-input meta="meta.modalName" model="modalTest"></ocs-input>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" type="button" ng-click="ok()">OK Button</button>
+                            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel Button</button>
+                        </div>
+                    </script>
+                </blockquote>
+                <p>Notes:</p>
+                <ul>
+                    <li>This creates a modal for usage by the screen.  The HTML for the modal is defined in the html of the page.  It also allows the ok and cancel buttons to call back to function in the active controller.</li>
+                    <li>A couple of items to keep in mind: 
+                        <ul> 
+                            <li>It needs a button that on the click activates the shown value on the modal directive.</li>
+                            <li>The name attirbute needs to mach the id of the script tag that holds the HTML of the modal.</li>
+                            <li>In the modal the Ok and Cancel button need to call the ok() and cancel() functions.  These in turn then call the ok-modal and cancel-modal functions defined on the directive.</li>
+                            <li>To get information from the modal into the page controller you will need a couple of things:
+                                <ul>
+                                    <li>Define the elements in the page controler</li>
+                                    <li>Bind that element in the html of the modal</li>
+                                    <li>Then to access it you will need to use the <strong>$rootScope.modalScope</strong> object</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="col-md-6">
+                <p>HTML:</p>
+                <pre>&ltbutton type="button" class="btn btn-info" ng-click="showDocumentationModal=true">Modal Button&lt/button>  
+                        &ltmodal shown="showDocumentationModal" name="documentationModal.html">&lt/modal>
+                        &ltscript type="text/ng-template" id="documentationModal.html">
+                        &ltdiv class="modal-header">
+                        &lth4 class="modal-title">&ltstrong>Header HTML&lt/strong>&lt/h4>
+                                                &lt/div>
+                        &ltdiv class="modal-body">
+                                        &ltocs-input meta="meta.modalName" model="modalTest">&lt/ocs-input>
+                                                &lt/div>
+                        &ltdiv class="modal-footer">
+                        &ltbutton class="btn btn-warning" type="button" ng-click="ok()">OK Button&lt/button>
+                        &ltbutton class="btn btn-warning" type="button" ng-click="cancel()">Cancel Button&lt/button>
+                        &lt/div>
+                    &lt/script>
+                </pre>
+
+            </div>
+        </div>
+    </uib-accordion-group>
+
+    <!-- Scroll spy -->
+    <uib-accordion-group heading="Scroll spy" is-open="false" is-disabled="false" class="panel-primary">
+
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Scroll spy</h3>
+            </div>
+            <div class="row scroll-spy" ocs-scroll-spy>
+                <div class="col-md-6">
+                    <div sticky offset="30">
+                        <ul class="pagemenu">
+                            <li spy="ss_first">First</li>
+                            <li spy="ss_second">Second</li>
+                            <li spy="ss_third">Third</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h3 id="ss_first">First</h3>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sollicitudin congue lorem a vulputate. In quis mollis nisl. Ut efficitur non magna vitae vehicula. Nunc a malesuada est. Fusce accumsan orci dolor. Donec dapibus nunc faucibus libero tristique, at dapibus nisi sollicitudin. Quisque eget mattis mauris, sed elementum tortor. Suspendisse id imperdiet tortor. Nunc dolor leo, scelerisque nec vehicula eu, fringilla non leo. Vivamus luctus libero at orci condimentum, vitae tristique tortor mollis.
+                    Etiam vitae lectus eget dui scelerisque sodales ac nec lorem. Quisque consequat malesuada libero vel accumsan. Suspendisse massa mi, aliquam non felis sit amet, consectetur tincidunt dui. Donec non felis eu elit blandit semper. Nam gravida efficitur urna, sit amet ullamcorper leo auctor ac. Phasellus id urna risus. Curabitur in molestie libero, sit amet porttitor erat. Sed at ante congue, viverra nulla at, vestibulum lacus. Suspendisse posuere bibendum lorem non rhoncus. In in quam nunc. Nulla nunc libero, sagittis vel aliquet in, porttitor eu odio. Vestibulum eu ex non ex tempor rutrum. Fusce vestibulum porta lectus. Nunc porta risus augue, sed tempus sem egestas non. In consequat lectus eget aliquam bibendum. Nam eu posuere risus, id elementum ipsum.
+                    Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris a magna ultrices, vestibulum lectus viverra, porttitor tellus. In quis finibus purus. Maecenas ultricies quis risus et tempor. Nullam scelerisque elit ac tortor volutpat, euismod lacinia ligula facilisis. Ut ullamcorper eget ipsum pulvinar congue. Sed risus erat, aliquet at posuere a, dapibus a risus.
+                    Aliquam facilisis commodo velit sed maximus. Nulla lacus tortor, laoreet eget blandit eget, pharetra et elit. Curabitur commodo lorem ut nulla euismod, non lacinia lacus dapibus. Nam a justo vel metus maximus porttitor. Vestibulum vel lorem sed purus convallis eleifend. Maecenas neque risus, blandit quis augue nec, iaculis fringilla metus. Nullam blandit justo sapien, sit amet eleifend tortor tempus eget. Phasellus at velit libero. Maecenas auctor quis justo sit amet gravida. Quisque sapien justo, condimentum in semper id, egestas a quam. In a facilisis magna, non luctus ante. Praesent maximus urna quis turpis sodales tempus. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+                    Sed fringilla sem quis nisi efficitur, aliquet dictum sapien gravida. Nunc rutrum laoreet leo ultricies tincidunt. Donec ante dolor, pretium nec pellentesque a, imperdiet in elit. Nam fringilla nulla vitae dictum dictum. Aenean nisl lectus, vestibulum eget nunc sed, tempor finibus tortor. Nunc posuere sit amet odio id auctor. Curabitur vehicula scelerisque rutrum. Donec cursus erat eget vulputate sodales.
+                    <h3 id="ss_second">Second</h3>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sollicitudin congue lorem a vulputate. In quis mollis nisl. Ut efficitur non magna vitae vehicula. Nunc a malesuada est. Fusce accumsan orci dolor. Donec dapibus nunc faucibus libero tristique, at dapibus nisi sollicitudin. Quisque eget mattis mauris, sed elementum tortor. Suspendisse id imperdiet tortor. Nunc dolor leo, scelerisque nec vehicula eu, fringilla non leo. Vivamus luctus libero at orci condimentum, vitae tristique tortor mollis.
+                    Etiam vitae lectus eget dui scelerisque sodales ac nec lorem. Quisque consequat malesuada libero vel accumsan. Suspendisse massa mi, aliquam non felis sit amet, consectetur tincidunt dui. Donec non felis eu elit blandit semper. Nam gravida efficitur urna, sit amet ullamcorper leo auctor ac. Phasellus id urna risus. Curabitur in molestie libero, sit amet porttitor erat. Sed at ante congue, viverra nulla at, vestibulum lacus. Suspendisse posuere bibendum lorem non rhoncus. In in quam nunc. Nulla nunc libero, sagittis vel aliquet in, porttitor eu odio. Vestibulum eu ex non ex tempor rutrum. Fusce vestibulum porta lectus. Nunc porta risus augue, sed tempus sem egestas non. In consequat lectus eget aliquam bibendum. Nam eu posuere risus, id elementum ipsum.
+                    Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris a magna ultrices, vestibulum lectus viverra, porttitor tellus. In quis finibus purus. Maecenas ultricies quis risus et tempor. Nullam scelerisque elit ac tortor volutpat, euismod lacinia ligula facilisis. Ut ullamcorper eget ipsum pulvinar congue. Sed risus erat, aliquet at posuere a, dapibus a risus.
+                    Aliquam facilisis commodo velit sed maximus. Nulla lacus tortor, laoreet eget blandit eget, pharetra et elit. Curabitur commodo lorem ut nulla euismod, non lacinia lacus dapibus. Nam a justo vel metus maximus porttitor. Vestibulum vel lorem sed purus convallis eleifend. Maecenas neque risus, blandit quis augue nec, iaculis fringilla metus. Nullam blandit justo sapien, sit amet eleifend tortor tempus eget. Phasellus at velit libero. Maecenas auctor quis justo sit amet gravida. Quisque sapien justo, condimentum in semper id, egestas a quam. In a facilisis magna, non luctus ante. Praesent maximus urna quis turpis sodales tempus. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+                    Sed fringilla sem quis nisi efficitur, aliquet dictum sapien gravida. Nunc rutrum laoreet leo ultricies tincidunt. Donec ante dolor, pretium nec pellentesque a, imperdiet in elit. Nam fringilla nulla vitae dictum dictum. Aenean nisl lectus, vestibulum eget nunc sed, tempor finibus tortor. Nunc posuere sit amet odio id auctor. Curabitur vehicula scelerisque rutrum. Donec cursus erat eget vulputate sodales.
+                    <h3 id="ss_third">Third</h3>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sollicitudin congue lorem a vulputate. In quis mollis nisl. Ut efficitur non magna vitae vehicula. Nunc a malesuada est. Fusce accumsan orci dolor. Donec dapibus nunc faucibus libero tristique, at dapibus nisi sollicitudin. Quisque eget mattis mauris, sed elementum tortor. Suspendisse id imperdiet tortor. Nunc dolor leo, scelerisque nec vehicula eu, fringilla non leo. Vivamus luctus libero at orci condimentum, vitae tristique tortor mollis.
+                    Etiam vitae lectus eget dui scelerisque sodales ac nec lorem. Quisque consequat malesuada libero vel accumsan. Suspendisse massa mi, aliquam non felis sit amet, consectetur tincidunt dui. Donec non felis eu elit blandit semper. Nam gravida efficitur urna, sit amet ullamcorper leo auctor ac. Phasellus id urna risus. Curabitur in molestie libero, sit amet porttitor erat. Sed at ante congue, viverra nulla at, vestibulum lacus. Suspendisse posuere bibendum lorem non rhoncus. In in quam nunc. Nulla nunc libero, sagittis vel aliquet in, porttitor eu odio. Vestibulum eu ex non ex tempor rutrum. Fusce vestibulum porta lectus. Nunc porta risus augue, sed tempus sem egestas non. In consequat lectus eget aliquam bibendum. Nam eu posuere risus, id elementum ipsum.
+                    Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris a magna ultrices, vestibulum lectus viverra, porttitor tellus. In quis finibus purus. Maecenas ultricies quis risus et tempor. Nullam scelerisque elit ac tortor volutpat, euismod lacinia ligula facilisis. Ut ullamcorper eget ipsum pulvinar congue. Sed risus erat, aliquet at posuere a, dapibus a risus.
+                    Aliquam facilisis commodo velit sed maximus. Nulla lacus tortor, laoreet eget blandit eget, pharetra et elit. Curabitur commodo lorem ut nulla euismod, non lacinia lacus dapibus. Nam a justo vel metus maximus porttitor. Vestibulum vel lorem sed purus convallis eleifend. Maecenas neque risus, blandit quis augue nec, iaculis fringilla metus. Nullam blandit justo sapien, sit amet eleifend tortor tempus eget. Phasellus at velit libero. Maecenas auctor quis justo sit amet gravida. Quisque sapien justo, condimentum in semper id, egestas a quam. In a facilisis magna, non luctus ante. Praesent maximus urna quis turpis sodales tempus. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+                    Sed fringilla sem quis nisi efficitur, aliquet dictum sapien gravida. Nunc rutrum laoreet leo ultricies tincidunt. Donec ante dolor, pretium nec pellentesque a, imperdiet in elit. Nam fringilla nulla vitae dictum dictum. Aenean nisl lectus, vestibulum eget nunc sed, tempor finibus tortor. Nunc posuere sit amet odio id auctor. Curabitur vehicula scelerisque rutrum. Donec cursus erat eget vulputate sodales.
+                </div>
+            </div>
+            
+            <div class="col-md-12">
+                <p>HTML:</p>
+<pre>&lt;div class=&quot;scroll-spy&quot; ocs-scroll-spy&gt;
+  &lt;div class=&quot;col-md-6&quot;&gt;
+    &lt;div sticky offset=&quot;30&quot;&gt;
+      &lt;ul class=&quot;pagemenu&quot;&gt;
+        &lt;li spy=&quot;ss_first&quot;&gt;First&lt;/li&gt;
+        &lt;li spy=&quot;ss_second&quot;&gt;Second&lt;/li&gt;
+        &lt;li spy=&quot;ss_third&quot;&gt;Third&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;col-md-6&quot; &gt;
+    &lt;h3 id=&quot;ss_first&quot;&gt;First&lt;/h3&gt;
+    Lorem ipsum ...
+    &lt;h3 id=&quot;ss_second&quot;&gt;Second&lt;/h3&gt;
+    Lorem ipsum ...
+    &lt;h3 id=&quot;ss_third&quot;&gt;Third&lt;/h3&gt;
+    Lorem ipsum ...
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+            </div>
+        </div>
+    </uib-accordion-group>
+
+</uib-accordion>
+
+
+
+
+
+
+
+

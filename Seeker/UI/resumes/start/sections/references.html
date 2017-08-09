@@ -1,0 +1,71 @@
+﻿<div ng-controller="referencesCtrl as vm">
+
+    <!--<pre>{{ vm.data.references | json}}</pre>-->
+
+    <p ng-bind-html=":preResolved:$root.msg(195300)"></p>
+    <hr class="hr-short" />
+    <ng-form name="referencesForm">
+        <div ng-repeat="(key,ref) in vm.data.references.items track by $index">
+            <div class="mb15">
+                <span class="label label-default">{{key + 1}} - {{:preResolved:$root.msg(286231)}}</span> <!--Reference-->
+                <button type="button" ng-click="vm.removeReference($index)" class="btn btn-remove pull-right"> {{:preResolved:$root.msg(377399)}}</button>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="row">
+                <div class='col-sm-12'>
+                    <ocs-radio meta="meta.referenceType" model="ref.typeId"></ocs-radio>
+                </div>
+                <div class="col-sm-4">
+                    <ocs-input meta="meta.referenceName" model="ref.contactName"></ocs-input>
+                </div>
+                <div class="col-sm-4">
+                    <ocs-input meta="meta.referenceCompany" model="ref.companyName"></ocs-input>
+                </div>
+                <div class="col-sm-4">
+                    <ocs-input meta="meta.referenceTitle" model="ref.title"></ocs-input>
+                </div>
+                <div class="col-sm-12">
+                    <strong>{{:preResolved:$root.msg(315695)}}</strong><br />
+                    {{:preResolved:$root.msg(349430)}}
+                </div>
+
+                <div class="col-sm-12">
+                    <input type="checkbox"
+                            id="referencecontactmethodselectedinput_{{$index}}"
+                            name="referencecontactmethodselectedinput"
+                            ng-model="ref.contactMethodSelected"
+                            ng-required="true"
+                            class="ng-hide" />
+
+                    <label for="referencecontactmethodselectedinput_{{$index}}" class="ng-hide">
+                        {{:preResolved:$root.msg(377400)}}
+                    </label> <!--Contact method selected-->
+                </div>
+                
+
+                <div class="col-sm-6">
+                    <ocs-check-box meta="meta.referenceHasPhone" model="ref.hasPhone"></ocs-check-box>
+                </div>
+                <div class="col-sm-6">
+                    <ocs-check-box meta="meta.referenceHasEmail" model="ref.hasEmail"></ocs-check-box>
+                </div>
+                <div class="col-sm-6">
+                    <span ng-if="ref.hasPhone[0]"><ocs-input meta="meta.referencePhone" model="ref.phone"></ocs-input></span>
+                </div>
+                <div class="col-sm-6">
+                    <span ng-if="ref.hasEmail[0]"><ocs-input meta="meta.referenceEmail" model="ref.email"></ocs-input></span>
+                </div>
+            </div>
+            <hr class="hr-short" />
+        </div>
+
+        <button ng-click="vm.addReference()"
+                type="button"
+                class="btn btn-add"
+                ng-disabled="vm.data.references.items.length >= vm.data.references.maxItemsCount || vm.thisForm.$invalid">
+            {{:preResolved:$root.msg(354391)}}
+        </button>
+        <hr class="hr-short" />
+    </ng-form>
+</div>

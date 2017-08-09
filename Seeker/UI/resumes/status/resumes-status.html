@@ -1,0 +1,24 @@
+﻿<div ng-if="isLoaded">  
+    <ocs-intro-section meta="meta.pageHeaderStatus"></ocs-intro-section>
+    <ocs-401 meta="meta" msgheader="379077" msgbody="379078"></ocs-401>
+
+    <div class="container" ng-show="$root.isAuthenticated">
+        <ocs-error error-list="errors"></ocs-error>
+        <form name="mainform" class="form-horizontal" role="form" ng-submit="updateResumeStatus()" novalidate>
+
+            <ocs-radio meta="meta.resumeActive" model="resume.resumeBasics.resumeActive"></ocs-radio>
+
+            <div ng-show="resume.resumeBasics.resumeActive">
+                <ocs-radio meta="meta.resumeConfidential" model="resume.resumeBasics.resumeConfidential"></ocs-radio>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <button ng-click="cancel()" class="btn btn-md btn-primary">{{msg(155055)}}</button>
+                    <input type="submit" class="btn btn-md btn-primary" ng-disabled="mainform.$invalid" value="{{msg(70088)}}" />
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>

@@ -1,0 +1,22 @@
+﻿<div ng-if="isLoaded">
+    <ocs-intro-section meta="meta.pageHeaderApplyByMail"></ocs-intro-section>
+
+    <ocs-error error-list='serviceErrorList'></ocs-error>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <ocs-bread-crumbs></ocs-bread-crumbs>
+            <h2>{{job.title}}</h2>
+            <p class="lead">
+                {{job.company}} - <span class="small">{{job.city}}, {{job.state}}</span><br />
+                <span class="small">{{msg(364088)}} {{ moment(job.active_from).format(jobPostingDateFormat) }}</span>
+            </p>
+        </div>
+    </div>bymain
+</div>
+
+
+
+
+
+

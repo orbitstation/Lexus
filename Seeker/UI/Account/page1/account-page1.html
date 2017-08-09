@@ -1,0 +1,87 @@
+﻿<div ng-if="isLoaded" ng-controller="accountPage1Ctrl">
+    <ocs-intro-section meta="meta.pageHeader"></ocs-intro-section>
+        <ocs-accordion-steps meta="meta" config-layout="configLayout" accordion-name="'accordion'" model="userAccount"></ocs-accordion-steps>
+
+        <br>
+        <div class="row" ng-if="userIsVerified && !$root.isAuthenticated">
+            <div class='col-sm-12'>
+
+                <div class="" ng-if="$root.cfg('legal.acceptTerms') == 'true'">
+                    <div class="panel-body">
+                        <ocs-check-box meta="meta.acceptTerms" model="userAccount.userTerms.acceptTerms"> </ocs-check-box>
+                    </div>
+                </div>
+
+                <div class="" ng-if="$root.cfg('legal.privacy') == 'true'">
+                    <div class="panel-body">
+                        <ocs-check-box meta="meta.userTermsMessage" model="userAccount.privacyPolicy.privacy"> </ocs-check-box>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div aria-live="assertive">
+            <ocs-error error-list="$root.errorList"></ocs-error>
+        </div>
+
+        <div class="row" ng-if="userIsVerified">
+            <div class="col-sm-12">
+                <!--[{{Form.$valid}}]-->
+                <button ng-show="$root.isAuthenticated" ng-click="updateUser()"
+                        class="btn btn-md btn-primary pull-right"
+                        ng-disabled="!globalForm.$valid || busyLinks.saveUserAction"
+                        ocs-busy="busyLinks.saveUserAction">
+                    {{msg(364090)}} 
+                </button>
+                <button ng-hide="$root.isAuthenticated"
+                        ng-click="createUser()" class="btn btn-md btn-primary pull-right"
+                        ng-disabled="!globalForm.$valid || busyLinks.createUserAction"
+                        ocs-busy="busyLinks.createUserAction">
+                        {{msg(204843)}}
+                </button>
+            </div>
+        </div>
+
+
+<!-- Sorry, you must be authorized to work in the U.S. to create an account. -->
+<script type="text/ng-template" id="myModalContent-age.html">
+    <div class="modal-header">
+        <h3 class="modal-title"></h3>
+    </div>
+    <div class="modal-body">
+        <h3>{{msg(364976)}}</h3>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="ok()">{{msg(315145)}}</button>
+        <!-- <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button> -->
+    </div>
+</script>
+
+
+<!-- Sorry, you must be at least 13 years old, to create an account. -->
+<script type="text/ng-template" id="myModalContent-auth.html">
+    <div class="modal-header">
+        <h3 class="modal-title"></h3>
+    </div>
+    <div class="modal-body">
+        <h3>{{msg(364977)}}</h3>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="ok()">{{msg(315145)}}</button>
+        <!-- <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button> -->
+    </div>
+</script>
+
+<script type="text/ng-template" id="posModal.html">
+    <div class="modal-header">
+        <h4 class="modal-title"><strong ng-bind-html="msg(344962) | unsafe"></strong></h4>
+    </div>
+    <div class="modal-body"><div ng-bind-html="msg(344963) | unsafe"></div></div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="ok()">{{msg(344964)}}</button>
+    </div>
+</script>
+
+</div>
+
+

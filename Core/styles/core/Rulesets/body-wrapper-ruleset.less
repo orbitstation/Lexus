@@ -1,0 +1,13 @@
+﻿@body-wrapper:{
+    background: @body-bg;
+    position: relative;
+    >.container{
+        border: 0;
+        border-left: 1px solid @content-border-color;
+        border-right: 1px solid @content-border-color;
+        @media (max-width: @screen-xs-max){
+            border-left: 0;
+            border-right: 0;
+        }
+    }
+};

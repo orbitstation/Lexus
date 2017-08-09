@@ -1,0 +1,14 @@
+﻿    <div class="row" ng-if="$root.cfg('disability.disabilityStatus') == 'true'">
+        <div class='col-sm-12'><ocs-radio meta="meta.disabilityStatus" model="model.disability.disabilityStatus"></ocs-radio></div>
+    </div>
+    <div class="row" ng-if="model.disability.disabilityStatus == '26949' && $root.cfg('disability.disabilitySearchable') == 'true'">
+        <div class='col-sm-12'>
+                <p>{{:preResolved:$root.msg(352246)}}</p>
+                <ocs-radio meta="meta.disabilitySearchable" model="model.disability.disabilitySearchable"></ocs-radio>
+        </div>
+    </div>
+    <div class="row" ng-if="model.disability.disabilityStatus == '26951' && $root.cfg('disability.pleaseBeAware') == 'true'">
+        <div class='col-sm-12'>
+            <blockquote>{{:preResolved:$root.msg(339697)}}</blockquote>
+        </div>
+    </div>

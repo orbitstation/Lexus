@@ -1,0 +1,214 @@
+﻿<section class="row" ng-if="productVariables.EnvironmentType!=='Production'">
+    <div ng-controller="debugController">
+        <div style="position:fixed; top: 0; right:0; z-index: 1000;">
+            <button type="button" class="btn btn-info btn-xs btn-block" ng-click="showMessageModal=true" title="Messages">M</button>
+            <button type="button" class="btn btn-warning btn-xs btn-block" ng-click="toggleMessageDisplay()" title="Supress Messages">S</button>
+            <button type="button" class="btn btn-success btn-xs btn-block" ng-click="showConfigeModal=true" title="Show Configs">C</button>
+            <button type="button" class="btn btn-danger btn-xs btn-block" ng-click="openRegistryModal()" title="Show regestry">R</button>
+        </div>
+
+        <!-- Messages Modal -->
+        <modal shown="showMessageModal" name="headerMessagesModal.html" ok-modal="toggleMessageDisplay()"></modal>
+        <script type="text/ng-template" id="headerMessagesModal.html">
+            <div class="modal-header">
+                <h4 class="modal-title"><strong>All messages on page</strong></h4>
+            </div>
+            <div class="modal-body">
+                ChannelID: <strong>{{::productVariables.ChannelID}}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ChannelAlias: <strong>{{productVariables.ChannelAlias}}</strong>
+                <hr>
+                <div class="row" ng-repeat="message in serverMessagesObj">
+                    <ng-form name="form">
+                        <div class="col-sm-2">{{message.id}}</div>
+                        <div class="col-sm-8">
+                            <input style="width: 100%;" ng-model="message.text" />
+                        </div>
+                        <div class="col-sm-2">
+
+                            <button ng-if="!form.$pristine" class="btn btn-disabled btn-sm btn-block">save</button>
+                        </div>
+                    </ng-form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-warning" type="button" ng-click="ok()">Supress Messages</button>
+                <button class="btn btn-warning" type="button" ng-click="cancel()">Close</button>
+            </div>
+        </script>
+
+        <!-- Configs Modal -->
+        <modal shown="showConfigeModal" name="headerConfigModal.html"></modal>
+        <script type="text/ng-template" id="headerConfigModal.html">
+            <div class="modal-header">
+                <h4 class="modal-title"><strong>All Configs on page</strong></h4>
+            </div>
+            <div class="modal-body">
+                ChannelID: <strong>{{::productVariables.ChannelID}}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ChannelAlias: <strong>{{productVariables.ChannelAlias}}</strong>
+                <br><br><strong>Layout Config</strong>
+                <hr>
+                <div ng-repeat="(key,topLevelConfigs) in configLayout">
+                    <h3>{{key}}</h3>
+                    <div class="row" ng-repeat="(key,config) in topLevelConfigs">
+                        <ng-form name="form">
+                            <div class="col-sm-1">{{key}}</div>
+                            <div class="col-sm-6">{{config.lookUpConfig.serverId}}</div>
+                            <div class="col-sm-3">
+                                <input style="width: 100%;" ng-model="config.lookUpConfig.value" />
+                            </div>
+                            <div class="col-sm-2">
+                                <button ng-if="!form.$pristine" class="btn btn-disabled btn-sm btn-block">save</button>
+                            </div>
+                        </ng-form>
+                    </div>
+                </div>
+                <pre>{{configLayout | json}}</pre>
+                <strong>Meta Config</strong>
+                <pre>{{configMeta | json}}</pre>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-warning" type="button" ng-click="cancel()">Close</button>
+            </div>
+        </script>
+
+
+        <!-- Registry Modal -->
+        <modal name="headerRegistryModal.html" ok-modal="toggleRegestryDisplay()"></modal>
+        <script type="text/ng-template" id="headerRegistryModal.html">
+            <div class="modal-header">
+                <h4 class="modal-title"><strong>Registry</strong></h4>
+            </div>
+            <div class="modal-body">
+                <pre>{{$root.registry | json}}</pre>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" type="button" ng-click="ok()">Purge</button>
+                <button class="btn btn-warning" type="button" ng-click="cancel()">Close</button>
+            </div>
+        </script>
+    </div>
+</section>
+
+<section class="main-header row no-gutter-clean" ng-controller="LoginController">
+    <div class="flex-justified">
+        <div class="flex-item visible-xs-inline-block">
+            <button type="button" class="menu-toggle navbar-toggle"
+                    ng-click="$root.isSearchCollapsed = true; menuToggle();">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <div class="flex-item flex-center">
+            <div class="logo">
+                <a href="/">
+                    <img class="hidden-xs" src="{{::meta.logo.src}}" alt="{{::meta.logo.alt.lookUpMsg.value}}" />
+                    <img class="visible-xs-block" src="{{::meta.logoMobile.src}}" alt="{{::meta.logo.alt.lookUpMsg.value}}" />
+                </a>
+            </div>
+            <div class="hidden-xs logo-message" ng-if="configLayout.enableLogoMessage.lookUpConfig.value == 'true'">
+                {{:preResolved:$root.msg(379752)}}
+            </div>
+        </div>
+
+        <div class="flex-item">
+            <div class="users">
+                <div class="login-boxes" id="dropdown-scrollable-container">
+                    <div class="box">
+                        <div class="hidden-xs">
+                            <div class="options text-right">
+                                <div uib-dropdown is-open="status.isopen" class="accessibility">
+                                    <button id="single-button" type="button" class="btn btn-link btn-sm" uib-dropdown-toggle ng-disabled="disabled" tabindex="1">
+                                        {{$root.msg(302216)}} <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                                        <li role="menuitem">
+                                            <ocs-font-size></ocs-font-size>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div id="google_translate_element"></div>
+                                <script type="text/javascript">
+                                    var elem = 'google_translate_element';
+                                    function googleTranslateElementInit() {
+                                        new google.translate.TranslateElement({
+                                            pageLanguage: 'en',
+                                            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+                                        }, elem);
+                                        changeLook();
+                                    }
+                                    function changeLook() {
+                                        var $elem = $('#' + elem);
+                                        var $aTag = $elem.find('.goog-te-menu-value');
+                                        var $text = $aTag.find('span');
+                                        $elem.find('img').remove();
+                                        $elem.find('.goog-te-gadget-simple').find('>span').css('verticalAlign', 'initial', '!important');
+                                        $elem.find('.goog-te-gadget-simple').removeClass('goog-te-gadget-simple');
+                                        $elem.find('.goog-te-gadget').removeClass('goog-te-gadget');
+                                        $elem.find('.goog-te-menu-value').removeClass('goog-te-menu-value');
+                                        $aTag.addClass('btn').addClass('btn-link').addClass('btn-sm');
+                                        $text.eq(1).remove();
+                                        $text.eq(2).remove();
+                                        $text.eq(0).after('&nbsp;<span class="caret"></span>');
+                                    }
+                                </script>
+                                <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+                            </div>
+                            <div class="powered-by" ng-if="configLayout.enablePoweredBy.lookUpConfig.value == 'true'">
+                                <img src="https://securemedia.newjobs.com/id/mgs/8210/powered-by-header-retina@2x.png" alt="" />
+                            </div>
+                        </div>
+                        <div class="visible-xs-inline-block">
+                            <div class="btn user-button" role="search"
+                                 ng-click="$root.isSearchCollapsed = !$root.isSearchCollapsed; this.isCollapsed = true;">
+                                <span class="sr-only">Toggle search</span>
+                                <i class="glyphicon glyphicon-search fa-search"></i>
+                                Search
+                            </div>
+                        </div>
+                        <div class="box-content" ng-hide="isAuthenticated()"
+                             role="form"
+                             uib-dropdown
+                             uib-keyboard-nav
+                             auto-close="outsideClick"
+                             is-open="$root.login.boxOpen"
+                             on-toggle="loginBoxToggle($event)">
+                            <div class="btn user-button" type="button" uib-dropdown-toggle>
+                                <i class="glyphicon glyphicon-user"></i>
+                                {{$root.msg(320405)}} <span class="caret"></span>
+                            </div>
+                            <div uib-dropdown-menu role="menu">
+                                <ng-form name="loginForm">
+                                    <ng-include src="'/UI/shared/login.html'"></ng-include>
+                                </ng-form>
+                            </div>
+                        </div>
+                        <div class="box-content" uib-dropdown uib-keyboard-nav ng-if="getFullName()" ng-show="isAuthenticated()">
+                            <div class="btn user-button" type="button" uib-dropdown-toggle>
+                                <i class="glyphicon glyphicon-user"></i>
+                                {{$root.msg(185459)}} <span class="caret"></span>
+                            </div>
+
+                            <ul uib-dropdown-menu role="menu">
+                                <li>
+                                    <span class="username">
+                                        {{getFullName()}}
+                                    </span>
+                                </li>
+                                <li><a href="/calendar/">{{$root.msg(376301)}}</a></li>
+                                <li><a href="/account/">{{$root.msg(313500)}}</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="" ng-click="logout()">{{$root.msg(165227)}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Nav Bar -->
+    <ng-include src="configLayout.menuBar.url.lookUpConfig.value" ng-if="configLayout.menuBar.show.lookUpConfig.value"></ng-include>
+</section>

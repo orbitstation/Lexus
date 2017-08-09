@@ -1,0 +1,1317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3AD0561D-B195-4AB4-A5C1-CD336A07C119}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Monster.Lexus.UI.Seeker</RootNamespace>
+    <AssemblyName>Monster.Lexus.UI.Seeker</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RTMFileBaseDir>$(MSBuildThisFileDirectory)</RTMFileBaseDir>
+    <MSDeployDirName>$(MSBuildThisFileDirectory)MSDeploy\</MSDeployDirName>
+    <RTMFile>$(RTMFileBaseDir)rtm.xml</RTMFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Monster.Framework.Abstractions, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Monster.Framework.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Monster.Framework.Adapters.Unity40, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Monster.Framework.Adapters.Unity40.dll</HintPath>
+    </Reference>
+    <Reference Include="Monster.GlobalFramework.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Monster.GlobalFramework.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Monster.GlobalFramework.Internationalization, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Monster.GlobalFramework.Internationalization.dll</HintPath>
+    </Reference>
+    <Reference Include="Monster.Lexus.Services.Core.Contracts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Monster.Lexus.Services.Core.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="Monster.Lexus.Services.Seeker.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Monster.Lexus.Services.Seeker.Models.dll</HintPath>
+    </Reference>
+    <Reference Include="Monster.Lexus.UI.SpaInfrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Monster.Lexus.UI.SpaInfrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Monster.Lexus.Services.Seeker.Contracts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Monster.Lexus.Services.Seeker.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="Monster.Lexus.Services.Core.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Monster.Lexus.Services.Core.Models.dll</HintPath>
+    </Reference>
+    <Reference Include="Monster.Lexus.UI.Seeker.ProxyRepositories, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Monster.Lexus.UI.Seeker.ProxyRepositories.dll</HintPath>
+    </Reference>
+    <Reference Include="Monster.Lexus.UI.Seeker.CoreRepositories, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Monster.Lexus.UI.Seeker.CoreRepositories.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NWebsec, Version=4.3.0.0, Culture=neutral, PublicKeyToken=3613da5f958908a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NWebsec.4.3.0\lib\45\NWebsec.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NWebsec.Core, Version=1.6.0.0, Culture=neutral, PublicKeyToken=3613da5f958908a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NWebsec.Core.1.6.0\lib\45\NWebsec.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\FatalErrorController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JobViewContentController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="LegacyUrlRoute.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="channels\core\test.js" />
+    <Content Include="channels\mgsmil\1.headroom.min.js" />
+    <Content Include="channels\mgsmil\Components\ocs-jobsearch-ad\jsAdvertisement.html" />
+    <Content Include="channels\mgsmil\Components\ocs-jobsearch-ad\jsAdvertisementIframeBannerSource.html" />
+    <Content Include="channels\mgsmil\Components\ocs-jobsearch-ad\jsAdvertisementIframeMobileBannerSource.html" />
+    <Content Include="channels\mgsmil\Components\ocs-jobsearch-ad\jsAdvertisementIframeSource.html" />
+    <Content Include="channels\mgsmil\Components\ocs-jobsearch-ad\ocs-jobsearch-ad-component.js" />
+    <Content Include="channels\mgsmil\Components\ocs-sidemenu\ocs-sidemenu.html" />
+    <Content Include="channels\mgsmil\Components\ocs-sidemenu\ocs-sidemenu.js" />
+    <Content Include="channels\mgsmil\Components\ocs-sitesearch\ocs-sitesearch.html" />
+    <Content Include="channels\mgsmil\Components\ocs-sitesearch\ocs-sitesearch.js" />
+    <Content Include="channels\skr_techvets\product-config.js" />
+    <Content Include="channels\mgsmil\css\fontello-embedded.css" />
+    <Content Include="channels\mgsmil\font\fontello.svg" />
+    <Content Include="channels\mgsmil\headroom.angular.js" />
+    <Content Include="images\iPhone-DoubleBox-Icon.jpg" />
+    <Content Include="images\iPhone-Plus-Icon.jpg" />
+    <Content Include="incognetoError.htm" />
+    <Content Include="lib\coreUI\styles\core\Components\modals.less" />
+    <Content Include="lib\coreUI\styles\core\Mixins\icons-mixin.less" />
+    <Content Include="lib\coreUI\styles\core\Components\alerts.less" />
+    <Content Include="lib\coreUI\styles\core\Components\tables.less" />
+    <Content Include="lib\coreUI\styles\core\Components\shared-fa-icons.less" />
+    <Content Include="lib\ui-bootstrap\template\accordion\ui-accordion-dashboard.html" />
+    <Content Include="scripts\components\ocs-recent-searches\ocs-recent-searches.component.html" />
+    <Content Include="scripts\components\ocs-recent-searches\ocs-recent-searches.component.js" />
+    <Content Include="scripts\factories\trainingProgramsFactory.js" />
+    <Content Include="lib\coreUI\styles\core\Components\tabs.less" />
+    <Content Include="Chutzpah.json" />
+    <Content Include="lib\coreUI\styles\core\Components\apply-panel.less" />
+    <Content Include="lib\coreUI\styles\core\Components\plugins\google-translate.less" />
+    <Content Include="lib\coreUI\styles\core\Components\plugins\google-translate - Copy.less" />
+    <Content Include="styles\lexusdemo\Mixins\dashboard-mixin.less" />
+    <Content Include="channels\mgsmil\font\fontello.eot" />
+    <Content Include="channels\mgsmil\font\fontello.ttf" />
+    <Content Include="channels\mgsmil\font\fontello.woff" />
+    <Content Include="channels\mgsmil\font\fontello.woff2" />
+    <Content Include="lib\coreUI\styles\core\Components\recent-searches.less" />
+    <Content Include="lib\coreUI\styles\core\Mixins\recent-searches.less" />
+    <Content Include="lib\coreUI\styles\core\Components\bar-chart.less" />
+    <Content Include="lib\coreUI\styles\core\Components\browse-jobs.less" />
+    <Content Include="lib\coreUI\styles\core\Components\slick.less" />
+    <Content Include="lib\coreUI\styles\core\Components\slick-theme.less" />
+    <Content Include="lib\coreUI\styles\core\Components\compare-table.less" />
+    <None Include="NWebsecConfig\HttpHeaderSecurityModuleConfig.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="styles\mgsmil\Components\search-panel.less" />
+    <Content Include="styles\lexusdemo\Components\buttons.less" />
+    <Content Include="styles\lexusdemo\Components\recent-searches.less" />
+    <Content Include="styles\lexusdemo\demo-customization.less" />
+    <Content Include="styles\mgsmil\Components\recent-searches.less" />
+    <Content Include="styles\lexusdemo\Components\slick-theme.less" />
+    <None Include="styles\mgsmil\Fonts\css\fontello-embedded.less" />
+    <Content Include="channels\mgsmil\partials\footer.html" />
+    <Content Include="channels\mgsmil\partials\ui-accordion-group-jobs.html" />
+    <Content Include="channels\mgsmil\product-config.js" />
+    <Content Include="channels\mgsmil\product-run.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="channels.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="gulpfile.js" />
+    <Content Include="lib\coreUI\fonts\glyphicons\glyphicons-halflings-regular.svg" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\Bootstrap\editor.png" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\Bootstrap\imagebrowser.png" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\Bootstrap\indeterminate.gif" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\Bootstrap\loading-image.gif" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\Bootstrap\loading.gif" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\Bootstrap\loading_2x.gif" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\Bootstrap\markers.png" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\Bootstrap\markers_2x.png" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\Bootstrap\slider-h.gif" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\Bootstrap\slider-v.gif" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\Bootstrap\sprite.png" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\Bootstrap\sprite_2x.png" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\Bootstrap\sprite_kpi.png" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\Bootstrap\sprite_kpi_2x.png" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\fonts\DejaVu\LICENSE.txt" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\fonts\glyphs\KendoUIGlyphs.svg" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\Bootstrap\editor.png" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\Bootstrap\imagebrowser.png" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\Bootstrap\indeterminate.gif" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\Bootstrap\loading-image.gif" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\Bootstrap\loading.gif" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\Bootstrap\loading_2x.gif" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\Bootstrap\markers.png" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\Bootstrap\markers_2x.png" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\Bootstrap\slider-h.gif" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\Bootstrap\slider-v.gif" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\Bootstrap\sprite.png" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\Bootstrap\sprite_2x.png" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\Bootstrap\sprite_kpi.png" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\Bootstrap\sprite_kpi_2x.png" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\fonts\glyphs\KendoUIGlyphs.svg" />
+    <Content Include="lib\coreUI\styles\core\Rulesets\body-wrapper-ruleset.less" />
+    <Content Include="lib\coreUI\styles\core\bootstrap-build.less" />
+    <Content Include="lib\coreUI\styles\core\Rulesets\footer-ruleset.less" />
+    <Content Include="lib\coreUI\styles\core\Components\dashboard.less" />
+    <Content Include="lib\coreUI\styles\core\Components\type.less" />
+    <Content Include="lib\coreUI\styles\core\Components\apply-notify.less" />
+    <Content Include="lib\coreUI\styles\core\Mixins\wells-mixin.less" />
+    <Content Include="lib\coreUI\styles\core\Components\wells.less" />
+    <Content Include="lib\coreUI\styles\core\Mixins\forms-mixin.less" />
+    <None Include="lib\coreUI\styles\core\Rulesets\navbar-ruleset.less" />
+    <Content Include="lib\coreUI\templates\ocs-401.html" />
+    <Content Include="lib\coreUI\templates\ocs-AccordionSteps.html" />
+    <Content Include="lib\coreUI\templates\ocs-Alert.html" />
+    <Content Include="lib\coreUI\templates\ocs-AutoComplete.html" />
+    <Content Include="lib\coreUI\templates\ocs-BreadCrumbs.html" />
+    <Content Include="lib\coreUI\templates\ocs-Button.html" />
+    <Content Include="lib\coreUI\templates\ocs-Calendar.html" />
+    <Content Include="lib\coreUI\templates\ocs-Chart.html" />
+    <Content Include="lib\coreUI\templates\ocs-CheckBox.html" />
+    <Content Include="lib\coreUI\templates\ocs-Date.html" />
+    <Content Include="lib\coreUI\templates\ocs-Error.html" />
+    <Content Include="lib\coreUI\templates\ocs-FontSize.html" />
+    <Content Include="lib\coreUI\templates\ocs-Input.html" />
+    <Content Include="lib\coreUI\templates\ocs-login.html" />
+    <Content Include="lib\coreUI\templates\ocs-Modal.html" />
+    <Content Include="lib\coreUI\templates\ocs-NavBar.html" />
+    <Content Include="lib\coreUI\templates\ocs-Pager.html" />
+    <Content Include="lib\coreUI\templates\ocs-PasswordAssist.html" />
+    <Content Include="lib\coreUI\templates\ocs-Radio.html" />
+    <Content Include="lib\coreUI\templates\ocs-RecommendedJobs.html" />
+    <Content Include="lib\coreUI\templates\ocs-RichTextEditor.html" />
+    <Content Include="lib\coreUI\templates\ocs-Select.html" />
+    <Content Include="lib\coreUI\templates\ocs-Spinner.html" />
+    <Content Include="lib\coreUI\templates\ocs-Textarea.html" />
+    <Content Include="lib\coreUI\templates\ocs-Upload.html" />
+    <Content Include="lib\coreUI\templates\ocs-ZipCode.html" />
+    <Content Include="lib\coreUI\templates\ui-accordion-group-steps.html" />
+    <Content Include="lib\ui-bootstrap\template\accordion\ui-accordion-group-activities.html" />
+    <Content Include="lib\ui-bootstrap\template\accordion\ui-accordion-group-jobs.html" />
+    <Content Include="lib\ui-bootstrap\template\accordion\ui-accordion-group-steps.html" />
+    <Content Include="scripts\components\ocs-intro-section\ocs-intro-section.component.html" />
+    <Content Include="scripts\components\ocs-intro-section\ocs-intro-section.component.js" />
+    <Content Include="scripts\components\ocs-occupation-detail-actions\ocs-occupation-detail-actions.component.html" />
+    <Content Include="scripts\components\ocs-occupation-detail-actions\ocs-occupation-detail-actions.component.js" />
+    <Content Include="scripts\components\ocs-occupation-related-links\ocs-occupation-related-links.component.html" />
+    <Content Include="scripts\components\ocs-occupation-related-links\ocs-occupation-related-links.component.js" />
+    <Content Include="scripts\components\ocs-well\ocs-well.component.html" />
+    <Content Include="scripts\components\ocs-well\ocs-well.component.js" />
+    <Content Include="scripts\directives\angular-slick-carousel\dist\angular-slick.min.js" />
+    <Content Include="scripts\directives\slick\slick.min.js" />
+    <Content Include="scripts\factories\budgetCalculatorFactory.js" />
+    <Content Include="scripts\factories\occupationsFactory.js" />
+    <Content Include="scripts\globalApp.js" />
+    <Content Include="styles\bootstrap\editor.png" />
+    <Content Include="styles\bootstrap\imagebrowser.png" />
+    <Content Include="styles\bootstrap\indeterminate.gif" />
+    <Content Include="styles\bootstrap\loading-image.gif" />
+    <Content Include="styles\bootstrap\loading.gif" />
+    <Content Include="styles\bootstrap\loading_2x.gif" />
+    <Content Include="styles\bootstrap\markers.png" />
+    <Content Include="styles\bootstrap\markers_2x.png" />
+    <Content Include="styles\bootstrap\slider-h.gif" />
+    <Content Include="styles\bootstrap\slider-v.gif" />
+    <Content Include="styles\bootstrap\sprite.png" />
+    <Content Include="styles\bootstrap\sprite_2x.png" />
+    <Content Include="styles\bootstrap\sprite_kpi.png" />
+    <Content Include="styles\bootstrap\sprite_kpi_2x.png" />
+    <Content Include="styles\mgsmil\Components\side-menu\side-menu.less" />
+    <Content Include="styles\mgsmil\Fonts\font\fontello.eot" />
+    <Content Include="styles\mgsmil\Fonts\font\fontello.svg" />
+    <Content Include="styles\mgsmil\Fonts\font\fontello.ttf" />
+    <Content Include="styles\mgsmil\Fonts\font\fontello.woff" />
+    <Content Include="styles\mgsmil\Fonts\font\fontello.woff2" />
+    <Content Include="test.spec.js" />
+    <Content Include="UI\aboutUs\index\aboutUs-index-ctrl.spec.js" />
+    <Content Include="UI\accountReset\index\index-ctrl.js" />
+    <Content Include="UI\accountReset\index\index.html" />
+    <Content Include="UI\account\account-create.html" />
+    <Content Include="UI\account\accountLite\account-lite-ctrl.js" />
+    <Content Include="UI\account\accountLite\account-lite.html" />
+    <Content Include="UI\account\account-create-ctrl.js" />
+    <Content Include="UI\account\page1\sections\account-education.html" />
+    <Content Include="UI\account\page1\sections\account-military-active.html" />
+    <Content Include="UI\account\page1\sections\account-military-veteran.html" />
+    <Content Include="UI\account\changePassword\changePassword.html" />
+    <Content Include="UI\account\changePassword\changePasswordCtrl.js" />
+    <Content Include="UI\applicationHistory\applicationHistory-app.js" />
+    <Content Include="UI\applicationHistory\applicationHistory-config.js" />
+    <Content Include="UI\applicationHistory\applicationHistory-meta.js" />
+    <Content Include="UI\applicationHistory\index\applicationHistory-index-ctrl.js" />
+    <Content Include="UI\applicationHistory\index\applicationHistory-index.html" />
+    <Content Include="UI\aboutUs\aboutUs-app.js" />
+    <Content Include="UI\aboutUs\aboutUs-config.js" />
+    <Content Include="UI\aboutUs\aboutUs-meta.js" />
+    <Content Include="UI\aboutUs\index\aboutUs-index-ctrl.js" />
+    <Content Include="UI\aboutUs\index\aboutUs-index.html" />
+    <Content Include="UI\accountReset\accountReset-app.js" />
+    <Content Include="UI\accountReset\accountReset-config.js" />
+    <Content Include="UI\accountReset\accountReset-meta.js" />
+    <Content Include="UI\accountReset\forgotPassword\forgotPassword-ctrl.js" />
+    <Content Include="UI\accountReset\forgotPassword\forgotPassword.html" />
+    <Content Include="UI\accountReset\resetPassword\resetPassword-ctrl.js" />
+    <Content Include="UI\accountReset\resetPassword\resetPassword.html" />
+    <Content Include="UI\careerPersonality\careerPersonality-app.js" />
+    <Content Include="UI\careerPersonality\careerPersonality-config.js" />
+    <Content Include="UI\careerPersonality\careerPersonality-meta.js" />
+    <Content Include="UI\careerPersonality\Index\careerPersonality-index-ctrl.js" />
+    <Content Include="UI\careerPersonality\Index\CareerPersonality-index.html" />
+    <Content Include="UI\careerPersonality\Questions\careerPersonality-questions-ctrl.js" />
+    <Content Include="UI\careerPersonality\Questions\CareerPersonality-questions.html" />
+    <Content Include="UI\careerPersonality\Results\careerPersonality-results-ctrl.js" />
+    <Content Include="UI\careerPersonality\Results\CareerPersonality-results.html" />
+    <Content Include="UI\careerPlan\careerGoal\careerGoal-ctrl.js" />
+    <Content Include="UI\careerPlan\careerGoal\careerGoal.html" />
+    <Content Include="channels\lexusdemo\test.js" />
+    <Content Include="UI\cms\cms-app.js" />
+    <Content Include="UI\cms\cms-config.js" />
+    <Content Include="UI\cms\cms-meta.js" />
+    <Content Include="UI\cms\cmsIndex\cms-index-ctrl.js" />
+    <Content Include="UI\cms\cmsIndex\cms-index.html" />
+    <Content Include="UI\cms\login\logIn-cms-ctrl.js" />
+    <Content Include="UI\cms\login\logIn-cms.html" />
+    <Content Include="UI\cms\login\loginPage-cms-index.html" />
+    <Content Include="UI\cms\multiPage\cms-multiPage-ctrl.js" />
+    <Content Include="UI\cms\multiPage\cms-multiPage.html" />
+    <Content Include="UI\cms\multiPage\cmsScrollSpy\cmsScrollSpy-EditWrapper.html" />
+    <Content Include="UI\cms\multiPage\cmsScrollSpy\cmsScrollSpy-Section.html" />
+    <Content Include="UI\cms\multiPage\cmsScrollSpy\cmsScrollSpy.html" />
+    <Content Include="UI\cms\multiPage\cmsTopBanner\cmsTopBanner-EditWrapper.html" />
+    <Content Include="UI\cms\multiPage\cmsTopBanner\cmsTopBanner.html" />
+    <Content Include="UI\cms\multiPage\pageMetaWidget\pageMetaWidget-EditWrapper.html" />
+    <Content Include="UI\cms\multiPage\pageMetaWidget\pageMetaWidget.html" />
+    <Content Include="UI\dashboard\index\match-height.js" />
+    <Content Include="UI\dashboard\index\sections\customize.html" />
+    <Content Include="UI\dashboard\index\sections\myJobSearch.html" />
+    <Content Include="UI\dashboard\index\sections\myCareerTools.html" />
+    <Content Include="UI\events\Details\event-details.html" />
+    <Content Include="UI\events\Details\event-details.js" />
+    <Content Include="UI\events\Details\event-registration.html" />
+    <Content Include="channels\core\searchService.js" />
+    <Content Include="UI\jobs\index\jobs-index-ctrl.js" />
+    <Content Include="UI\jobs\index\jobs-index.html" />
+    <Content Include="UI\jobs\jobs-app.js" />
+    <Content Include="UI\jobs\jobs-config.js" />
+    <Content Include="UI\jobs\jobs-meta.js" />
+    <Content Include="UI\jobView\apply\sections\EEO.html" />
+    <Content Include="UI\jobView\apply\sections\eeoCtrl.js" />
+    <Content Include="UI\jobView\apply\sections\questions.html" />
+    <Content Include="UI\error\error-app.js" />
+    <Content Include="UI\error\error-config.js" />
+    <Content Include="UI\error\error-meta.js" />
+    <Content Include="UI\error\Index\error-index-ctrl.js" />
+    <Content Include="UI\error\Index\error-index.html" />
+    <Content Include="UI\events\Index\events-row.html" />
+    <Content Include="UI\help\help-app.js" />
+    <Content Include="UI\help\help-config.js" />
+    <Content Include="UI\help\help-meta.js" />
+    <Content Include="UI\help\careerPlan\careerPlan-ctrl.js" />
+    <Content Include="UI\help\careerPlan\careerPlan.html" />
+    <Content Include="UI\coverLetters\index\coverLetters-index-ctrl.js" />
+    <Content Include="UI\coverLetters\index\coverLetters-index.html" />
+    <Content Include="UI\documents\documents-config.js" />
+    <Content Include="UI\impersonate\impersonate-app.js" />
+    <Content Include="UI\jobSearch3\jobSearch-app.js" />
+    <Content Include="UI\jobSearch3\jobSearch-config.js" />
+    <Content Include="UI\jobSearch3\jobSearch-meta.js" />
+    <Content Include="UI\jobSearch3\summary\jobSearch-summary-ctrl.js" />
+    <Content Include="UI\jobSearch3\summary\jobSearch-summary.html" />
+    <Content Include="UI\jobView\apply\jobView-apply-ctrl.js" />
+    <Content Include="UI\jobView\apply\jobView-apply.html" />
+    <Content Include="UI\jobView\apply-by-email\jobView-applyByEmail-ctrl.js" />
+    <Content Include="UI\jobView\apply-by-email\jobView-applyByEmail.html" />
+    <Content Include="UI\jobView\apply\sections\chooseCoverLetters.html" />
+    <Content Include="UI\jobView\apply\sections\chooseResume.html" />
+    <Content Include="UI\programs\compare\programs-compare-ctrl.js" />
+    <Content Include="UI\programs\compare\programs-compare.html" />
+    <Content Include="UI\programs\programDetail\accordion\detailed-course-information.html" />
+    <Content Include="UI\programs\programDetail\accordion\general-course-information.html" />
+    <Content Include="UI\programs\programDetail\program-detail-ctrl.js" />
+    <Content Include="UI\programs\programDetail\program-detail.html" />
+    <Content Include="UI\programs\programs-app.js" />
+    <Content Include="UI\programs\programs-config.js" />
+    <Content Include="UI\programs\programs-meta.js" />
+    <Content Include="UI\programs\saved\program-saved-ctrl.js" />
+    <Content Include="UI\programs\saved\program-saved.html" />
+    <Content Include="UI\programs\search\programs-search-ctrl.js" />
+    <Content Include="UI\programs\search\programs-search.html" />
+    <Content Include="UI\programs\shared\spa-ProgramCompare.html" />
+    <Content Include="UI\resumes\start\resume-data-share.js" />
+    <Content Include="UI\resumes\start\sections\finishing-upCtrl.js" />
+    <Content Include="UI\resumes\start\sections\languagesCtrl.js" />
+    <Content Include="UI\resumes\start\sections\profile-settingsCtrl.js" />
+    <Content Include="UI\resumes\start\sections\referencesCtrl.js" />
+    <Content Include="UI\resumes\start\sections\awardsCtrl.js" />
+    <Content Include="UI\resumes\start\sections\certificationCtrl.js" />
+    <Content Include="UI\resumes\start\sections\educationCtrl.js" />
+    <Content Include="UI\resumes\start\sections\experienceCtrl.js" />
+    <Content Include="UI\resumes\start\sections\resume-basicsCtrl.js" />
+    <Content Include="UI\resumes\start\sections\profile-informationCtrl.js" />
+    <Content Include="UI\resumes\start\sections\objective-summaryCtrl.js" />
+    <Content Include="UI\resumes\start\sections\resume-skills.controller.js" />
+    <Content Include="UI\resumes\start\sections\skills.html" />
+    <Content Include="UI\resumes\start\sections\target-employer-info.controller.js" />
+    <Content Include="UI\resumes\view\sections\renderBuilderResume.html" />
+    <Content Include="UI\resumes\start\sections\uploadCtrl.js" />
+    <Content Include="UI\samlLogout\logoutSSO-app.js" />
+    <Content Include="UI\logIn\index\loginPage-index.html" />
+    <Content Include="UI\messageCenter\messageCenter-app.js" />
+    <Content Include="UI\messageCenter\messageCenter-config.js" />
+    <Content Include="UI\messageCenter\messageCenter-meta.js" />
+    <Content Include="UI\messageCenter\index\messageCenter-index-ctrl.js" />
+    <Content Include="UI\messageCenter\index\messageCenter-index.html" />
+    <Content Include="UI\occupations\CareerDetails\occupations-careerdetails.html" />
+    <Content Include="UI\occupations\CareerDetails\occupations-careerdetails-ctrl.js" />
+    <Content Include="UI\occupations\Compare\occupations-compare-ctrl.js" />
+    <Content Include="UI\occupations\Compare\occupations-compare.html" />
+    <Content Include="UI\occupations\EducationTraining\occupations-educationtraining-ctrl.js" />
+    <Content Include="UI\occupations\EducationTraining\occupations-educationtraining.html" />
+    <Content Include="UI\occupations\Search\occupations-search-ctrl.js" />
+    <Content Include="UI\occupations\Search\occupations-search.html" />
+    <Content Include="UI\occupations\shared\spa-OccupationCompare.html" />
+    <Content Include="UI\product-config.js" />
+    <Content Include="UI\resumes\index\resumes-index-ctrl.js" />
+    <Content Include="UI\resumes\index\resumes-index.html" />
+    <Content Include="UI\resumes\profile-incomplete\resumes-profile-incomplete-ctrl.js" />
+    <Content Include="UI\resumes\profile-incomplete\resumes-profile-incomplete-service.js" />
+    <Content Include="UI\resumes\view\resumes-view-ctrl.js" />
+    <Content Include="UI\resumes\view\resumes-view.html" />
+    <Content Include="UI\resumes\rating\resumes-rating-ctrl.js" />
+    <Content Include="UI\resumes\rating\resumes-rating.html" />
+    <Content Include="UI\resumes\profile-incomplete\resumes-profile-incomplete.html" />
+    <Content Include="UI\resumes\start\resumes-start-ctrl.js" />
+    <Content Include="UI\resumes\start\resumes-start.html" />
+    <Content Include="UI\resumes\start\sections\awards.html" />
+    <Content Include="UI\resumes\start\sections\references.html" />
+    <Content Include="UI\resumes\start\sections\experience.html" />
+    <Content Include="UI\resumes\start\sections\finishing-up.html" />
+    <Content Include="UI\resumes\start\sections\getting-started.html" />
+    <Content Include="UI\resumes\start\sections\languages.html" />
+    <Content Include="UI\resumes\start\sections\certification.html" />
+    <Content Include="UI\resumes\start\sections\objective-summary.html" />
+    <Content Include="UI\resumes\start\sections\profile-settings.html" />
+    <Content Include="UI\resumes\start\sections\profile-information.html" />
+    <Content Include="UI\resumes\start\sections\resume-basics.html" />
+    <Content Include="UI\resumes\start\sections\education.html" />
+    <Content Include="UI\resumes\start\sections\targetEmployerInfo.html" />
+    <Content Include="UI\resumes\start\sections\upload.html" />
+    <Content Include="UI\resumes\upload\sections\profile-settings.html" />
+    <Content Include="UI\savedSearches\optOutAgents\optOutAgents-ctrl.js" />
+    <Content Include="UI\savedSearches\optOutAgents\optOutAgents.html" />
+    <Content Include="UI\schools\view\schools-view-ctrl.js" />
+    <Content Include="UI\schools\view\schools-view.html" />
+    <Content Include="UI\savedSearches\edit\savedSearches-edit-ctrl.js" />
+    <Content Include="UI\savedSearches\edit\savedSearches-edit.html" />
+    <Content Include="UI\shared\cmsEditBar.html" />
+    <Content Include="UI\shared\error.html" />
+    <Content Include="UI\shared\header1.html" />
+    <Content Include="UI\shared\side-search.html" />
+    <Content Include="UI\spaStatus\menuCreator\spaStatus-menuCreator-ctrl.js" />
+    <Content Include="UI\spaStatus\menuCreator\spaStatus-menuCreator.html" />
+    <Content Include="UI\spaStatus\spaStatus-app.js" />
+    <Content Include="UI\spaStatus\spaStatus-config.js" />
+    <Content Include="UI\spaStatus\spaStatus-meta.js" />
+    <Content Include="UI\spaStatus\index\spaStatus-index-ctrl.js" />
+    <Content Include="UI\spaStatus\index\spaStatus-index.html" />
+    <Content Include="UI\occupationOne\occupationOne-app.js" />
+    <Content Include="UI\occupationOne\occupationOne-config.js" />
+    <Content Include="UI\occupationOne\occupationOne-meta.js" />
+    <Content Include="UI\occupationOne\index\occupationOne-index-ctrl.js" />
+    <Content Include="UI\occupationOne\index\occupationOne-index.html" />
+    <Content Include="UI\jobView\jobView-app.js" />
+    <Content Include="UI\jobView\jobView-config.js" />
+    <Content Include="UI\jobView\jobView-meta.js" />
+    <Content Include="UI\jobView\index\jobView-index-ctrl.js" />
+    <Content Include="UI\jobView\index\jobView-index.html" />
+    <Content Include="UI\logIn\logIn-app.js" />
+    <Content Include="UI\logIn\logIn-config.js" />
+    <Content Include="UI\logIn\logIn-meta.js" />
+    <Content Include="UI\logIn\index\logIn-index-ctrl.js" />
+    <Content Include="UI\logIn\index\logIn-index.html" />
+    <Content Include="UI\microSiteCms\microSiteCms-app.js" />
+    <Content Include="UI\microSiteCms\microSiteCms-config.js" />
+    <Content Include="UI\microSiteCms\microSiteCms-meta.js" />
+    <Content Include="UI\microSiteCms\index\microSiteCms-index-ctrl.js" />
+    <Content Include="UI\microSiteCms\index\microSiteCms-index.html" />
+    <Content Include="UI\savedJobs\index\savedJobs-index-ctrl.js" />
+    <Content Include="UI\savedJobs\index\savedJobs-index.html" />
+    <Content Include="UI\schools\index\schools-index-ctrl.js" />
+    <Content Include="UI\schools\index\schools-index.html" />
+    <Content Include="UI\schools\schools-app.js" />
+    <Content Include="UI\schools\schools-config.js" />
+    <Content Include="UI\schools\schools-meta.js" />
+    <Content Include="UI\styleGuide\Landing\styleGuide-ctrl.js" />
+    <Content Include="UI\styleGuide\Landing\styleGuide.html" />
+    <Content Include="UI\styleGuide\styleGuide-app.js" />
+    <Content Include="UI\styleGuide\styleGuide-config.js" />
+    <Content Include="UI\styleGuide\styleGuide-meta.js" />
+    <Content Include="UI\termsOfUse\termsOfUse-app.js" />
+    <Content Include="UI\termsOfUse\termsOfUse-config.js" />
+    <Content Include="UI\termsOfUse\termsOfUse-meta.js" />
+    <Content Include="UI\termsOfUse\index\termsOfUse-index-ctrl.js" />
+    <Content Include="UI\termsOfUse\index\termsOfUse-index.html" />
+    <Content Include="UI\occupations\occupations-app.js" />
+    <Content Include="UI\occupations\occupations-config.js" />
+    <Content Include="UI\occupations\occupations-meta.js" />
+    <Content Include="UI\occupations\saved\occupations-saved-ctrl.js" />
+    <Content Include="UI\occupations\saved\occupations-saved.html" />
+    <Content Include="UI\dashboard\dashboard-app.js" />
+    <Content Include="UI\dashboard\dashboard-config.js" />
+    <Content Include="UI\dashboard\dashboard-meta.js" />
+    <Content Include="UI\dashboard\index\dashboard-index-ctrl.js" />
+    <Content Include="UI\dashboard\index\dashboard-index.html" />
+    <Content Include="UI\assessments\assessments-app.js" />
+    <Content Include="UI\assessments\assessments-config.js" />
+    <Content Include="UI\assessments\assessments-meta.js" />
+    <Content Include="UI\assessments\index\assessments-index-ctrl.js" />
+    <Content Include="UI\assessments\index\assessments-index.html" />
+    <Content Include="UI\careerPlan\careerPlan-app.js" />
+    <Content Include="UI\careerPlan\careerPlan-config.js" />
+    <Content Include="UI\careerPlan\careerPlan-meta.js" />
+    <Content Include="UI\careerPlan\index\careerPlan-index-ctrl.js" />
+    <Content Include="UI\careerPlan\index\careerPlan-index.html" />
+    <Content Include="UI\budgetCalculator\budgetCalculator-app.js" />
+    <Content Include="UI\budgetCalculator\budgetCalculator-config.js" />
+    <Content Include="UI\budgetCalculator\budgetCalculator-meta.js" />
+    <Content Include="UI\budgetCalculator\index\budgetCalculator-index-ctrl.js" />
+    <Content Include="UI\budgetCalculator\index\budgetCalculator-index.html" />
+    <Content Include="UI\calendar\calendar-app.js" />
+    <Content Include="UI\calendar\calendar-config.js" />
+    <Content Include="UI\calendar\calendar-meta.js" />
+    <Content Include="UI\calendar\Index\calendar-index-ctrl.js" />
+    <Content Include="UI\calendar\Index\calendar-index.html" />
+    <Content Include="UI\events\events-app.js" />
+    <Content Include="UI\events\events-config.js" />
+    <Content Include="UI\events\events-meta.js" />
+    <Content Include="UI\events\Index\events-index-ctrl.js" />
+    <Content Include="UI\events\Index\events-index.html" />
+    <Content Include="UI\occupations\Index\occupations-index-ctrl.js" />
+    <Content Include="UI\occupations\Index\occupations-index.html" />
+    <Content Include="UI\product-meta.js" />
+    <Content Include="UI\documents\summary\documents-summary-ctrl.js" />
+    <Content Include="UI\documents\summary\documents-summary.html" />
+    <Content Include="UI\savedSearches\savedSearches-app.js" />
+    <Content Include="UI\savedSearches\savedSearches-config.js" />
+    <Content Include="UI\savedSearches\savedSearches-meta.js" />
+    <Content Include="UI\savedSearches\index\savedSearches-index-ctrl.js" />
+    <Content Include="UI\savedSearches\index\savedSearches-index.html" />
+    <Content Include="UI\savedJobs\savedJobs-app.js" />
+    <Content Include="UI\savedJobs\savedJobs-config.js" />
+    <Content Include="UI\savedJobs\savedJobs-meta.js" />
+    <Content Include="UI\account\account-app.js" />
+    <Content Include="UI\account\account-config.js" />
+    <Content Include="UI\account\account-meta.js" />
+    <Content Include="UI\account\page1\sections\account-contact.html" />
+    <Content Include="UI\account\page1\sections\account-demographics.html" />
+    <Content Include="UI\account\page1\sections\account-details.html" />
+    <Content Include="UI\account\page1\sections\account-disability.html" />
+    <Content Include="UI\account\page1\sections\account-farmWorker.html" />
+    <Content Include="UI\account\page1\sections\account-hearAboutUs.html" />
+    <Content Include="UI\account\page1\sections\account-logIn.html" />
+    <Content Include="UI\account\page1\sections\account-military.html" />
+    <Content Include="UI\account\page1\account-page1-ctrl.js" />
+    <Content Include="UI\account\page1\account-page1.html" />
+    <Content Include="UI\account\page1\sections\account-privacy.html" />
+    <Content Include="UI\account\page1\sections\account-programAssistance.html" />
+    <Content Include="UI\account\page1\sections\account-residential.html" />
+    <Content Include="UI\account\page1\sections\account-userTerms.html" />
+    <Content Include="UI\account\page1\sections\account-verification.html" />
+    <Content Include="UI\contactUs\contactUs-app.js" />
+    <Content Include="UI\contactUs\contactUs-config.js" />
+    <Content Include="UI\contactUs\landing\contactUs-landing-ctrl.js" />
+    <Content Include="UI\contactUs\landing\contactUs-landing.html" />
+    <Content Include="UI\contactUs\contactUs-meta.js" />
+    <Content Include="UI\coverLetters\coverLetters-app.js" />
+    <Content Include="UI\coverLetters\coverLetters-config.js" />
+    <Content Include="UI\coverLetters\create\coverLetters-create.html" />
+    <Content Include="UI\coverLetters\create\coverLetters-create-ctrl.js" />
+    <Content Include="UI\coverLetters\edit\coverLetters-edit.html" />
+    <Content Include="UI\coverLetters\edit\coverLetters-edit-ctrl.js" />
+    <Content Include="UI\coverLetters\send\coverLetters-send.html" />
+    <Content Include="UI\coverLetters\send\coverLetters-send-ctrl.js" />
+    <Content Include="UI\coverLetters\view\coverLetters-view.html" />
+    <Content Include="UI\coverLetters\view\coverLetters-view-ctrl.js" />
+    <Content Include="UI\coverLetters\coverLetters-meta.js" />
+    <Content Include="UI\documents\documents-app.js" />
+    <Content Include="UI\documents\documents-meta.js" />
+    <Content Include="UI\home\home-app.js" />
+    <Content Include="UI\home\home-config.js" />
+    <Content Include="UI\home\home-meta.js" />
+    <Content Include="UI\home\index\home-index-ctrl.js" />
+    <Content Include="UI\home\index\home-index.html" />
+    <Content Include="UI\jobSearch\jobSearch-app.js" />
+    <Content Include="UI\jobSearch\jobSearch-config.js" />
+    <Content Include="UI\jobSearch\summary\jobSearch-summary.html" />
+    <Content Include="UI\jobSearch\summary\jobSearch-summary-ctrl.js" />
+    <Content Include="UI\jobSearch\jobSearch-meta.js" />
+    <Content Include="UI\resumes\resumes-app.js" />
+    <Content Include="UI\resumes\resumes-config.js" />
+    <Content Include="UI\resumes\resumes-meta.js" />
+    <Content Include="UI\resumes\send\resumes-send-ctrl.js" />
+    <Content Include="UI\resumes\send\resumes-send.html" />
+    <Content Include="UI\resumes\status\resumes-status-ctrl.js" />
+    <Content Include="UI\resumes\status\resumes-status.html" />
+    <Content Include="UI\shared\footer.html" />
+    <Content Include="UI\shared\header.html" />
+    <Content Include="UI\shared\login.html" />
+    <Content Include="UI\shared\main-menu.html" />
+    <Content Include="UI\shared\search-panel.html" />
+    <Content Include="Views\CoverLetters\Index.cshtml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\BudgetCalculator\Index.cshtml" />
+    <Content Include="Views\Calendar\Index.cshtml" />
+    <Content Include="Views\Events\Index.cshtml" />
+    <Content Include="Views\careerPlan\Index.cshtml" />
+    <Content Include="Views\Assessments\Index.cshtml" />
+    <Content Include="Views\ApplicationHistory\Index.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Occupations\Index.cshtml" />
+    <Content Include="Views\Schools\Index.cshtml" />
+    <Content Include="Views\MicroSiteCms\Index.cshtml" />
+    <Content Include="Views\LogIn\Index.cshtml" />
+    <Content Include="Views\JobView\Index.cshtml" />
+    <Content Include="Views\OccupationOne\Index.cshtml" />
+    <Content Include="Views\SpaStatus\Index.cshtml" />
+    <Content Include="Views\MessageCenter\Index.cshtml" />
+    <Content Include="Views\AboutUs\Index.cshtml" />
+    <Content Include="Views\AccountReset\Index.cshtml" />
+    <Content Include="Views\Impersonate\Index.cshtml" />
+    <Content Include="Views\TermsOfUse\Index.cshtml" />
+    <Content Include="Views\Help\Index.cshtml" />
+    <Content Include="styles\lexusdemo\build-file.less" />
+    <Content Include="styles\lexusdemo\demo-theme.less" />
+    <Content Include="styles\lexusdemo\kendo-web.less" />
+    <Content Include="styles\lexusdemo\Mixins\career-personality.less" />
+    <Content Include="Views\CareerPersonality\Index.cshtml" />
+    <Content Include="styles\core\build-file.less" />
+    <Content Include="styles\mgsmil\build-file.less" />
+    <Content Include="styles\mgsmil\kendo-web.less" />
+    <Content Include="styles\mgsmil\mil-theme.less" />
+    <Content Include="styles\mgsmil\Rulesets\header-ruleset.less" />
+    <Content Include="styles\mgsmil\Rulesets\navbar-ruleset.less" />
+    <Content Include="styles\mgsmil\Rulesets\nav-dropdowns-ruleset.less" />
+    <Content Include="styles\mgsmil\Rulesets\body-wrapper-ruleset.less" />
+    <Content Include="styles\mgsmil\mil-customization.less" />
+    <Content Include="styles\mgsmil\Rulesets\footer-ruleset.less" />
+    <Content Include="styles\mgsmil\Rulesets\advanced-search-ruleset.less" />
+    <Content Include="styles\mgsmil\Components\advanced-search.less" />
+    <Content Include="styles\mgsmil\core-import.less" />
+    <Content Include="Views\JobSearch3\Index.cshtml" />
+    <Content Include="styles\mgsmil\Rulesets\search-filter-panel-ruleset.less" />
+    <Content Include="Views\SamlLogout\Index.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\StyleGuide\Index.cshtml" />
+    <Content Include="Views\FatalError\index.cshtml" />
+    <Content Include="Views\Programs\Index.cshtml" />
+    <Content Include="UI\aboutUs\chutzpah.json" />
+    <Content Include="Views\Cms\Index.cshtml" />
+    <Content Include="Views\Jobs\Index.cshtml" />
+    <Content Include="styles\skr_techvets\build-file.less" />
+    <Content Include="styles\skr_techvets\skr_techvets-theme.less" />
+    <Content Include="styles\skr_techvets\Components\slick-theme.less" />
+    <Content Include="styles\skr_techvets\kendo-web.less" />
+    <Content Include="styles\skr_techvets\techvets-customization.less" />
+    <Content Include="styles\skr_techvets\Rulesets\footer-ruleset.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Dist\" />
+    <Folder Include="lib\ui-bootstrap\template\alert\" />
+    <Folder Include="lib\ui-bootstrap\template\carousel\" />
+    <Folder Include="lib\ui-bootstrap\template\datepicker\" />
+    <Folder Include="lib\ui-bootstrap\template\modal\" />
+    <Folder Include="lib\ui-bootstrap\template\pagination\" />
+    <Folder Include="lib\ui-bootstrap\template\popover\" />
+    <Folder Include="lib\ui-bootstrap\template\progressbar\" />
+    <Folder Include="lib\ui-bootstrap\template\rating\" />
+    <Folder Include="lib\ui-bootstrap\template\tabs\" />
+    <Folder Include="lib\ui-bootstrap\template\timepicker\" />
+    <Folder Include="lib\ui-bootstrap\template\tooltip\" />
+    <Folder Include="lib\ui-bootstrap\template\typeahead\" />
+    <Folder Include="scripts\services\" />
+    <Folder Include="styles\mgsmil\Mixins\" />
+    <Folder Include="styles\skr_techvets\Mixins\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.NA.QA.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </Content>
+    <Content Include="Web.NA.Dev.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </Content>
+    <Content Include="Web.NA.Int.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </Content>
+    <Content Include="Web.NA.Production.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </Content>
+    <Content Include="Web.NA.MGS.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </Content>
+    <Content Include="Web.NA.MITE.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\LoginCallback.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\RenewCallback.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\Impersonate.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="lib\coreUI\fonts\glyphicons\glyphicons-halflings-regular.eot" />
+    <Content Include="lib\coreUI\fonts\glyphicons\glyphicons-halflings-regular.ttf" />
+    <Content Include="lib\coreUI\fonts\glyphicons\glyphicons-halflings-regular.woff" />
+    <Content Include="lib\coreUI\fonts\glyphicons\glyphicons-halflings-regular.woff2" />
+    <Content Include="lib\coreUI\styles\bootstrap\.csscomb.json" />
+    <Content Include="lib\coreUI\styles\bootstrap\.csslintrc" />
+    <Content Include="lib\coreUI\styles\bootstrap\alerts.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\badges.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\bootstrap.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\breadcrumbs.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\button-groups.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\buttons.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\carousel.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\close.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\code.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\component-animations.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\dropdowns.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\forms.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\glyphicons.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\grid.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\input-groups.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\jumbotron.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\labels.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\list-group.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\media.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\mixins.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\mixins\alerts.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\mixins\background-variant.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\mixins\border-radius.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\mixins\buttons.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\mixins\center-block.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\mixins\clearfix.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\mixins\forms.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\mixins\gradients.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\mixins\grid-framework.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\mixins\grid.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\mixins\hide-text.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\mixins\image.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\mixins\labels.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\mixins\list-group.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\mixins\nav-divider.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\mixins\nav-vertical-align.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\mixins\opacity.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\mixins\pagination.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\mixins\panels.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\mixins\progress-bar.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\mixins\reset-filter.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\mixins\reset-text.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\mixins\resize.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\mixins\responsive-visibility.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\mixins\size.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\mixins\tab-focus.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\mixins\table-row.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\mixins\text-emphasis.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\mixins\text-overflow.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\mixins\vendor-prefixes.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\modals.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\navbar.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\navs.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\normalize.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\pager.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\pagination.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\panels.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\popovers.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\print.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\progress-bars.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\responsive-embed.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\responsive-utilities.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\scaffolding.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\tables.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\theme.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\thumbnails.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\tooltip.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\type.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\utilities.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\variables.less" />
+    <Content Include="lib\coreUI\styles\bootstrap\wells.less" />
+    <Content Include="lib\coreUI\styles\core\angular.less" />
+    <Content Include="lib\coreUI\styles\core\bootstrap-overides.less" />
+    <Content Include="lib\coreUI\styles\core\bootstrap-variables-overides.less" />
+    <Content Include="lib\coreUI\styles\core\build-file.less" />
+    <Content Include="lib\coreUI\styles\core\Components\buttons.less" />
+    <Content Include="lib\coreUI\styles\core\Components\dropdowns.less" />
+    <Content Include="lib\coreUI\styles\core\Components\dropzone.less" />
+    <Content Include="lib\coreUI\styles\core\Components\footer-panel.less" />
+    <Content Include="lib\coreUI\styles\core\Components\forms.less" />
+    <Content Include="lib\coreUI\styles\core\Components\header-panel.less" />
+    <Content Include="lib\coreUI\styles\core\Components\lists.less" />
+    <Content Include="lib\coreUI\styles\core\Components\navbar.less" />
+    <Content Include="lib\coreUI\styles\core\Components\panels.less" />
+    <Content Include="lib\coreUI\styles\core\Components\plugins\angucomplete.less" />
+    <Content Include="lib\coreUI\styles\core\Components\plugins\ui-datepicker.less" />
+    <Content Include="lib\coreUI\styles\core\Components\search-filter-panel.less" />
+    <Content Include="lib\coreUI\styles\core\Components\search-panel.less" />
+    <Content Include="lib\coreUI\styles\core\Components\search-results.less" />
+    <Content Include="lib\coreUI\styles\core\Components\spinners.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common-mobile\actionsheet.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common-mobile\all.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common-mobile\base.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common-mobile\button.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common-mobile\buttongroup.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common-mobile\drawer.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common-mobile\forms.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common-mobile\listview.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common-mobile\mobile-template.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common-mobile\modalview.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common-mobile\navbar.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common-mobile\popover.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common-mobile\scroller.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common-mobile\scrollview.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common-mobile\splitview.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common-mobile\switch.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common-mobile\tabstrip.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\adaptive.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\all.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\base.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\calendar.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\core.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\dataviz.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\editor.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\font-icons.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\forms.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\gantt.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\grid.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\ie7.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\imagebrowser.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\inputs.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\menu.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\mixins.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\notification.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\panelbar.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\pivot.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\progressbar.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\responsivepanel.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\scheduler.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\slider.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\splitter.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\spreadsheet.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\tabstrip.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\toolbar.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\tooltip.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\treelist.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\treeview.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\upload.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\virtuallist.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\common\window.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\fonts\DejaVu\dejavu.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\fonts\DejaVu\DejaVuSans-Bold.ttf" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\fonts\DejaVu\DejaVuSans-BoldOblique.ttf" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\fonts\DejaVu\DejaVuSans-ExtraLight.ttf" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\fonts\DejaVu\DejaVuSans-Oblique.ttf" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\fonts\DejaVu\DejaVuSans.ttf" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\fonts\DejaVu\DejaVuSansMono-Bold.ttf" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\fonts\DejaVu\DejaVuSansMono-BoldOblique.ttf" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\fonts\DejaVu\DejaVuSansMono-Oblique.ttf" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\fonts\DejaVu\DejaVuSansMono.ttf" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\fonts\DejaVu\DejaVuSerif-Bold.ttf" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\fonts\DejaVu\DejaVuSerif-BoldItalic.ttf" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\fonts\DejaVu\DejaVuSerif-Italic.ttf" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\fonts\DejaVu\DejaVuSerif.ttf" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\fonts\glyphs\KendoUIGlyphs.eot" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\fonts\glyphs\KendoUIGlyphs.ttf" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\fonts\glyphs\KendoUIGlyphs.woff" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\kendo.bootstrap.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\kendo.bootstrap.mobile.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\kendo.common-bootstrap.core.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\kendo.common-bootstrap.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\kendo.common.core.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\kendo.common.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\kendo.uniform.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\kendo.uniform.mobile.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\themes\checkbox.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\themes\radiobutton.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\themes\spreadsheet.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\themes\type.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\calendarless\type-bootstrap.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common-mobile\actionsheet.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common-mobile\all.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common-mobile\base.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common-mobile\button.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common-mobile\buttongroup.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common-mobile\drawer.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common-mobile\forms.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common-mobile\listview.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common-mobile\mobile-template.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common-mobile\modalview.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common-mobile\navbar.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common-mobile\popover.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common-mobile\scroller.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common-mobile\scrollview.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common-mobile\splitview.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common-mobile\switch.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common-mobile\tabstrip.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\adaptive.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\all.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\base.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\calendar.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\core.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\dataviz.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\editor.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\font-icons.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\forms.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\gantt.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\grid.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\ie7.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\imagebrowser.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\inputs.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\menu.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\mixins.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\notification.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\panelbar.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\pivot.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\progressbar.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\responsivepanel.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\scheduler.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\slider.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\splitter.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\spreadsheet.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\tabstrip.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\toolbar.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\tooltip.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\treelist.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\treeview.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\upload.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\virtuallist.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\common\window.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\fonts\glyphs\KendoUIGlyphs.eot" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\fonts\glyphs\KendoUIGlyphs.ttf" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\fonts\glyphs\KendoUIGlyphs.woff" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\kendo.bootstrap.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\kendo.bootstrap.mobile.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\kendo.common-bootstrap.core.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\kendo.common-bootstrap.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\kendo.common.core.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\kendo.common.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\kendo.uniform.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\kendo.uniform.mobile.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\themes\checkbox.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\themes\radiobutton.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\themes\spreadsheet.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\themes\type.less" />
+    <Content Include="lib\coreUI\styles\core\Components\Telerik\web\type-bootstrap.less" />
+    <Content Include="lib\coreUI\styles\core\helpers.less" />
+    <Content Include="lib\coreUI\styles\core\kendo-calendar.less" />
+    <Content Include="lib\coreUI\styles\core\kendo-web.less" />
+    <Content Include="lib\coreUI\styles\core\lexus-customizations.less" />
+    <Content Include="lib\coreUI\styles\core\lexus-variables.less" />
+    <Content Include="lib\coreUI\styles\core\Mixins\ajax-spinner-mixin.less" />
+    <Content Include="lib\coreUI\styles\core\Mixins\button-mixin.less" />
+    <Content Include="lib\coreUI\styles\core\Rulesets\header-ruleset.less" />
+    <Content Include="lib\coreUI\styles\core\Mixins\panel-mixin.less" />
+    <Content Include="lib\coreUI\styles\core\Mixins\vendor-prefixes.less" />
+    <Content Include="lib\coreUI\styles\core\Mixins\scroll-spy-mixin.less" />
+    <Content Include="lib\coreUI\styles\core\Components\scroll-spy.less" />
+    <Content Include="lib\coreUI\styles\core\Mixins\print-mixin.less" />
+    <Content Include="lib\coreUI\styles\core\Components\sticky.less" />
+    <Content Include="lib\coreUI\styles\core\Mixins\career-personality.less" />
+    <Content Include="lib\coreUI\styles\core\Components\intro-section.less" />
+    <Content Include="lib\coreUI\styles\core\Mixins\dashboard-mixin.less" />
+    <Content Include="lib\coreUI\styles\core\Mixins\intro-section-mixin.less" />
+    <Content Include="lib\coreUI\styles\core\Mixins\thumbnail-box-mixin.less" />
+    <Content Include="lib\coreUI\styles\core\Components\content-box.less" />
+    <Content Include="lib\coreUI\styles\core\Mixins\content-box-mixin.less" />
+    <Content Include="lib\coreUI\styles\core\Rulesets\search-filter-panel-ruleset.less" />
+    <None Include="package.json" />
+    <None Include=".jshintrc" />
+    <Content Include="fonts\glyphicons\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons\glyphicons-halflings-regular.woff2" />
+    <None Include="Properties\PublishProfiles\LexusWeb-VM.pubxml" />
+    <Content Include="Views\JobSearch\Index.cshtml" />
+    <Content Include="Views\ContactUs\Index.cshtml" />
+    <Content Include="Views\LibraryDocumentation\Index.cshtml" />
+    <Content Include="Views\Resumes\Index.cshtml" />
+    <Content Include="Views\Documents\Index.cshtml" />
+    <Content Include="Views\SavedJobs\Index.cshtml" />
+    <Content Include="Views\SavedSearches\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Na.Int|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>52554</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:52554/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <PropertyGroup>
+    <SlowCheetahTargets Condition=" '$(SlowCheetahTargets)'=='' ">$(LOCALAPPDATA)\Microsoft\MSBuild\SlowCheetah\v1\SlowCheetah.Transforms.targets</SlowCheetahTargets>
+  </PropertyGroup>
+  <ItemGroup>
+    <BinaryPackages Include="..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll">
+      <InProject>false</InProject>
+    </BinaryPackages>
+    <BinaryPackages Include="..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll">
+      <InProject>false</InProject>
+    </BinaryPackages>
+    <BinaryPackages Include="..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll">
+      <InProject>false</InProject>
+    </BinaryPackages>
+    <BinaryPackages Include="..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll">
+      <InProject>false</InProject>
+    </BinaryPackages>
+    <BinaryPackages Include="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
+      <InProject>false</InProject>
+    </BinaryPackages>
+    <BinaryPackages Include="..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll">
+      <InProject>false</InProject>
+    </BinaryPackages>
+    <BinaryPackages Include="..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll">
+      <InProject>false</InProject>
+    </BinaryPackages>
+    <BinaryPackages Include="..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll">
+      <InProject>false</InProject>
+    </BinaryPackages>
+    <BinaryPackages Include="..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll">
+      <InProject>false</InProject>
+    </BinaryPackages>
+    <BinaryPackages Include="..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll">
+      <InProject>false</InProject>
+    </BinaryPackages>
+    <BinaryPackages Include="..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll">
+      <InProject>false</InProject>
+    </BinaryPackages>
+    <BinaryPackages Include="..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll">
+      <InProject>false</InProject>
+    </BinaryPackages>
+    <BinaryPackages Include="..\packages\Owin.1.0\lib\net40\Owin.dll">
+      <InProject>false</InProject>
+    </BinaryPackages>
+    <BinaryPackages Include="..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll">
+      <InProject>false</InProject>
+    </BinaryPackages>
+    <BinaryPackages Include="..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll">
+      <InProject>false</InProject>
+    </BinaryPackages>
+    <BinaryPackages Include="..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll">
+      <InProject>false</InProject>
+    </BinaryPackages>
+    <BinaryPackages Include="..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll">
+      <InProject>false</InProject>
+    </BinaryPackages>
+    <BinaryPackages Include="..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll">
+      <InProject>false</InProject>
+    </BinaryPackages>
+    <BinaryPackages Include="..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll">
+      <InProject>false</InProject>
+    </BinaryPackages>
+    <BinaryPackages Include="..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll">
+      <InProject>false</InProject>
+    </BinaryPackages>
+    <BinaryPackages Include="..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll">
+      <InProject>false</InProject>
+    </BinaryPackages>
+    <BinaryPackages Include="..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll">
+      <InProject>false</InProject>
+    </BinaryPackages>
+    <BinaryPackages Include="..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll">
+      <InProject>false</InProject>
+    </BinaryPackages>
+    <BinaryPackages Include="..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll">
+      <InProject>false</InProject>
+    </BinaryPackages>
+    <BinaryPackages Include="..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll">
+      <InProject>false</InProject>
+    </BinaryPackages>
+    <BinaryPackages Include="..\packages\WebGrease.1.5.2\lib\WebGrease.dll">
+      <InProject>false</InProject>
+    </BinaryPackages>
+    <BinaryPackages Include="..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll">
+      <InProject>false</InProject>
+    </BinaryPackages>
+  </ItemGroup>
+  <Target Name="CopyDistFolderToOutput">
+    <!-- include Dist folder -->
+    <ItemGroup>
+      <DistFiles Include="$(MSBuildThisFileDirectory)Dist\**\*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(DistFiles)" DestinationFiles="@(DistFiles->'$(OutDir)..\Dist\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" Condition=" '$(Configuration)' != 'Debug' " />
+  </Target>
+  <Import Condition="Exists('$(SlowCheetahTargets)')" Project="$(SlowCheetahTargets)" />
+  <Import Project="..\..\..\..\..\Tools\Build\MSBuild\MonsterBuildTasks35.targets" />
+  <Import Project="..\..\Lexus.targets" />
+  <PropertyGroup>
+    <CoreBuildDependsOn>NugetRestore;Gulp;CopyDistFolderToOutput;$(CoreBuildDependsOn)</CoreBuildDependsOn>
+  </PropertyGroup>
+  <Target Name="CopyRoslynFiles" AfterTargets="AfterBuild" Condition="!$(Disable_CopyWebApplication) And '$(OutDir)' != '$(OutputPath)'">
+    <ItemGroup>
+      <RoslynFiles Include="$(CscToolPath)\*" />
+    </ItemGroup>
+    <MakeDir Directories="$(WebProjectOutputDir)\bin\roslyn" />
+    <Copy SourceFiles="@(RoslynFiles)" DestinationFolder="$(WebProjectOutputDir)\bin\roslyn" SkipUnchangedFiles="true" Retries="$(CopyRetryCount)" RetryDelayMilliseconds="$(CopyRetryDelayMilliseconds)" />
+  </Target>
+  <Target Name="AfterBuild">
+    <CallTarget Targets="GenerateWebConfigs" />
+    <ItemGroup>
+      <UnityPackages Include="..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll" />
+    </ItemGroup>
+    <Copy SourceFiles="@(UnityPackages)" DestinationFolder="$(OutDir)" SkipUnchangedFiles="true" />
+    <ItemGroup>
+      <RoslynFiles Include="$(CscToolPath)\*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(RoslynFiles)" DestinationFolder="$(WebProjectOutputDir)\bin\roslyn" SkipUnchangedFiles="true" />
+  </Target>
+</Project>

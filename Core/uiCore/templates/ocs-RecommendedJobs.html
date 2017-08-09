@@ -1,0 +1,17 @@
+﻿<li ng-repeat="item in jobs track by $index" 
+    ng-if="jobs !== null && jobs.length > 0" class="recommender-job">
+    <div ocs-spinner is-loaded="doneLoading" options="{top: '0', minHeight: '50px'}">
+        <h5 class="mt0 text-muted" ng-if="$first"><strong>{{$root.meta.recommendedJobs.title.lookUpMsg.value}}</strong></h5>
+        <a class="lead" ng-href="{{item.url}}">{{item.title}}</a>
+        <div>{{item.html}}</div>
+        <div>
+            <small class="job-labels display-block text-muted">
+                <!--<span ng-bind="item.company"></span> |-->
+                <span ng-bind="item.city"></span>,
+                <span ng-bind="item.state"></span>
+                <!--<br />
+                <span ng-bind="item.active_from | date: format: medium"></span>-->
+            </small>
+        </div>
+    </div>
+</li> 

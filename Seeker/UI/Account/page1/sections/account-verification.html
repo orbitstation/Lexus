@@ -1,0 +1,20 @@
+﻿<div class="row" ng-if="!model.userId">
+    <div class='col-sm-6' ng-if="$root.cfg('userVerification.socialSecurity') == 'true'">
+        <ocs-input meta="meta.socialSecurity" model="model.ssnCitizenship.ssn"></ocs-input>
+    </div>
+    <div class='col-sm-6' ng-if="$root.cfg('userVerification.socialSecurityConfirm') == 'true'">
+        <ocs-input meta="meta.socialSecurityConfirm" model="model.ssnCitizenship.ssnConfirm" match="model.ssnCitizenship.ssn"></ocs-input>
+    </div>
+</div>
+
+<div class="row" ng-if="$root.cfg('userVerification.dateOfBirth') == 'true'">
+    <div class='col-sm-3'><ocs-date meta="meta.DOB" model="model.ssnCitizenship.dateOfBirth"></ocs-date></div>
+</div>
+
+<div class="row" ng-if="$root.cfg('userVerification.usCitizen') == 'true'">
+    <div class='col-sm-12'><ocs-radio meta="meta.usCitizen" model="model.ssnCitizenship.usCitizen"></ocs-radio></div>
+</div>
+
+<div class="row" ng-if="$root.cfg('userVerification.authorizedToWork') == 'true' && model.ssnCitizenship.usCitizen == '2009'">
+    <div class='col-sm-12'><ocs-radio meta="meta.authorizedToWork" model="model.ssnCitizenship.authorizedToWork"></ocs-radio></div>
+</div>

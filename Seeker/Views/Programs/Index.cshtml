@@ -1,0 +1,19 @@
+﻿@{ ViewBag.Title = "Programs"; }
+
+@section Header
+{
+<!-- build:js -->
+<script src="~/UI/programs/programs-meta.js"></script>
+<script src="~/UI/programs/programs-config.js"></script>
+
+<script src="~/UI/programs/programs-app.js"></script>
+<!--<script src="~/UI/programs/saved/occupations-saved-ctrl.js"></script>-->
+<script src="~/UI/programs/Search/programs-search-ctrl.js"></script>
+<script src="~/UI/programs/Compare/programs-compare-ctrl.js"></script>
+<script src="~/UI/programs/ProgramDetail/program-detail-ctrl.js"></script>
+<script src="~/UI/programs/Saved/program-saved-ctrl.js"></script>
+
+<!-- endbuild -->
+}
+
+<div ng-view></div>

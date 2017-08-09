@@ -1,0 +1,28 @@
+<div class="intro-section">
+    <div class="row">
+        <div class="col-xs-12" ng-class="{'col-sm-7': $ctrl.isWellPresent()}" ng-if="!$ctrl.isDynamicHeading()">
+            <div class="intro-wrapper">
+                <h1 ng-bind="$ctrl.meta.title.lookUpMsg.value || $ctrl.title"
+                    ng-if="($ctrl.meta.title && $ctrl.meta.title.lookUpMsg) || $ctrl.title"></h1>
+
+                <h1 ng-bind="$ctrl.meta.title"
+                    ng-if="$ctrl.meta.title && !$ctrl.meta.title.lookUpMsg"></h1>
+
+                <p class="lead" 
+                   ng-bind-html="($ctrl.meta.introBody.lookUpMsg.value | unsafe) || ($ctrl.description | unsafe)" 
+                   ng-if="(!$ctrl.isBodyPresent() && $ctrl.meta.introBody) || $ctrl.description">
+                </p>
+                <div ng-transclude="body" ng-if="$ctrl.isBodyPresent()"></div>
+            </div>
+        </div>
+        <div class="col-xs-12" ng-class="{'col-sm-7': $ctrl.isWellPresent()}" ng-if="$ctrl.isDynamicHeading()">
+            <div class="intro-wrapper" ng-transclude="dynamic"></div>
+        </div>
+        <div class="col-xs-12" ng-class="{'col-sm-5': $ctrl.isWellPresent()}">
+            <div ng-transclude="well"></div>
+        </div>
+        <div class="col-sm-12" ng-if="$ctrl.isActionPresent()">
+            <div ng-transclude="actions"></div>
+        </div>
+    </div>
+</div>

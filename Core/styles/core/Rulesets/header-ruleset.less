@@ -1,0 +1,283 @@
+﻿@detached-header:{
+    @padding: @grid-gutter-width;
+    @logo-height: 50px;
+    @logo-mobile-height: 35px;
+    @logo-mobile-vertical-padding: 15px;
+    @background: #fff;
+    background: @background;
+    height: auto;
+    min-height: @logo-height;
+
+    @media(max-width: @screen-xs-max) {
+        box-shadow: 0 0 5px #aaaaaa;
+        //height: @logo-mobile-height + (@logo-mobile-vertical-padding * 2);
+        left:0;
+        margin:0;
+        position:fixed;
+        top:0;
+        width:100vw;
+        z-index:100;
+    }
+
+    .navbar-toggle{
+        background: @navbar-inverse-color;
+        border-color: @navbar-inverse-color;
+        padding: 0;
+        float: none;
+                
+        .icon-bar {
+            background: @navbar-inverse-bg;
+        }
+    }
+    
+    .flex-start,
+    .flex-end{
+        display: flex;
+    }
+    .flex-start{
+        align-items: flex-start;
+    }
+    .flex-end{
+        align-items: flex-end;
+    }
+    .flex-center{
+        flex-shrink: 0;
+        text-align: center;
+    }
+
+    .flex-justified{
+        display : flex; // flex box
+        justify-content : space-between; // horizontal alignment
+        align-content   : center; // vertical alignment
+        position: relative;
+        .flex-item{
+            display: flex;
+            -ms-flex-align: center;
+	        -webkit-align-items: center;
+	        -webkit-box-align: center;
+	        align-items: center;
+
+            &:first-child,
+            &:last-child{
+                lex-shrink: 1;
+            }
+            &:first-child{
+                margin: auto auto auto 15px;
+                width: 50%;
+                text-align: left;
+            }
+            &:last-child{
+                flex-direction: row-reverse;
+                width: 50%;
+                .box-content{
+                    margin-left: auto;
+                }
+            }
+            min-width: -webkit-min-content; /* Workaround to Chrome bug */
+        }
+    }
+
+    .logo {
+        padding: 0 @grid-gutter-width/2;
+        img {
+            height: @logo-height;
+        }
+        @media (max-width: @screen-xs-max){
+            padding: 15px @grid-gutter-width/2;
+            z-index: 25;
+            img {
+                height: @logo-mobile-height;
+            }
+        }
+    }
+    .logo-message{
+        margin-left: 5px;
+        padding-top: 10px;
+        text-align: left;
+        color: @brand-primary;
+        font-size: 17px;
+        font-weight: bold;
+        max-width: 235px;
+        line-height: 100%;
+    }
+
+    .options {
+        .dropdown{
+            position: relative!important;
+        }
+        >div{
+            display: inline-block;
+            @media (max-width: @screen-xs-max){
+                display: block;
+            }
+        }
+        vertical-align: top;
+        .text-resize {
+            display: inline-block;
+
+            a {
+                text-decoration: none;
+                font-weight: 600;
+                color: @gray-light;
+                cursor: pointer;
+
+                &:nth-child(1) {
+                    font-size: @font-size-small;
+                }
+
+                &:nth-child(2) {
+                    font-size: @font-size-base;
+                }
+
+                &:nth-child(3) {
+                    font-size: ceil((@font-size-base * 1.1)); // ~17px;
+                }
+
+                &:hover:not(.active) {
+                    color: @brand-info;
+                }
+
+                &.active {
+                    font-weight: bold;
+                    color: @brand-primary;
+                    cursor: default;
+                }
+            }
+        }
+    }
+
+    .users {
+        margin: 10px 0;
+        padding-right: @grid-gutter-width/2;
+        @media(max-width: @screen-xs-max) {
+            margin: 0;
+        }
+        .login-boxes {
+            .powered-by{
+                text-align: right;
+                margin-right: 230px;
+                img{
+                    height: 35px;
+                }
+                @media (min-width: @screen-md-min) and (max-width: @screen-md-max) { 
+                    margin-right: 200px;
+                }
+                @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { 
+                    margin-right: 17px;
+                    padding-top: 5px;
+                    img{
+                        height: 30px;
+                    }
+                }
+            }
+            @media (max-width: @screen-xs-max){
+                z-index: 21;
+                .caret { 
+                    display: none;
+                }
+            }
+
+            .alert {
+                margin-top: @grid-gutter-width/2;
+            }
+            //Changes to dropdown styles
+            .dropdown {
+                position: initial;
+                &.open{
+                    .user-button{
+                        background: @user-icon-bg-hover;
+                    }
+                }
+            }
+
+            .dropdown-menu {
+                border-color: #ccc;
+                margin: 0;
+                right: 0;
+                left: auto;
+            }
+
+            //end dropdown changes
+            .box {
+                flex: 1;
+                display: flex;
+                .user-button{
+                    @height: 70px;
+                    padding-top: 0;
+                    min-width: 80px;
+                    height: @height;
+                    line-height: @height;
+                    font-size: 14px;
+                    cursor: pointer;
+                    vertical-align: middle;
+                    text-align: center;
+                    background: @user-icon-bg;
+                    color: #fff;
+                    .transition(background 100ms ease-in);
+                    i{
+                        display: block;
+                        font-size: 25px;
+                        top: 15px;
+                        line-height: 75%;
+                        opacity: .7;
+                    }
+                    &:hover{
+                        background: @user-icon-bg-hover;
+                    }
+                    @media (max-width: @screen-xs-max){
+                        min-width: 100%;
+                        height: auto;
+                        line-height: 2.7;
+                        padding: 7px 4px 0;
+                        background: transparent !important;
+                        color: @navbar-inverse-bg !important;
+                        font-size: 15px !important;
+                        opacity: 1 !important;
+                        &:hover, &:focus {
+                            background: transparent !important;
+                            box-shadow: none;
+                        }
+
+                        .glyphicon { 
+                            color: @navbar-inverse-bg !important;
+                            display:block !important;
+                            top: 10px !important;
+                            opacity: 1 !important;
+                        }
+                        
+                        i{
+                            font-size: 100%;
+                            top: 1px;
+                            display: inline;
+                        }
+                    }
+                }
+                .box-content {
+                    &.pre-login {
+                        .dropdown-menu {
+                            padding: 0;
+                            border-radius: 0;
+                        }
+                    }
+                    .username{
+                        padding: 5px 20px;
+                        background: @gray-lighter;
+                        display: block;
+                        font-weight: bold;
+                        font-size: 1.1em;
+                    }
+
+                    .login-form {
+                        padding: @padding/2;
+                        width: 300px;
+                        h4, .h4 {
+                            display: block;
+                            text-transform: capitalize;
+                            margin-top: 15px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+};

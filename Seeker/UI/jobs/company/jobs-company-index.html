@@ -1,0 +1,67 @@
+﻿<style>
+    .company .box {
+        padding: 16px;
+        box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+        margin-top: 30px;
+        border-top: 1px solid rgba(0,0,0,0.10);
+    }
+
+    .company .head {
+        font-size: 16px;
+        font-weight: 400;
+        margin-top: 0;
+    }
+
+    .company ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+        .company ul li {
+            margin-right: 8px;
+            display: inline-block;
+        }
+
+    .company ul li {
+        margin: 0 16px 12px 0;
+        width: 22%;
+        vertical-align: top;
+        display:inline-block;
+    }
+
+        .company .card-columns li a {
+            padding: 0;
+            margin: 0;
+            line-height: 20px;
+            display: inline-block;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        .company .card-columns.alpha-list li {
+            line-height: 20px;
+            display: inline-block;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            width:auto;
+        }
+</style>
+<div class="company">
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>Company</h2>
+            <ul class="card-columns alpha-list">
+                <li ng-repeat="letter in vm.alpha"><a href="" ng-click="vm.changeLetter(letter)">{{letter}}</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row" ng-if="vm.isLetter">
+        <div class="col-xs-12">
+            <h3>Popular Companies for {{vm.letter}}</h3>
+            <ul class="card-columns">
+                <li ng-repeat="company in vm.companies"><a href="">{{company}}</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

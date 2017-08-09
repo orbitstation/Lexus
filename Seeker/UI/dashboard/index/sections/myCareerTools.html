@@ -1,0 +1,191 @@
+﻿<uib-accordion close-others="false" style="border:none">
+    <uib-accordion-group class="panel panel-dashboard-blue" 
+                         is-open="true"  
+                         template-url="lib/ui-bootstrap/template/accordion/ui-accordion-dashboard.html">
+        <uib-accordion-heading>
+            <span>{{msg(369199)}} </span>
+            <div class="collapse-button">
+                <i class="fa" ng-class="{'fa-plus' : !$parent.isOpen, 'fa-minus' : $parent.isOpen}"></i>
+            </div>
+        </uib-accordion-heading>
+
+        <!-- saved occupations -->
+
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
+                <div class="content-box">
+                    <h3>{{ msg(369556) }}</h3>
+                    <div ng-if="savedOccupations.length > 0">
+                        <div class="row" ng-repeat="item in savedOccupations | limitTo:3" ng-class="{'mt24': $first}">
+                            <div class="col-md-12">
+                                <a href="{{ getSavedOccupationUrl(item.title, item.code) }}">{{item.title}}</a><br />
+                                <span class="text-muted">{{msg(369567)}} {{item.hourlyWageUS}}</span>
+                                <hr class="hr-short" ng-if="!$last" />
+                            </div>
+                        </div>
+
+                        <div class="content-link text-right">
+                            <a href="/occupations/saved" class="btn btn-primary btn-block">{{msg(369029)}} {{msg(369556)}}</a>
+                        </div>
+                    </div>
+                    <div ng-if="savedOccupations.length < 1">
+                        {{msg(376534)}}
+                        <div class="content-link text-right">
+                            <a href="/occupations/" class="btn btn-primary btn-block">{{ msg(369028) }}</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- saved schools -->
+            <div class="col-md-4 col-sm-6">
+                <div class="content-box">
+                    <h3>{{ msg(369565) }}</h3>
+                    <div ng-if="savedSchools.length > 0">
+                        <div class="row" ng-repeat="item in savedSchools | limitTo:3" ng-class="{'mt24': $first}">
+                            <div class="col-md-12">
+                                <a href="/schools/view/{{item.oneTcode}}/{{item.schoolId}}">{{item.schoolName}}</a><br />
+                                <span class="text-muted">{{item.dateSaved}}</span>
+                                <hr class="hr-short" ng-if="!$last" />
+                            </div>
+                        </div>
+                        <div class="content-link text-right">
+                            <a href="/schools/" class="btn btn-primary btn-block">{{msg(369029)}} {{msg(369565)}}</a>
+                        </div>
+                    </div>
+                    <div ng-if="savedSchools.length < 1">
+                        {{msg(376535)}}
+
+                        <div class="content-link text-right">
+                            <a href="/schools/" class="btn btn-primary btn-block">{{ msg(369028) }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- budget calc -->
+            <div class="col-md-4 col-sm-6">
+                <div class="content-box">
+                    <h3>{{ msg(369572) }}</h3>
+                    <div ng-if="budgetCalculator.filled">
+                        <div class="row mt24">
+                            <div class="col-md-12">
+                                <span class="text-muted">{{msg(369568)}}:</span> ${{ budgetCalculator.grossTargetSalary }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <span class="text-muted">{{msg(369569)}}:</span> ${{ budgetCalculator.netTargetSalary }}
+                            </div>
+                        </div>
+                        <div class="row mb24">
+                            <div class="col-md-12">
+                                <span class="text-muted">{{msg(369570)}}:</span> ${{ budgetCalculator.targetHourlyRate }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <span class="text-muted">{{msg(369571)}}:</span> ${{ budgetCalculator.totalMonthlyExpense }}
+                            </div>
+                        </div>
+                        <div class="content-link text-right">
+                            <a href="/budgetCalculator/" class="btn btn-primary btn-block">{{msg(369029)}} {{msg(369572)}}</a>
+                        </div>
+                    </div>
+                    <div ng-if="!budgetCalculator.filled">
+                        {{msg(376536)}}
+
+                        <div class="content-link text-right">
+                            <a href="/budgetCalculator/" class="btn btn-primary btn-block">{{ msg(369028) }}</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- goals -->
+            <div class="col-md-4 col-sm-6">
+                <div class="content-box">
+                    <h3>{{ msg(370016) }}</h3>
+                    <div ng-if="goals.length > 0">
+                        <div class="row" ng-repeat="item in goals | limitTo:3" ng-class="{'mt24': $first}">
+                            <div class="col-md-12">
+                                <a href="/careerPlan/goal/{{item.id}}">{{item.name}}</a><br />
+                                <span class="text-muted">{{item.date}}</span>
+                                <hr class="hr-short" />
+                            </div>
+                        </div>
+
+                        <div class="content-link text-right">
+                            <a href="/careerPlan/" class="btn btn-primary btn-block">{{msg(369029)}} {{msg(370016)}}</a>
+                        </div>
+                    </div>
+                    <div ng-if="goals.length < 1">
+                       {{msg(376537)}}
+
+                        <div class="content-link text-right">
+                            <a href="/careerPlan/" class="btn btn-primary btn-block">{{ msg(369028) }}</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!--Career personality-->
+            <div class="col-md-4 col-sm-6">
+                <div class="content-box">
+                    <h3>{{ msg(367491) }}</h3>
+                    <div ng-if="chartSettings.length">
+                        <ocs-Bar-Chart settings="chartSettings"></ocs-Bar-Chart>
+
+                        <div class="content-link text-right">
+                            <a href="/careerPersonality/questions/edit" class="btn btn-primary btn-block">{{ msg(370117) }}</a>
+                        </div>
+                    </div>
+                    <div ng-if="!chartSettings.length">
+                        {{msg(376538)}}
+
+                        <div class="content-link text-right">
+                            <a href="/careerPersonality/questions/edit" class="btn btn-primary btn-block">{{ msg(370116) }}</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- saved programs -->
+
+            <div class="col-md-4 col-sm-6">
+                <div class="content-box">
+                    <h3>{{ msg(374827) }}</h3>
+                    <div ng-if="savedPrograms.length > 0">
+                        <div class="row" ng-repeat="item in savedPrograms" ng-class="{'mt24': $first}">
+                            <div class="col-md-12">
+                                <a ng-if="item.isActive" href="{{ getSavedProgramUrl(item.programName, item.programId) }}">{{item.programName}}</a>
+                                <span ng-if="!item.isActive" class="expired">{{item.programName}} <small class="expired">{{msg(375000) | lowercase}}</small></span>
+                                <br />
+                                <span class="text-muted">{{item.providerName}}</span>
+                                <hr class="hr-short" />
+                            </div>
+                        </div>
+
+                        <div class="content-link text-right">
+                            <a href="/programs/saved" class="btn btn-primary btn-block">{{msg(369029)}} {{msg(374827)}}</a>
+                        </div>
+                    </div>
+                    <div ng-if="savedPrograms.length < 1">
+                        {{msg(376539)}}
+
+                        <div class="content-link text-right">
+                            <a href="/programs/" class="btn btn-primary btn-block">{{ msg(369028) }}</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            </div>
+
+    </uib-accordion-group>
+</uib-accordion>
+

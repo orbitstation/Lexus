@@ -1,0 +1,43 @@
+﻿<nav class="navbar navbar-inverse" role="navigation" id="main-navigation">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed icon-space pull-left" ng-click="$root.isSearchCollapsed = !$root.isSearchCollapsed; isCollapsed = true">
+            <span class="sr-only">Toggle search</span>
+            <span class="fa fa-fw fa-search"></span>
+        </button>
+
+        <button type="button" class="navbar-toggle collapsed" ng-click="isCollapsed = !isCollapsed; $root.isSearchCollapsed = true">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </div>
+    <div class="collapse navbar-collapse" uib-collapse="isCollapsed">
+        <ul class="nav navbar-nav">
+            <li ng-repeat="(key, item) in ::meta track by $index" 
+                uib-dropdown 
+                uib-keyboard-nav
+                is-open="status.isopen" 
+                ng-class="{'open': status.isopen}" 
+                ng-mouseenter="open(this)"
+                ng-mouseleave="close(this)">
+
+                <a ng-if=":preResolved:item.url && :preResolved:item.icon" href="{{::item.url}}">
+                    <span ng-class="::item.icon"></span>
+                    <span ng-class="{'sr-only': item.icon}">{{:preResolved:item.display}}</span>
+                </a>
+
+                <a ng-if="!item.url" href="" uib-dropdown-toggle id="dropdown-{{::item.display.split(' ').join('-')}}">
+                    {{:preResolved:item.display}}&nbsp;<span class="caret"></span>
+                </a>
+
+                <ul ng-if="!item.url" uib-dropdown-menu aria-labelledby="dropdown-{{::item.display.split(' ').join('-')}}">
+                    <li ng-repeat="(key, child) in ::item" ng-if="(key!='display') && (key!='icon') && (key!='queryString')">
+                        <a href="{{::child.url}}">{{:preResolved:child.display}}</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+

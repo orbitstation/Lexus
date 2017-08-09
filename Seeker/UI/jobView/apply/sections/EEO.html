@@ -1,0 +1,15 @@
+﻿<div class="row">
+    <div class="col-sm-12">
+        <h3 class="mt0">
+            {{:preResolved:$root.msg(158425)}}
+            <!--<a href="">{{:preResolved:$root.msg(158426)}}</a>-->
+        </h3>
+        <p>
+            {{:preResolved:$root.msg(158437)}}
+        </p>
+        <ocs-radio meta="meta.ethnicity" model="model.eeo.ethnicityId" ng-if="meta.accordion.eeo.eeoAa.ethnicityEnabled"></ocs-radio>
+        <ocs-radio meta="meta.gender" model="model.eeo.genderId" ng-if="meta.accordion.eeo.eeoAa.genderEnabled"></ocs-radio>
+        <ocs-radio meta="meta.veteran" model="model.eeo.seteranStatusId" ng-if="meta.accordion.eeo.eeoAa.veteranStatusEnabled"></ocs-radio>
+        <ocs-radio meta="meta.disability" model="model.eeo.disibilityId" ng-if="meta.accordion.eeo.eeoAa.disabilityStatusEnabled"></ocs-radio>
+    </div>
+</div>

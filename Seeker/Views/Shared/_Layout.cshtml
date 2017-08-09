@@ -1,0 +1,181 @@
+﻿@model Monster.Lexus.UI.SpaInfrastructure.AngularModel
+<!DOCTYPE html>
+<html lang="en" ng-app="miniSPA" ng-strict-di>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="google-site-verification" content="@Model.GoogleSiteVerificationId" />
+    
+    @if (Model.MetaDescription != null && Model.MetaDescription.Length > 0)
+    {
+        <meta name="description" content="@Model.MetaDescription" />
+    }
+    <title ng-bind="pageTitle">@Model.MetaPageTitle</title>
+    <base href="/" />
+
+
+    @foreach (var item in Model.CoreUIScriptLinks)
+    {
+        //CORE UI ONLY
+        <script src="@item"></script>
+    }
+
+    @if (Model.UIConfiguration == Monster.Lexus.UI.SpaInfrastructure.UIConfiguration.Debug)
+    {
+        // Debug mode is enabled in Web.config.
+        //TODO: this needs gulpification!
+        <!--                                                                  ________________      -->
+        <!-- ________________________________________________________________/     Global     \_____-->
+        <script src="/scripts/factories/budgetCalculatorFactory.js"></script>
+        <script src="/scripts/factories/occupationsFactory.js"></script>
+        <script src="/scripts/factories/trainingProgramsFactory.js"></script>
+        <script src="/scripts/globalApp.js"></script>
+        <script src="/scripts/components/ocs-intro-section/ocs-intro-section.component.js"></script>
+        <script src="/scripts/components/ocs-well/ocs-well.component.js"></script>
+        <script src="/scripts/components/ocs-occupation-related-links/ocs-occupation-related-links.component.js"></script>
+        <script src="/scripts/components/ocs-occupation-detail-actions/ocs-occupation-detail-actions.component.js"></script>
+        <script src="/scripts/components/ocs-recent-searches/ocs-recent-searches.component.js"></script>
+
+        <!-- product level meta and configs -->
+        <script src="/UI/product-meta.js"></script>
+        <script src="/UI/product-config.js"></script>
+    }
+    @if (Model.UIConfiguration == Monster.Lexus.UI.SpaInfrastructure.UIConfiguration.Release)
+    {
+        // release mode.
+        <!-- build:scripts_md5 -->
+        <script src="/dist/scripts.min.js"></script>
+        <!-- endbuild -->
+    }
+
+    @RenderSection("Header", false)
+    @{
+        if (Model.ChannelScriptLinks != null)
+        {
+            foreach (var scriptLink in Model.ChannelScriptLinks)
+            {
+                <script src="@scriptLink"></script>
+            }
+        }
+    }
+
+    <!--                                                                  ________________      -->
+    <!-- ________________________________________________________________/  Channelized   \_____-->
+    <!-- Styles and Product Configuration -->
+    <!--<link rel="stylesheet" href='//fonts.googleapis.com/icon?family=Material+Icons' />-->
+    <link ng-href="{{$root.configLayout.mainIconsFont.lookUpConfig.value}}" rel="stylesheet">
+    <link ng-href="{{$root.configLayout.mainFont.lookUpConfig.value}}" rel='stylesheet' type='text/css'>
+
+    @if (!string.IsNullOrEmpty(Model.ChannelCssLink))
+    {
+        <link rel="stylesheet" type="text/css" href="@Model.ChannelCssLink" />
+    }
+
+    <script>
+        if (typeof angular === 'undefined') {
+            window.location = '/fatalerror';
+        }
+        (function (angular) {
+            // override the context service
+            "use strict";
+            angular.module('globalApp').service('contextService', ['registry', function(registry) {
+                return {
+                    init: function() {
+                        registry.set('global','context', @Html.Raw(Model.JsonContextModel), 'localStorage');
+                    }
+                };
+            }]);
+        })(angular);
+    </script>
+
+    <link rel='shortcut icon' type='image/x-icon' href='https://securemedia.newjobs.com/id/mgs/{{$root.registry.localStore.global.context.ChannelID}}/favicon.ico' />
+</head>
+<!--                                                                  ________________      -->
+<!-- ________________________________________________________________/   HTML Body    \_____-->
+<body ng-class="{'side-menu-on':sideMenu.open, 'side-search-on': search.open}">
+    <ocs-sidemenu ng-if="$root.registry.localStore.global.context.ChannelAlias === 'MGSMIL'"
+                  shifting-class=".shift-body-wrapper"
+                  menu-logged="meta.menuLogged"
+                  menu-items="meta.nav1"
+                  menu-trigger="sideMenu.open"></ocs-sidemenu>
+
+    <div class="visible-xs-block">
+        <ng-include src="'/UI/shared/search-panel.html'"></ng-include>
+    </div>
+
+
+    <div class="body-inner" ng-init="sideMenu = {}" ng-class="{'shift-body-wrapper': sideMenu.open, 'shift-body-wrapper-left': search.open}">
+        <a href="" tabindex="0" ng-click="$root.gotoAnchor('main-content')" class="sr-only sr-only-focusable">Skip to main content</a>
+        <a href="" tabindex="0" ng-click="$root.gotoAnchor('main-navigation')" class="sr-only sr-only-focusable">Skip to navigation</a>
+
+        <!-- sitewide alert banner -->
+        <ocs-error ng-if="$root.msg(347957) && $root.registry.localStore.global.context.ChannelAlias !== 'MGSMIL'"
+                   error-List="[{ type: 'alert-danger', text: $root.msg(347957)}]"
+                   remove-close="true"></ocs-error>
+
+        <div ng-class="{'container': $root.registry.localStore.global.context.ChannelAlias !== 'MGSMIL'}">
+
+            <!-- cms Edit Bar -->
+            <ng-include src="'/UI/shared/cmsEditBar.html'" ng-if="registry.localStore.global.cmsEditMode == true"></ng-include>
+
+            <!-- header -->
+            <ng-include src="configLayout.header.url.lookUpConfig.value" ng-if="configLayout.header.show.lookUpConfig.value"></ng-include>
+
+            
+
+            <ng-include src="configLayout.header2.url.lookUpConfig.value"
+                        ng-if="configLayout.header2.show.lookUpConfig.value"></ng-include>
+        </div>
+        <div class="container hidden-xs">
+            <!-- Search Bar -->
+            <ng-include src="'/UI/shared/search-panel.html'"></ng-include>
+        </div>
+
+
+        <div class="body-wrapper">
+            <ocs-alert></ocs-alert>
+
+            <div class="container">
+                <!-- this is the 404 and 401 error message-->
+                <div class="row" ng-if="$root.topErrorList.length">
+                    <ng-include src="'/UI/shared/error.html'"></ng-include>
+                </div>
+
+                <div ng-if="!$root.topErrorList.length">
+
+                    <!-- Apply flow check -->
+                    <ocs-apply-notify meta="meta.jobApply"></ocs-apply-notify>
+
+                    <!-- in page errors -->
+                    <ocs-error error-List="$root.topMasterErrors"></ocs-error>
+
+                    <!-- Content -->
+                    <div class="row">
+                        <div class="col-lg-12 content-wrapper" id="main-content">
+
+                            <ocs-bread-crumbs meta="meta.breadCrumbsExtended" ng-if="!meta.breadCrumbExtended.disable"></ocs-bread-crumbs>
+                            <div ocs-spinner is-loaded="$root.isLoaded" options="{top: '100px', minHeight: '300px'}">
+                                <div ng-if="$root.isLoaded">
+                                    @RenderBody()
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-bg" ng-if="configLayout.footer.show.lookUpConfig.value">
+                        <ng-include src="configLayout.footer.url.lookUpConfig.value"
+                                    ng-if="configLayout.footer.show.lookUpConfig.value"></ng-include>
+                </div>
+            </div>
+            <div class="footer-bg" ng-if="configLayout.footer2.show.lookUpConfig.value">
+                <ng-include src="configLayout.footer2.url.lookUpConfig.value"
+                            ng-if="configLayout.footer2.show.lookUpConfig.value"></ng-include>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

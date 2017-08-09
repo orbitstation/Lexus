@@ -1,0 +1,25 @@
+﻿@{ ViewBag.Title = "Library Documentation (globalApp)"; }
+
+@section Header
+{
+<!-- build:js -->
+<script src="~/core/globalApp/0-documentation/documentation-meta.js"></script>
+<script src="~/core/globalApp/0-documentation/documentation-config.js"></script>
+
+
+<!-- miniSPA: Library Documentetion -->
+<script src="~/core/globalApp/0-documentation/documentation-app.js"></script>
+
+<!-- Landing -->
+<script src="~/core/globalApp/0-documentation/landing/documentation-landing-ctrl.js"></script>
+
+<!-- Directives -->
+<script src="~/core/globalApp/0-documentation/directives/documentation-directives-ctrl.js"></script>
+
+<!-- Factories -->
+<script src="~/core/globalApp/0-documentation/factories/documentation-factories-ctrl.js"></script>
+<!-- endbuild -->
+}
+
+<div ng-view></div>
+

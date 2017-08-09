@@ -1,0 +1,14 @@
+﻿<div ng-if="show" class="apply-notify" id="currentApplyActive">
+    <span>
+        {{ $root.meta.jobApply.part1.lookUpMsg.value}}
+        <strong>{{job.name}}</strong>
+        {{$root.meta.jobApply.part2.lookUpMsg.value}}
+        {{job.company}}
+        {{$root.meta.jobApply.part3.lookUpMsg.value}}
+    </span>
+    <a href="" ng-click="finish()">{{ $root.meta.jobApply.click.lookUpMsg.value }}</a>
+    
+    <span>{{ $root.meta.jobApply.part4.lookUpMsg.value }}</span> 
+    <a href="" ng-click="cancel()">{{ $root.meta.jobApply.click.lookUpMsg.value }}</a>
+    <span>{{ $root.meta.jobApply.part5.lookUpMsg.value }}</span>
+</div>

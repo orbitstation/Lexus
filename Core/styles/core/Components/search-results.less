@@ -1,0 +1,79 @@
+﻿/*.job-labels {
+    .label {
+        margin-right: 5px;
+    }
+}*/
+
+
+.pagination-nav {
+    margin-bottom: -5px;
+
+    .pagination {
+        margin: 0;
+
+        > li {
+            a {
+                cursor: pointer;
+            }
+
+            span {
+                &.separator {
+                    background-color: @pagination-bg;
+
+                    &:hover {
+                        background-color: @pagination-bg;
+                    }
+                }
+
+                &.active {
+                    color: @pagination-active-color;
+                    background-color: @pagination-active-bg;
+                }
+            }
+        }
+    }
+}
+
+.job-basics {
+    text-transform: capitalize;
+    margin-top: 0;
+}
+
+.job-found {
+    a {
+        cursor: pointer;
+    }
+}
+
+.search-results {
+    ul.search-authenticated{
+        li{
+            &:nth-child(odd){
+                background-color: lighten(@gray-lighter, 3%);
+            }
+        }
+    }
+    ul:not(.search-authenticated){
+        ocs-recommended-jobs + li{
+            border-top: 0!important;
+        }
+        li{
+            &:nth-child(even){
+                background-color: lighten(@gray-lighter, 3%);
+            }
+        }
+    }
+
+    li{
+        padding: @grid-gutter-width/2;
+        border-top: 1px solid darken(@gray-lighter, 5%);
+        &:first-child{
+            border: 0;
+        }
+    }
+    p {
+        margin-bottom: 5px;
+        -ms-word-wrap: break-word;
+        word-wrap: break-word;
+    }
+}

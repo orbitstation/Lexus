@@ -1,0 +1,753 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B2DE72E5-83FB-4DBB-AE9C-A7B09808F665}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Monster.Lexus.UI.Core</RootNamespace>
+    <AssemblyName>Monster.Lexus.UI.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\jasmine.css" />
+    <Content Include="gulpfile.js" />
+    <Content Include="index.html" />
+    <Content Include="lib\angucomplete-alt\angucomplete-alt-custom.debug.js" />
+    <Content Include="lib\angucomplete-alt\angucomplete-alt.debug.js" />
+    <Content Include="lib\angucomplete-alt\angucomplete-alt.min.js" />
+    <Content Include="lib\angular-1.5.8\angular-animate.min.js" />
+    <Content Include="lib\angular-1.5.8\angular-cookies.min.js" />
+    <Content Include="lib\angular-1.5.8\angular-resource.min.js" />
+    <Content Include="lib\angular-1.5.8\angular-route.min.js" />
+    <Content Include="lib\angular-1.5.8\angular-sanitize.min.js" />
+    <Content Include="lib\angular-1.5.8\angular.min.js" />
+    <Content Include="lib\angular-bind-notifier\angular-bind-notifier.min.js" />
+    <Content Include="lib\angular-cache\angular-cache.js" />
+    <Content Include="lib\angular-cache\angular-cache.min.js" />
+    <Content Include="lib\angular-file-upload\angular-file-upload.js" />
+    <Content Include="lib\angular-http-batch\angular-http-batch.min.js" />
+    <Content Include="lib\angular-load\ocLazyLoad.min.js" />
+    <Content Include="lib\angular-match-media-master\match-media.js" />
+    <Content Include="lib\angular-slick-master\slick.min.js" />
+    <Content Include="lib\dropbox-picker\dropbox-picker.js" />
+    <Content Include="lib\fastclick.js" />
+    <Content Include="lib\filesaver\blob.js" />
+    <Content Include="lib\filesaver\filesaver.min.js" />
+    <Content Include="lib\google-picker\google-picker.js" />
+    <Content Include="lib\jquery-waypoints\waypoints.min.js" />
+    <Content Include="lib\Jquery\jquery.js" />
+    <Content Include="lib\lodash\lodash.min.js" />
+    <Content Include="lib\lodash\ng-lodash.js" />
+    <Content Include="lib\moment\moment.js" />
+    <Content Include="lib\nfzchart\nfzChart.full.min.js" />
+    <Content Include="lib\ng-sticky\sticky.min.js" />
+    <Content Include="lib\oidc\oidc.js" />
+    <Content Include="lib\oidc\oidc_config.js" />
+    <Content Include="lib\recaptcha\angular-recaptcha.js" />
+    <Content Include="lib\slick-carousel\slick.css" />
+    <Content Include="lib\slick-carousel\slick.min.js" />
+    <Content Include="lib\tinymce\license.txt" />
+    <Content Include="lib\tinymce\plugins\advlist\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\anchor\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\autolink\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\autoresize\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\autosave\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\bbcode\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\charmap\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\codesample\css\prism.css" />
+    <Content Include="lib\tinymce\plugins\codesample\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\code\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\colorpicker\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\contextmenu\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\directionality\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\emoticons\img\smiley-cool.gif" />
+    <Content Include="lib\tinymce\plugins\emoticons\img\smiley-cry.gif" />
+    <Content Include="lib\tinymce\plugins\emoticons\img\smiley-embarassed.gif" />
+    <Content Include="lib\tinymce\plugins\emoticons\img\smiley-foot-in-mouth.gif" />
+    <Content Include="lib\tinymce\plugins\emoticons\img\smiley-frown.gif" />
+    <Content Include="lib\tinymce\plugins\emoticons\img\smiley-innocent.gif" />
+    <Content Include="lib\tinymce\plugins\emoticons\img\smiley-kiss.gif" />
+    <Content Include="lib\tinymce\plugins\emoticons\img\smiley-laughing.gif" />
+    <Content Include="lib\tinymce\plugins\emoticons\img\smiley-money-mouth.gif" />
+    <Content Include="lib\tinymce\plugins\emoticons\img\smiley-sealed.gif" />
+    <Content Include="lib\tinymce\plugins\emoticons\img\smiley-smile.gif" />
+    <Content Include="lib\tinymce\plugins\emoticons\img\smiley-surprised.gif" />
+    <Content Include="lib\tinymce\plugins\emoticons\img\smiley-tongue-out.gif" />
+    <Content Include="lib\tinymce\plugins\emoticons\img\smiley-undecided.gif" />
+    <Content Include="lib\tinymce\plugins\emoticons\img\smiley-wink.gif" />
+    <Content Include="lib\tinymce\plugins\emoticons\img\smiley-yell.gif" />
+    <Content Include="lib\tinymce\plugins\emoticons\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\example\dialog.html" />
+    <Content Include="lib\tinymce\plugins\example\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\example_dependency\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\fullpage\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\fullscreen\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\hr\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\imagetools\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\image\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\importcss\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\insertdatetime\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\layer\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\legacyoutput\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\link\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\lists\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\media\moxieplayer.swf" />
+    <Content Include="lib\tinymce\plugins\media\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\nonbreaking\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\noneditable\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\pagebreak\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\paste\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\preview\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\print\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\save\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\searchreplace\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\spellchecker\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\tabfocus\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\table\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\template\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\textcolor\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\textpattern\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\visualblocks\css\visualblocks.css" />
+    <Content Include="lib\tinymce\plugins\visualblocks\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\visualchars\plugin.min.js" />
+    <Content Include="lib\tinymce\plugins\wordcount\plugin.min.js" />
+    <Content Include="lib\tinymce\skins\lightgray\content.inline.min.css" />
+    <Content Include="lib\tinymce\skins\lightgray\content.min.css" />
+    <Content Include="lib\tinymce\skins\lightgray\fonts\tinymce-small.svg" />
+    <Content Include="lib\tinymce\skins\lightgray\fonts\tinymce.svg" />
+    <Content Include="lib\tinymce\skins\lightgray\img\anchor.gif" />
+    <Content Include="lib\tinymce\skins\lightgray\img\loader.gif" />
+    <Content Include="lib\tinymce\skins\lightgray\img\object.gif" />
+    <Content Include="lib\tinymce\skins\lightgray\img\trans.gif" />
+    <Content Include="lib\tinymce\skins\lightgray\skin.ie7.min.css" />
+    <Content Include="lib\tinymce\skins\lightgray\skin.min.css" />
+    <Content Include="lib\tinymce\themes\modern\theme.min.js" />
+    <Content Include="lib\tinymce\tinymce.js" />
+    <Content Include="lib\tinymce\tinymce.min.js" />
+    <Content Include="lib\ui-bootstrap\template\accordion\accordion-group.html" />
+    <Content Include="lib\ui-bootstrap\template\accordion\accordion.html" />
+    <Content Include="lib\ui-bootstrap\template\accordion\ui-accordion-group-activities.html" />
+    <Content Include="lib\ui-bootstrap\template\accordion\ui-accordion-group-jobs.html" />
+    <Content Include="lib\ui-bootstrap\template\accordion\ui-accordion-group-steps.html" />
+    <Content Include="lib\ui-bootstrap\template\alert\alert.html" />
+    <Content Include="lib\ui-bootstrap\template\carousel\carousel.html" />
+    <Content Include="lib\ui-bootstrap\template\carousel\slide.html" />
+    <Content Include="lib\ui-bootstrap\template\datepicker\datepicker.html" />
+    <Content Include="lib\ui-bootstrap\template\datepicker\day.html" />
+    <Content Include="lib\ui-bootstrap\template\datepicker\month.html" />
+    <Content Include="lib\ui-bootstrap\template\datepicker\popup.html" />
+    <Content Include="lib\ui-bootstrap\template\datepicker\year.html" />
+    <Content Include="lib\ui-bootstrap\template\modal\backdrop.html" />
+    <Content Include="lib\ui-bootstrap\template\modal\window.html" />
+    <Content Include="lib\ui-bootstrap\template\pagination\pager.html" />
+    <Content Include="lib\ui-bootstrap\template\pagination\pagination.html" />
+    <Content Include="lib\ui-bootstrap\template\popover\popover-html.html" />
+    <Content Include="lib\ui-bootstrap\template\popover\popover-template.html" />
+    <Content Include="lib\ui-bootstrap\template\popover\popover.html" />
+    <Content Include="lib\ui-bootstrap\template\progressbar\bar.html" />
+    <Content Include="lib\ui-bootstrap\template\progressbar\progress.html" />
+    <Content Include="lib\ui-bootstrap\template\progressbar\progressbar.html" />
+    <Content Include="lib\ui-bootstrap\template\rating\rating.html" />
+    <Content Include="lib\ui-bootstrap\template\tabs\tab.html" />
+    <Content Include="lib\ui-bootstrap\template\tabs\tabset.html" />
+    <Content Include="lib\ui-bootstrap\template\timepicker\timepicker.html" />
+    <Content Include="lib\ui-bootstrap\template\tooltip\tooltip-html-popup.html" />
+    <Content Include="lib\ui-bootstrap\template\tooltip\tooltip-popup.html" />
+    <Content Include="lib\ui-bootstrap\template\tooltip\tooltip-template-popup.html" />
+    <Content Include="lib\ui-bootstrap\template\typeahead\typeahead-match.html" />
+    <Content Include="lib\ui-bootstrap\template\typeahead\typeahead-popup.html" />
+    <Content Include="lib\ui-bootstrap\ui-bootstrap-tpls-1.3.1.min.js" />
+    <Content Include="lib\ui-bootstrap\ui-bootstrap-tpls-2.5.0.min.js" />
+    <Content Include="lib\ui-grid\ui-grid.min.css" />
+    <Content Include="lib\ui-grid\ui-grid.min.js" />
+    <Content Include="lib\ui-mask\mask.min.js" />
+    <Content Include="lib\ui-validate\validate.js" />
+    <Content Include="MSDeploy\manifest.xml" />
+    <Content Include="MSDeploy\parameters.NA.xml" />
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\confirmPageRedirect.js" />
+    <Content Include="Scripts\jasmine-html.js" />
+    <Content Include="Scripts\jasmine.js" />
+    <Content Include="Scripts\jv30iframe\jv30.iframe.css" />
+    <Content Include="styles\core\angular.less" />
+    <Content Include="styles\core\bootstrap-build.less" />
+    <Content Include="styles\core\bootstrap-overides.less" />
+    <Content Include="styles\core\bootstrap-variables-overides.less" />
+    <Content Include="styles\core\build-file.less" />
+    <Content Include="styles\core\Components\buttons.less" />
+    <Content Include="styles\core\Components\content-box.less" />
+    <Content Include="styles\core\Components\dropdowns.less" />
+    <Content Include="styles\core\Components\dropzone.less" />
+    <Content Include="styles\core\Components\footer-panel.less" />
+    <Content Include="styles\core\Components\forms.less" />
+    <Content Include="styles\core\Components\header-panel.less" />
+    <Content Include="styles\core\Components\intro-section.less" />
+    <Content Include="styles\core\Components\lists.less" />
+    <Content Include="styles\core\Components\navbar.less" />
+    <Content Include="styles\core\Components\panels.less" />
+    <Content Include="styles\core\Components\plugins\angucomplete.less" />
+    <Content Include="styles\core\Components\plugins\ui-datepicker.less" />
+    <Content Include="styles\core\Components\scroll-spy.less" />
+    <Content Include="styles\core\Components\search-filter-panel.less" />
+    <Content Include="styles\core\Components\search-panel.less" />
+    <Content Include="styles\core\Components\search-results.less" />
+    <Content Include="styles\core\Components\spinners.less" />
+    <Content Include="styles\core\Components\sticky.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\Bootstrap\editor.png" />
+    <Content Include="styles\core\Components\Telerik\calendarless\Bootstrap\imagebrowser.png" />
+    <Content Include="styles\core\Components\Telerik\calendarless\Bootstrap\indeterminate.gif" />
+    <Content Include="styles\core\Components\Telerik\calendarless\Bootstrap\loading-image.gif" />
+    <Content Include="styles\core\Components\Telerik\calendarless\Bootstrap\loading.gif" />
+    <Content Include="styles\core\Components\Telerik\calendarless\Bootstrap\loading_2x.gif" />
+    <Content Include="styles\core\Components\Telerik\calendarless\Bootstrap\markers.png" />
+    <Content Include="styles\core\Components\Telerik\calendarless\Bootstrap\markers_2x.png" />
+    <Content Include="styles\core\Components\Telerik\calendarless\Bootstrap\slider-h.gif" />
+    <Content Include="styles\core\Components\Telerik\calendarless\Bootstrap\slider-v.gif" />
+    <Content Include="styles\core\Components\Telerik\calendarless\Bootstrap\sprite.png" />
+    <Content Include="styles\core\Components\Telerik\calendarless\Bootstrap\sprite_2x.png" />
+    <Content Include="styles\core\Components\Telerik\calendarless\Bootstrap\sprite_kpi.png" />
+    <Content Include="styles\core\Components\Telerik\calendarless\Bootstrap\sprite_kpi_2x.png" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common-mobile\actionsheet.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common-mobile\all.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common-mobile\base.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common-mobile\button.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common-mobile\buttongroup.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common-mobile\drawer.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common-mobile\forms.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common-mobile\listview.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common-mobile\mobile-template.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common-mobile\modalview.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common-mobile\navbar.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common-mobile\popover.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common-mobile\scroller.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common-mobile\scrollview.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common-mobile\splitview.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common-mobile\switch.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common-mobile\tabstrip.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\adaptive.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\all.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\base.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\calendar.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\core.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\dataviz.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\editor.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\font-icons.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\forms.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\gantt.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\grid.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\ie7.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\imagebrowser.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\inputs.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\menu.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\mixins.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\notification.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\panelbar.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\pivot.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\progressbar.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\responsivepanel.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\scheduler.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\slider.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\splitter.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\spreadsheet.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\tabstrip.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\toolbar.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\tooltip.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\treelist.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\treeview.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\upload.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\virtuallist.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\common\window.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\fonts\DejaVu\dejavu.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\fonts\DejaVu\DejaVuSans-Bold.ttf" />
+    <Content Include="styles\core\Components\Telerik\calendarless\fonts\DejaVu\DejaVuSans-BoldOblique.ttf" />
+    <Content Include="styles\core\Components\Telerik\calendarless\fonts\DejaVu\DejaVuSans-ExtraLight.ttf" />
+    <Content Include="styles\core\Components\Telerik\calendarless\fonts\DejaVu\DejaVuSans-Oblique.ttf" />
+    <Content Include="styles\core\Components\Telerik\calendarless\fonts\DejaVu\DejaVuSans.ttf" />
+    <Content Include="styles\core\Components\Telerik\calendarless\fonts\DejaVu\DejaVuSansMono-Bold.ttf" />
+    <Content Include="styles\core\Components\Telerik\calendarless\fonts\DejaVu\DejaVuSansMono-BoldOblique.ttf" />
+    <Content Include="styles\core\Components\Telerik\calendarless\fonts\DejaVu\DejaVuSansMono-Oblique.ttf" />
+    <Content Include="styles\core\Components\Telerik\calendarless\fonts\DejaVu\DejaVuSansMono.ttf" />
+    <Content Include="styles\core\Components\Telerik\calendarless\fonts\DejaVu\DejaVuSerif-Bold.ttf" />
+    <Content Include="styles\core\Components\Telerik\calendarless\fonts\DejaVu\DejaVuSerif-BoldItalic.ttf" />
+    <Content Include="styles\core\Components\Telerik\calendarless\fonts\DejaVu\DejaVuSerif-Italic.ttf" />
+    <Content Include="styles\core\Components\Telerik\calendarless\fonts\DejaVu\DejaVuSerif.ttf" />
+    <Content Include="styles\core\Components\Telerik\calendarless\fonts\DejaVu\LICENSE.txt" />
+    <Content Include="styles\core\Components\Telerik\calendarless\fonts\glyphs\KendoUIGlyphs.eot" />
+    <Content Include="styles\core\Components\Telerik\calendarless\fonts\glyphs\KendoUIGlyphs.svg" />
+    <Content Include="styles\core\Components\Telerik\calendarless\fonts\glyphs\KendoUIGlyphs.ttf" />
+    <Content Include="styles\core\Components\Telerik\calendarless\fonts\glyphs\KendoUIGlyphs.woff" />
+    <Content Include="styles\core\Components\Telerik\calendarless\kendo.bootstrap.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\kendo.bootstrap.mobile.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\kendo.common-bootstrap.core.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\kendo.common-bootstrap.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\kendo.common.core.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\kendo.common.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\kendo.uniform.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\kendo.uniform.mobile.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\themes\checkbox.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\themes\radiobutton.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\themes\spreadsheet.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\themes\type.less" />
+    <Content Include="styles\core\Components\Telerik\calendarless\type-bootstrap.less" />
+    <Content Include="styles\core\Components\Telerik\web\Bootstrap\editor.png" />
+    <Content Include="styles\core\Components\Telerik\web\Bootstrap\imagebrowser.png" />
+    <Content Include="styles\core\Components\Telerik\web\Bootstrap\indeterminate.gif" />
+    <Content Include="styles\core\Components\Telerik\web\Bootstrap\loading-image.gif" />
+    <Content Include="styles\core\Components\Telerik\web\Bootstrap\loading.gif" />
+    <Content Include="styles\core\Components\Telerik\web\Bootstrap\loading_2x.gif" />
+    <Content Include="styles\core\Components\Telerik\web\Bootstrap\markers.png" />
+    <Content Include="styles\core\Components\Telerik\web\Bootstrap\markers_2x.png" />
+    <Content Include="styles\core\Components\Telerik\web\Bootstrap\slider-h.gif" />
+    <Content Include="styles\core\Components\Telerik\web\Bootstrap\slider-v.gif" />
+    <Content Include="styles\core\Components\Telerik\web\Bootstrap\sprite.png" />
+    <Content Include="styles\core\Components\Telerik\web\Bootstrap\sprite_2x.png" />
+    <Content Include="styles\core\Components\Telerik\web\Bootstrap\sprite_kpi.png" />
+    <Content Include="styles\core\Components\Telerik\web\Bootstrap\sprite_kpi_2x.png" />
+    <Content Include="styles\core\Components\Telerik\web\common-mobile\actionsheet.less" />
+    <Content Include="styles\core\Components\Telerik\web\common-mobile\all.less" />
+    <Content Include="styles\core\Components\Telerik\web\common-mobile\base.less" />
+    <Content Include="styles\core\Components\Telerik\web\common-mobile\button.less" />
+    <Content Include="styles\core\Components\Telerik\web\common-mobile\buttongroup.less" />
+    <Content Include="styles\core\Components\Telerik\web\common-mobile\drawer.less" />
+    <Content Include="styles\core\Components\Telerik\web\common-mobile\forms.less" />
+    <Content Include="styles\core\Components\Telerik\web\common-mobile\listview.less" />
+    <Content Include="styles\core\Components\Telerik\web\common-mobile\mobile-template.less" />
+    <Content Include="styles\core\Components\Telerik\web\common-mobile\modalview.less" />
+    <Content Include="styles\core\Components\Telerik\web\common-mobile\navbar.less" />
+    <Content Include="styles\core\Components\Telerik\web\common-mobile\popover.less" />
+    <Content Include="styles\core\Components\Telerik\web\common-mobile\scroller.less" />
+    <Content Include="styles\core\Components\Telerik\web\common-mobile\scrollview.less" />
+    <Content Include="styles\core\Components\Telerik\web\common-mobile\splitview.less" />
+    <Content Include="styles\core\Components\Telerik\web\common-mobile\switch.less" />
+    <Content Include="styles\core\Components\Telerik\web\common-mobile\tabstrip.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\adaptive.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\all.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\base.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\calendar.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\core.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\dataviz.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\editor.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\font-icons.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\forms.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\gantt.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\grid.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\ie7.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\imagebrowser.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\inputs.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\menu.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\mixins.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\notification.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\panelbar.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\pivot.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\progressbar.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\responsivepanel.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\scheduler.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\slider.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\splitter.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\spreadsheet.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\tabstrip.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\toolbar.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\tooltip.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\treelist.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\treeview.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\upload.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\virtuallist.less" />
+    <Content Include="styles\core\Components\Telerik\web\common\window.less" />
+    <Content Include="styles\core\Components\Telerik\web\fonts\glyphs\KendoUIGlyphs.eot" />
+    <Content Include="styles\core\Components\Telerik\web\fonts\glyphs\KendoUIGlyphs.svg" />
+    <Content Include="styles\core\Components\Telerik\web\fonts\glyphs\KendoUIGlyphs.ttf" />
+    <Content Include="styles\core\Components\Telerik\web\fonts\glyphs\KendoUIGlyphs.woff" />
+    <Content Include="styles\core\Components\Telerik\web\kendo.bootstrap.less" />
+    <Content Include="styles\core\Components\Telerik\web\kendo.bootstrap.mobile.less" />
+    <Content Include="styles\core\Components\Telerik\web\kendo.common-bootstrap.core.less" />
+    <Content Include="styles\core\Components\Telerik\web\kendo.common-bootstrap.less" />
+    <Content Include="styles\core\Components\Telerik\web\kendo.common.core.less" />
+    <Content Include="styles\core\Components\Telerik\web\kendo.common.less" />
+    <Content Include="styles\core\Components\Telerik\web\kendo.uniform.less" />
+    <Content Include="styles\core\Components\Telerik\web\kendo.uniform.mobile.less" />
+    <Content Include="styles\core\Components\Telerik\web\themes\checkbox.less" />
+    <Content Include="styles\core\Components\Telerik\web\themes\radiobutton.less" />
+    <Content Include="styles\core\Components\Telerik\web\themes\spreadsheet.less" />
+    <Content Include="styles\core\Components\Telerik\web\themes\type.less" />
+    <Content Include="styles\core\Components\Telerik\web\type-bootstrap.less" />
+    <Content Include="styles\core\helpers.less" />
+    <Content Include="styles\core\kendo-calendar.less" />
+    <Content Include="styles\core\kendo-web.less" />
+    <Content Include="styles\core\lexus-customizations.less" />
+    <Content Include="styles\core\lexus-variables.less" />
+    <Content Include="styles\core\Mixins\ajax-spinner-mixin.less" />
+    <Content Include="styles\core\Mixins\button-mixin.less" />
+    <Content Include="styles\core\Mixins\career-personality.less" />
+    <Content Include="styles\core\Mixins\content-box-mixin.less" />
+    <Content Include="styles\core\Mixins\dashboard-mixin.less" />
+    <Content Include="styles\core\Mixins\intro-section-mixin.less" />
+    <Content Include="styles\core\Mixins\panel-mixin.less" />
+    <Content Include="styles\core\Mixins\print-mixin.less" />
+    <Content Include="styles\core\Mixins\scroll-spy-mixin.less" />
+    <Content Include="styles\core\Mixins\thumbnail-box-mixin.less" />
+    <Content Include="styles\core\Mixins\vendor-prefixes.less" />
+    <Content Include="styles\core\Rulesets\body-wrapper-ruleset.less" />
+    <Content Include="styles\core\Rulesets\header-ruleset.less" />
+    <Content Include="uiCore\controller\DebugController.js" />
+    <Content Include="uiCore\controller\ErrorController.js" />
+    <Content Include="uiCore\controller\footerController.js" />
+    <Content Include="uiCore\controller\LoginController.js" />
+    <Content Include="uiCore\controller\ModalInstanceCtrl.js" />
+    <Content Include="uiCore\controller\SearchPanelController.js" />
+    <Content Include="uiCore\directive\ocs-401.js" />
+    <Content Include="uiCore\directive\ocs-AccordionSteps.js" />
+    <Content Include="uiCore\directive\ocs-Alert.js" />
+    <Content Include="uiCore\directive\ocs-ApplyNotify.js" />
+    <Content Include="uiCore\directive\ocs-AutoComplete.js" />
+    <Content Include="uiCore\directive\ocs-BarChart.js" />
+    <Content Include="uiCore\directive\ocs-BindToButton.js" />
+    <Content Include="uiCore\directive\ocs-BreadCrumbs.js" />
+    <Content Include="uiCore\directive\ocs-busy.js" />
+    <Content Include="uiCore\directive\ocs-button.js" />
+    <Content Include="uiCore\directive\ocs-Calendar.js" />
+    <Content Include="uiCore\directive\ocs-Chart.js" />
+    <Content Include="uiCore\directive\ocs-CheckBox.js" />
+    <Content Include="uiCore\directive\ocs-CheckBoxWithModal.js" />
+    <Content Include="uiCore\directive\ocs-Date.js" />
+    <Content Include="uiCore\directive\ocs-Error.js" />
+    <Content Include="uiCore\directive\ocs-FontSize.js" />
+    <Content Include="uiCore\directive\ocs-google-address-autocomplete.js" />
+    <Content Include="uiCore\directive\ocs-help.js" />
+    <Content Include="uiCore\directive\ocs-HtmlFrame.js" />
+    <Content Include="uiCore\directive\ocs-Input.js" />
+    <Content Include="uiCore\directive\ocs-JobFilters.js" />
+    <Content Include="uiCore\directive\ocs-login.js" />
+    <Content Include="uiCore\directive\ocs-Unique.js" />
+    <Content Include="uiCore\directive\ocs-Match.js" />
+    <Content Include="uiCore\directive\ocs-MaxLength.js" />
+    <Content Include="uiCore\directive\ocs-Modal.js" />
+    <Content Include="uiCore\directive\ocs-msg.js" />
+    <Content Include="uiCore\directive\ocs-NavBar.js" />
+    <Content Include="uiCore\directive\ocs-OnlyNumbers.js" />
+    <Content Include="uiCore\directive\ocs-Pager.js" />
+    <Content Include="uiCore\directive\ocs-PasswordAssist.js" />
+    <Content Include="uiCore\directive\ocs-Radio.js" />
+    <Content Include="uiCore\directive\ocs-RecommendedJobs.js" />
+    <Content Include="uiCore\directive\ocs-RepeaterFinished.js" />
+    <Content Include="uiCore\directive\ocs-resume-uploaded-preview.js" />
+    <Content Include="uiCore\directive\ocs-RichTextEditor.js" />
+    <Content Include="uiCore\directive\ocs-scrollspy.js" />
+    <Content Include="uiCore\directive\ocs-Select.js" />
+    <Content Include="uiCore\directive\ocs-Spinner.js" />
+    <Content Include="uiCore\directive\ocs-sticky.js" />
+    <Content Include="uiCore\directive\ocs-Textarea.js" />
+    <Content Include="uiCore\directive\ocs-Upload.js" />
+    <Content Include="uiCore\directive\ocs-zipcode.js" />
+    <Content Include="uiCore\factory\authenticateUser\accountResetFactory.js" />
+    <Content Include="uiCore\factory\authenticateUser\authentication.js" />
+    <Content Include="uiCore\factory\authenticateUser\getTokenLocalLogin.js" />
+    <Content Include="uiCore\factory\authenticateUser\impersonate.js" />
+    <Content Include="uiCore\factory\authenticateUser\userFactory.js" />
+    <Content Include="uiCore\factory\dataSource\autoComplete-factory.js" />
+    <Content Include="uiCore\factory\dataSource\builderFieldId.js" />
+    <Content Include="uiCore\factory\dataSource\cms.js" />
+    <Content Include="uiCore\factory\dataSource\getFieldInfo.js" />
+    <Content Include="uiCore\factory\dataSource\lookup.js" />
+    <Content Include="uiCore\factory\foundation\channelConfig.js" />
+    <Content Include="uiCore\factory\foundation\getMsg.js" />
+    <Content Include="uiCore\factory\foundation\httpInterceptor.js" />
+    <Content Include="uiCore\factory\foundation\trackFactory.js" />
+    <Content Include="uiCore\factory\foundation\userAccountLite.js" />
+    <Content Include="uiCore\factory\foundation\userAccount.js" />
+    <Content Include="uiCore\factory\supplementary\applyQuestionaire.js" />
+    <Content Include="uiCore\factory\supplementary\eeoAaFactory.js" />
+    <Content Include="uiCore\factory\supplementary\userAudit.js" />
+    <Content Include="uiCore\factory\supplementary\agents.js" />
+    <Content Include="uiCore\factory\supplementary\applicationHistory.js" />
+    <Content Include="uiCore\factory\supplementary\careerPersonalityFactory.js" />
+    <Content Include="uiCore\factory\supplementary\careerPlan.js" />
+    <Content Include="uiCore\factory\supplementary\contactUs.js" />
+    <Content Include="uiCore\factory\supplementary\coverLetters.js" />
+    <Content Include="uiCore\factory\supplementary\documentUpload.js" />
+    <Content Include="uiCore\factory\supplementary\events.js" />
+    <Content Include="uiCore\factory\supplementary\jobSearchFactory.js" />
+    <Content Include="uiCore\factory\supplementary\jobViewFactory.js" />
+    <Content Include="uiCore\factory\supplementary\optOutAgents.js" />
+    <Content Include="uiCore\factory\supplementary\resumes.js" />
+    <Content Include="uiCore\factory\supplementary\savedJobs.js" />
+    <Content Include="uiCore\factory\supplementary\savedOccupations.js" />
+    <Content Include="uiCore\factory\supplementary\schoolLookup.js" />
+    <Content Include="uiCore\factory\supplementary\schools.js" />
+    <Content Include="uiCore\factory\supplementary\sendJobEmailFactory.js" />
+    <Content Include="uiCore\filter\capitalize.js" />
+    <Content Include="uiCore\filter\startFrom.js" />
+    <Content Include="uiCore\filter\telephone.js" />
+    <Content Include="uiCore\filter\unsafe.js" />
+    <Content Include="uiCore\globalApp-meta.js" />
+    <Content Include="uiCore\globalApp.js" />
+    <Content Include="uiCore\polyfills.js" />
+    <Content Include="uiCore\services\confirmPageRedirect.js" />
+    <Content Include="uiCore\services\headroom.min.js" />
+    <Content Include="uiCore\services\headroom.angular.js" />
+    <Content Include="uiCore\services\ppc-tracking.js" />
+    <Content Include="uiCore\preResolvePhase.js" />
+    <Content Include="uiCore\services\adobeTracking.js" />
+    <Content Include="uiCore\services\browserDetect.js" />
+    <Content Include="uiCore\services\budgetCalculationService.js" />
+    <Content Include="uiCore\services\cachedResource.js" />
+    <Content Include="uiCore\services\cacheService.js" />
+    <Content Include="uiCore\services\contextService.js" />
+    <Content Include="uiCore\services\coreUiTemplateService.js" />
+    <Content Include="uiCore\services\dataSource.js" />
+    <Content Include="uiCore\services\delayedSave.js" />
+    <Content Include="uiCore\services\deviceRotate.js" />
+    <Content Include="uiCore\services\ErrorDispatch.js" />
+    <Content Include="uiCore\services\gotoAnchor.js" />
+    <Content Include="uiCore\services\logInWatcher.js" />
+    <Content Include="uiCore\services\lookUpGlobalJson.js" />
+    <Content Include="uiCore\services\menuCreator.js" />
+    <Content Include="uiCore\services\inlineScriptTracking.js" />
+    <Content Include="uiCore\services\preResolve-resolveLayoutConfigs.js" />
+    <Content Include="uiCore\services\preResolve-resolveMetaConfigs.js" />
+    <Content Include="uiCore\services\preResolve-resolveMetaDataSources.js" />
+    <Content Include="uiCore\services\preResolve-resolveMetaMessages.js" />
+    <Content Include="uiCore\services\preResolve-resolveTracking.js" />
+    <Content Include="uiCore\services\productVariables.js" />
+    <Content Include="uiCore\services\samlAuth.js" />
+    <Content Include="uiCore\services\templateUrlService.js" />
+    <Content Include="uiCore\services\timeoutManager.js" />
+    <Content Include="uiCore\services\titleService.js" />
+    <Content Include="uiCore\services\trackService.js" />
+    <Content Include="uiCore\services\usaStateIdMapper.js" />
+    <Content Include="uiCore\services\utilityService.js" />
+    <Content Include="uiCore\services\registry.js" />
+    <Content Include="uiCore\templates\ocs-401.html" />
+    <Content Include="uiCore\templates\ocs-AccordionSteps.html" />
+    <Content Include="uiCore\templates\ocs-Alert.html" />
+    <Content Include="uiCore\templates\ocs-ApplyNotify.html" />
+    <Content Include="uiCore\templates\ocs-AutoComplete.html" />
+    <Content Include="uiCore\templates\ocs-BarChart.html" />
+    <Content Include="uiCore\templates\ocs-BreadCrumbs.html" />
+    <Content Include="uiCore\templates\ocs-Button.html" />
+    <Content Include="uiCore\templates\ocs-Calendar.html" />
+    <Content Include="uiCore\templates\ocs-Chart.html" />
+    <Content Include="uiCore\templates\ocs-CheckBox.html" />
+    <Content Include="uiCore\templates\ocs-CheckBoxWithModal.html" />
+    <Content Include="uiCore\templates\ocs-Date.html" />
+    <Content Include="uiCore\templates\ocs-Error.html" />
+    <Content Include="uiCore\templates\ocs-FontSize.html" />
+    <Content Include="uiCore\templates\ocs-GoogleAddressAutoComplete.html" />
+    <Content Include="uiCore\templates\ocs-Help.html" />
+    <Content Include="uiCore\templates\ocs-Input.html" />
+    <Content Include="uiCore\templates\ocs-JobFilters.html" />
+    <Content Include="uiCore\templates\ocs-login.html" />
+    <Content Include="uiCore\templates\ocs-Modal.html" />
+    <Content Include="uiCore\templates\ocs-NavBar.html" />
+    <Content Include="uiCore\templates\ocs-Pager.html" />
+    <Content Include="uiCore\templates\ocs-PasswordAssist.html" />
+    <Content Include="uiCore\templates\ocs-Radio.html" />
+    <Content Include="uiCore\templates\ocs-RecommendedJobs.html" />
+    <Content Include="uiCore\templates\ocs-resume-uploaded-preview.html" />
+    <Content Include="uiCore\templates\ocs-RichTextEditor.html" />
+    <Content Include="uiCore\templates\ocs-Select.html" />
+    <Content Include="uiCore\templates\ocs-Spinner.html" />
+    <Content Include="uiCore\templates\ocs-Textarea.html" />
+    <Content Include="uiCore\templates\ocs-Upload.html" />
+    <Content Include="uiCore\templates\ocs-ZipCode.html" />
+    <Content Include="uiCore\templates\ui-accordion-group-steps.html" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.NA.QA.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </Content>
+    <Content Include="Web.NA.Dev.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </Content>
+    <Content Include="Web.NA.Int.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </Content>
+    <Content Include="Web.NA.Production.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </Content>
+    <Content Include="Web.NA.MGS.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </Content>
+    <Content Include="Web.NA.MITE.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="styles\core\Rulesets\footer-ruleset.less" />
+    <None Include="lib\slick-carousel\slick-theme.scss" />
+    <None Include="lib\slick-carousel\slick.scss" />
+    <Content Include="styles\core\Components\alerts.less" />
+    <Content Include="Scripts\jv30iframe\jv30.iframe.js" />
+    <None Include="styles\core\Components\apply-notify.less" />
+    <Content Include="styles\core\Components\apply-panel.less" />
+    <None Include="styles\core\Components\bar-chart.less" />
+    <Content Include="styles\core\Components\browse-jobs.less" />
+    <None Include="styles\core\Components\dashboard.less" />
+    <Content Include="styles\core\Components\modals.less" />
+    <Content Include="styles\core\Components\tables.less" />
+    <Content Include="styles\core\Components\shared-fa-icons.less" />
+    <Content Include="styles\core\Components\plugins\google-translate.less" />
+    <None Include="styles\core\Components\recent-searches.less" />
+    <Content Include="styles\core\Components\slick-theme.less" />
+    <Content Include="styles\core\Components\slick.less" />
+    <None Include="styles\core\Components\tabs.less" />
+    <None Include="styles\core\Components\type.less" />
+    <None Include="styles\core\Components\wells.less" />
+    <Content Include="styles\core\Mixins\forms-mixin.less" />
+    <Content Include="styles\core\Mixins\icons-mixin.less" />
+    <None Include="styles\core\Mixins\recent-searches.less" />
+    <None Include="styles\core\Mixins\wells-mixin.less" />
+    <None Include="styles\core\Rulesets\navbar-ruleset.less" />
+    <Content Include="styles\core\Rulesets\search-filter-panel-ruleset.less" />
+    <None Include="unstable.json" />
+    <None Include="package.json" />
+    <None Include="lib\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
+    <None Include="lib\tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
+    <None Include="lib\tinymce\skins\lightgray\fonts\tinymce-small.woff" />
+    <None Include="lib\tinymce\skins\lightgray\fonts\tinymce.eot" />
+    <None Include="lib\tinymce\skins\lightgray\fonts\tinymce.ttf" />
+    <None Include="lib\tinymce\skins\lightgray\fonts\tinymce.woff" />
+    <None Include="lib\ui-grid\ui-grid.ttf" />
+    <None Include="lib\ui-grid\ui-grid.woff" />
+    <None Include="packages.config" />
+    <None Include="styles\bootstrap\.csscomb.json" />
+    <None Include="styles\bootstrap\.csslintrc" />
+    <None Include="styles\bootstrap\alerts.less" />
+    <None Include="styles\bootstrap\badges.less" />
+    <None Include="styles\bootstrap\bootstrap.less" />
+    <None Include="styles\bootstrap\breadcrumbs.less" />
+    <None Include="styles\bootstrap\button-groups.less" />
+    <None Include="styles\bootstrap\buttons.less" />
+    <None Include="styles\bootstrap\carousel.less" />
+    <None Include="styles\bootstrap\close.less" />
+    <None Include="styles\bootstrap\code.less" />
+    <None Include="styles\bootstrap\component-animations.less" />
+    <None Include="styles\bootstrap\dropdowns.less" />
+    <None Include="styles\bootstrap\forms.less" />
+    <None Include="styles\bootstrap\glyphicons.less" />
+    <None Include="styles\bootstrap\grid.less" />
+    <None Include="styles\bootstrap\input-groups.less" />
+    <None Include="styles\bootstrap\jumbotron.less" />
+    <None Include="styles\bootstrap\labels.less" />
+    <None Include="styles\bootstrap\list-group.less" />
+    <None Include="styles\bootstrap\media.less" />
+    <None Include="styles\bootstrap\mixins.less" />
+    <None Include="styles\bootstrap\mixins\alerts.less" />
+    <None Include="styles\bootstrap\mixins\background-variant.less" />
+    <None Include="styles\bootstrap\mixins\border-radius.less" />
+    <None Include="styles\bootstrap\mixins\buttons.less" />
+    <None Include="styles\bootstrap\mixins\center-block.less" />
+    <None Include="styles\bootstrap\mixins\clearfix.less" />
+    <None Include="styles\bootstrap\mixins\forms.less" />
+    <None Include="styles\bootstrap\mixins\gradients.less" />
+    <None Include="styles\bootstrap\mixins\grid-framework.less" />
+    <None Include="styles\bootstrap\mixins\grid.less" />
+    <None Include="styles\bootstrap\mixins\hide-text.less" />
+    <None Include="styles\bootstrap\mixins\image.less" />
+    <None Include="styles\bootstrap\mixins\labels.less" />
+    <None Include="styles\bootstrap\mixins\list-group.less" />
+    <None Include="styles\bootstrap\mixins\nav-divider.less" />
+    <None Include="styles\bootstrap\mixins\nav-vertical-align.less" />
+    <None Include="styles\bootstrap\mixins\opacity.less" />
+    <None Include="styles\bootstrap\mixins\pagination.less" />
+    <None Include="styles\bootstrap\mixins\panels.less" />
+    <None Include="styles\bootstrap\mixins\progress-bar.less" />
+    <None Include="styles\bootstrap\mixins\reset-filter.less" />
+    <None Include="styles\bootstrap\mixins\reset-text.less" />
+    <None Include="styles\bootstrap\mixins\resize.less" />
+    <None Include="styles\bootstrap\mixins\responsive-visibility.less" />
+    <None Include="styles\bootstrap\mixins\size.less" />
+    <None Include="styles\bootstrap\mixins\tab-focus.less" />
+    <None Include="styles\bootstrap\mixins\table-row.less" />
+    <None Include="styles\bootstrap\mixins\text-emphasis.less" />
+    <None Include="styles\bootstrap\mixins\text-overflow.less" />
+    <None Include="styles\bootstrap\mixins\vendor-prefixes.less" />
+    <None Include="styles\bootstrap\modals.less" />
+    <None Include="styles\bootstrap\navbar.less" />
+    <None Include="styles\bootstrap\navs.less" />
+    <None Include="styles\bootstrap\normalize.less" />
+    <None Include="styles\bootstrap\pager.less" />
+    <None Include="styles\bootstrap\pagination.less" />
+    <None Include="styles\bootstrap\panels.less" />
+    <None Include="styles\bootstrap\popovers.less" />
+    <None Include="styles\bootstrap\print.less" />
+    <None Include="styles\bootstrap\progress-bars.less" />
+    <None Include="styles\bootstrap\responsive-embed.less" />
+    <None Include="styles\bootstrap\responsive-utilities.less" />
+    <None Include="styles\bootstrap\scaffolding.less" />
+    <None Include="styles\bootstrap\tables.less" />
+    <None Include="styles\bootstrap\theme.less" />
+    <None Include="styles\bootstrap\thumbnails.less" />
+    <None Include="styles\bootstrap\tooltip.less" />
+    <None Include="styles\bootstrap\type.less" />
+    <None Include="styles\bootstrap\utilities.less" />
+    <None Include="styles\bootstrap\variables.less" />
+    <None Include="styles\bootstrap\wells.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="uiCore\temp\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Condition="Exists('$(SlowCheetahTargets)')" Project="$(SlowCheetahTargets)" />
+  <Import Project="..\..\..\..\..\Tools\Build\MSBuild\MonsterBuildTasks35.targets" Condition=" '$(MonsterTargetsFileImported)' == '' " />
+  <Import Project="..\..\Lexus.targets" Condition=" '$(LexusTargets)' == '' " />
+  <Target Name="CopyDistFolderToOutput">
+    <!-- include Dist folder -->
+    <ItemGroup>
+      <DistFiles Include="$(MSBuildThisFileDirectory)cdn-release\**\*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(DistFiles)" DestinationFiles="@(DistFiles->'$(OutDir)..\cdn-release\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" Condition=" '$(Configuration)' != 'Debug' " />
+  </Target>
+  <PropertyGroup>
+    <RTMFileBaseDir>$(MSBuildThisFileDirectory)</RTMFileBaseDir>
+    <MSDeployDirName>$(MSBuildThisFileDirectory)MSDeploy\</MSDeployDirName>
+    <RTMFile>$(RTMFileBaseDir)rtm.xml</RTMFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <CoreBuildDependsOn>Gulp;CopyDistFolderToOutput;$(CoreBuildDependsOn)</CoreBuildDependsOn>
+  </PropertyGroup>
+  <Target Name="AfterBuild" Condition=" '$(Configuration)' == 'Release' ">
+    <CallTarget Targets="GenerateWebConfigs" />
+    <Delete Files="$(TargetDir)$(TargetName).dll" />
+    <Delete Files="$(TargetDir)$(TargetName).pdb" />
+  </Target>
+</Project>

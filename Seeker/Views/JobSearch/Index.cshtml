@@ -1,0 +1,26 @@
+﻿@{ ViewBag.Title = "Job search"; }
+
+@section Header
+{
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fingerprintjs2/1.5.1/fingerprint2.min.js"></script>
+<script type="text/javascript" src="https://www.payscale.com/js/psextension.js"></script>
+<script type="text/javascript">
+    PayScaleExtension.affiliateId = '';
+    PayScaleExtension.ServiceURL = 'https://www.payscale.com';
+    PayScaleExtension.jobListing = false;
+    PayScaleExtension.backgroundColor = '#9a0000';
+    PayScaleExtension.textColor = '#ffffff';
+    PayScaleExtension.init();
+</script>
+
+<!-- build:js -->
+<script src="~/UI/jobSearch/jobSearch-meta.js"></script>
+<script src="~/UI/jobSearch/jobSearch-config.js"></script>
+
+<script src="~/UI/jobSearch/jobSearch-app.js"></script>
+<script src="~/UI/jobSearch/summary/jobSearch-summary-ctrl.js"></script>
+<!-- endbuild -->
+}
+<!-- JobSearch -->
+<div ng-view></div>

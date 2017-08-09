@@ -1,0 +1,8 @@
+﻿<div class="js-Advertisement"
+     style="overflow: hidden;"
+     ng-class="{'mask-margin-zero': model.height === 0}"
+     ng-show="model.position && model.position.length">
+    <iframe ng-src="{{model.iframeUrl}}"
+            class="js-ad-frame" style="width:100%; border:0px; overflow: hidden; display:block;" scrolling="no" ng-style="{'height' : model.height}"></iframe>
+</div>
+

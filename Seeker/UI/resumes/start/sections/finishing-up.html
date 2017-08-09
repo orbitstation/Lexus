@@ -1,0 +1,171 @@
+<div ng-controller="FinishingUp as vm">
+    <div class="row">
+        <div class="col-sm-12">
+            <h3 class="mt0" ng-bind="$root.msg(378387)"></h3>
+            <p ng-bind="$root.msg(378388)"></p>
+        </div>
+    </div>
+    <div class="list" ng-if="vm.data.documents.length > 0">
+        <!-- (DOCUMENTS)  this is one row template -->
+        <div class="list-item" ng-repeat="doc in vm.data.documents | orderBy:'-createDate' track by $index" ng-class="{'list-last':$last}">
+            <div class="list-body">
+                <!-- action buttons -->
+                <!-- row heading link -->
+                <h3 class="list-item-heading"><a ng-click="vm.downloadFile(doc.id)">{{doc.name}}</a></h3>
+                <div class="clearfix"></div>
+                <!-- row data columns -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>
+                            <span class="text-muted small">
+                                <strong>{{:preResolved:$root.msg(253912)}} </strong>
+                                {{doc.createDate |date}}
+                            </span>
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>
+                            <span class="text-muted small"><strong>{{$root.msg(354555)}}:</strong>&nbsp;{{doc.fileType}}</span>
+                            <br />
+                            <span class="text-muted small"><strong>{{$root.msg(361288)}}:</strong>&nbsp;{{doc.fileSize}}</span>
+                        </p>
+                    </div>
+                    <div class="col-md-2">
+                        <div><a ng-click="vm.goToAccordionStep('upload')" href="">{{:preResolved:$root.msg(157940)}}</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <dl>
+                <dt ng-bind="$root.msg(324)"></dt>
+                <dd ng-if="vm.showAddress">{{vm.data.user.firstName}} {{vm.data.user.lastName}}</dd>
+                <dd ng-if="vm.showAddress">{{vm.data.user.address.homeAddress}}</dd>
+                <dd ng-if="vm.showAddress">{{vm.data.user.address.homeAddress2}}</dd>
+                <dd ng-if="vm.showAddress">{{vm.data.user.address.city}}<span ng-if="vm.data.user.address.city.length">,</span> <span ng-repeat="i in meta.state.items" ng-if="i.value == vm.data.user.address.state && (i.value)">{{i.text}}</span> {{vm.data.user.address.postalCode}} <span ng-repeat="i in meta.country.items" ng-if="(i.value == vm.data.user.address.country && (i.value))">{{i.text}}</span></dd>
+                <dd>{{vm.data.user.phoneNumber.primaryPhone | tel}} <span class="pl10" ng-repeat="i in meta.primaryPhoneType.items" ng-if="i.value == vm.data.user.phoneNumber.primaryPhoneType && (i.value)">{{i.text}}</span></dd>
+                <dd>{{vm.data.user.phoneNumber.alternatePhone1 | tel}} <span class="pl10" ng-repeat="i in meta.telephoneNumber2Type.items" ng-if="i.value == vm.data.user.phoneNumber.alternatePhone1Type && (i.value)">{{i.text}}</span></dd>
+                <dd>{{vm.data.user.phoneNumber.alternatePhone2 | tel}} <span class="pl10" ng-repeat="i in meta.telephoneNumber3Type.items" ng-if="i.value == vm.data.user.phoneNumber.alternatePhone2Type && (i.value)">{{i.text}}</span></dd>
+            </dl>
+
+            <!-- Mailing Address -->
+            <dl ng-if="vm.data.user.address.mailingHomeAddress && vm.data.user.address.mailingCity">
+                <dt ng-bind="$root.msg(370519)"></dt>
+                <dd>{{vm.data.user.address.mailingHomeAddress}}</dd>
+                <dd>{{vm.data.user.address.mailingHomeAddress2}}</dd>
+                <dd>
+                    {{vm.data.user.address.mailingCity}},
+                    <span ng-repeat="i in meta.state.items" ng-if="i.value == vm.data.user.address.mailingState && (i.value)">{{i.text}}</span>
+                    <span>{{vm.data.user.address.mailingPostalCode}}</span> <span ng-repeat="i in meta.country.items" ng-if="i.value == vm.data.user.address.mailingCountry && (i.value)">{{i.text}}</span>
+                </dd>
+                
+            </dl>
+            
+            <dl>
+                <dt ng-bind="$root.msg(378335)"></dt>
+                <!-- Citizenship/Work status -->
+                <dd ng-if="meta.MGS_CreateAcct_Citizenship_On">
+                    {{:preResolved:$root.msg(378337)}}
+                    <span ng-if="vm.data.user.ssnCitizenship.usCitizen == 2008">{{$root.constants.UBF_CRL_DEFAULT_YES}}</span>
+                    <span ng-if="vm.data.user.ssnCitizenship.usCitizen == 2009">{{$root.constants.UBF_CRL_DEFAULT_NO}}</span>
+                </dd>
+                <dd ng-if="meta.MGS_CreateAcct_Citizenship_On">
+                    {{:preResolved:$root.msg(378338)}}
+                    <span ng-if="vm.data.user.ssnCitizenship.authorizedToWork == 2008">{{$root.constants.UBF_CRL_DEFAULT_YES}}</span>
+                    <span ng-if="vm.data.user.ssnCitizenship.authorizedToWork == 2009">{{$root.constants.UBF_CRL_DEFAULT_NO}}</span>
+                </dd>
+                <!-- Careerlevel-->
+                <dd ng-if="vm.data.careerInfo.careerLevelId">{{:preResolved:$root.msg(154123)}} <span ng-repeat="i in meta.careerLevel.items" ng-if="i.value == vm.data.careerInfo.careerLevelId && (i.value > 0)">{{i.text}}</span></dd>
+                <!-- I am willing to travel-->
+                <dd ng-if="vm.data.careerInfo.willingToTravelId">{{:preResolved:$root.msg(155319)}} <span ng-repeat="i in meta.willingTravel.items" ng-if="i.value == vm.data.careerInfo.willingToTravelId && (i.value > 0)">{{i.text}}</span></dd>
+                <!-- I am willing to relocate:-->
+                <dd>{{:preResolved:$root.msg(155318)}} <span ng-if="vm.resumePreview.careerInfo.willingToRelocate==true">{{:preResolved:$root.msg(367657)}}</span><span ng-if="vm.resumePreview.careerInfo.willingToRelocate==false">{{:preResolved:$root.msg(367658)}}</span></dd>
+                <!--Security Clearance-->
+                <dd ng-if="vm.data.careerInfo.securityClearanceId">{{:preResolved:$root.msg(134824)}} <span ng-repeat="i in meta.securityClearance.items" ng-if="i.value == vm.data.careerInfo.securityClearanceId && (i.value)">{{i.text}}</span></dd>
+            </dl>
+
+            <!--Military US MilitaryInvolvement (Vetereans Status)-->
+            <dl ng-if="vm.data.user.militaryService.usMilitaryInvolvementID">
+                <dt>{{:preResolved:$root.msg(159277)}}</dt>
+                <dd ng-repeat="i in meta.usMilitaryInvolvement.items" ng-if="i.value == vm.data.user.militaryService.usMilitaryInvolvementID && (i.value)">{{i.text}}</dd>
+            </dl>
+
+            <dl>
+                <dt ng-bind="$root.msg(378336)"></dt>
+                <dd>
+                    <!--Target job type (check all that apply)-->
+                    {{:preResolved:$root.msg(374872)}}:
+                    <span ng-if="vm.data.targetJob.wantsPermanent">{{:preResolved:$root.msg(73244)}}</span>
+                    <span ng-if="vm.data.targetJob.wantsIntern">{{:preResolved:$root.msg(70335)}}</span>
+                    <span ng-if="vm.data.targetJob.wantsTemp">{{:preResolved:$root.msg(185871)}}</span>
+                    <span ng-if="vm.data.targetJob.wantsSeasonal">{{:preResolved:$root.msg(134371)}}</span>
+                </dd>
+                <dd>
+                    <!--Target job schedule (check all that apply)-->
+                    {{:preResolved:$root.msg(374873)}}:
+                    <span ng-if="vm.data.targetJob.wantsFullTime">{{:preResolved:$root.msg(106109)}}</span>
+                    <span ng-if="vm.data.targetJob.wantsPartTime">{{:preResolved:$root.msg(106110)}}</span>
+                    <span ng-if="vm.data.targetJob.wantsPerDiem">{{:preResolved:$root.msg(253319)}}</span>
+                </dd>
+                <dd>
+                    <!--Target Salary-->
+                    {{:preResolved:$root.msg(320359)}}:
+                    <span>
+                        {{vm.data.salary.amount | currency}}
+                        <span ng-repeat="i in meta.resumesalaryTypes.items" ng-if="i.value == vm.data.salary.resumeFrequencyId && (i.value) && (i.value>0) "> {{i.text}}</span>
+                    </span>
+                </dd>
+                <dd>
+                    <!--Availability (check all that apply)-->
+                    {{:preResolved:$root.msg(158935)}}:
+                    <span ng-repeat="u in vm.data.availability">
+                        <span ng-repeat="i in meta.availability.items" ng-if="i.value == u && (i.value)">{{i.text}}</span>
+                    </span>
+                </dd>
+            </dl>
+        </div>
+
+        <div class="col-sm-6">
+            <ocs-radio meta="meta.resumeActive" model="vm.data.resumeBasics.resumeActive"></ocs-radio>
+
+            <div ng-show="vm.data.resumeBasics.resumeActive">
+                <ocs-radio meta="meta.resumeConfidential" model="vm.data.resumeBasics.resumeConfidential"></ocs-radio>
+            </div>
+            <div ng-if="vm.data.resumeType !== 'UploadResume'">
+                <div>
+                    <!--<a href>{{:preResolved:$root.msg(379238)}}</a> <span class="vertical-separator no-vertical-padding">|</span>--> <a href ng-click="vm.saveToDoc()">{{:preResolved:$root.msg(171395)}}</a>
+                </div>
+                <div class="mt15">
+                    <a href="resumes/send/{{vm.data.resumeValue}}" class="btn btn-sm btn-primary mr5">{{:preResolved:$root.msg(262243)}}</a>
+                    <!--<a href class="btn btn-sm btn-primary">{{:preResolved:$root.msg(312578)}}</a>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="hr-short" />
+    <div class="text-right">
+        <button type="button" class="btn btn-md btn-primary" ng-click="vm.cancel()">{{:preResolved:$root.msg(162574)}}</button>
+        <button type="button"
+                class="btn btn-md btn-primary"
+                ocs-busy="$root.busyLinks.mainResumeSave"
+                ng-click="vm.saveResume(false)"
+                ng-disabled="vm.resumeEditGlobalFormHasError || $root.busyLinks.mainResumeSave">
+            {{:preResolved:$root.msg(367651)}}
+        </button>
+        <button type="button"
+                class="btn btn-md btn-primary"
+                ocs-busy="$root.busyLinks.mainResumeSave"
+                ng-click="vm.saveResume(true)"
+                ng-disabled="vm.resumeEditGlobalFormHasError || $root.busyLinks.mainResumeSave"
+                ng-show="vm.inApplyFlow">
+            {{:preResolved:$root.msg(374815)}}
+        </button>
+    </div>
+</div>
+
+<!--<pre>{{meta.state.items | json}}</pre>-->

@@ -1,0 +1,126 @@
+﻿<div ng-controller="educationCtrl as vm">
+    <ng-form name="educationForm">
+        <div ng-repeat="(key,edu) in vm.view.educations.items track by $index">
+            <div class="mb15">
+                <span class="label label-default">{{key + 1}} - 
+                    <span ng-if="edu.eduType=='military'">{{$root.msg(185819)}}</span>
+                    <span ng-if="edu.eduType!='military'">{{$root.msg(154461)}}</span>
+                </span>
+                <button type="button" ng-click="vm.removeEducation(key)" class="btn btn-remove pull-right"> {{:preResolved:$root.msg(370303)}}
+                </button>
+            </div>
+            <div class="clearfix"></div>
+
+            <div ng-if="edu.eduType=='standard'">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ocs-input meta="meta.eduSchoolName" model="edu.schoolName"></ocs-input>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <ocs-input meta="meta.eduCityName" model="edu.city"></ocs-input>
+                    </div>
+                    <div class="col-sm-4">
+                        <ocs-select meta="meta.eduStates[key]" model="edu.state" ng-if="meta.eduStates[key].items.length > 1"></ocs-select>
+                    </div>
+                    <div class="col-sm-4">
+                        <ocs-select meta="meta.eduCountry" model="edu.countryId" change-fn="vm.change(edu)"></ocs-select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        <ocs-select meta="meta.eduDegreeLevel" model="edu.educationLevelId"></ocs-select>
+                    </div>
+                    <div class="col-sm-3">
+                        <ocs-date meta="meta.eduEndDate" model="edu.endDate"></ocs-date>
+                    </div>
+                    <div class="col-sm-3">
+                        <ocs-input meta="meta.eduMajor" model="edu.major"></ocs-input>
+                    </div>
+                    <div class="col-sm-3">
+                        <ocs-input meta="meta.eduMinor" model="edu.minor"></ocs-input>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        <ocs-input meta="meta.eduTotalCredits" model="edu.totalCreditsEarned"></ocs-input>
+                    </div>
+                    <div class="col-sm-3">
+                        <ocs-input meta="meta.eduGPA" model="edu.gpa"></ocs-input>
+                    </div>
+                    <div class="col-sm-3">
+                        <ocs-input meta="meta.eduGPAMax" model="edu.gpaMax"></ocs-input>
+                    </div>
+                    <div class="col-sm-3">
+                        <ocs-select meta="meta.eduHonors" model="edu.honorId"></ocs-select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ocs-textarea meta="meta.relevantCoursework"
+                                      model="edu.relevantCourseworkLicensuresAndCertifications"></ocs-textarea>
+                    </div>
+                    <div class="col-sm-6">
+                        <ocs-radio meta="meta.awardedCreditsType" model="edu.systemForAwardedCreditId"></ocs-radio>
+                        <span ng-if="edu.systemForAwardedCreditId == 4671">
+                            <ocs-input meta="meta.awardedCreditsOther" model="edu.otherSystemForAwardedCredit"></ocs-input>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-if="edu.eduType=='military'">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ocs-input meta="meta.nameTitleOfSchool" model="edu.nameTitleOfSchool"></ocs-input>
+                    </div>
+                    <div class="col-sm-6">
+                        <ocs-input meta="meta.courseTitle" model="edu.courseTitle"></ocs-input>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ocs-radio meta="meta.trainingTypeId" model="edu.trainingTypeId"></ocs-radio>
+                    </div>
+                    <div class="col-sm-3">
+                        <ocs-input meta="meta.apprenticeshipCourse" model="edu.apprenticeshipCourse"></ocs-input>
+                    </div>
+                    <div class="col-sm-3">
+                        <ocs-date meta="meta.eduMilEndDate" model="edu.endDate"></ocs-date>
+                    </div>
+                </div>
+            </div>
+            <hr class="hr-short" />
+        </div>
+        
+        <label for="noRelEdu" class="ng-hide" ng-hide="vm.view.educations.items[0]">
+            <input type="checkbox" id="noRelEdu" ng-model="vm.data.education.noRelevantEducation" />
+            <span class="checkbox-custom"></span>
+            <span class="checkbox-label">{{:preResolved:$root.msg(159111)}}</span>
+        </label>
+
+        <div>
+
+            <button ng-click="vm.addEducation('standard')" type="button"
+                    class="btn btn-add"
+                    ng-disabled="vm.data.education.noRelevantEducation || vm.view.educations.items.length == vm.view.educations.maxItemsCount || vm.thisForm.$invalid">
+                {{:preResolved:$root.msg(369440)}}
+            </button>
+            <span ng-if="vm.isMilitaryService">
+                <span class="text-muted" style="padding: 0 10px;">or</span>
+                <button ng-click="vm.addEducation('military')"
+                        type="button" class="btn btn-add"
+                        ng-disabled="vm.data.education.noRelevantEducation || vm.view.educations.items.length == vm.view.educations.maxItemsCount || vm.thisForm.$invalid">
+                    {{:preResolved:$root.msg(370304)}}
+                </button>
+            </span>
+        </div>
+        <hr class="hr-short" />
+    </ng-form>
+</div>

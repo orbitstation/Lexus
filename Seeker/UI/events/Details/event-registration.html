@@ -1,0 +1,30 @@
+﻿<ng-form novalidate name="eventRegistrationForm">
+    <div class="row">
+        <div class="col-sm-6">
+            <ocs-input meta="meta.firstName" model="user.firstName"></ocs-input>
+        </div>
+        <div class="col-sm-6">
+            <ocs-input meta="meta.lastName" model="user.lastName"></ocs-input>
+        </div>
+        <div class="col-sm-6">
+            <ocs-input meta="meta.email" model="user.emailAddress"></ocs-input>
+        </div>
+        <div class="col-sm-6">
+            <ocs-input meta="meta.phone" model="user.phoneNumber.primaryPhone"></ocs-input>
+        </div>
+    </div>
+    <div class="text-right mb30" role="group" aria-label="{{$root.msg(378626)}}">
+        <button type="button"
+                class="btn btn-link"
+                ng-click="cancelRegistration()"
+                ng-bind=":preResolved:$root.msg(360156)"></button>
+        <button type="button"
+                class="btn btn-info"
+                ocs-busy="busyLinks.register"
+                ng-disabled="busyLinks.register"
+                ng-click="register()"
+                ng-bind=":preResolved:$root.msg(372517)"></button>
+    </div>
+    <ocs-error error-list='registrationError'></ocs-error>
+
+</ng-form>

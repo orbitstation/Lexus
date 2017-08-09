@@ -1,0 +1,149 @@
+﻿.career-personality() {
+    .table-mid() {
+        display: table;
+        width: 100%;
+
+        @media (max-width: @screen-xs-max) {
+            text-align: center;
+            display: block;
+        }
+
+        > div {
+            display: table-cell;
+            vertical-align: middle;
+
+            @media (max-width: @screen-xs-max) {
+                display: inline-block;
+            }
+        }
+    }
+    //Temp selection colors
+    @colors: #ed1c24, #ec008c, #6d6e71, #62c9d2, #0da24b;
+
+    .loop-colors(@counter, @start: 1) when ((@counter + @start) >= 0) {
+        @child: @counter + @start;
+        .loop-colors((@counter - 1), @start); // next iteration
+        &:nth-child(@{child}) {
+            color: extract(@colors, @counter); // code for each iteration
+            .radio {
+                & + span {
+                    &:after {
+                        border: 2px solid extract(@colors, @counter);
+                    }
+                }
+
+                &:checked {
+                    & + span {
+                        &:before {
+                            background: extract(@colors, @counter);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .career-peronality {
+        .personality-header {
+            background: @gray-lighter;
+        }
+
+        .personality-header,
+        .personality-questions {
+            .table-mid();
+            padding: @grid-gutter-width/2;
+        }
+
+        .personality-questions {
+            &:nth-child(odd) {
+                background: lighten(@gray-lighter, 5%);
+            }
+
+            border-bottom: 1px solid @gray-lighter;
+
+            .personality-question-pick {
+                .loop-colors(5, 1);
+
+                label {
+                    position: relative;
+                    margin: 7.5px;
+                    line-height: 135%;
+                    cursor: pointer;
+
+                    input[type=radio],
+                    .radio {
+                        &:checked {
+                            & + span {
+                                &:before {
+                                    .scale(1);
+                                }
+                            }
+                        }
+
+
+                        & + span {
+                            display: block;
+                            position: relative;
+                            cursor: pointer;
+                            margin: 4px 0 0;
+
+                            &:before {
+                                content: "\00a0 ";
+                                .transition(transform .4s cubic-bezier(.45,1.8,.5,.75));
+                                .scale(0);
+                                position: absolute;
+                                top: -13px;
+                                left: 1px;
+                                z-index: 1;
+                                width: 10px;
+                                height: 10px;
+                                border-radius: 50%;
+                                outline: none;
+                            }
+
+                            &:after {
+                                content: "\00a0 ";
+                                position: absolute;
+                                top: -20px;
+                                left: -6px;
+                                width: 24px;
+                                height: 24px;
+                                background: #fff;
+                                border-radius: 50%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .personality-header-title {
+            .lead();
+            .mb0;
+        }
+        //Groups
+        .personality-header-title,
+        .personality-question-title {
+            width: 50%;
+
+            @media (max-width: @screen-xs-max) {
+                width: 100%;
+                .mb15;
+            }
+        }
+
+        .personality-header-titles,
+        .personality-question-pick {
+            text-align: center;
+            width: 10%;
+
+            @media (max-width: @screen-xs-max) {
+                width: 20%;
+            }
+
+            &.focus {
+                border: 1px dotted gray;
+            }
+        }
+    }
+}

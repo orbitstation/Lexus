@@ -1,0 +1,47 @@
+﻿<div class="row">
+    <div class='col-sm-4' ng-if="::$root.cfg('logIn.firstName') == 'true'">
+        <ocs-input meta="meta.firstName" model='model.firstName'></ocs-input>
+    </div>
+    <div class='col-sm-4' ng-if="::$root.cfg('logIn.middleName') == 'true'">
+        <ocs-input meta="meta.middleName" model="model.middleName"></ocs-input>
+    </div>
+    <div class='col-sm-4' ng-if="::$root.cfg('logIn.lastName') == 'true'">
+        <ocs-input meta="meta.lastName" model="model.lastName"></ocs-input>
+    </div>
+</div>
+<div class="row" ng-if="::$root.cfg('logIn.email') == 'true'"> 
+    <div class='col-sm-6'><ocs-input meta="meta.emailNew" model="model.emailAddress" valideemail="key" valideemailvalue="{{model.confirmEmailAddress}}"></ocs-input></div>
+    <div class='col-sm-6' ng-if="::$root.cfg('logIn.emailConfirm') == 'true'"><ocs-input meta="meta.confirmEmail" model="model.confirmEmailAddress" match="model.emailAddress"></ocs-input></div>
+</div>
+
+<div class="row" ng-if="::$root.cfg('logIn.userName') == 'true'">
+    <div class='col-sm-6'><ocs-input meta="meta.userName" model="model.userName"></ocs-input></div>
+</div>
+
+<div ng-if="model.userId">
+    <a class="btn btn-outline-primary mb15" submit="button" href="account/change-password">
+        {{:preResolved:$root.msg(374989)}}
+    </a>
+</div>
+
+<div class="row" ng-if="!model.userId">
+
+    <div class='col-sm-6' ng-if="::$root.cfg('logIn.password') == 'true'">
+        <ocs-input meta="meta.password" model="model.password"></ocs-input>
+        <ocs-input meta="meta.passwordConfirm" model="model.passwordConfirm" match="model.password" ng-if="::$root.cfg('logIn.passwordConfirm') == 'true'"></ocs-input>
+    </div>
+    <div class='col-sm-6' ng-if="::$root.cfg('logIn.passwordAssist') == 'true'">
+        <password-assist meta="meta.passwordAssist"
+                            model="model.password"
+                            passwordconfirm="model.passwordConfirm"
+                            messages="meta.password.RequirementMessages"></password-assist>
+    </div>
+</div>
+<div class="row" ng-if="::$root.cfg('logIn.securityQuestion') == 'true'">
+    <div class='col-sm-6'>
+        <ocs-select meta="meta.securityQuestionId" model="model.securityQuestionId"></ocs-select>
+    </div>
+    <div class='col-sm-6'  ng-if="::$root.cfg('logIn.securityAnswer') == 'true'">
+        <ocs-input meta="meta.securityAnswer" model="model.securityAnswer"></ocs-input>
+    </div>
+</div>

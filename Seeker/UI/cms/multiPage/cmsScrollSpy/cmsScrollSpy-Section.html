@@ -1,0 +1,12 @@
+﻿<div ng-if="items.rightBox" class="well well-primary hidden-xs" style="float: right; margin-left: 10px; margin-top: 10px; width: 300px; overflow: hidden;">
+    <h5>{{items.rightBox.title}}</h5>
+    <div ng-repeat="(key,para) in items.rightBox.paragraphs">
+        <p class="lead" ng-bind-html="para.p | unsafe"></p>
+    </div>
+</div>
+
+<h2 class="pageitem h2 mt0">{{items.title}}</h2>
+<a name="#{{items.title}}"></a>
+<div ng-repeat="(key,para) in items.paragraphs">
+    <p ng-if="para.p" class="lead" ng-bind-html="para.p | unsafe"></p>
+</div>

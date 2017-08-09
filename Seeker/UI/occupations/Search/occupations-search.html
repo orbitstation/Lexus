@@ -1,0 +1,115 @@
+﻿<div ng-if="!isLoaded" ocs-spinner is-loaded="isLoaded"></div>
+<div ng-if="isLoaded">
+    <ocs-intro-section meta="meta.pageHeaderSearch"></ocs-intro-section>
+    <div class="alert alert-info" ng-bind-html="label"></div>
+    <div class="row" ng-show="items.length !== 0">
+        <div class="col-sm-12">
+            <div class="pull-right">
+                <div ng-show="items.length > pageSize" class="ng-hide hidden-lg">
+                    <ocs-pager datasetSize="items.length" pageSize="pageSize" currentPage="currentPage" showFirstLast="false" visiblePages="5" callback="setPage"></ocs-pager>
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="list-filter">
+                <div class="well well-primary-filter">
+                    <div class="form-group form-group-sm mb0 advanced-search-wrapper display-flex">
+                        <label for="sortFilter" class="mb0 pr10">
+                            {{meta.testSelect.label.lookUpMsg.value}}
+                        </label>
+                        <div class="select-wrapper">
+                            <select ng-options="item.value as item.text.lookUpMsg.value for item in meta.testSelect.items" ng-model="sortOrder.filter" class="form-control" id="sortFilter" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="program-search-compare mt16">
+        <div class="compare-panel" ocs-sticky slide-inside=".program-search-compare" update="updateHeight">
+            <spa-occupation-compare meta="meta" on-remove="remove(code)"></spa-occupation-compare>
+        </div>
+
+        <div class="list display-table mt16">
+            <!-- this is one row template -->
+            <div class="list-item display-table-row" ng-repeat="item in items | startFrom:currentPage*pageSize | limitTo:pageSize">
+                <div class="list-col-90-percent display-table-cell vertical-align-middle pt16 pb16">
+                    <div class="list-body">
+                        <!-- row heading link -->
+                        <h3 class="list-item-heading"><a ng-bind="item.title" ng-href="{{item.url}}"></a></h3>
+                        <!-- row data columns -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <span class="display-block">
+                                    <span class="list-label" ng-bind-html="msg(325126)"></span>
+                                    <span class="list-value">
+                                        {{item.range}} <span ng-if="item.isUS">*</span>
+                                    </span>
+                                </span>
+                                <div class="icon-set">
+                                    <span ng-show="item.green">
+                                        <img ng-src="{{$root.meta.occupationSearchResults.leaf}}" alt="{{msg(347181)}}" />&nbsp;
+                                        <span class="list-value">{{msg(347181) | capitalize}}</span>
+                                        <span class="vertical-separator no-vertical-padding" ng-if="item.brightOutlook || item.apprenticeship || item.inDemand">|</span>
+                                    </span>
+                                    <span ng-show="item.brightOutlook">
+                                        <img ng-src="{{$root.meta.occupationSearchResults.sun}}" alt="{{msg(347180)}}" />&nbsp;
+                                        <span class="list-value">{{msg(347180) | capitalize}}</span>
+                                        <span class="vertical-separator no-vertical-padding" ng-if="(item.apprenticeship || item.inDemand)">|</span>
+                                    </span>
+                                    <span ng-show="item.apprenticeship">
+                                        <img ng-src="{{$root.meta.occupationSearchResults.book}}" alt="{{msg(347182)}}" />&nbsp;
+                                        <span class="list-value">{{msg(347182) | capitalize}}</span>
+                                        <span class="vertical-separator no-vertical-padding" ng-if="item.inDemand">|</span>
+                                    </span>
+                                    <span ng-show="item.inDemand">
+                                        <img ng-src="{{$root.meta.occupationSearchResults.exclamation}}" alt="{{msg(347179)}}" />&nbsp;
+                                        <span class="list-value">{{msg(347179) | capitalize}}</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-col-10-percent display-table-cell vertical-align-middle pt16 pb16">
+                    <div class="list-body text-right">
+                        <!-- action buttons -->
+                        <label for="cbx_{{item.code}}"
+                               ng-disabled="!item.checked && $parent.selected.length === 2"
+                               ng-class="item.checked ? 'btn btn-done' : 'btn btn-add'"
+                               class="btn-block">
+                            <input id="cbx_{{item.code}}"
+                                   type="checkbox"
+                                   ng-model="item.checked"
+                                   ng-change="change()"
+                                   ng-true-value="true"
+                                   ng-false-value="false"
+                                   class="sr-only"
+                                   ng-disabled="!item.checked && $parent.selected.length === 2" />
+                            <span ng-if="!item.checked">{{msg(364213)}}</span>
+                            <span ng-if="item.checked">{{msg(348880)}}</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row mt15">
+        <div class="col-xs-12">
+            <span class="text-muted" ng-bind-html="msg(361145)"></span>
+        </div>
+    </div>
+
+    <div ng-show="items.length > pageSize" class="ng-hide mt15 col-sm-12 ">
+        <ocs-pager class="pull-right" datasetSize="items.length" pageSize="pageSize" currentPage="currentPage" showFirstLast="false" visiblePages="5" callback="setPage"></ocs-pager>
+    </div>
+
+    <div>&#160;</div>
+
+</div>
+

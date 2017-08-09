@@ -1,0 +1,23 @@
+﻿<div ng-if="isLoaded">
+    <ocs-intro-section meta="meta.pageHeaderView"></ocs-intro-section>
+    <ocs-401 meta="meta" msgheader="363999" msgbody="364000"></ocs-401>
+
+    <div ng-show="$root.isAuthenticated">
+        <div class="panel panel-default">
+
+            <div class="panel-body">
+                <h3>{{letter.title}}</h3>
+                <div ng-bind-html="toHtml(letter.body) | unsafe"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <a href="javascript:window.history.back();" class="btn btn-primary pull-right">{{:preResolved:$root.msg(361345)}}</a> 
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

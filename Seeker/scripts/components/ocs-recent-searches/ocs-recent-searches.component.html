@@ -1,0 +1,21 @@
+﻿<div class="recent-searches-wrapper" ng-if="$ctrl.recentSearchesEnabled === 'true' && $ctrl.itemsSource" ng-class="{'hidden-xs' : !$ctrl.isMobile, 'visible-xs-block' : $ctrl.isMobile}">
+    <div ng-attr-class="{{$ctrl.channelSpecific}}">
+        <h5 ng-if="!$ctrl.isMobile" ng-class="{'mt0' : $ctrl.channelClass !== 'military'}">
+            {{:preResolved:$root.msg(379398)}}
+        </h5>
+        <p ng-if="$ctrl.isMobile" class="mobile-text">
+            {{:preResolved:$root.msg(379398)}}
+        </p>
+        <div class="recent-searches-holder">
+            <span ng-repeat="item in $ctrl.itemsSource">
+                <a href class="label recent-searches-item" tooltip-placement="top" uib-tooltip="{{::item.keyword}} {{::item.location}}" tooltip-class="recent-searches-tooltip" ng-class="{'recent-searches-mobile': $ctrl.isMobile}" aria-label="{{::item.keyword}} {{::item.location}}">
+                    <span class="recent-searches-keyword" style="max-width: {{$ctrl.maxWidth}}">{{::item.keyword}}</span>
+                    <span class="recent-searches-location" ng-if="!$ctrl.isMobile">
+                        {{::item.location}}
+                    </span>
+                </a>
+            </span>
+        </div>
+    </div>
+    <hr class="hr-short" ng-if="$ctrl.channelClass !== 'military' && !$ctrl.isMobile" />
+</div>

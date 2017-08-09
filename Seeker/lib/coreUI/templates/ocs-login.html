@@ -1,0 +1,27 @@
+﻿<div class="row">
+    <ng-form name="singleLogInForm" >
+        <form>
+            <div class="col-md-12">
+                <div class="panel panel-primary panel-login">
+                    <div class="panel-body equal-padding">
+                        <h3 ng-bind="$root.msg(320405)"></h3>
+                        <p ng-if="error" class="error-message">{{$root.msg(157552)}}</p>
+
+                        <ocs-input meta="meta.loginEmail" model="userName"></ocs-input>
+                        <ocs-input meta="meta.loginPassword" inputType="password" model="password"></ocs-input>
+
+                        <p><a href="/AccountReset/forgotPassword">{{$root.msg(205119)}}</a></p>
+
+                        <a class="btn-match" ng-click="createAccount()">{{$root.msg(204843)}}</a>
+
+                        <ocs-button meta="meta.signInButton"
+                                    options="{classes:'btn-primary pull-right', type:'submit'}"
+                                    validation="singleLogInForm.$invalid"
+                                    ng-click="authenticateLogin()"
+                                    is-busy="isBusy"></ocs-button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </ng-form>
+</div>

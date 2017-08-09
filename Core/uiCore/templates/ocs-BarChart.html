@@ -1,0 +1,13 @@
+﻿<div class="progress position-relative bar-chart" ng-repeat="item in settings track by $index" ng-click="openAccordion(item.name)">
+    <span class="badge position-absolute">{{item.name}}</span>
+    <div class="progress-bar progress-bar-info" 
+         style="-webkit-transition-delay: {{100 * $index}}ms;
+                transition-delay: {{100 * $index}}ms;" 
+         role="progressbar" 
+         aria-valuenow="{{item.value}}" 
+         aria-valuemin="0" 
+         aria-valuemax="100" 
+         ocs-repeater-finished="barsRendered">
+    </div>
+    <span class="badge position-absolute">{{item.value}}%</span>
+</div>

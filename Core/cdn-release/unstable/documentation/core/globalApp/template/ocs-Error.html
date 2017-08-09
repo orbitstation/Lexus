@@ -1,0 +1,4 @@
+﻿<div class="alert {{x.type}}" role="alert" ng-repeat="(key,x) in errorList">
+    <button ng-click="$parent.popError(key);" class="pull-right btn-link" tabindex="0">Close</button>
+    <p>{{x.text}}</p>
+</div>

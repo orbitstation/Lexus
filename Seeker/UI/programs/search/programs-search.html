@@ -1,0 +1,178 @@
+﻿<div ng-if="!isLoaded" ocs-spinner is-loaded="isLoaded"></div>
+    <div ng-if="isLoaded">
+        <ocs-401 meta="meta"></ocs-401>
+        <div ng-if="$root.isAuthenticated">
+            <ocs-intro-section meta="meta.pageHeaderSearch"></ocs-intro-section>
+            <div class="row" ng-show="items.length !== 0">
+                <div class="col-sm-12">
+                    <div class="pull-right">
+                        <div ng-show="items.length > pageSize" class="ng-hide hidden-lg">
+                            <ocs-pager datasetSize="items.length" pageSize="pageSize" currentPage="currentPage" showFirstLast="false" visiblePages="5"></ocs-pager>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="list-filter">
+                <div class="well well-primary-filter">
+                    <div class="display-table">
+                        <div class="display-table-row">
+                            <div class="display-table-cell vertical-align-middle cancel-inline-for-sm">
+                                <strong>{{msg(378652)}}</strong>
+                            </div>
+                            <div class="display-table-cell vertical-align-middle text-search">
+                                <form>
+                                    <ocs-input meta="meta.eventTextFilter" model="filter.singleAdd.programName"></ocs-input>
+                                    <button class="btn btn-primary" ng-click="doAddToCollection('programName')" type="button">{{msg(378653)}}</button>
+                                </form>
+                            </div>
+                            <div class="display-table-cell vertical-align-middle advanced-search-wrapper pull-right">
+                                <a class="advanced-search-switcher btn btn-link" ng-click="advancedFilterToggle()" href="">
+                                    {{:preResolved:$root.msg(374648)}}
+                                    <i class="fa" ng-class="{'fa-caret-up': filter.advancedFilterOpened, 'fa-caret-down' : !filter.advancedFilterOpened}"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-advanced" ng-show="filter.advancedFilterOpened">
+                    <div class="well well-primary-filter collapse-toggle">
+                        <div class="well well-secondary-filter">
+                            <div class="flex-content">
+                                <div class="flex-column">
+                                    <div class="filter-advanced-overview">
+                                        <div ng-repeat="(key, filter) in activeFilters" ng-if="filter.length > 0">
+                                          <!--  <div ng-if="key === 'regions'"><strong>Region:</strong></div>
+                                            <div ng-if="key === 'providers'">Provider:</div>
+                                            <div ng-if="key === 'schoolTypes'">Institution type:</div>
+                                            <div ng-if="key === 'industries'">Industry name:</div>
+                                            <div ng-if="key === 'certifications'">Certifications:</div>
+                                            <div ng-if="key === 'fundingSources'">Funding sources:</div>
+                                            <div ng-if="key === 'zipCodes'">Zip code:</div>
+                                            <div ng-if="key === 'oNetCodes'">Occupation code:</div>
+                                            <div ng-if="key === 'cipCodes'">Cip code:</div>-->
+                                            <div class="active-filter-item" ng-repeat="item in filter | orderBy: $index" ng-click="removeFromActiveFilter(key, item.value, $index)">
+                                                <a href="" title="Remove filter">{{item.text}}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a ng-click="doFilterClear()" href="">{{$root.msg(372641)}}</a>
+                                </div>
+                                <div class="flex-column">
+                                    <div class="filter-regions">
+                                        <ocs-check-box-with-modal meta="meta.regions" model="filter.collections.regions"></ocs-check-box-with-modal>
+                                    </div>
+                                    <div class="zip-code">
+                                        <ocs-input meta="meta.zipCodes"
+                                                   form-size="sm"
+                                                   add-on-btn="{'text':$root.msg(378671), 'type':'btn-success'}"
+                                                   add-on-btn-fn="doAddToCollection('zipCodes')"
+                                                   model="filter.singleAdd.zipCodes"></ocs-input>
+                                    </div>
+                                    <div class="filter-distance">
+                                        <ocs-radio meta="meta.distanceRadius" model="filter.radius"></ocs-radio>
+                                    </div>
+                                    
+                                </div>
+                                <div class="flex-column">
+                                    <div class="filter-providers">
+                                        <ocs-check-box-with-modal meta="meta.providers" model="filter.collections.providers"></ocs-check-box-with-modal>
+                                    </div>
+                                    <div class="filter-school-types">
+                                        <ocs-check-box-with-modal meta="meta.schoolTypes" model="filter.collections.schoolTypes"></ocs-check-box-with-modal>
+                                    </div>
+                                    <div class="filter-certifications">
+                                        <ocs-check-box meta="meta.certifications" model="filter.collections.certifications"></ocs-check-box>
+                                    </div>
+                                </div>
+                                <div class="flex-column">
+                                    <div class="filter-funding-sources">
+                                        <ocs-check-box-with-modal meta="meta.fundingSources" model="filter.collections.fundingSources"></ocs-check-box-with-modal>
+                                    </div>
+                                    <div class="filter-occupations">
+                                        <ocs-input meta="meta.occupationCode"
+                                                   form-size="sm"
+                                                   add-on-btn="{'text':$root.msg(378671), 'type':'btn-success'}"
+                                                   add-on-btn-fn="doAddToCollection('oNetCodes')"
+                                                   model="filter.singleAdd.oNetCodes.text"></ocs-input>
+                                    </div>
+                                    <div class="filter-industries">
+                                        <ocs-check-box-with-modal meta="meta.industries" model="filter.collections.industries"></ocs-check-box-with-modal>
+                                    </div>
+                                    <div class="filter-cip">
+                                        <ocs-input meta="meta.cipCodes"
+                                                   form-size="sm"
+                                                   add-on-btn="{'text':$root.msg(378671), 'type':'btn-success'}"
+                                                   add-on-btn-fn="doAddToCollection('cipCodes')"
+                                                   model="filter.singleAdd.cipCodes.text"></ocs-input>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-click="advancedFilterToggle()">
+                            <i class="fa" ng-class="{'fa-chevron-down' : !filter.advancedFilterOpened, 'fa-chevron-up' : filter.advancedFilterOpened}"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="program-search-compare mt16">
+                <div class="compare-panel" ocs-sticky slide-inside=".program-search-compare" update="updateHeight" ng-class="{'can-compare' : selected.length >= 2}">
+                    <spa-program-compare meta="meta" on-remove="remove(code)"></spa-program-compare>
+                </div>
+                <div class="list display-table mt16">
+                    <div class="list-item display-table-row" ng-repeat="item in items">
+                        <div class="list-col-80-percent display-table-cell vertical-align-middle pt16 pb16" >
+                            <div class="list-body">
+                                <div class="header-actions">
+                                    <h2 class="list-item-heading h3">
+                                        <a ng-bind="item.name" ng-href="{{item.url}}"></a>
+                                    </h2>
+                                </div>
+                                <div>
+                                    <span class="list-label">{{msg(378657)}}: </span>
+                                    <span class="list-value">{{item.certification}}</span>
+                                    <span class="vertical-separator no-vertical-padding">|</span>
+                                    <span class="list-label">{{msg(378659)}}: </span>
+                                    <span class="list-value" ng-repeat="source in item.fundingSources">{{source}}<span ng-if="!$last">, </span></span>
+                                    <span class="vertical-separator">|</span>
+                                    <span class="list-label">{{msg(378660)}}: </span>
+                                    <span class="list-value" ng-repeat="location in item.locations">{{location.city}} {{location.zipCode}}<span ng-if="!$last">, </span></span>
+                                </div>
+                                <div>
+                                    <span class="list-label">{{msg(378661)}}: </span>
+                                    <span class="list-value" ng-repeat="duration in item.durations"> {{duration.startDate | date: 'MMMM dd, yyyy'}} - {{duration.endDate | date: 'MMMM dd, yyyy'}}<span ng-if="!$last">, </span></span>
+                                    <span class="vertical-separator no-vertical-padding">|</span>
+                                    <span class="list-label">{{msg(378662)}}: </span>
+                                    <span class="list-value">{{item.providerName}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-col-20-percent display-table-cell vertical-align-middle pt16 pb16">
+                            <div class="list-body">
+                                <div class="pull-right list-item-actions">
+                                    <label for="cbx_{{item.id}}"
+                                           ng-disabled="!item.checked && $parent.selected.length === 4"
+                                           ng-class="item.checked ? 'btn btn-done' : 'btn btn-add'"
+                                           class="pull-right">
+                                        <input id="cbx_{{item.id}}"
+                                               type="checkbox"
+                                               ng-model="item.checked"
+                                               ng-change="change()"
+                                               ng-true-value="true"
+                                               ng-false-value="false"
+                                               class="sr-only"
+                                               ng-disabled="!item.checked && $parent.selected.length === 4" />
+                                        {{item.checked ? msg(376515) : msg(364213)}}
+                                    </label>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+            <div class="mt15 col-sm-12" ng-show="totalNumberFound > pageSize">
+                <ocs-pager class="pull-right" datasetSize="totalNumberFound" pageSize="pageSize" currentPage="currentPage" showFirstLast="false" visiblePages="5" callback="setPage"></ocs-pager>
+            </div>
+            <div>&#160;</div>
+        </div>
+</div>

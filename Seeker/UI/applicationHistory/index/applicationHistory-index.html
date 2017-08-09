@@ -1,0 +1,108 @@
+﻿<div ng-if="isLoaded">
+
+    <ocs-intro-section meta="meta.pageHeaderAppHistory"></ocs-intro-section>
+
+    <ocs-401 meta="meta" msgheader="379081" msgbody="379082"></ocs-401>
+
+    <div ng-if="$root.isAuthenticated">
+        
+        <div ng-if="data.totalItemsCount > 0">
+            <div class="alert alert-info" tabindex="0" ng-bind-html="pagination.counter"></div>
+
+            <div class="row text-right hidden-lg">
+                <div class="btn-group col-md-12" role="group" aria-label="{{msg(364632)}}" ng-if="data.totalItemsCount > 0">
+                    <ocs-pager datasetSize="data.totalItemsCount"
+                               pageSize="pagination.pageSize"
+                               currentPage="pagination.currentPage"
+                               showFirstLast="{{pagination.showFirstLast}}"
+                               visiblePages="{{pagination.visiblePages}}"></ocs-pager>
+                </div>
+                <br /><br />
+            </div>
+
+            <div class="list">
+                <div class="list-item" ng-repeat="applicationHistoryItem in data.items | orderBy:'-dateApplied'" ng-class="{'list-last':$last}">
+                    <div class="list-body">
+                        <!-- Cloud Jobs never expire -->
+                        <h3 class="list-item-heading" ng-if="applicationHistoryItem.jobViewLink !== ''">
+                            <h3 class="list-item-heading" ng-if="applicationHistoryItem.jobViewLink !== ''">
+                                <a href="/jobView/{{applicationHistoryItem.jobViewLink  | capitalize}}" title="{{msg(512)}}">{{applicationHistoryItem.jobTitle}}</a>
+                                <h3 class="list-item-heading" ng-if="applicationHistoryItem.jobViewLink == ''" title="{{msg(512)}}">
+                                    {{applicationHistoryItem.jobTitle  | capitalize}} <small ng-if="applicationHistoryItem.isJobExpired">{{ msg(107436) | lowercase}}</small>
+                                </h3>
+                                <div class="clearfix"></div>
+
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div>
+                                            <span class="list-label" title="{{msg(51)}}">{{applicationHistoryItem.companyName}}</span>
+                                            <span class="vertical-separator">|</span>
+                                            <span class="list-value" title="{{msg(44)}}">{{applicationHistoryItem.jobLocation | capitalize}}</span><br />
+                                        </div>
+                                        <div>
+                                            <span class="list-label"><span data-ng-bind="msg(176423)"></span>:</span>
+                                            <span class="list-value">{{applicationHistoryItem.dateApplied | date}}</span>
+                                        </div>
+                                        <div>
+                                            <!-- Resume: (current) -->
+                                            <span ng-if="!applicationHistoryItem.isResumeDeleted">
+                                                <span class="list-label">{{$root.msg(107292)}}:</span>
+                                                <span class="list-value">
+                                                    <a class="text-primary" href="/resumes/view/{{applicationHistoryItem.resumeValue}}" ng-if="applicationHistoryItem.resumeValue">
+                                                        {{applicationHistoryItem.resumeTitle}}
+                                                    </a>
+                                                    <span ng-if="!applicationHistoryItem.resumeValue">{{$root.msg(266213)}}</span>
+                                                </span>
+                                            </span>
+                                            <!-- Resume: (has been deleted) -->
+                                            <span ng-if="applicationHistoryItem.isResumeDeleted">
+                                                <span class="list-label">{{$root.msg(107292)}}:</span>
+                                                <span class="list-value">
+                                                    <span ng-if="applicationHistoryItem.resumeTitle">{{applicationHistoryItem.resumeTitle}}</span>
+                                                </span>
+                                            </span>
+                                            <span class="vertical-separator">|</span>
+                                            <!-- Cover Letter: (current) -->
+                                            <span ng-if="!applicationHistoryItem.isCoverLetterDeleted && applicationHistoryItem.coverLetterTitle !== ''">
+                                                <span class="list-label">{{$root.msg(318996)}}:</span>
+                                                <span class="list-value">
+                                                    <a href="/CoverLetters/view/{{applicationHistoryItem.coverLetterId}}" ng-if="applicationHistoryItem.coverLetterTitle">
+                                                        <span>{{applicationHistoryItem.coverLetterTitle}}</span>
+                                                    </a>
+                                                    <span ng-if="!applicationHistoryItem.coverLetterTitle">{{$root.msg(266213)}}</span>
+                                                </span>
+                                            </span>
+                                            <!-- Cover Letter: (has been deleted) -->
+                                            <span ng-if="applicationHistoryItem.isCoverLetterDeleted">
+                                                <span class="list-label">{{$root.msg(318996)}}:</span>
+                                                <span class="list-value">
+                                                    <span ng-if="applicationHistoryItem.coverLetterTitle">{{applicationHistoryItem.coverLetterTitle}}</span>
+                                                </span>
+                                            </span>
+
+                                        </div>
+                                        <div>
+                                            <!-- Status -->
+                                            <span class="list-label">{{$root.msg(158474)}}:</span>
+                                            <span class="list-value">
+                                                {{applicationHistoryItem.applyType}}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                    </div>
+                                </div>
+</div>
+                    <!--<hr class="hr-short" ng-if="!$last" />-->
+                </div>
+            </div>
+            <hr class="hr-short" />
+            <div class="btn-group pull-right" style="margin-top: -5px;" role="group" aria-label="{{msg(364632)}}" ng-if="data.totalItemsCount > 0">
+                <ocs-pager datasetSize="data.totalItemsCount" pageSize="pagination.pageSize" currentPage="pagination.currentPage" showFirstLast="{{pagination.showFirstLast}}" visiblePages="{{pagination.visiblePages}}"></ocs-pager>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <p ng-if="data.totalItemsCount == 0" ng-bind-html="msg(367918) | unsafe"></p>
+    </div>
+</div>
+

@@ -1,0 +1,69 @@
+﻿<div ng-if="isLoaded">
+    <ocs-intro-section meta="meta.pageHeader">
+        <ocs-well ng-if="letters.length < maxItemsCount">
+            <button ng-click="createLetter()" ng-disabled="letters.length >= maxItemsCount" class="btn btn-primary btn-block">{{msg(169642)}}</button>
+        </ocs-well>
+    </ocs-intro-section>
+    <ocs-401 meta="meta" msgheader="363999" msgbody="364000"></ocs-401>
+
+    <div ng-if="$root.isAuthenticated">
+        <div class="alert alert-info" tabindex="0">
+            {{:preResolved:$root.msg(157204)}}
+            <strong>{{itemsCount}}</strong>
+            {{:preResolved:$root.msg(104616)}}
+            <strong>{{maxItemsCount}}</strong>
+            {{:preResolved:$root.msg(157824)}}
+        </div>
+
+        <div class="list display-table">
+            <div class="list-item display-table-row" ng-repeat="letter in letters | orderBy:'-dateModified'" ng-class="{'list-last':$last}">
+                <div class="list-col-main display-table-cell vertical-align-middle pt16 pb16">
+                    <div class="list-body">
+                        <div class="header-actions">
+                            <div>
+                                <h3 class="list-item-heading">
+                                    <a href="/coverLetters/view/{{letter.id}}">{{letter.title | capitalize}}</a>
+                                </h3>
+                            </div>
+                        </div>
+                        <div>
+                            <span tabindex="0">
+                                <span class="list-label">{{:preResolved:$root.msg(204134)}}</span>
+                                <span class="list-value">{{letter.dateModified | date}}</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-col-actions display-table-cell vertical-align-middle pt16 pb16">
+                    <div class="list-body">
+                        <div class="pull-right list-item-actions">
+                            <a href="/coverLetters/edit/{{letter.id}}" class="btn btn-link">{{:preResolved:$root.msg(157940, 'edit')}}</a>
+                            <span class="vertical-separator no-padding">|</span>
+                            <button class="btn btn-link" ng-disabled="letters.length >= maxItemsCount" ng-click="cloneLetter(letter.id)">{{:preResolved:$root.msg(50022, 'copy')}}</button>
+                            <span class="vertical-separator no-padding">|</span>
+                            <a href="/coverLetters/send/{{letter.id}}" class="btn btn-link">{{:preResolved:$root.msg(157854, 'send')}}</a>
+                            <span class="vertical-separator no-padding">|</span>
+                            <button class="btn btn-link" ng-click="deleteLetter(letter.id)">{{$root.msg(344391, 'delete')}}</button>
+                        </div>
+                    </div>
+                </div>
+                <!--<hr class="hr-short" ng-if="!$last"/>-->
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">{{msg(246651)}}</h3>
+        </div>
+        <div class="modal-body">
+            <h4>{{msg(365782)}}</h4>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">{{msg(315145)}}</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">{{msg(162574)}}</button>
+        </div>
+    </script>
+
+</div>

@@ -1,0 +1,96 @@
+﻿<div ng-if="isLoaded">
+    <ocs-intro-section meta="meta.pageHeaderCompare">
+        <ocs-well>
+            <div class="text-center">
+                <a href="{{returnUrl ? returnUrl : '/'}}" class="btn btn-primary multiline btn-block">{{returnUrl ? $root.msg(377469) : $root.msg(377468)}}</a>
+            </div>
+        </ocs-well>
+    </ocs-intro-section>
+
+    <div ocs-spinner is-loaded="tableLoaded">
+        <div ng-show="tableLoaded">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="compare-table wrapper">
+                        <div class="compare-table fix">
+                            <table>
+                                <tbody>
+                                    <tr class="section-headers">
+                                        <th class="empty"></th>
+                                    </tr>
+                                    <tr class="column-headers">
+                                        <th class="empty"></th>
+                                    </tr>
+                                    <tr class="row-content fix" height="{{heights.left0}}" id="left-row-0">
+                                        <td>{{::compareData.occupationTitle1}}</td>
+                                    </tr>
+                                    <tr class="row-content fix" height="{{heights.left1}}" id="left-row-1">
+                                        <td>{{::compareData.occupationTitle2}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="compare-table scroll">
+                            <table>
+                                <tbody>
+                                    <tr class="section-headers">
+                                        <th ng-if="compareData.basicInformationGaps.length" colspan="{{::compareData.basicInformationGaps.length}}">{{:preResolved:$root.msg(137216)}}</th>
+                                        <th ng-if="compareData.skillLevelGaps.length" colspan="{{::compareData.skillLevelGaps.length}}">{{:preResolved:$root.msg(356256)}}</th>
+                                    </tr>
+                                    <tr class="column-headers">
+                                        <th ng-repeat="combinedInfo in combined = compareData.basicInformationGaps.concat(compareData.skillLevelGaps)">{{::combinedInfo.title}}</th>
+                                    </tr>
+                                    <tr class="row-content scroll" id="right-row-0" height="{{heights.right0}}">
+                                        <td ng-repeat="combinedInfo in combined = compareData.basicInformationGaps.concat(compareData.skillLevelGaps)">
+                                            <div ng-if="combinedInfo.title !== 'Pay'">{{::combinedInfo.currentValue}}</div>
+                                            <div ng-if="combinedInfo.title === 'Pay'">
+                                                <div ng-if="compareData.salaryInfo1.medianAnnualSalaryDescription.length && compareData.salaryInfo1.medianAnnualSalary.length">
+                                                    {{::compareData.salaryInfo1.medianAnnualSalaryDescription}}:
+                                                    {{::compareData.salaryInfo1.medianAnnualSalary}}
+                                                </div>
+                                                <div ng-if="compareData.salaryInfo1.medianHourlySalaryDescription.length && compareData.salaryInfo1.medianHourlySalary.length">
+                                                    {{::compareData.salaryInfo1.medianHourlySalaryDescription}}:
+                                                    {{::compareData.salaryInfo1.medianHourlySalary}}
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="row-content scroll" id="right-row-1" height="{{heights.right1}}">
+                                        <td ng-repeat="combinedInfo in combined = compareData.basicInformationGaps.concat(compareData.skillLevelGaps)">
+                                            <div ng-if="combinedInfo.title !== 'Pay'">{{::combinedInfo.targetValue}}</div>
+                                            <div ng-if="combinedInfo.title === 'Pay'">
+                                                <div ng-if="compareData.salaryInfo2.medianAnnualSalaryDescription.length && compareData.salaryInfo2.medianAnnualSalary.length">
+                                                    {{::compareData.salaryInfo2.medianAnnualSalaryDescription}}:
+                                                    {{::compareData.salaryInfo2.medianAnnualSalary}}
+                                                </div>
+                                                <div ng-if="compareData.salaryInfo2.medianHourlySalaryDescription.length && compareData.salaryInfo1.medianHourlySalaryDescription.length">
+                                                    {{::compareData.salaryInfo2.medianHourlySalaryDescription}}:
+                                                    {{::compareData.salaryInfo2.medianHourlySalary}}
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt24">
+                <div class="col-sm-12">
+                    <h4 class="mb0">{{msg(356258)}}</h4>
+                    <p ng-bind-html="msg(356259) | unsafe" ng-show="compareData.overlappingSkills.length > 0"></p>
+                    <p ng-bind-html="msg(364633) | unsafe" ng-show="compareData.overlappingSkills.length <= 0"></p>
+                    <div class="skill-overlaps" ng-if="compareData.overlappingSkills.length">
+                        <div class="skill-overlaps-wrap">
+                            <div ng-repeat="skill in compareData.overlappingSkills track by $index">
+                                {{skill}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

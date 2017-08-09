@@ -1,0 +1,73 @@
+﻿<div class="row">
+    <div class="col-md-6">
+        <h4>Add a file to the list:</h4>
+    </div>
+    <div class="col-md-2">
+        <button type="button"
+                class="btn btn-info btn-file btn-block"
+                ng-click="browse()">
+            <span class="fa fa-cloud-upload"></span> Browse
+        </button>
+    </div>
+    <div class="col-md-2">
+        <button type="button"
+                class="btn btn-info btn-file btn-block"
+                lk-google-picker
+                on-picked="onGDrivePicked(fileInfo)">
+            <span class="fa fa-cloud-upload"></span> Google Drive
+        </button>
+    </div>
+    <div class="col-md-2">
+        <button type="button"
+                class="btn btn-info btn-file btn-block"
+                drop-box-picker
+                on-picked="onDropBoxPicked(filesInfo)">
+            <span class="fa fa-cloud-upload"></span> Dropbox
+        </button>
+        <input type="file" id="fileUpload" nv-file-select uploader="uploader" ng-show="false" />
+        <br />
+    </div>
+
+    <div class="col-md-12 text-center my-drop-zone" style="border:  1px dashed gray;" nv-file-drop nv-file-over="" uploader="uploader">
+        <br />
+        <br />
+        --- or Drag and Drop Files Here ---
+        <br />
+        <br><br>
+
+    </div>
+</div>
+{{uploader.queue}}
+<div class="row list" >
+    <hr class="hr-short" />
+
+    <!-- (UPLODER QUEUE)  this is one row template -->
+    <div class="list-item" ng-repeat="item in uploader.queue">
+        <!-- row number -->
+        <div class="list-number">{{$index + 1}}.</div>
+
+        <div class="list-body">
+            <!-- action buttons -->
+            <!-- row heading link -->
+            <h4 class="list-item-heading">{{ item.file.name }}</h4>
+            <div class="clearfix"></div>
+
+            <!-- row data columns -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="progress" ng-hide="doc.upload == true">
+                        <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }" style="width: 0%;"></div>
+                        {{ Math.round(item.file.size / 1000) }} KB
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- last hr line -->
+        <hr class="hr-short" ng-if="!$last" />
+    </div>
+</div>
+

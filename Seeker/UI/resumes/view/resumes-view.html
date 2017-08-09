@@ -1,0 +1,35 @@
+﻿<div ng-show="isLoaded" ng-controller="viewResumeCtrl as vm">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>{{$root.msg(312578)}}&nbsp;:&nbsp;"{{resumePreview.resumeBasics.resumeTitle}}"</h1>
+        </div>
+    </div>
+
+    <ocs-401 meta="meta" msgheader="379077" msgbody="379078"></ocs-401>
+
+    <div ng-show="$root.isAuthenticated && resumePreview.resumeValue">
+        <div ocs-spinner is-loaded="$root.previewLoaded">
+
+            <div ng-if="resumePreview.resumeType == 'UploadResume'">
+                <div ng-if="resumePreview.documents && resumePreview.documents.length">
+                    <a ng-click="downloadFile(resumePreview.documents[0].id)" href="" class="pull-right">{{$root.msg(118645)}} {{resumePreview.documents[0].name}}</a>
+                    <ocs-resume-uploaded-preview model="resumePreview" documents="resumePreview.documents"></ocs-resume-uploaded-preview>
+                </div>
+                <div ng-if="!resumePreview.documents || !resumePreview.documents.length">
+                    <p class="text-danger lead">{{$root.msg(370730)}}</p>
+                </div>
+            </div>
+
+            <div ng-if="resumePreview.resumeType != 'UploadResume'">
+
+                <!-- include the page -->
+                <div ng-include="'/UI/resumes/view/sections/renderBuilderResume.html'"></div>
+
+            </div>
+        </div>
+    </div>
+    <div class="text-right">
+        <a href="javascript:window.history.back();" class="btn btn-primary">{{$root.msg(339822)}}</a>
+        <a href="{{applyCompleteUrl}}" class="btn btn-primary" ng-show="inApplyFlow">{{$root.msg(374816)}}</a>
+    </div>
+</div>

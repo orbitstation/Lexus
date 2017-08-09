@@ -1,0 +1,15 @@
+﻿@{ ViewBag.Title = "Browse Jobs"; }
+
+@section Header
+{
+    <!-- build:js -->
+    <script src="~/UI/jobs/jobs-meta.js"></script>
+    <script src="~/UI/jobs/jobs-config.js"></script>
+
+    <script src="~/UI/jobs/jobs-app.js"></script>
+    <script src="~/UI/jobs/index/jobs-index-ctrl.js"></script>
+   <!-- <script src="~/UI/jobs/company/jobs-company-index-ctrl.js"></script>-->
+    <!-- endbuild -->
+}
+
+<div ng-view></div>

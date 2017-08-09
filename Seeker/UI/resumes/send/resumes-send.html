@@ -1,0 +1,37 @@
+﻿<div ng-if="isLoaded">
+    <ocs-intro-section meta="meta.pageHeaderSend"></ocs-intro-section>
+    <ocs-401 meta="meta" msgheader="379077" msgbody="379078"></ocs-401>
+
+    <div ng-show="$root.isAuthenticated" ocs-spinner is-loaded="resumeLoaded">
+
+        <p ng-bind-html="msg(262244)"></p>
+        <ng-form name="sendForm" novalidate>
+            <div ocs-bind-to-button validation="sendForm" trigger="#sendResume" list=".form-control">
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ocs-input meta="meta.fromEmailAddress" model="emailResumeModel.fromEmailAddress"></ocs-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ocs-input meta="meta.toEmailAddress" model="emailResumeModel.toEmailAddress"></ocs-input>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ocs-input meta="meta.emailSubject" model="emailResumeModel.subject"></ocs-input>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button ng-click="cancel()" class="btn btn-md btn-primary">{{msg(155055)}}</button>
+                        <ocs-button id="sendResume" meta="meta.button1" validation="sendForm.$invalid" ng-click="sendResume()" options="{classes:'btn-primary'}"></ocs-button>
+                    </div>
+                </div>
+            </div>
+        </ng-form>
+
+    </div>
+</div>
